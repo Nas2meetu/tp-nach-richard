@@ -5,7 +5,6 @@ public class Street {
 	private Place source;
 	private Direction direction;
 	private Place target;
-	private Place whereAmI;
 	
 	public Street(){
 		
@@ -16,23 +15,23 @@ public class Street {
 	}
 	public boolean comeOutFrom(Place place, Direction whichDirection) {
 		
-			return true;	
+		//if (whichDirection.equals(direction.oppossite()) && )
+				
 		
-	}
-	public Place getSource() {
-		return source;
-	}
-	public Direction getDirection() {
-		return direction;
-	}
-	public Place getTarget() {
-		return target;
-	
 	}
 	
 	public Place nextPlace(Place whereAmI) {
-		return null;
+		
+		Place nextPlace = null;
+		
+		if(this.source.equals(whereAmI)){
+			nextPlace = target;			
+		}else if (this.target.equals(whereAmI)){
+			nextPlace = source; 
+		}
+		return nextPlace;  		
 	}
+	
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}

@@ -6,11 +6,39 @@ public class Interpreter {
 	
 	public Instruction generateInstruction(String line){
 		Instruction ins = null;//preguntar si esta bien inicializar a null
-		int i = 0;
+		//int i = 0;
 		line = this.line.toUpperCase();
 		String text = line.trim();
 		String[] words = text.split(" ");
-		while (i < words.length) {
+		switch (words[0]) {
+		case "HELP":
+			ins = new Instruction(Action.HELP);
+			break;
+		case "QUIT":
+			ins = new Instruction(Action.QUIT);
+			break;
+		case "MOVE":
+			ins = new Instruction(Action.MOVE);
+			break;
+		case "TURN":
+			Rotation rotation = null;
+			switch (words[1]) {
+			case "LEFT":
+				ins = new Instruction (Action.TURN, rotation.LEFT);
+				break;
+			case "RIGHT":
+				ins = new Instruction (Action.TURN, rotation.RIGHT);
+				break;
+			default:
+				ins = new Instruction (Action.TURN, rotation.UNKNONW);
+				break;
+			}
+		default:
+			return ins = new Instruction (Action.UNKNOWN);	
+		}
+		return ins;
+	}
+		/*while (i < words.length) {
 			if (words.length > 2)
 				return ins = new Instruction();
 			
@@ -18,16 +46,16 @@ public class Interpreter {
 				if (words.length == 1){
 					return ins = new Instruction();
 				}else {
-					ins = new Instruction(Action.TURN);
+					Rotation rotation = null;
 					//ins.setAction(Action.TURN);
 					if (words[1].contains("LEFT")){
-						ins.setRotation(Rotation.LEFT);
+						return ins = new Instruction (Action.TURN, rotation.LEFT);
 					}else {
 						if (words[1].contains("RIGHT")){
-							ins.setRotation(Rotation.RIGHT);
+							return ins = new Instruction (Action.TURN, rotation.RIGHT);
 						}	
 					} 
-					ins.setRotation(Rotation.UNKNONW);
+					return ins= new Instruction(Action.TURN, Rotation.UNKNONW);
 				}		
 			}
 			
@@ -42,6 +70,10 @@ public class Interpreter {
 			i++;
 		}
 		return ins = new Instruction();
+	}*/
+	String interpreterHelp(){
+		return "The valid instructions for WALL·E are:\n" + "MOVE\n" +
+				"TURN <LEFT | RIGHT>\n" + "HELP\n" + "QUIT";
 	}
 
 }
