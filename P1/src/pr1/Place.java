@@ -8,7 +8,7 @@ public class Place {
 	
 	public Place() {
 		this.name = name;
-		this.isSpaceShip = false;
+		this.isSpaceShip = isSpaceShip;
 		this.description = description;
 		
 	}
@@ -22,8 +22,9 @@ public class Place {
 		return isSpaceShip;
 	}
 	
-	public String toString(){
-		//return name;
-		return description;
+	@Override
+	public String toString() {
+		return name + "\n"	+ description;
 	}
+	
 }

@@ -7,6 +7,8 @@ public class Instruction {
 	
 	
 	public Instruction(){
+		action = Action.UNKNOWN;
+		rotation = Rotation.UNKNONW;
 		
 	}
 	public Instruction(Action action){
@@ -20,16 +22,11 @@ public class Instruction {
 	public Action getAction() {
 		return action;
 	}
-	public void setAction(Action action) {
-		this.action = action;
-	}
-		
+			
 	public Rotation getRotation() {
 		return rotation;
 	}
-	public void setRotation(Rotation rotation) {
-		this.rotation = rotation;
-	}
+	
 	public boolean isValid(){
 		switch (this.action) {
 		case UNKNOWN:
