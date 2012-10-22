@@ -14,11 +14,12 @@ public class Street {
 	}
 	public boolean comeOutFrom(Place place, Direction whichDirection) {
 		
-		if (whichDirection.equals(direction){
-			
-		}
-				
-		
+		if ((whichDirection.equals(direction) || whichDirection.equals(direction.oppossite())) 
+			&& (this.source.equals(place) || this.target.equals(place))) {
+			return true;
+		}else
+			return false;
+						
 	}
 	
 	public Place nextPlace(Place whereAmI) {
