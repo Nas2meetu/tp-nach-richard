@@ -1,6 +1,7 @@
 package pr1;
 
 public class Interpreter {
+	
 	private String line;
 		
 	
@@ -73,8 +74,10 @@ public class Interpreter {
 	}*/
 	
 	String interpreterHelp(){
-		return "The valid instructions for WALL·E are:\n" + "MOVE\n" +
-				"TURN <LEFT | RIGHT>\n" + "HELP\n" + "QUIT";
+		String LINE_SEPARATOR = System.getProperty("line.separator");
+		
+		return "The valid instructions for WALL·E are:" + LINE_SEPARATOR +"MOVE" + LINE_SEPARATOR +
+				"TURN <LEFT | RIGHT>" + LINE_SEPARATOR + "HELP" + LINE_SEPARATOR + "QUIT";
 	}
 
 }

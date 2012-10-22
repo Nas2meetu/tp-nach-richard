@@ -22,6 +22,7 @@ public class Street {
 						
 	}
 	
+
 	public Place nextPlace(Place whereAmI) {
 		
 		Place nextPlace = null;
@@ -38,5 +39,8 @@ public class Street {
 		this.direction = direction;
 	}
 	
+	public Direction getDirection() {
+		return direction;
+	}
 
 }

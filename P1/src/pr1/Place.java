@@ -6,18 +6,23 @@ public class Place {
 	private boolean isSpaceShip;
 	private String description;
 	
-	public Place() {
-		this.name = name;
-		this.isSpaceShip = isSpaceShip;
-		this.description = description;
+	public Place(String n, Boolean isss, String d) {
+		this.name = n;
+		this.isSpaceShip = isss;
+		this.description = d;
 		
 	}
-
+	
 	public String getName() {
 		return name;
 	}
 
-	
+	public String getDescription() {
+		return description;
+	}
+
+
+
 	public boolean isSpaceship(){
 		return isSpaceShip;
 	}
