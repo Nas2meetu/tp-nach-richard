@@ -71,6 +71,7 @@ public class Interpreter {
 		}
 		return ins = new Instruction();
 	}*/
+	
 	String interpreterHelp(){
 		return "The valid instructions for WALL·E are:\n" + "MOVE\n" +
 				"TURN <LEFT | RIGHT>\n" + "HELP\n" + "QUIT";

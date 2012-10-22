@@ -6,16 +6,17 @@ public class Street {
 	private Direction direction;
 	private Place target;
 	
-	public Street(){
-		
-		this.source = source;
-		this.direction = direction;
-		this.target = target;
+	public Street(Place s, Direction d, Place t){
+		this.source = s;
+		this.direction = d;
+		this.target = t;
 				
 	}
 	public boolean comeOutFrom(Place place, Direction whichDirection) {
 		
-		//if (whichDirection.equals(direction.oppossite()) && )
+		if (whichDirection.equals(direction){
+			
+		}
 				
 		
 	}
