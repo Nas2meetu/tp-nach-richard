@@ -21,17 +21,21 @@ public class RobotEngine {
 		Instruction ins;
 		boolean end = false;
 		System.out.println(initialPlace.getDescription()+ LINE_SEPARATOR + direction);
-
+		
 		while (!end) {
+			
 			System.out.print("WALL-E> ");
 			ins = interpreter.generateInstruction(read.nextLine());
-			if (read.equals("QUIT")){
-				end = true;
-			}
-		
+			
+				if (ins.equals("QUIT")){
+					end = true;
+				}//else if (ins.equals("HELP")){ donde y como va el help?
+					
+				//}
+			
 		}
-		System.out.println("GAME OVER\nThank you for playing, goodbye.");
-	}
-		
+		System.out.println("GAME OVER" + LINE_SEPARATOR + "Thank you for playing, goodbye.");
+		}
+	}	
 	
-}
+

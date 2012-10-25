@@ -11,34 +11,38 @@ public class Interpreter {
 		line = this.line.toUpperCase();
 		String text = line.trim();
 		String[] words = text.split(" ");
-		switch (words[0]) {
-		case "HELP":
-			ins = new Instruction(Action.HELP);
-			break;
-		case "QUIT":
-			ins = new Instruction(Action.QUIT);
-			break;
-		case "MOVE":
-			ins = new Instruction(Action.MOVE);
-			break;
-		case "TURN":
-			Rotation rotation = null;
-			switch (words[1]) {
-			case "LEFT":
-				ins = new Instruction (Action.TURN, rotation.LEFT);
+		if (ins.isValid()){//donde va el isvalid?		
+			switch (words[0]) {
+			case "HELP":
+				ins = new Instruction(Action.HELP);
 				break;
-			case "RIGHT":
-				ins = new Instruction (Action.TURN, rotation.RIGHT);
+			case "QUIT":
+				ins = new Instruction(Action.QUIT);
 				break;
+			case "MOVE":
+				ins = new Instruction(Action.MOVE);
+				break;
+			case "TURN":
+				Rotation rotation = null;
+				switch (words[1]) {
+				case "LEFT":
+					ins = new Instruction (Action.TURN, rotation.LEFT);
+					break;
+				case "RIGHT":
+					ins = new Instruction (Action.TURN, rotation.RIGHT);
+					break;
+				default:
+					ins = new Instruction (Action.TURN, rotation.UNKNONW);
+					break;
+				}
 			default:
-				ins = new Instruction (Action.TURN, rotation.UNKNONW);
-				break;
-			}
-		default:
-			return ins = new Instruction (Action.UNKNOWN);	
-		}
-		return ins;
+				return ins = new Instruction (Action.UNKNOWN);	
+			
+			} System.out.println("says: I dont understand. Plase repeat");
+			
+		}return ins;
 	}
+		
 		/*while (i < words.length) {
 			if (words.length > 2)
 				return ins = new Instruction();

@@ -30,24 +30,28 @@ public class Instruction {
 	public boolean isValid(){
 		switch (this.action) {
 		case UNKNOWN:
+			System.out.println("says: I dont understand. Please repeat");
 			return false;
 		case MOVE:
 			return true;
 		case TURN:
 			switch (this.rotation){
 			case UNKNONW:
+				System.out.println("says: I dont understand. Please repeat");
 				return false;
 			case LEFT:
 				return true;
 			case RIGHT:
 				return true;
 			}
+			System.out.println("says: I dont understand. Please repeat");
 			return false;
 		case HELP:
 			return true;
 		case QUIT:
 			return true;
 			}
+		System.out.println("says: I dont understand. Please repeat");
 		return false;
 	}
 	

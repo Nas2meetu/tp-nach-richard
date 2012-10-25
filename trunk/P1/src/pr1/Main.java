@@ -3,7 +3,7 @@ package pr1;
 import java.util.ArrayList;
 
 public class Main {
-	
+
 	
 
 	
@@ -99,8 +99,11 @@ public class Main {
 	
 	
 	public static void main(java.lang.String[] args){
+		Place[] p =  createPlaces();
+		Street[] s = createStreets(p);
 		
-		
+		RobotEngine i = new RobotEngine(p[0],Direction.NORTH,s[0]);
+		i.startEngine();
 	}
 
 }
