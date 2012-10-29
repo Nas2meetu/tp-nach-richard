@@ -1,4 +1,4 @@
-package pr1;
+package tp.pr1;
 
 
 public class Instruction {
@@ -27,6 +27,12 @@ public class Instruction {
 		return rotation;
 	}
 	
+	public void setAction(Action action) {
+		this.action = action;
+	}
+	public void setRotation(Rotation rotation) {
+		this.rotation = rotation;
+	}
 	public boolean isValid(){
 		switch (this.action) {
 		case UNKNOWN:

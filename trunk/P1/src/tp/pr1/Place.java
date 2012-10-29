@@ -1,7 +1,7 @@
-package pr1;
+package tp.pr1;
+import static tp.pr1.Constants.*;
 
 public class Place {
-	
 	private String name;
 	private boolean isSpaceShip;
 	private String description;
@@ -29,7 +29,7 @@ public class Place {
 	
 	@Override
 	public String toString() {
-		return name + "\n"	+ description;
+		return name	 + LINE_SEPARATOR + description;
 	}
 	
 }

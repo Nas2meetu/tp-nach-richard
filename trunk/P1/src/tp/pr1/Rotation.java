@@ -1,4 +1,4 @@
-package pr1;
+package tp.pr1;
 
 public enum Rotation { LEFT, RIGHT, UNKNONW
 

@@ -1,4 +1,4 @@
-package pr1;
+package tp.pr1;
 
 public class Street {
 	
@@ -14,6 +14,16 @@ public class Street {
 	}
 	public boolean comeOutFrom(Place place, Direction whichDirection) {
 		
+		/*if ((place.equals(source) && whichDirection.equals(direction))){
+			return true;
+			
+		}else if (place.equals(target) && whichDirection.equals(direction.oppossite())){
+			return true;
+			
+		}else
+			return false;
+	
+		*/
 		if ((whichDirection.equals(direction) || whichDirection.equals(direction.oppossite())) 
 			&& (this.source.equals(place) || this.target.equals(place))) {
 			return true;
@@ -23,7 +33,6 @@ public class Street {
 						
 	}
 	
-
 	public Place nextPlace(Place whereAmI) {
 		
 		Place nextPlace = null;
