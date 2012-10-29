@@ -1,13 +1,13 @@
-package pr1;
+package tp.pr1;
+import static tp.pr1.Constants.*;
 
 public class Interpreter {
 	
 	private String line;
-		
 	
+		
 	public Instruction generateInstruction(String line){
 		Instruction ins = null;
-		//int i = 0;
 		line = this.line.toUpperCase();
 		String text = line.trim();
 		String[] words = text.split(" ");
@@ -22,16 +22,15 @@ public class Interpreter {
 				ins = new Instruction(Action.MOVE);
 				break;
 			case "TURN":
-				Rotation rotation = null;
 				switch (words[1]) {
 				case "LEFT":
-					ins = new Instruction (Action.TURN, rotation.LEFT);
+					ins = new Instruction (Action.TURN, Rotation.LEFT);
 					break;
 				case "RIGHT":
-					ins = new Instruction (Action.TURN, rotation.RIGHT);
+					ins = new Instruction (Action.TURN, Rotation.RIGHT);
 					break;
 				default:
-					ins = new Instruction (Action.TURN, rotation.UNKNONW);
+					ins = new Instruction (Action.TURN, Rotation.UNKNONW);
 					break;
 				}
 			default:
@@ -77,7 +76,6 @@ public class Interpreter {
 	}*/
 	
 	public String interpreterHelp(){
-		String LINE_SEPARATOR = System.getProperty("line.separator");
 		
 		return "The valid instructions for WALL·E are:" + LINE_SEPARATOR +"MOVE" + LINE_SEPARATOR +
 				"TURN <LEFT | RIGHT>" + LINE_SEPARATOR + "HELP" + LINE_SEPARATOR + "QUIT";

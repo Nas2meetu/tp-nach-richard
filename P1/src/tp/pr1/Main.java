@@ -1,19 +1,16 @@
-package pr1;
+package tp.pr1;
 
 import java.util.ArrayList;
+import static tp.pr1.Constants.*;
 
 public class Main {
 
-	
-
-	
 	/**
 	 * Create the places and configure the initial current place.
 	 * @return The place where the player starts the game
 	 */
 	private static Place[] createPlaces(){
 		Place [] _places = new Place[10];
-		String LINE_SEPARATOR = System.getProperty("line.separator");
 		// 0: Puerta del Sol
 		_places[0] = new Place("PUERTA DEL SOL" , false, 
 				"You are at the PUERTA DEL SOL, the center of Madrid. " +  LINE_SEPARATOR +
@@ -102,7 +99,7 @@ public class Main {
 		Place[] p =  createPlaces();
 		Street[] s = createStreets(p);
 		
-		RobotEngine i = new RobotEngine(p[0],Direction.NORTH,s[0]);
+		RobotEngine i = new RobotEngine(p[0],Direction.NORTH,s);
 		i.startEngine();
 	}
 
