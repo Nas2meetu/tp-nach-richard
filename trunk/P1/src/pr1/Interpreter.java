@@ -6,12 +6,11 @@ public class Interpreter {
 		
 	
 	public Instruction generateInstruction(String line){
-		Instruction ins = null;//preguntar si esta bien inicializar a null
+		Instruction ins = null;
 		//int i = 0;
 		line = this.line.toUpperCase();
 		String text = line.trim();
 		String[] words = text.split(" ");
-		if (ins.isValid()){//donde va el isvalid?		
 			switch (words[0]) {
 			case "HELP":
 				ins = new Instruction(Action.HELP);
@@ -40,7 +39,7 @@ public class Interpreter {
 			
 			} System.out.println("says: I dont understand. Plase repeat");
 			
-		}return ins;
+		return ins;
 	}
 		
 		/*while (i < words.length) {
@@ -77,7 +76,7 @@ public class Interpreter {
 		return ins = new Instruction();
 	}*/
 	
-	String interpreterHelp(){
+	public String interpreterHelp(){
 		String LINE_SEPARATOR = System.getProperty("line.separator");
 		
 		return "The valid instructions for WALL·E are:" + LINE_SEPARATOR +"MOVE" + LINE_SEPARATOR +
