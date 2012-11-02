@@ -14,18 +14,8 @@ public class Street {
 	}
 	public boolean comeOutFrom(Place place, Direction whichDirection) {
 		
-		/*if ((place.equals(source) && whichDirection.equals(direction))){
-			return true;
-			
-		}else if (place.equals(target) && whichDirection.equals(direction.oppossite())){
-			return true;
-			
-		}else
-			return false;
-	
-		*/
-		if ((whichDirection.equals(direction) || whichDirection.equals(direction.oppossite())) 
-			&& (this.source.equals(place) || this.target.equals(place))) {
+		if ((whichDirection.equals(direction.oppossite()) && target.equals(place)) ||
+		(whichDirection.equals(direction) && source.equals(place))){
 			return true;
 		}else
 			return false;

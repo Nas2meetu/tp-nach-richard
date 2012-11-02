@@ -1,5 +1,5 @@
 package tp.pr1;
-import static tp.pr1.Constants.*;
+
 
 public class Interpreter {
 	
@@ -41,44 +41,10 @@ public class Interpreter {
 		return ins;
 	}
 		
-		/*while (i < words.length) {
-			if (words.length > 2)
-				return ins = new Instruction();
-			
-			if (words[0].contains("TURN")){
-				if (words.length == 1){
-					return ins = new Instruction();
-				}else {
-					Rotation rotation = null;
-					//ins.setAction(Action.TURN);
-					if (words[1].contains("LEFT")){
-						return ins = new Instruction (Action.TURN, rotation.LEFT);
-					}else {
-						if (words[1].contains("RIGHT")){
-							return ins = new Instruction (Action.TURN, rotation.RIGHT);
-						}	
-					} 
-					return ins= new Instruction(Action.TURN, Rotation.UNKNONW);
-				}		
-			}
-			
-			if (words[0].contains("MOVE")) 
-				ins = new Instruction(Action.MOVE);
-				//ins.setAction(Action.MOVE);
-				//System.out.printf("Moving in direction",direction);preguntar si poner aqui esto
-			if (words[0].contains("HELP")) 
-				ins = new Instruction(Action.HELP);
-			if (words[0].contains("QUIT")) 
-				ins = new Instruction(Action.QUIT);
-			i++;
-		}
-		return ins = new Instruction();
-	}*/
+		
 	
 	public String interpreterHelp(){
-		
-		return "The valid instructions for WALL·E are:" + LINE_SEPARATOR +"MOVE" + LINE_SEPARATOR +
-				"TURN <LEFT | RIGHT>" + LINE_SEPARATOR + "HELP" + LINE_SEPARATOR + "QUIT";
+		return Constants.MESSAGE_HELP;
 	}
 
 }
