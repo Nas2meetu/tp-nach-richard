@@ -14,10 +14,8 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 			oppossiteDirection = NORTH;
 		case WEST:
 			oppossiteDirection = EAST;
-		default:
+		case UNKNOWN:
 			oppossiteDirection = UNKNOWN;
-			break;
-		
 		}
 		return oppossiteDirection;
 	}
