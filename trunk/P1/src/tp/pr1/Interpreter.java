@@ -1,49 +1,67 @@
 package tp.pr1;
 
-
 public class Interpreter {
-	
-	private String line;
-	
-		
-	public Instruction generateInstruction(String line){
-		Instruction ins = null;
-		line = this.line.toUpperCase();
-		String text = line.trim();
-		String[] words = text.split(" ");
-			switch (words[0]) {
-			case "HELP":
-				ins = new Instruction(Action.HELP);
-				break;
-			case "QUIT":
-				ins = new Instruction(Action.QUIT);
-				break;
-			case "MOVE":
-				ins = new Instruction(Action.MOVE);
-				break;
-			case "TURN":
-				switch (words[1]) {
-				case "LEFT":
-					ins = new Instruction (Action.TURN, Rotation.LEFT);
-					break;
-				case "RIGHT":
-					ins = new Instruction (Action.TURN, Rotation.RIGHT);
-					break;
-				default:
-					ins = new Instruction (Action.TURN, Rotation.UNKNONW);
-					break;
-				}
-			default:
-				return ins = new Instruction (Action.UNKNOWN);	
-			
-			} System.out.println("says: I dont understand. Plase repeat");
-			
-		return ins;
+
+	public Instruction generateInstruction(String prompt) {
+		prompt = prompt.trim().toUpperCase();
+		String[] words = prompt.split(" ");
+		Instruction instruction = null;
+
+		if (words.length == 1) {
+			String command = words[0];
+			instruction = generateSimpleInstruction(command, instruction);
+		} else if (words.length == 2) {
+
+			String turnCommand = words[0];
+			String rotation = words[1];
+			instruction = generateTurnInstruction(instruction, turnCommand,
+					rotation);
+
+		}
+		return instruction;
 	}
-		
-		
-	
-	public String interpreterHelp(){
+
+	private Instruction generateTurnInstruction(Instruction instruction,
+			String turnCommand, String rotation) {
+		if (turnCommand.equals("TURN")) {
+			if (rotation.equals("LEFT")) {
+				instruction = new Instruction(Action.TURN, Rotation.LEFT);
+			} else if (rotation.equals("RIGTH")) {
+				instruction = new Instruction(Action.TURN, Rotation.RIGHT);
+			} else {
+				instruction = new Instruction(Action.TURN, Rotation.UNKNONW);
+			}
+		}
+		return instruction;
+	}
+
+	private Instruction generateSimpleInstruction(String command,
+			Instruction instruction) {
+
+		switch (command) {
+		case "HELP":
+			instruction = new Instruction(Action.HELP);
+			break;
+
+		case "MOVE":
+			instruction = new Instruction(Action.MOVE);
+			break;
+
+		case "QUIT":
+			instruction = new Instruction(Action.QUIT);
+			break;
+			
+		case "TURN":
+			instruction = new Instruction(Action.TURN);
+			break;
+		default:
+			instruction = new Instruction();
+			break;
+		}
+		return instruction;
+	}
+
+	public String interpreterHelp() {
 		return Constants.MESSAGE_HELP;
 	}
 

@@ -3,7 +3,7 @@ package tp.pr1;
 public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 		
 
-	public Direction oppossite(){
+	/*public Direction opposite(){
 		Direction oppossiteDirection = UNKNOWN;
 		switch (this) {
 		case NORTH:
@@ -18,40 +18,72 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 			oppossiteDirection = UNKNOWN;
 		}
 		return oppossiteDirection;
+	}*/
+	public Direction opposite() {
+		Direction oppositeDirection = UNKNOWN;
+
+		if (this == NORTH) {
+			oppositeDirection = SOUTH;
+		} else if (this == SOUTH) {
+			oppositeDirection = NORTH;
+		} else if (this == EAST) {
+			oppositeDirection = WEST;
+		} else if (this == WEST) {
+			oppositeDirection = EAST;
+		}
+
+		return oppositeDirection;
 	}
 
+//	public Direction turnLeft(){
+//		Direction turnLeftDirection = UNKNOWN;
+//		switch (this) {
+//		case NORTH:
+//			turnLeftDirection = WEST;
+//		case SOUTH:
+//			turnLeftDirection = EAST;
+//		case EAST:
+//			turnLeftDirection = NORTH;
+//		case WEST:
+//			turnLeftDirection = SOUTH;
+//		case UNKNOWN:
+//			turnLeftDirection = UNKNOWN;
+//		}
+//		return turnLeftDirection;
+//	}
+	
+	
 	public Direction turnLeft(){
-		Direction turnLeftDirection = UNKNOWN;
-		switch (this) {
-		case NORTH:
-			turnLeftDirection = WEST;
-		case SOUTH:
-			turnLeftDirection = EAST;
-		case EAST:
-			turnLeftDirection = NORTH;
-		case WEST:
-			turnLeftDirection = SOUTH;
-		case UNKNOWN:
-			turnLeftDirection = UNKNOWN;
+
+		Direction direction = UNKNOWN;
+		
+		if (this == NORTH) {
+			direction = WEST;
+		} else if (this == SOUTH) {
+			direction = EAST;
+		} else if (this == EAST) {
+			direction = NORTH;
+		} else if (this == WEST) {
+			direction = SOUTH;
 		}
-		return turnLeftDirection;
+
+		return direction;
 	}
 	
 	public Direction turnRight(){
-		Direction turnRightDirection = UNKNOWN;
-		switch (this) {
-		case NORTH:
-			turnRightDirection = EAST;
-		case SOUTH:
-			turnRightDirection = WEST;
-		case EAST:
-			turnRightDirection = SOUTH;
-		case WEST:
-			turnRightDirection = NORTH;
-		case UNKNOWN:
-			turnRightDirection = UNKNOWN;
+Direction direction = UNKNOWN;
+		
+		if (this == NORTH) {
+			direction = EAST;
+		} else if (this == SOUTH) {
+			direction = WEST;
+		} else if (this == EAST) {
+			direction = SOUTH;
+		} else if (this == WEST) {
+			direction = NORTH;
 		}
-		return turnRightDirection;
+
+		return direction;
 	}
 
 }

@@ -4,82 +4,110 @@ import java.util.Scanner;
 import static tp.pr1.Constants.*;
 
 public class RobotEngine {
-	
-	private Place initialPlace;
-	private Direction direction;
+
+	private Place actualPlace;
+	private Direction lookingDirection;
 	private Street[] cityMap;
-	
 
-
-	public RobotEngine(Place initialPlace, Direction direction, Street[] cityMap){
-		this.initialPlace = initialPlace;
-		this.direction = direction;
-		this.cityMap = cityMap;//ver esto
+	public RobotEngine(Place initialPlace, Direction direction, Street[] cityMap) {
+		this.actualPlace = initialPlace;
+		this.lookingDirection = direction;
+		this.cityMap = cityMap;// ver esto
 	}
-	
+
 	public Direction getDirection() {
-		return direction;
+		return lookingDirection;
 	}
-	public void setDirection(Direction direction) {
-		this.direction = direction;
-	}
-	public void startEngine(){
-		Scanner read = new Scanner(System.in);
-		Interpreter inter= new Interpreter();
-		Instruction ins = new Instruction();
-		boolean end = false;
-		System.out.println(initialPlace.getDescription()+ LINE_SEPARATOR + direction);
-		while (!end) {
-			System.out.print("WALL-E> ");
-			ins = inter.generateInstruction(read.nextLine());
-			if (ins.isValid()){
-				if (ins.equals("QUIT")){
-					end = true;
-				}else 
-					processInstruction(ins);
-					
-			}
-		}System.out.println("GAME OVER" + LINE_SEPARATOR + "Thank you for playing, goodbye.");
-		
-	}
-	
-	public void processInstruction (Instruction ins) {
-		Interpreter inter= new Interpreter();
-		
-			
-		switch (ins.getAction()){
-		
-			case HELP:
-					inter.interpreterHelp();
-			case MOVE:
-				int i=0;
-				boolean change=false;
-				while (!change){
-					if (cityMap[i].comeOutFrom(initialPlace, direction)){
-						Place possiblePlace = cityMap[i].nextPlace(initialPlace);
-						initialPlace = possiblePlace;
-						change=true;
-					}
-					i++;
-				}
-			case TURN:
-				switch (ins.getRotation()){
-				case LEFT:
-					direction.turnLeft();				
-				case RIGHT:
-					direction.turnRight();
-				case UNKNONW:
-					break;
-				
-				}
-			case QUIT:
-				System.exit(-1);
-			case UNKNOWN:
-				break;
-		
-		}
-	}	
-	
-}	
-	
 
+	public void setDirection(Direction direction) {
+		this.lookingDirection = direction;
+	}
+
+	public void startEngine() {
+		Scanner read = new Scanner(System.in);
+		Interpreter interpreter = new Interpreter();
+		Instruction instruction = new Instruction();
+
+		System.out.println(actualPlace.toString() + Constants.MESSAGE_TURN + lookingDirection);
+
+		while (!isEndGame(instruction)) {
+			System.out.print(Constants.PROMPT);
+			instruction = interpreter.generateInstruction(read.nextLine());
+			if (instruction.isValid()) {
+				processInstruction(instruction);
+			} else {
+				System.out.println(Constants.MESSAGE_BAD_INSTRUCTION);
+			}
+		}
+
+		System.out.println(Constants.END_GAME);
+
+	}
+
+	private boolean isEndGame(Instruction instruction) {
+		return instruction.equals("QUIT") || actualPlace.isSpaceship();
+	}
+
+	public void processInstruction(Instruction instruction) {
+		Interpreter interpreter = new Interpreter();
+
+		switch (instruction.getAction()) {
+
+		case HELP:
+			executeHelpAction(interpreter);
+			break;
+
+		case MOVE:
+			executeMoveAction();
+
+			break;
+
+		case TURN:
+			executeTurnAction(instruction);
+			break;
+
+		case QUIT:
+			System.out.println(Constants.MESSAGE_QUIT);
+			System.exit(-1);
+
+		case UNKNOWN:
+			break;
+
+		}
+	}
+
+	private void executeMoveAction() {
+		int i = 0;	
+		boolean change = false;
+		while (!change && i < cityMap.length) {
+			if (cityMap[i].comeOutFrom(actualPlace, lookingDirection)) {
+				System.out.println(Constants.MESSAGE_MOVE + lookingDirection);
+				actualPlace = cityMap[i].nextPlace(actualPlace);
+				System.out.println(actualPlace.toString() + Constants.LINE_SEPARATOR + Constants.MESSAGE_TURN);
+				change = true;
+			} else {
+				System.out.println(Constants.MESSAGE_NO_STREET);
+				i++;
+			}
+		}
+	}
+
+	private void executeTurnAction(Instruction instruction) {
+		switch (instruction.getRotation()) {
+		case LEFT:
+			lookingDirection = lookingDirection.turnLeft();
+			break;
+		case RIGHT:
+			lookingDirection = lookingDirection.turnRight();
+			break;
+		case UNKNONW:
+			break;
+
+		}
+	}
+
+	private void executeHelpAction(Interpreter interpreter) {
+		System.out.println(interpreter.interpreterHelp());
+	}
+
+}
