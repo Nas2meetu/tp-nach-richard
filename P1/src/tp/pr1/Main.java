@@ -23,8 +23,8 @@ public class Main {
 		_places[1] = new Place("PLAZA MAYOR", false,
 			"Mmmh... it smells squid fried in butter. You should try to eat something");
 
-		// 2: Plaza España
-		_places[2] = new Place("PLAZA ESPAÑA" , false,
+		// 2: Plaza Espaï¿½a
+		_places[2] = new Place("PLAZA ESPAï¿½A" , false,
 			"What a big square! You have a big park where you can sleep under a tree." + LINE_SEPARATOR +
 			"But you have a problem, you have to come back to PLAZA MAYOR. " + LINE_SEPARATOR +
 			"There is no other exit");
@@ -34,7 +34,7 @@ public class Main {
 			"In this small square you can find some some fuel. " + LINE_SEPARATOR +
 			"Go to fnac and take the fuel for the heating");
 		
-		// 4: Plaza de Colón (END)
+		// 4: Plaza de Colï¿½n (END)
 		_places[4] = new Place("COLON", true, 
 			"Sometime ago, Spanish people concentrates here to watch football " + LINE_SEPARATOR +
 			"in a big screen." +  LINE_SEPARATOR +
@@ -96,11 +96,11 @@ public class Main {
 	
 	
 	public static void main(java.lang.String[] args){
-		Place[] p =  createPlaces();
-		Street[] s = createStreets(p);
+		Place[] places =  createPlaces();
+		Street[] streets = createStreets(places);
 		
-		RobotEngine i = new RobotEngine(p[0],Direction.NORTH,s);
-		i.startEngine();
+		RobotEngine engine = new RobotEngine(places[0],Direction.NORTH,streets);
+		engine.startEngine();
 	}
 
 }
