@@ -29,7 +29,7 @@ public class RobotEngine {
 		Interpreter interpreter = new Interpreter();
 		Instruction instruction = new Instruction();
 
-		System.out.println(actualPlace.toString() +  MESSAGE_TURN  + lookingDirection);
+		System.out.println(actualPlace.toString() + LINE_SEPARATOR +  MESSAGE_TURN  + lookingDirection);
 
 		while (!isEndGame(instruction)) {
 			System.out.print(PROMPT);
@@ -97,9 +97,11 @@ public class RobotEngine {
 		switch (instruction.getRotation()) {
 		case LEFT:
 			lookingDirection = lookingDirection.turnLeft();
+			System.out.println(MESSAGE_TURN + lookingDirection);
 			break;
 		case RIGHT:
 			lookingDirection = lookingDirection.turnRight();
+			System.out.println(MESSAGE_TURN + lookingDirection);
 			break;
 		case UNKNONW:
 			break;

@@ -28,5 +28,5 @@ public class Constants {
 	
 	public static final String MESSAGE_MOVE = WALLE_SAYS + "Moving in direction ";
 	
-	public static final String MESSAGE_TURN = " WALL·E is looking at direction ";
+	public static final String MESSAGE_TURN = "WALL·E is looking at direction ";
 }
