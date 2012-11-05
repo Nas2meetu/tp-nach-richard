@@ -12,7 +12,7 @@ public class RobotEngine {
 	public RobotEngine(Place initialPlace, Direction direction, Street[] cityMap) {
 		this.actualPlace = initialPlace;
 		this.lookingDirection = direction;
-		this.cityMap = cityMap;// ver esto
+		this.cityMap = cityMap;
 	}
 
 	public Direction getDirection() {
@@ -24,23 +24,23 @@ public class RobotEngine {
 	}
 
 	public void startEngine() {
+		
 		Scanner read = new Scanner(System.in);
 		Interpreter interpreter = new Interpreter();
 		Instruction instruction = new Instruction();
 
-		System.out.println(actualPlace.toString() + Constants.MESSAGE_TURN + lookingDirection);
+		System.out.println(actualPlace.toString() +  MESSAGE_TURN  + lookingDirection);
 
 		while (!isEndGame(instruction)) {
-			System.out.print(Constants.PROMPT);
+			System.out.print(PROMPT);
 			instruction = interpreter.generateInstruction(read.nextLine());
 			if (instruction.isValid()) {
 				processInstruction(instruction);
-			} else {
-				System.out.println(Constants.MESSAGE_BAD_INSTRUCTION);
-			}
+			}else
+				System.out.println(MESSAGE_BAD_INSTRUCTION);
 		}
 
-		System.out.println(Constants.END_GAME);
+		System.out.println(END_GAME);
 
 	}
 
@@ -59,7 +59,6 @@ public class RobotEngine {
 
 		case MOVE:
 			executeMoveAction();
-
 			break;
 
 		case TURN:
@@ -67,7 +66,7 @@ public class RobotEngine {
 			break;
 
 		case QUIT:
-			System.out.println(Constants.MESSAGE_QUIT);
+			System.out.println(MESSAGE_QUIT);
 			System.exit(-1);
 
 		case UNKNOWN:
@@ -81,14 +80,16 @@ public class RobotEngine {
 		boolean change = false;
 		while (!change && i < cityMap.length) {
 			if (cityMap[i].comeOutFrom(actualPlace, lookingDirection)) {
-				System.out.println(Constants.MESSAGE_MOVE + lookingDirection);
+				System.out.println(LINE_SEPARATOR + MESSAGE_MOVE + lookingDirection);
 				actualPlace = cityMap[i].nextPlace(actualPlace);
-				System.out.println(actualPlace.toString() + Constants.LINE_SEPARATOR + Constants.MESSAGE_TURN);
+				System.out.println(actualPlace.toString() + LINE_SEPARATOR + MESSAGE_TURN + lookingDirection);
 				change = true;
 			} else {
-				System.out.println(Constants.MESSAGE_NO_STREET);
 				i++;
 			}
+		}
+		if (change == false){
+			System.out.println(MESSAGE_NO_STREET);
 		}
 	}
 
@@ -102,7 +103,6 @@ public class RobotEngine {
 			break;
 		case UNKNONW:
 			break;
-
 		}
 	}
 

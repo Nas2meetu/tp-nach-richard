@@ -35,22 +35,22 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 		return oppositeDirection;
 	}
 
-//	public Direction turnLeft(){
-//		Direction turnLeftDirection = UNKNOWN;
-//		switch (this) {
-//		case NORTH:
-//			turnLeftDirection = WEST;
-//		case SOUTH:
-//			turnLeftDirection = EAST;
-//		case EAST:
-//			turnLeftDirection = NORTH;
-//		case WEST:
-//			turnLeftDirection = SOUTH;
-//		case UNKNOWN:
-//			turnLeftDirection = UNKNOWN;
-//		}
-//		return turnLeftDirection;
-//	}
+	/*public Direction turnLeft(){
+		Direction turnLeftDirection = UNKNOWN;
+		switch (this) {
+		case NORTH:
+			turnLeftDirection = WEST;
+		case SOUTH:
+			turnLeftDirection = EAST;
+		case EAST:
+			turnLeftDirection = NORTH;
+		case WEST:
+			turnLeftDirection = SOUTH;
+		case UNKNOWN:
+			turnLeftDirection = UNKNOWN;
+		}
+		return turnLeftDirection;
+	}*/
 	
 	
 	public Direction turnLeft(){
@@ -71,7 +71,8 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 	}
 	
 	public Direction turnRight(){
-Direction direction = UNKNOWN;
+		
+		Direction direction = UNKNOWN;
 		
 		if (this == NORTH) {
 			direction = EAST;
