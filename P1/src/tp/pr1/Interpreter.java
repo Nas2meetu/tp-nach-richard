@@ -4,21 +4,22 @@ import static tp.pr1.Constants.*;
 public class Interpreter {
 
 	public Instruction generateInstruction(String prompt) {
-		prompt = prompt.trim().toUpperCase();
-		String[] words = prompt.split(" ");
-		Instruction instruction = null;
-
-		if (words.length == 1) {
-			String command = words[0];
-			instruction = generateSimpleInstruction(command, instruction);
-		} else if (words.length == 2) {
-
-			String turnCommand = words[0];
-			String rotation = words[1];
-			instruction = generateTurnInstruction(instruction, turnCommand,
-					rotation);
-
-		}
+	
+			prompt = prompt.trim().toUpperCase();
+			String[] words = prompt.split(" ");
+			
+			Instruction instruction = null;
+			if (words.length == 1) {
+				String command = words[0];
+				instruction = generateSimpleInstruction(command, instruction);
+			} else if (words.length == 2) {
+				String turnCommand = words[0];
+				String rotation = words[1];
+				instruction = generateTurnInstruction(instruction, turnCommand, rotation);
+			}else if (words.length>2){
+				instruction = new Instruction();
+			}
+		
 		return instruction;
 	}
 
@@ -32,7 +33,8 @@ public class Interpreter {
 			} else {
 				instruction = new Instruction(Action.TURN, Rotation.UNKNONW);
 			}
-		}
+		}else instruction = new Instruction(Action.UNKNOWN);
+		
 		return instruction;
 	}
 

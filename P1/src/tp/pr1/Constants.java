@@ -19,8 +19,7 @@ public class Constants {
 			+ "TURN <LEFT | RIGHT>"
 			+ LINE_SEPARATOR + "HELP" + LINE_SEPARATOR + "QUIT";
 
-	public static final String END_GAME = "GAME OVER" + LINE_SEPARATOR
-			+ "Thank you for playing, goodbye.";
+	public static final String END_GAME = WALLE_SAYS + "I am at my spaceship. Shutting down... Bye bye";
 
 	public static final String PROMPT = "WALL·E> ";
 
