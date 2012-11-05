@@ -10,18 +10,18 @@ public class Constants {
 			+ "There is no street in direction ";
 
 	public static final String MESSAGE_QUIT = WALLE_SAYS
-			+ "I have communications problems. Bye bye";
+			+ "I have communication problems. Bye bye";
 
 	public static final String MESSAGE_HELP = "The valid instructions for WALL·E are:"
 			+ LINE_SEPARATOR
-			+ "MOVE"
+			+ "  MOVE"
 			+ LINE_SEPARATOR
-			+ "TURN <LEFT | RIGHT>"
-			+ LINE_SEPARATOR + "HELP" + LINE_SEPARATOR + "QUIT";
+			+ "  TURN <LEFT | RIGHT>"
+			+ LINE_SEPARATOR + "  HELP" + LINE_SEPARATOR + "  QUIT";
 
 	public static final String END_GAME = WALLE_SAYS + "I am at my spaceship. Shutting down... Bye bye";
 
-	public static final String PROMPT = "WALL·E> ";
+	public static final String PROMPT = "WALL·E > ";
 
 	public static final String MESSAGE_BAD_INSTRUCTION = WALLE_SAYS + "I do not understand. Please repeat";
 	
