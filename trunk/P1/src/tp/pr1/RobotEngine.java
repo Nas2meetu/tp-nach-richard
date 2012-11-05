@@ -38,7 +38,7 @@ public class RobotEngine {
 				processInstruction(instruction);
 			}else
 				System.out.println(MESSAGE_BAD_INSTRUCTION);
-		}
+		}read.close();
 
 		System.out.println(END_GAME);
 
@@ -49,6 +49,7 @@ public class RobotEngine {
 	}
 
 	public void processInstruction(Instruction instruction) {
+		
 		Interpreter interpreter = new Interpreter();
 
 		switch (instruction.getAction()) {
@@ -67,7 +68,7 @@ public class RobotEngine {
 
 		case QUIT:
 			System.out.println(MESSAGE_QUIT);
-			System.exit(-1);
+			System.exit(0);
 
 		case UNKNOWN:
 			break;
@@ -88,9 +89,8 @@ public class RobotEngine {
 				i++;
 			}
 		}
-		if (change == false){
 			System.out.println(MESSAGE_NO_STREET);
-		}
+		
 	}
 
 	private void executeTurnAction(Instruction instruction) {

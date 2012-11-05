@@ -3,22 +3,6 @@ package tp.pr1;
 public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 		
 
-	/*public Direction opposite(){
-		Direction oppossiteDirection = UNKNOWN;
-		switch (this) {
-		case NORTH:
-			oppossiteDirection = SOUTH;
-		case EAST:
-			oppossiteDirection = WEST;
-		case SOUTH:
-			oppossiteDirection = NORTH;
-		case WEST:
-			oppossiteDirection = EAST;
-		case UNKNOWN:
-			oppossiteDirection = UNKNOWN;
-		}
-		return oppossiteDirection;
-	}*/
 	public Direction opposite() {
 		Direction oppositeDirection = UNKNOWN;
 
@@ -35,23 +19,7 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 		return oppositeDirection;
 	}
 
-	/*public Direction turnLeft(){
-		Direction turnLeftDirection = UNKNOWN;
-		switch (this) {
-		case NORTH:
-			turnLeftDirection = WEST;
-		case SOUTH:
-			turnLeftDirection = EAST;
-		case EAST:
-			turnLeftDirection = NORTH;
-		case WEST:
-			turnLeftDirection = SOUTH;
-		case UNKNOWN:
-			turnLeftDirection = UNKNOWN;
-		}
-		return turnLeftDirection;
-	}*/
-	
+		
 	
 	public Direction turnLeft(){
 

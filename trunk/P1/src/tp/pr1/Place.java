@@ -14,7 +14,6 @@ public class Place {
 	}
 
 	public boolean isSpaceship() {
-		
 		return isSpaceship;
 	}
 
@@ -23,8 +22,7 @@ public class Place {
 	 */
 	@Override
 	public String toString() {
-		return  placeName + LINE_SEPARATOR +
-				 placeDescription;
+		return  placeName + LINE_SEPARATOR + placeDescription;
 	}
 	
 	
