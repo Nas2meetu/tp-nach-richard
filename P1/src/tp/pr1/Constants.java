@@ -1,11 +1,8 @@
 package tp.pr1;
 
-import static tp.pr1.Constants.LINE_SEPARATOR;
-
 public class Constants {
 
-	public static final String LINE_SEPARATOR = System
-			.getProperty("line.separator");
+	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	public static final String WALLE_SAYS = "WALL·E says: ";
 
@@ -31,5 +28,5 @@ public class Constants {
 	
 	public static final String MESSAGE_MOVE = WALLE_SAYS + "Moving in direction ";
 	
-	public static final String MESSAGE_TURN = "WALL·E is looking at direction ";
+	public static final String MESSAGE_TURN = " WALL·E is looking at direction ";
 }

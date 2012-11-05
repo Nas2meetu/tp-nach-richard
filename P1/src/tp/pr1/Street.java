@@ -35,8 +35,7 @@ public class Street {
 	}
 
 	private boolean comeOutFromTargetPlace(Place place, Direction fromDirection) {
-		return fromDirection.equals(direction.opposite())
-		&& targetPlace.equals(place);
+		return fromDirection.equals(direction.opposite()) && targetPlace.equals(place);
 	}
 
 	private boolean comeOutFromSourcePlace(Place place, Direction fromDirection) {

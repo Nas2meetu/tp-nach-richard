@@ -1,4 +1,5 @@
 package tp.pr1;
+import static tp.pr1.Constants.*;
 
 public class Interpreter {
 
@@ -26,7 +27,7 @@ public class Interpreter {
 		if (turnCommand.equals("TURN")) {
 			if (rotation.equals("LEFT")) {
 				instruction = new Instruction(Action.TURN, Rotation.LEFT);
-			} else if (rotation.equals("RIGTH")) {
+			} else if (rotation.equals("RIGHT")) {
 				instruction = new Instruction(Action.TURN, Rotation.RIGHT);
 			} else {
 				instruction = new Instruction(Action.TURN, Rotation.UNKNONW);
@@ -62,7 +63,7 @@ public class Interpreter {
 	}
 
 	public String interpreterHelp() {
-		return Constants.MESSAGE_HELP;
+		return MESSAGE_HELP;
 	}
 
 }
