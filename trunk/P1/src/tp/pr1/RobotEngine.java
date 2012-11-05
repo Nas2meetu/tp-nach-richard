@@ -1,5 +1,6 @@
 package tp.pr1;
 
+
 import java.util.Scanner;
 import static tp.pr1.Constants.*;
 
@@ -29,7 +30,8 @@ public class RobotEngine {
 		Interpreter interpreter = new Interpreter();
 		Instruction instruction = new Instruction();
 
-		System.out.println(actualPlace.toString() + LINE_SEPARATOR +  MESSAGE_TURN  + lookingDirection);
+		System.out.println(actualPlace.toString() + LINE_SEPARATOR +  
+							MESSAGE_TURN  + lookingDirection + LINE_SEPARATOR);
 
 		while (!isEndGame(instruction)) {
 			System.out.print(PROMPT);
@@ -37,9 +39,9 @@ public class RobotEngine {
 			if (instruction.isValid()) {
 				processInstruction(instruction);
 			}else
-				System.out.println(MESSAGE_BAD_INSTRUCTION);
+				System.out.println(MESSAGE_BAD_INSTRUCTION+LINE_SEPARATOR);
 		}read.close();
-
+		
 		System.out.println(END_GAME);
 
 	}
@@ -81,27 +83,28 @@ public class RobotEngine {
 		boolean change = false;
 		while (!change && i < cityMap.length) {
 			if (cityMap[i].comeOutFrom(actualPlace, lookingDirection)) {
-				System.out.println(LINE_SEPARATOR + MESSAGE_MOVE + lookingDirection);
+				System.out.println(MESSAGE_MOVE + lookingDirection);
 				actualPlace = cityMap[i].nextPlace(actualPlace);
-				System.out.println(actualPlace.toString() + LINE_SEPARATOR + MESSAGE_TURN + lookingDirection);
+				System.out.println(actualPlace.toString() + LINE_SEPARATOR + MESSAGE_TURN 
+								   + lookingDirection + LINE_SEPARATOR);
 				change = true;
 			} else {
 				i++;
 			}
-		}
+		}if (!change){
 			System.out.println(MESSAGE_NO_STREET);
-		
+		}
 	}
 
 	private void executeTurnAction(Instruction instruction) {
 		switch (instruction.getRotation()) {
 		case LEFT:
 			lookingDirection = lookingDirection.turnLeft();
-			System.out.println(MESSAGE_TURN + lookingDirection);
+			System.out.println(MESSAGE_TURN + lookingDirection + LINE_SEPARATOR);
 			break;
 		case RIGHT:
 			lookingDirection = lookingDirection.turnRight();
-			System.out.println(MESSAGE_TURN + lookingDirection);
+			System.out.println(MESSAGE_TURN + lookingDirection + LINE_SEPARATOR);
 			break;
 		case UNKNONW:
 			break;

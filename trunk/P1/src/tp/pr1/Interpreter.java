@@ -65,7 +65,7 @@ public class Interpreter {
 	}
 
 	public String interpreterHelp() {
-		return MESSAGE_HELP;
+		return MESSAGE_HELP + LINE_SEPARATOR;
 	}
 
 }
