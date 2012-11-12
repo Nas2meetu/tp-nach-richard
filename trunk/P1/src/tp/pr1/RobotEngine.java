@@ -4,11 +4,34 @@ package tp.pr1;
 import java.util.Scanner;
 import static tp.pr1.Constants.*;
 
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 1
+*
+* @param  
+*
+* @return
+*/
+
+
 public class RobotEngine {
+	
+	/**
+	 * 
+	 */
 
 	private Place actualPlace;
 	private Direction lookingDirection;
 	private Street[] cityMap;
+	
+	/**
+	 * Creates a new Robot Engine
+	 * @param initialPlace is the initial place of the robot
+	 * @param direction is the default direction
+	 * @param cityMap is the map where the robot lives
+	 */
 
 	public RobotEngine(Place initialPlace, Direction direction, Street[] cityMap) {
 		this.actualPlace = initialPlace;
@@ -16,13 +39,25 @@ public class RobotEngine {
 		this.cityMap = cityMap;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Direction getDirection() {
 		return lookingDirection;
 	}
+	
+	/*
+	 * 
+	 */
 
 	public void setDirection(Direction direction) {
 		this.lookingDirection = direction;
 	}
+	
+	/**
+	 * 
+	 */
 
 	public void startEngine() {
 		
@@ -45,10 +80,21 @@ public class RobotEngine {
 		System.out.println(END_GAME);
 
 	}
+	
+	/**
+	 * 
+	 * @param instruction
+	 * @return
+	 */
 
 	private boolean isEndGame(Instruction instruction) {
 		return instruction.equals("QUIT") || actualPlace.isSpaceship();
 	}
+	
+	/**
+	 * 
+	 * @param instruction
+	 */
 
 	public void processInstruction(Instruction instruction) {
 		
@@ -77,25 +123,32 @@ public class RobotEngine {
 
 		}
 	}
+	
+	/**
+	 * 
+	 */
 
 	private void executeMoveAction() {
 		int i = 0;	
 		boolean change = false;
-		while (!change && i < cityMap.length) {
+		while (!change && i < cityMap.length) 
 			if (cityMap[i].comeOutFrom(actualPlace, lookingDirection)) {
 				System.out.println(MESSAGE_MOVE + lookingDirection);
 				actualPlace = cityMap[i].nextPlace(actualPlace);
 				System.out.println(actualPlace.toString() + LINE_SEPARATOR + MESSAGE_TURN 
 								   + lookingDirection + LINE_SEPARATOR);
 				change = true;
-			} else {
-				i++;
-			}
-		}if (!change){
+				
+			}else i++;
+		if (!change){
 			System.out.println(MESSAGE_NO_STREET);
 		}
 	}
 
+	/**
+	 * 
+	 * @param instruction
+	 */
 	private void executeTurnAction(Instruction instruction) {
 		switch (instruction.getRotation()) {
 		case LEFT:
@@ -111,6 +164,10 @@ public class RobotEngine {
 		}
 	}
 
+	/**
+	 * 
+	 * @param interpreter
+	 */
 	private void executeHelpAction(Interpreter interpreter) {
 		System.out.println(interpreter.interpreterHelp());
 	}
