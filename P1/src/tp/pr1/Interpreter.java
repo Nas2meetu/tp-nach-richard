@@ -1,6 +1,18 @@
 package tp.pr1;
 import static tp.pr1.Constants.*;
 
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 1
+*
+* @param  
+*
+* @return
+*/
+
+
 public class Interpreter {
 
 	public Instruction generateInstruction(String prompt) {

@@ -3,12 +3,19 @@ package tp.pr1;
 import java.util.ArrayList;
 import static tp.pr1.Constants.*;
 
+/**
+* 
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 1
+*/
 public class Main {
 
 	/**
 	 * Create the places and configure the initial current place.
 	 * @return The place where the player starts the game
 	 */
+	
 	private static Place[] createPlaces(){
 		Place [] _places = new Place[10];
 		// 0: Puerta del Sol

@@ -1,9 +1,24 @@
 package tp.pr1;
 
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 1
+*/
+
+
 public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
+
+	/**
+	 * Define opposite directions for Wall·E
+	 * @return oppositeDirection
+	 */
 		
 
 	public Direction opposite() {
+    	
+		
 		Direction oppositeDirection = UNKNOWN;
 
 		if (this == NORTH) {
@@ -19,9 +34,14 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 		return oppositeDirection;
 	}
 
+
+	/**
+     * Define turnLeft direction for Wall·E
+     * @return direction
+     */
 		
-	
 	public Direction turnLeft(){
+		
 
 		Direction direction = UNKNOWN;
 		
@@ -38,6 +58,11 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 		return direction;
 	}
 	
+	 /**
+     * Define turnRight direction for Wall·E
+     * @return direction
+     */
+	
 	public Direction turnRight(){
 		
 		Direction direction = UNKNOWN;
@@ -51,7 +76,6 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 		} else if (this == WEST) {
 			direction = NORTH;
 		}
-
 		return direction;
 	}
 

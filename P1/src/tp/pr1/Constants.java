@@ -1,7 +1,23 @@
 package tp.pr1;
 
-public class Constants {
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 1
+*
+*
+*/
 
+
+public class Constants {
+	
+
+/**
+ * Define messages for Wall·E , prompt and line_separator.
+ *
+ */
+	
 	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	public static final String WALLE_SAYS = "WALL·E says: ";
