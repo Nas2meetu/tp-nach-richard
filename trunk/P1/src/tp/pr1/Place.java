@@ -6,18 +6,12 @@ import static tp.pr1.Constants.LINE_SEPARATOR;
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
 * @version 1
-*
-* @param  
-*
-* @return
+* 
 */
 
 
 public class Place {
 	
-	/**
-	 * 
-	 */
 
 	private String placeName;
 	private boolean isSpaceship;
@@ -25,9 +19,9 @@ public class Place {
 	
 	/**
 	 * 
-	 * @param placeName
-	 * @param isSpaceship
-	 * @param placeDescription
+	 * @param placeName is place name
+	 * @param isSpaceship is place which where Spaceship stays
+	 * @param placeDescription is information about place
 	 */
 
 	public Place(String placeName, boolean isSpaceship, String placeDescription) {
@@ -38,7 +32,7 @@ public class Place {
 	
 	/**
 	 * 
-	 * @return
+	 * @return isSpaceship
 	 */
 
 	public boolean isSpaceship() {

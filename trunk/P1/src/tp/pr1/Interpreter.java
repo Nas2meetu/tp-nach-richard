@@ -7,13 +7,16 @@ import static tp.pr1.Constants.*;
 * @author Ricardo Eugui Fernandez
 * @version 1
 *
-* @param  
-*
-* @return
 */
 
 
 public class Interpreter {
+	
+	/**
+	 * 
+	 * @param prompt is introduced by player 
+	 * @return Instruction 
+	 */
 
 	public Instruction generateInstruction(String prompt) {
 	
@@ -34,6 +37,14 @@ public class Interpreter {
 		
 		return instruction;
 	}
+	
+	/**
+	 * 
+	 * @param instruction is command to Robot generates
+	 * @param turnCommand is command to Robot turns
+	 * @param rotation is direction to Robots turns
+	 * @return
+	 */
 
 	private Instruction generateTurnInstruction(Instruction instruction,
 			String turnCommand, String rotation) {
@@ -49,6 +60,13 @@ public class Interpreter {
 		
 		return instruction;
 	}
+	
+	/**
+	 * 
+	 * @param command is command to Robot receives
+	 * @param instruction is simple (one word) command to Robot generates
+	 * @return
+	 */
 
 	private Instruction generateSimpleInstruction(String command,
 			Instruction instruction) {
@@ -75,6 +93,11 @@ public class Interpreter {
 		}
 		return instruction;
 	}
+	
+	/**
+	 *
+	 * @return String override with help message
+	 */
 
 	public String interpreterHelp() {
 		return MESSAGE_HELP + LINE_SEPARATOR;

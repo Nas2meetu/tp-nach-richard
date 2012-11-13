@@ -9,18 +9,11 @@ import static tp.pr1.Constants.*;
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
 * @version 1
-*
-* @param  
-*
-* @return
+* 
 */
-
 
 public class RobotEngine {
 	
-	/**
-	 * 
-	 */
 
 	private Place actualPlace;
 	private Direction lookingDirection;
@@ -40,8 +33,7 @@ public class RobotEngine {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * @return lookingDirection is the direction which Robot looks
 	 */
 	public Direction getDirection() {
 		return lookingDirection;
@@ -56,7 +48,7 @@ public class RobotEngine {
 	}
 	
 	/**
-	 * 
+	 * Is Robot begins
 	 */
 
 	public void startEngine() {
@@ -83,8 +75,9 @@ public class RobotEngine {
 	
 	/**
 	 * 
-	 * @param instruction
-	 * @return
+	 * @param instruction is a command which the Robot processes
+	 * @return isEndGame is a some ways to finish the game
+	 * 
 	 */
 
 	private boolean isEndGame(Instruction instruction) {
@@ -92,8 +85,7 @@ public class RobotEngine {
 	}
 	
 	/**
-	 * 
-	 * @param instruction
+	 * @param instruction is a command which the Robot processes
 	 */
 
 	public void processInstruction(Instruction instruction) {
@@ -125,7 +117,7 @@ public class RobotEngine {
 	}
 	
 	/**
-	 * 
+	 * The Robot moves or not--muy basico?
 	 */
 
 	private void executeMoveAction() {
@@ -146,8 +138,8 @@ public class RobotEngine {
 	}
 
 	/**
-	 * 
-	 * @param instruction
+	 * The Robot turns or not--te gusta esto asi--
+	 * @param instruction is a command which the Robot processes
 	 */
 	private void executeTurnAction(Instruction instruction) {
 		switch (instruction.getRotation()) {
@@ -165,8 +157,8 @@ public class RobotEngine {
 	}
 
 	/**
-	 * 
-	 * @param interpreter
+	 * The Robot gives information about his instructions
+	 * @param interpreter is a command which the Robot interpreters
 	 */
 	private void executeHelpAction(Interpreter interpreter) {
 		System.out.println(interpreter.interpreterHelp());
