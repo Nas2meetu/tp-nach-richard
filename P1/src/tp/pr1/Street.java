@@ -6,17 +6,10 @@ package tp.pr1;
 * @author Ricardo Eugui Fernandez
 * @version 1
 *
-* @param  
-*
-* @return
 */
 
 
 public class Street {
-	
-	/**
-	 * 
-	 */
 
 	private Place sourcePlace;
 	private Direction direction;
@@ -24,9 +17,11 @@ public class Street {
 	
 	/**
 	 * 
+	 * Constructor of three parameters to create Streets 
 	 * @param sourcePlace is one side of street
 	 * @param direction is default direction
 	 * @param targetPlace is opposite side of street 
+	 * 
 	 */
 
 	public Street(Place sourcePlace, Direction direction, Place targetPlace) {
@@ -36,9 +31,10 @@ public class Street {
 
 	}
 	/**
-	 * 
-	 * @param place is place where is Robot
+	 * Is next place where Robot moves
+	 * @param place is place where Robot is
 	 * @return nextPlace is next place where will goes Robot
+	 * 
 	 */
 
 	public Place nextPlace(Place place) {
@@ -69,8 +65,9 @@ public class Street {
 	/**
 	 * 
 	 * @param place is place where Robot is
-	 * @param fromDirection is direction from where robot comes
-	 * @return comeOutFromTargetPlace is Target place since Robot comes
+	 * @param fromDirection is direction from robot comes
+	 * @return comeOutFromTargetPlace is Target place where's Robot comes
+	 * 
 	 */
 
 	private boolean comeOutFromTargetPlace(Place place, Direction fromDirection) {
@@ -80,8 +77,9 @@ public class Street {
 	/**
 	 * 
 	 * @param place is place where Robot is
-	 * @param fromDirection is direction from where robot comes
-	 * @return comeOutFromSourcePlace is Source place since Robot comes
+	 * @param fromDirection is direction from robot comes
+	 * @return comeOutFromSourcePlace is Source place where's Robot comes
+	 * 
 	 */
 	private boolean comeOutFromSourcePlace(Place place, Direction fromDirection) {
 		return place.equals(sourcePlace) && direction.equals(fromDirection);

@@ -13,17 +13,18 @@ import static tp.pr1.Constants.*;
 */
 
 public class RobotEngine {
-	
 
 	private Place actualPlace;
 	private Direction lookingDirection;
 	private Street[] cityMap;
 	
 	/**
+	 * 
 	 * Creates a new Robot Engine
 	 * @param initialPlace is the initial place of the robot
 	 * @param direction is the default direction
 	 * @param cityMap is the map where the robot lives
+	 * 
 	 */
 
 	public RobotEngine(Place initialPlace, Direction direction, Street[] cityMap) {
@@ -33,14 +34,17 @@ public class RobotEngine {
 	}
 
 	/**
+	 * 
 	 * @return lookingDirection is the direction which Robot looks
+	 * 
 	 */
 	public Direction getDirection() {
 		return lookingDirection;
 	}
 	
-	/*
+	/**
 	 * 
+	 * @param direction
 	 */
 
 	public void setDirection(Direction direction) {
@@ -48,7 +52,7 @@ public class RobotEngine {
 	}
 	
 	/**
-	 * Is Robot begins
+	 * Is the Start game, show initial information and shows finish information if Player win game
 	 */
 
 	public void startEngine() {
@@ -86,6 +90,7 @@ public class RobotEngine {
 	
 	/**
 	 * @param instruction is a command which the Robot processes
+	 * 
 	 */
 
 	public void processInstruction(Instruction instruction) {
@@ -117,7 +122,7 @@ public class RobotEngine {
 	}
 	
 	/**
-	 * The Robot moves or not--muy basico?
+	 * Robot moves or not
 	 */
 
 	private void executeMoveAction() {
@@ -138,8 +143,9 @@ public class RobotEngine {
 	}
 
 	/**
-	 * The Robot turns or not--te gusta esto asi--
+	 * Robot turns or not
 	 * @param instruction is a command which the Robot processes
+	 * 
 	 */
 	private void executeTurnAction(Instruction instruction) {
 		switch (instruction.getRotation()) {

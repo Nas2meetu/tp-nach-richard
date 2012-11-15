@@ -6,12 +6,12 @@ package tp.pr1;
 * @author Ricardo Eugui Fernandez
 * @version 1
 *
-* @param  
-*
-* @return
 */
 
 
-public enum Rotation { LEFT, RIGHT, UNKNONW
-
+public enum Rotation {
+	/**
+	 * Define valid rotation for Wall·E
+	 */
+		LEFT, RIGHT, UNKNONW
 }

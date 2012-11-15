@@ -6,16 +6,12 @@ package tp.pr1;
 * @author Ricardo Eugui Fernandez
 * @version 1
 *
-*
 */
-
 
 public class Constants {
 	
-
 /**
- * Define messages for Wall·E , prompt and line_separator.
- *
+ * Define messages for Wall·E , prompt and line_separator
  */
 	
 	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
