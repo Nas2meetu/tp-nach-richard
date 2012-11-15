@@ -75,6 +75,12 @@ public class Main {
 		  return _places;
 	}
 
+	/**
+	 * Create streets and configure the initials current streets who´s connected our places
+	 * @param _places The places where the player play game
+	 * @return Streets where the player use to move in the game 
+	 * 
+	 */
 	
 	public static Street[] createStreets(Place[] _places){
 		ArrayList<Street>streets = new ArrayList<Street>();
@@ -100,9 +106,12 @@ public class Main {
 		return s;
 	}
 
+	/**
+	 * Start the game 
+	 * @param args initial arguments for start game
+	 */
 	
-	
-	public static void main(java.lang.String[] args){
+	public static void main(String[] args){
 		Place[] places =  createPlaces();
 		Street[] streets = createStreets(places);
 		

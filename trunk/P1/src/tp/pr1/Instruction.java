@@ -11,7 +11,6 @@ public class Instruction {
 	
 	/**
      * Receive and execute instructions
-     * 
      */
 
 	private Action action;
@@ -28,9 +27,10 @@ public class Instruction {
 	}
 	
 	/**
-	 * 
-	 * @param action
-	 * @param rotation
+	 * Constructor of two parameter action, includes turn and direction to rotation
+	 * @param action is an action to turn Robot
+	 * @param rotation is rotation of Robot left or right
+	 *  
 	 */
 
 	public Instruction(Action action, Rotation rotation) {
@@ -39,7 +39,7 @@ public class Instruction {
 	}
 	
 	/**
-	 * 
+	 * Default Constructor without parameters 
 	 */
 
 	public Instruction() {
@@ -47,8 +47,9 @@ public class Instruction {
 		this.rotation = Rotation.UNKNONW;
 	}
 	
-	/*
-	 * 
+	/**
+	 * Is method to known if action and rotation is valid
+	 * @return isValid if action isn't Unknown or turn rotation isn't Unknown
 	 */
 
 	public boolean isValid() {
@@ -59,7 +60,8 @@ public class Instruction {
 	
 	/**
 	 * 
-	 * @return
+	 * @return action
+	 * 
 	 */
 
 	public Action getAction() {	
@@ -68,7 +70,8 @@ public class Instruction {
 	
 	/**
 	 * 
-	 * @return
+	 * @return rotation
+	 * 
 	 */
 
 	public Rotation getRotation() {

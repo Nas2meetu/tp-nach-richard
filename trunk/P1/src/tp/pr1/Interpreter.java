@@ -9,13 +9,13 @@ import static tp.pr1.Constants.*;
 *
 */
 
-
 public class Interpreter {
 	
 	/**
 	 * 
 	 * @param prompt is introduced by player 
-	 * @return Instruction 
+	 * @return Instruction to interpreter by Robot
+	 * 
 	 */
 
 	public Instruction generateInstruction(String prompt) {
@@ -43,7 +43,9 @@ public class Interpreter {
 	 * @param instruction is command to Robot generates
 	 * @param turnCommand is command to Robot turns
 	 * @param rotation is direction to Robots turns
-	 * @return
+	 * @return generateTurnInstruction is two 
+	 * 		   instructions (turn and where rotation) to interpreter by Robot
+	 * 
 	 */
 
 	private Instruction generateTurnInstruction(Instruction instruction,
@@ -65,7 +67,8 @@ public class Interpreter {
 	 * 
 	 * @param command is command to Robot receives
 	 * @param instruction is simple (one word) command to Robot generates
-	 * @return
+	 * @return generateSimpleInstruction is one instruction to interpreter by Robot
+	 * 
 	 */
 
 	private Instruction generateSimpleInstruction(String command,

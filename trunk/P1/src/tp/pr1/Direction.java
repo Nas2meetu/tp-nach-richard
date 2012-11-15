@@ -1,10 +1,11 @@
 package tp.pr1;
 
 /**
-*
+* 
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
 * @version 1
+* 
 */
 
 
@@ -12,7 +13,8 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 
 	/**
 	 * Define opposite directions for Wall·E
-	 * @return oppositeDirection
+	 * @return oppositeDirection is opposite direction where Robot is looking
+	 * 
 	 */
 		
 
@@ -36,8 +38,10 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 
 
 	/**
+	 * 
      * Define turnLeft direction for Wall·E
-     * @return direction
+     * @return direction is direction who´s Robot looking if the robot turn left
+     * 
      */
 		
 	public Direction turnLeft(){
@@ -59,8 +63,10 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 	}
 	
 	 /**
+	 * 
      * Define turnRight direction for Wall·E
-     * @return direction
+     * @return direction direction who´s Robot looking if the robot turn right
+     * 
      */
 	
 	public Direction turnRight(){
