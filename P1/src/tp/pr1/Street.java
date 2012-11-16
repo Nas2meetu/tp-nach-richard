@@ -33,7 +33,7 @@ public class Street {
 	/**
 	 * Is next place where Robot moves
 	 * @param place is place where Robot is
-	 * @return nextPlace is next place where will goes Robot
+	 * @return nextPlace is next place where Robot is going to go
 	 * 
 	 */
 
@@ -51,8 +51,8 @@ public class Street {
 	/**
 	 * 
 	 * @param place is place where Robot is  --o esta o la del nextplace--
-	 * @param fromDirection is direction from where robot comes
-	 * @return ComeOutFrom is good place that Robot moves
+	 * @param fromDirection is direction where Robot comes
+	 * @return ComeOutFrom is correct place that Robot moves
 	 */
 
 	public boolean comeOutFrom(Place place, Direction fromDirection) {
@@ -65,7 +65,7 @@ public class Street {
 	/**
 	 * 
 	 * @param place is place where Robot is
-	 * @param fromDirection is direction from robot comes
+	 * @param fromDirection is direction where Robot comes
 	 * @return comeOutFromTargetPlace is Target place where's Robot comes
 	 * 
 	 */
@@ -77,7 +77,7 @@ public class Street {
 	/**
 	 * 
 	 * @param place is place where Robot is
-	 * @param fromDirection is direction from robot comes
+	 * @param fromDirection is direction where Robot comes
 	 * @return comeOutFromSourcePlace is Source place where's Robot comes
 	 * 
 	 */
