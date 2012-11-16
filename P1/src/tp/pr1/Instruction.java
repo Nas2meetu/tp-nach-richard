@@ -18,7 +18,7 @@ public class Instruction {
 	
 	/**
 	 * Constructor of one parameter action
-	 * @param action is an action make by Robot
+	 * @param action is an action made by Robot
 	 */
 
 	public Instruction(Action action) {
@@ -48,8 +48,8 @@ public class Instruction {
 	}
 	
 	/**
-	 * Is method to known if action and rotation is valid
-	 * @return isValid if action isn't Unknown or turn rotation isn't Unknown
+	 * Is a method to know if action and rotation are valids
+	 * @return isValid if action is not Unknown or turn rotation is not Unknown
 	 */
 
 	public boolean isValid() {
