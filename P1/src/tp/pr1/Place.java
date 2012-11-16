@@ -20,7 +20,7 @@ public class Place {
 	/**
 	 * Constructor of three parameters with name and description place and if this place has a Robot Space Ship
 	 * @param placeName is place name
-	 * @param isSpaceship is place which where Spaceship stays
+	 * @param isSpaceship is place where Spaceship is it
 	 * @param placeDescription is information about place
 	 * 
 	 */
@@ -43,7 +43,7 @@ public class Place {
 
 	
 	/**
-	 * Override toString for show the place information
+	 * Override toString to show place information
 	 */
 	
 	public String toString() {
