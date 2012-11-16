@@ -35,7 +35,7 @@ public class RobotEngine {
 
 	/**
 	 * 
-	 * @return lookingDirection is the direction which Robot looks
+	 * @return lookingDirection is direction that Robot is looking at
 	 * 
 	 */
 	public Direction getDirection() {
@@ -52,7 +52,7 @@ public class RobotEngine {
 	}
 	
 	/**
-	 * Is the Start game, show initial information and shows finish information if Player win game
+	 * Is the Start game, show initial information and finish information if Player win game
 	 */
 
 	public void startEngine() {
@@ -79,8 +79,8 @@ public class RobotEngine {
 	
 	/**
 	 * 
-	 * @param instruction is a command which the Robot processes
-	 * @return isEndGame is a some ways to finish the game
+	 * @param instruction is a command that Robot processes
+	 * @return isEndGame is one of possible ways to finish game
 	 * 
 	 */
 
@@ -89,7 +89,7 @@ public class RobotEngine {
 	}
 	
 	/**
-	 * @param instruction is a command which the Robot processes
+	 * @param instruction is a command that Robot processes
 	 * 
 	 */
 
@@ -144,7 +144,7 @@ public class RobotEngine {
 
 	/**
 	 * Robot turns or not
-	 * @param instruction is a command which the Robot processes
+	 * @param instruction is a command that Robot processes
 	 * 
 	 */
 	private void executeTurnAction(Instruction instruction) {
@@ -164,7 +164,7 @@ public class RobotEngine {
 
 	/**
 	 * The Robot gives information about his instructions
-	 * @param interpreter is a command which the Robot interpreters
+	 * @param interpreter is a command that Robot interpreters
 	 */
 	private void executeHelpAction(Interpreter interpreter) {
 		System.out.println(interpreter.interpreterHelp());
