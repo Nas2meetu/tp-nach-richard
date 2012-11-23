@@ -15,6 +15,7 @@ public class Instruction {
 
 	private Action action;
 	private Rotation rotation;
+	private String itemName;
 	
 	/**
 	 * Constructor of one parameter action
@@ -47,8 +48,10 @@ public class Instruction {
 		this.rotation = Rotation.UNKNONW;
 	}
 	
-	public Instruction(Action pick, String itemName) {
-		// TODO Auto-generated constructor stub
+	public Instruction(Action action, String itemName) {
+		this.action = action;
+		this.itemName = itemName;
+		
 	}
 
 	/**
@@ -59,7 +62,8 @@ public class Instruction {
 	public boolean isValid() {
 	
 		return !((action.equals(Action.UNKNOWN) ||
-				  (action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW))));
+				  (action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW))/* ||
+				  (action.equals(Action.PICK) && itemName.equals(null)*/));//mirar cuando el pick cogido es inexistente
 	}
 	
 	/**
@@ -82,9 +86,8 @@ public class Instruction {
 		return rotation;
 	}
 
-	public MockItem getId() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getId() {
+		return itemName;
 	}
 
 }

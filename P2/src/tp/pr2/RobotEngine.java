@@ -170,4 +170,9 @@ public class RobotEngine {
 		System.out.println(interpreter.interpreterHelp());
 	}
 
+	public int getRecycledMaterial() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
