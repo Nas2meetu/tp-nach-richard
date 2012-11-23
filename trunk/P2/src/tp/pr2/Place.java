@@ -1,5 +1,5 @@
-package tp.pr1;
-import static tp.pr1.Constants.LINE_SEPARATOR;
+package tp.pr2;
+import static tp.pr2.Constants.LINE_SEPARATOR;
 
 /**
 *
