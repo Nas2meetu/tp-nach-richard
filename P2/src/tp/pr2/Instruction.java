@@ -1,4 +1,4 @@
-package tp.pr1;
+package tp.pr2;
 
 /**
 *
@@ -47,6 +47,10 @@ public class Instruction {
 		this.rotation = Rotation.UNKNONW;
 	}
 	
+	public Instruction(Action pick, String itemName) {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Is a method to know if action and rotation are valids
 	 * @return isValid if action is not Unknown or turn rotation is not Unknown
@@ -76,6 +80,11 @@ public class Instruction {
 
 	public Rotation getRotation() {
 		return rotation;
+	}
+
+	public MockItem getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

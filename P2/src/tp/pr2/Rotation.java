@@ -1,4 +1,4 @@
-package tp.pr1;
+package tp.pr2;
 
 /**
 *

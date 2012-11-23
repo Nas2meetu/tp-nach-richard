@@ -1,8 +1,8 @@
-package tp.pr1;
+package tp.pr2;
 
 
 import java.util.Scanner;
-import static tp.pr1.Constants.*;
+import static tp.pr2.Constants.*;
 
 /**
 *
