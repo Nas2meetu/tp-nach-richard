@@ -30,12 +30,7 @@ public class Street {
 		this.targetPlace = targetPlace;
 
 	}
-	/**
-	 * Is next place where Robot moves
-	 * @param place is place where Robot is
-	 * @return nextPlace is next place where Robot is going to go
-	 * 
-	 */
+	
 
 	public Place nextPlace(Place place) {
 		Place nextPlace = null;

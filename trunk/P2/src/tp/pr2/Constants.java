@@ -23,6 +23,11 @@ public class Constants {
 
 	public static final String MESSAGE_QUIT = WALLE_SAYS
 			+ "I have communication problems. Bye bye";
+	public static final String MESSAGE_CONTAINER = WALLE_SAYS +
+	"I am carrying the following items "+ LINE_SEPARATOR;
+	
+	public static final String MESSAGE_CONTAINER_EMPTY = WALLE_SAYS +
+			"My inventory is empty";
 
 	public static final String MESSAGE_HELP = "The valid instructions for WALL·E are:"
 			+ LINE_SEPARATOR
