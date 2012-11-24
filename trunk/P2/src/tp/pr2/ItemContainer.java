@@ -10,7 +10,7 @@ public class ItemContainer {
 	private ArrayList<Item> container;
 
 	public int numberOfItems() {
-		return 0;
+		return container.size();
 	}
 
 	public Item pickItem(String id) {
@@ -18,13 +18,13 @@ public class ItemContainer {
 	}
 
 	public boolean addItem(Item item) {
-		return false;
+			return container.add(item);
 	}
 
 	public Item getItem(String id) {
 		return item;
 	}
-	public String showContainer(){
+	private String showContainer(){
 		String list = CONTAINER;
 		Iterator <Item> walleitem= container.iterator();
 		
@@ -39,6 +39,10 @@ public class ItemContainer {
 	
 	public ArrayList<Item> getContainer() {
 		return container;
+	}
+	
+	public String toString(){
+		return showContainer();
 	}
 
 }
