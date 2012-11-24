@@ -10,7 +10,7 @@ public class CodeCard extends Item {
 	}
 	
 	public boolean canBeUsed() {
-		return canBeUsed();
+		return true;
 	}
 
 	public boolean use(RobotEngine engine, Place place) {

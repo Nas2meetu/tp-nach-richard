@@ -28,9 +28,25 @@ public class Interpreter {
 				String command = words[0];
 				instruction = generateSimpleInstruction(command, instruction);
 			} else if (words.length == 2) {
-				String turnCommand = words[0];
-				String rotation = words[1];
-				instruction = generateTurnInstruction(instruction, turnCommand, rotation);
+				if (words[0].equals("TURN")){
+					String turnCommand = words[0];
+					String rotation = words[1];
+					instruction = generateTurnInstruction(instruction, turnCommand, rotation);
+				}else if (words[0].equals("SCAN")){
+					String scanCommand = words[0];
+					String id = words[1];
+					instruction = generateScanInstruction(instruction, scanCommand, id);
+				}else if (words[0].equals("OPERATE")){
+					String operateCommand = words[0];
+					String id = words[1];
+					instruction = generateOperateInstruction(instruction, operateCommand, id);
+				}else if (words[0].equals("PICK")){
+					String pickCommand = words[0];
+					String id = words[1];
+					instruction = generatePickInstruction(instruction, pickCommand, id);
+				}else
+					instruction = new Instruction();
+				
 			}else if (words.length>2){
 				instruction = new Instruction();
 			}
@@ -38,6 +54,51 @@ public class Interpreter {
 		return instruction;
 	}
 	
+	private Instruction generatePickInstruction(Instruction instruction,
+			String pickCommand, String id) {
+		if (pickCommand.equals("PICK")) {
+			if (!id.isEmpty()){//como comparar si el id es correcto??
+				instruction = new Instruction(Action.PICK, id); 
+			} 
+			else {
+				instruction = new Instruction(Action.PICK, "");
+			}			
+		}else instruction = new Instruction(Action.UNKNOWN);
+		
+		return instruction;
+	
+	}
+
+	private Instruction generateScanInstruction(Instruction instruction,
+			String scanCommand, String id) {
+		
+		if (scanCommand.equals("SCAN")) {
+			if (!id.isEmpty()){//como comparar si el id es correcto??
+				instruction = new Instruction(Action.SCAN, id); 
+			} 
+			else {
+				instruction = new Instruction(Action.SCAN, "");
+			}			
+		}else instruction = new Instruction(Action.UNKNOWN);
+		
+		return instruction;
+	}
+	
+	private Instruction generateOperateInstruction(Instruction instruction,
+			String operateCommand, String id) {
+		
+		if (operateCommand.equals("SCAN")) {
+			if (!id.isEmpty()){//como comparar si el id es correcto??
+				instruction = new Instruction(Action.OPERATE, id); 
+			} 
+			else {
+				instruction = new Instruction(Action.OPERATE, "");
+			}			
+		}else instruction = new Instruction(Action.UNKNOWN);
+		
+		return instruction;
+	}
+
 	/**
 	 * 
 	 * @param instruction is command to Robot generates
@@ -57,8 +118,9 @@ public class Interpreter {
 				instruction = new Instruction(Action.TURN, Rotation.RIGHT);
 			} else {
 				instruction = new Instruction(Action.TURN, Rotation.UNKNONW);
-			}
-		}else instruction = new Instruction(Action.UNKNOWN);
+			}			
+		}
+		else instruction = new Instruction(Action.UNKNOWN);
 		
 		return instruction;
 	}
@@ -90,6 +152,7 @@ public class Interpreter {
 		case "TURN":
 			instruction = new Instruction(Action.TURN);
 			break;
+			
 		default:
 			instruction = new Instruction();
 			break;
@@ -103,7 +166,7 @@ public class Interpreter {
 	 */
 
 	public String interpreterHelp() {
-		return MESSAGE_HELP + LINE_SEPARATOR;
+		return HELP + LINE_SEPARATOR;
 	}
 
 }

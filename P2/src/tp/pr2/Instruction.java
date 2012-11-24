@@ -61,9 +61,11 @@ public class Instruction {
 
 	public boolean isValid() {
 	
-		return !((action.equals(Action.UNKNOWN) ||
-				  (action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW))/* ||
-				  (action.equals(Action.PICK) && itemName.equals(null)*/));//mirar cuando el pick cogido es inexistente
+		return !((action.equals(Action.UNKNOWN)) ||
+				  (action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW)) ||
+				  (action.equals(Action.PICK) && itemName.equals("")) ||
+				  (action.equals(Action.SCAN) && itemName.equals("")) ||
+				  (action.equals(Action.OPERATE) && itemName.equals("")));//mirar cuando el pick cogido es inexistente
 	}
 	
 	/**

@@ -62,7 +62,7 @@ public class RobotEngine {
 		Instruction instruction = new Instruction();
 
 		System.out.println(actualPlace.toString() + LINE_SEPARATOR +  
-							MESSAGE_TURN  + lookingDirection + LINE_SEPARATOR);
+							TURN  + lookingDirection + LINE_SEPARATOR);
 
 		while (!isEndGame(instruction)) {
 			System.out.print(PROMPT);
@@ -70,7 +70,7 @@ public class RobotEngine {
 			if (instruction.isValid()) {
 				processInstruction(instruction);
 			}else
-				System.out.println(MESSAGE_BAD_INSTRUCTION+LINE_SEPARATOR);
+				System.out.println(BAD_INSTRUCTION+LINE_SEPARATOR);
 		}read.close();
 		
 		System.out.println(END_GAME);
@@ -112,7 +112,7 @@ public class RobotEngine {
 			break;
 
 		case QUIT:
-			System.out.println(MESSAGE_QUIT);
+			System.out.println(QUIT);
 			System.exit(0);
 
 		case UNKNOWN:
@@ -130,15 +130,15 @@ public class RobotEngine {
 		boolean change = false;
 		while (!change && i < cityMap.length) 
 			if (cityMap[i].comeOutFrom(actualPlace, lookingDirection)) {
-				System.out.println(MESSAGE_MOVE + lookingDirection);
+				System.out.println(MOVE + lookingDirection);
 				actualPlace = cityMap[i].nextPlace(actualPlace);
-				System.out.println(actualPlace.toString() + LINE_SEPARATOR + MESSAGE_TURN 
+				System.out.println(actualPlace.toString() + LINE_SEPARATOR + TURN 
 								   + lookingDirection + LINE_SEPARATOR);
 				change = true;
 				
 			}else i++;
 		if (!change){
-			System.out.println(MESSAGE_NO_STREET);
+			System.out.println(NO_STREET);
 		}
 	}
 
@@ -151,11 +151,11 @@ public class RobotEngine {
 		switch (instruction.getRotation()) {
 		case LEFT:
 			lookingDirection = lookingDirection.turnLeft();
-			System.out.println(MESSAGE_TURN + lookingDirection + LINE_SEPARATOR);
+			System.out.println(TURN + lookingDirection + LINE_SEPARATOR);
 			break;
 		case RIGHT:
 			lookingDirection = lookingDirection.turnRight();
-			System.out.println(MESSAGE_TURN + lookingDirection + LINE_SEPARATOR);
+			System.out.println(TURN + lookingDirection + LINE_SEPARATOR);
 			break;
 		case UNKNONW:
 			break;
@@ -171,8 +171,20 @@ public class RobotEngine {
 	}
 
 	public int getRecycledMaterial() {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public int getFuel() {
+		return 0;
+	}
+
+	public void addFuel(int newFuel) {
+	
+	}
+
+	public void addRecycledMaterial(int newMaterial) {
+	
+		
 	}
 
 }
