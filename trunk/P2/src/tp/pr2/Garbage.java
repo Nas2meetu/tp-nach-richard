@@ -12,7 +12,7 @@ public class Garbage extends Item {
 	}
 	
 	public boolean canBeUsed() {
-		return canBeUsed();
+		return (recycledMaterial > 0);
 	}
 
 	public boolean use(RobotEngine engine, Place place) {

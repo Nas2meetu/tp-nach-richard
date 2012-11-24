@@ -25,14 +25,14 @@ public class ItemContainer {
 		return item;
 	}
 	public String showContainer(){
-		String list = MESSAGE_CONTAINER;
+		String list = CONTAINER;
 		Iterator <Item> walleitem= container.iterator();
 		
 		while (walleitem.hasNext()){
 			list = list + (walleitem.next().toString());
 		} 	
 		if (container.size() == 0){  // no items en el container
-			list = (MESSAGE_CONTAINER_EMPTY);
+			list = (CONTAINER_EMPTY);
 		}
 		return list; 
 	}

@@ -18,18 +18,18 @@ public class Constants {
 
 	public static final String WALLE_SAYS = "WALL·E says: ";
 
-	public static final String MESSAGE_NO_STREET = WALLE_SAYS
+	public static final String NO_STREET = WALLE_SAYS
 			+ "There is no street in direction ";
 
-	public static final String MESSAGE_QUIT = WALLE_SAYS
+	public static final String QUIT = WALLE_SAYS
 			+ "I have communication problems. Bye bye";
-	public static final String MESSAGE_CONTAINER = WALLE_SAYS +
+	public static final String CONTAINER = WALLE_SAYS +
 	"I am carrying the following items "+ LINE_SEPARATOR;
 	
-	public static final String MESSAGE_CONTAINER_EMPTY = WALLE_SAYS +
+	public static final String CONTAINER_EMPTY = WALLE_SAYS +
 			"My inventory is empty";
 
-	public static final String MESSAGE_HELP = "The valid instructions for WALL·E are:"
+	public static final String HELP = "The valid instructions for WALL·E are:"
 			+ LINE_SEPARATOR
 			+ "  MOVE"
 			+ LINE_SEPARATOR
@@ -40,9 +40,9 @@ public class Constants {
 
 	public static final String PROMPT = "WALL·E > ";
 
-	public static final String MESSAGE_BAD_INSTRUCTION = WALLE_SAYS + "I do not understand. Please repeat";
+	public static final String BAD_INSTRUCTION = WALLE_SAYS + "I do not understand. Please repeat";
 	
-	public static final String MESSAGE_MOVE = WALLE_SAYS + "Moving in direction ";
+	public static final String MOVE = WALLE_SAYS + "Moving in direction ";
 	
-	public static final String MESSAGE_TURN = "WALL·E is looking at direction ";
+	public static final String TURN = "WALL·E is looking at direction ";
 }

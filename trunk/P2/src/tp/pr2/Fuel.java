@@ -14,11 +14,15 @@ public class Fuel extends Item {
 	}
 	
 	public boolean canBeUsed() {
-		return canBeUsed();
+		return (this.times > 0);
 	}
 
-	public boolean use(RobotEngine engine, Place place) {
-		return false;
+	public boolean use(RobotEngine robot, Place where) {
+		if (canBeUsed()){
+			this.power+=power;
+			return true;
+		}return false;
+		
 	}
 	
 	public String fueltoString(){

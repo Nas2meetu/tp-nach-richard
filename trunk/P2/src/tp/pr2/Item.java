@@ -19,10 +19,10 @@ public abstract class Item {
 	
 
 	public String getId() {
-		return id;
+		return this.id;
 	}
 	public String toString() {
-		return  id + LINE_SEPARATOR + description;
+		return  this.id + LINE_SEPARATOR + this.description;
 	}
 
 }
