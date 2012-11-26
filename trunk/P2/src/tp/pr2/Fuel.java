@@ -19,13 +19,13 @@ public class Fuel extends Item {
 
 	public boolean use(RobotEngine robot, Place where) {
 		if (canBeUsed()){
-			this.power+=power;
+			robot.addFuel(power);
 			return true;
 		}return false;
 		
 	}
 	
-	public String fueltoString(){
+	private String fueltoString(){
 		return power + LINE_SEPARATOR + times;
 	}
 	public String toString(){

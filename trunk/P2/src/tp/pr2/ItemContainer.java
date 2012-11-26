@@ -1,25 +1,23 @@
 package tp.pr2;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import static tp.pr2.Constants.*;
+//import static tp.pr2.Constants.*;
 
 public class ItemContainer {
 	
-	private Item item;
-	private ArrayList<Item> container;
+	//private ArrayList<Item> container;
+	private Item[] container;
 	
 	public ItemContainer(){
-		this.item=null;
-		this.container=null;
+		container=null;
 	}
 
 	public int numberOfItems() {
-		return container.size();
+		return container.length;
+		//return container.size();
 	}
 
-	public Item pickItem(String id) {
-		container.remove(id);
+	/*public Item pickItem(String id) {
+		//container.remove(id);
 		return item;
 	}
 
@@ -45,10 +43,10 @@ public class ItemContainer {
 	
 	/*public ArrayList<Item> getContainer() {
 		return container;
-	}*/
+	}
 	
 	public String toString(){
 		return showContainer();
-	}
+	}*/
 
 }
