@@ -87,7 +87,7 @@ public class Interpreter {
 	private Instruction generateOperateInstruction(Instruction instruction,
 			String operateCommand, String id) {
 		
-		if (operateCommand.equals("SCAN")) {
+		if (operateCommand.equals("OPERATE")) {
 			if (!id.isEmpty()){//como comparar si el id es correcto??
 				instruction = new Instruction(Action.OPERATE, id); 
 			} 
