@@ -1,6 +1,8 @@
 package tp.pr2;
 import static tp.pr2.Constants.*;
 
+import java.util.StringTokenizer;
+
 /**
 *
 * @author Ignacio Cerda Sanchez
@@ -10,6 +12,15 @@ import static tp.pr2.Constants.*;
 */
 
 public class Interpreter {
+
+	
+	private Instruction unknown;
+	private Instruction turnUnknown;
+	
+	public Interpreter(){
+		this.unknown = new Instruction(Action.UNKNOWN);
+		this.turnUnknown = new Instruction(Action.TURN, Rotation.UNKNONW);
+ 	}
 	
 	/**
 	 * 
@@ -17,149 +28,103 @@ public class Interpreter {
 	 * @return Instruction to interpreter by Robot
 	 * 
 	 */
-
+	
 	public Instruction generateInstruction(String prompt) {
+		StringTokenizer st = new StringTokenizer(prompt, " ");
+		
+		String words = st.nextToken();
+		
+		if(words.equalsIgnoreCase("move"))
+			return generateMove(st);
+		if(words.equalsIgnoreCase("turn"))
+			return generateTurn(st);
+		if(words.equalsIgnoreCase("pick"))
+			return generatePick(st);
+		if(words.equalsIgnoreCase("pick"))
+			return generateHelp(st);
+		if(words.equalsIgnoreCase("quit"))
+			return generateQuit(st);
+		if(words.equalsIgnoreCase("scan"))
+			return generateScan(st);
+		if(words.equalsIgnoreCase("operate"))
+			return generateOperate(st);
+		else
+			return unknown;
+		
+	}
 	
-			prompt = prompt.trim().toUpperCase();
-			String[] words = prompt.split(" ");
-			
-			Instruction instruction = null;
-			if (words.length == 1) {
-				String command = words[0];
-				instruction = generateSimpleInstruction(command, instruction);
-			} else if (words.length == 2) {
-				if (words[0].equals("TURN")){
-					String turnCommand = words[0];
-					String rotation = words[1];
-					instruction = generateTurnInstruction(instruction, turnCommand, rotation);
-				}else if (words[0].equals("SCAN")){
-					String scanCommand = words[0];
-					String id = words[1];
-					instruction = generateScanInstruction(instruction, scanCommand, id);
-				}else if (words[0].equals("OPERATE")){
-					String operateCommand = words[0];
-					String id = words[1];
-					instruction = generateOperateInstruction(instruction, operateCommand, id);
-				}else if (words[0].equals("PICK")){
-					String pickCommand = words[0];
-					String id = words[1];
-					instruction = generatePickInstruction(instruction, pickCommand, id);
-				}else
-					instruction = new Instruction();
-				
-			}else if (words.length>2){
-				instruction = new Instruction();
+	private Instruction generateMove(StringTokenizer st) {
+		if(!st.hasMoreTokens())
+			return new Instruction(Action.MOVE);
+		else
+			return unknown;
+	}
+	
+	private Instruction generateTurn(StringTokenizer st) {
+		if (st.hasMoreTokens()){
+			String token2 = st.nextToken();
+			if (st.hasMoreTokens())
+				return unknown; 
+			else if (token2.equalsIgnoreCase("left")) 
+				return new Instruction(Action.TURN, Rotation.LEFT);
+			else if (token2.equalsIgnoreCase("right")) 
+				return new Instruction(Action.TURN, Rotation.RIGHT);
+			else 
+				return turnUnknown;
+
+		} else return unknown;
+	}
+	
+	private Instruction generatePick(StringTokenizer st) {
+		if(st.hasMoreTokens()){
+			String token2 =  st.nextToken();
+			if(st.hasMoreTokens()){
+				return unknown;
 			}
-		
-		return instruction;
-	}
-	
-	private Instruction generatePickInstruction(Instruction instruction,
-			String pickCommand, String id) {
-		if (pickCommand.equals("PICK")) {
-			if (!id.isEmpty()){//como comparar si el id es correcto??
-				instruction = new Instruction(Action.PICK, id); 
-			} 
-			else {
-				instruction = new Instruction(Action.PICK, "");
-			}			
-		}else instruction = new Instruction(Action.UNKNOWN);
-		
-		return instruction;
-	
-	}
-
-	private Instruction generateScanInstruction(Instruction instruction,
-			String scanCommand, String id) {
-		
-		if (scanCommand.equals("SCAN")) {
-			if (!id.isEmpty()){//como comparar si el id es correcto??
-				instruction = new Instruction(Action.SCAN, id); 
-			} 
-			else {
-				instruction = new Instruction(Action.SCAN, "");
-			}			
-		}else instruction = new Instruction(Action.UNKNOWN);
-		
-		return instruction;
-	}
-	
-	private Instruction generateOperateInstruction(Instruction instruction,
-			String operateCommand, String id) {
-		
-		if (operateCommand.equals("OPERATE")) {
-			if (!id.isEmpty()){//como comparar si el id es correcto??
-				instruction = new Instruction(Action.OPERATE, id); 
-			} 
-			else {
-				instruction = new Instruction(Action.OPERATE, "");
-			}			
-		}else instruction = new Instruction(Action.UNKNOWN);
-		
-		return instruction;
-	}
-
-	/**
-	 * 
-	 * @param instruction is command to Robot generates
-	 * @param turnCommand is command to Robot turns
-	 * @param rotation is direction to Robots turns
-	 * @return generateTurnInstruction is two 
-	 * 		   instructions (turn and where rotation) to interpreter by Robot
-	 * 
-	 */
-
-	private Instruction generateTurnInstruction(Instruction instruction,
-			String turnCommand, String rotation) {
-		if (turnCommand.equals("TURN")) {
-			if (rotation.equals("LEFT")) {
-				instruction = new Instruction(Action.TURN, Rotation.LEFT);
-			} else if (rotation.equals("RIGHT")) {
-				instruction = new Instruction(Action.TURN, Rotation.RIGHT);
-			} else {
-				instruction = new Instruction(Action.TURN, Rotation.UNKNONW);
-			}			
+			return new Instruction(Action.PICK, token2);
 		}
-		else instruction = new Instruction(Action.UNKNOWN);
-		
-		return instruction;
+		else
+			return unknown;
 	}
 	
-	/**
-	 * 
-	 * @param command is command to Robot receives
-	 * @param instruction is simple (one word) command to Robot generates
-	 * @return generateSimpleInstruction is one instruction to interpreter by Robot
-	 * 
-	 */
 
-	private Instruction generateSimpleInstruction(String command,
-			Instruction instruction) {
-
-		switch (command) {
-		case "HELP":
-			instruction = new Instruction(Action.HELP);
-			break;
-
-		case "MOVE":
-			instruction = new Instruction(Action.MOVE);
-			break;
-
-		case "QUIT":
-			instruction = new Instruction(Action.QUIT);
-			break;
-			
-		case "TURN":
-			instruction = new Instruction(Action.TURN);
-			break;
-			
-		default:
-			instruction = new Instruction();
-			break;
+	private Instruction generateHelp(StringTokenizer st) {
+		if(!st.hasMoreTokens())
+			return new Instruction(Action.HELP);
+		else
+			return unknown;
+	}
+	
+	private Instruction generateQuit(StringTokenizer st) {
+		if(!st.hasMoreTokens())
+			return new Instruction(Action.QUIT);
+		else
+			return unknown;
+	}
+	
+	private Instruction generateScan(StringTokenizer st) {
+		if(st.hasMoreTokens()){
+			String token2 =  st.nextToken();
+			if(st.hasMoreTokens()){
+				return unknown;
+			}
+			return new Instruction(Action.SCAN, token2);
 		}
-		return instruction;
+		else
+			return new Instruction(Action.SCAN);
 	}
-	
+	private Instruction generateOperate(StringTokenizer st) {
+		if(st.hasMoreTokens()){
+			String token2 =  st.nextToken();
+			if(st.hasMoreTokens()){
+				return unknown;
+			}
+			return new Instruction(Action.OPERATE, token2);
+		}
+		else
+			return unknown;
+	}
+		
 	/**
 	 *
 	 * @return String override with help message
