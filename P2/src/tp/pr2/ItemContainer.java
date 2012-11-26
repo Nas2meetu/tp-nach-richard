@@ -8,12 +8,18 @@ public class ItemContainer {
 	
 	private Item item;
 	private ArrayList<Item> container;
+	
+	public ItemContainer(){
+		this.item=null;
+		this.container=null;
+	}
 
 	public int numberOfItems() {
 		return container.size();
 	}
 
 	public Item pickItem(String id) {
+		container.remove(id);
 		return item;
 	}
 
@@ -37,9 +43,9 @@ public class ItemContainer {
 		return list; 
 	}
 	
-	public ArrayList<Item> getContainer() {
+	/*public ArrayList<Item> getContainer() {
 		return container;
-	}
+	}*/
 	
 	public String toString(){
 		return showContainer();

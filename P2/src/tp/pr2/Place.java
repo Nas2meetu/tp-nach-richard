@@ -16,6 +16,7 @@ public class Place {
 	private String placeName;
 	private boolean isSpaceship;
 	private String placeDescription;
+	private String id;
 	
 	/**
 	 * Constructor of three parameters with name and description place and if this place has a Robot Space Ship
@@ -41,6 +42,10 @@ public class Place {
 		return isSpaceship;
 	}
 
+	public Item pickItem(String id) {
+		
+		return item;
+	}
 	
 	/**
 	 * Override toString to show place information

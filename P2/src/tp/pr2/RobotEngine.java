@@ -114,6 +114,16 @@ public class RobotEngine {
 		case QUIT:
 			System.out.println(QUIT);
 			System.exit(0);
+			
+		/*case PICK:
+			executePickAction(interpreter);
+			break;
+		case SCAN:
+			executeScanAction(interpreter);
+			break;
+		case OPERATE:
+			executeOperateAction(interpreter);
+			break;*/
 
 		case UNKNOWN:
 			break;
