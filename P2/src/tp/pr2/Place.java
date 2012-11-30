@@ -16,7 +16,8 @@ public class Place {
 	private String placeName;
 	private boolean isSpaceship;
 	private String placeDescription;
-	//private String id;
+	private Item[] itemsInPlace;
+
 	
 	/**
 	 * Constructor of three parameters with name and description place and if this place has a Robot Space Ship
@@ -42,11 +43,23 @@ public class Place {
 		return isSpaceship;
 	}
 
-/*	public Item pickItem(String id) {
+	public Item pickItem(String id) {
+		int i=0;
+		while (i<itemsInPlace.length) {
+			if (itemsInPlace[i].getId().equals(id)){
+				itemsInPlace[i]=itemsInPlace[i+1];
+				i++;
+			}	
+		}
+		itemsInPlace[itemsInPlace.length]=itemsInPlace[itemsInPlace.length-1];
+		return getItem(id);
+	}
 		
-		return item;
-	}*/
-	
+
+	private Item getItem(String id) {
+		return null;
+	}
+
 	/**
 	 * Override toString to show place information
 	 */
@@ -54,7 +67,36 @@ public class Place {
 	public String toString() {
 		return  placeName + LINE_SEPARATOR + placeDescription;
 	}
+
+	/* Add a item in place
+	 * 
+	public boolean addItem(Item item) {
+		
+		return (this.itemsInPlace[itemsInPlace.length+1]=item);
+
+	
+	}*/
+	
+	/**
+	 * 
+	 * @param item Add a item in a place if item is not duplicate
+	 * @return item
+	 */
 	
 	
+	public boolean addItem(Item item) {
+		
+		int i=0;
+		while (i<itemsInPlace.length) {
+			if (itemsInPlace[i].getId().equals(item.getId())){
+				return false;
+			}else
+				i++;
+		}
+		itemsInPlace[itemsInPlace.length+1]=item;
+		return true;
+	
+	}
+
 
 }

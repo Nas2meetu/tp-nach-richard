@@ -63,9 +63,9 @@ public class Instruction {
 	
 		return !((action.equals(Action.UNKNOWN)) ||
 				  (action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW)) ||
-				  (action.equals(Action.PICK) && itemName.equals("")) ||
-				  (action.equals(Action.SCAN) && itemName.equals("")) ||
-				  (action.equals(Action.OPERATE) && itemName.equals("")));//mirar cuando el pick cogido es inexistente
+				  (action.equals(Action.PICK) && this.itemName.equals("")) ||
+				  (action.equals(Action.SCAN) && this.itemName==("")) ||
+				  (action.equals(Action.OPERATE) && this.itemName.equals("")));//mirar cuando el pick cogido es inexistente
 	}
 	
 	/**
