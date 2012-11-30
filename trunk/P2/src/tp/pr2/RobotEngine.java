@@ -66,7 +66,8 @@ public class RobotEngine {
 
 		while (!isEndGame(instruction)) {
 			System.out.print(PROMPT);
-			instruction = interpreter.generateInstruction(read.nextLine());
+			instruction = interpreter.generateInstruction(read.nextLine().toUpperCase());
+			
 			if (instruction.isValid()) {
 				processInstruction(instruction);
 			}else

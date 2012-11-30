@@ -16,10 +16,12 @@ public class Interpreter {
 	
 	private Instruction unknown;
 	private Instruction turnUnknown;
+	private Instruction pickUnknown;
 	
 	public Interpreter(){
 		this.unknown = new Instruction(Action.UNKNOWN);
 		this.turnUnknown = new Instruction(Action.TURN, Rotation.UNKNONW);
+		this.pickUnknown = new Instruction(Action.PICK, "");
  	}
 	
 	/**
@@ -34,13 +36,30 @@ public class Interpreter {
 		
 		String words = st.nextToken();
 		
-		if(words.equalsIgnoreCase("move"))
+		if(words.equals("MOVE"))
+			return generateMove(st);
+		if(words.equals("TURN"))
+			return generateTurn(st);
+		if(words.equals("PICK"))
+			return generatePick(st);
+		if(words.equals("HELP"))
+			return generateHelp(st);
+		if(words.equals("QUIT"))
+			return generateQuit(st);
+		if(words.equals("SCAN"))
+			return generateScan(st);
+		if(words.equals("OPERATE"))
+			return generateOperate(st);
+		else
+			return unknown;
+		
+	/*	if(words.equals("move"))
 			return generateMove(st);
 		if(words.equalsIgnoreCase("turn"))
 			return generateTurn(st);
 		if(words.equalsIgnoreCase("pick"))
 			return generatePick(st);
-		if(words.equalsIgnoreCase("pick"))
+		if(words.equalsIgnoreCase("help"))
 			return generateHelp(st);
 		if(words.equalsIgnoreCase("quit"))
 			return generateQuit(st);
@@ -50,7 +69,7 @@ public class Interpreter {
 			return generateOperate(st);
 		else
 			return unknown;
-		
+		*/
 	}
 	
 	private Instruction generateMove(StringTokenizer st) {
@@ -65,9 +84,9 @@ public class Interpreter {
 			String token2 = st.nextToken();
 			if (st.hasMoreTokens())
 				return unknown; 
-			else if (token2.equalsIgnoreCase("left")) 
+			else if (token2.equals("LEFT")) 
 				return new Instruction(Action.TURN, Rotation.LEFT);
-			else if (token2.equalsIgnoreCase("right")) 
+			else if (token2.equals("RIGHT")) 
 				return new Instruction(Action.TURN, Rotation.RIGHT);
 			else 
 				return turnUnknown;
@@ -84,7 +103,7 @@ public class Interpreter {
 			return new Instruction(Action.PICK, token2);
 		}
 		else
-			return unknown;
+			return pickUnknown;
 	}
 	
 
