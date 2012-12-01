@@ -1,14 +1,19 @@
 package tp.pr2;
 
-//import static tp.pr2.Constants.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
+
+import static tp.pr2.Constants.*;
 
 public class ItemContainer {
 	
 	//private ArrayList<Item> container;
 	private Item[] container;
+	//private Vector<Item> container; 
 	
 	public ItemContainer(){
-		container=null;
+	//	this.container = new Vector<Item>();
 	}
 
 	public Item[] getContainer() {
@@ -32,16 +37,32 @@ public class ItemContainer {
 	}
 
 	/*public Item pickItem(String id) {
+	 
+	
 		//container.remove(id);
 		return item;
-	}
+	}*/
 
-	
+
+	/*public boolean addItem(Item item) {
+		
+		int i = 0;
+		while (i < this.container.size()
+		&& !(this.container.elementAt(i).getId().equals(item.getId())))
+			i++;
+			if (i == container.size()) {
+				container.add(item);
+				return true;
+			} else
+			return false;
+		}*/ 
+		
+
 
 	public Item getItem(String id) {
-		return item;
+		return getItem(null);//hacer getItem, veremos como hacerlo
 	}
-	private String showContainer(){
+	/*private String showContainer(){
 		String list = CONTAINER;
 		Iterator <Item> walleitem = container.iterator();
 		
