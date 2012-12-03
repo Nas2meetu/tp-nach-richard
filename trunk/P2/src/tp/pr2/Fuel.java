@@ -1,5 +1,13 @@
 package tp.pr2;
 
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 1
+*
+*/
+
 import static tp.pr2.Constants.*;
 
 public class Fuel extends Item {	
@@ -25,6 +33,14 @@ public class Fuel extends Item {
 		
 	}
 	
+	public int getPower() {
+		return power;
+	}
+	
+	public void totalFuel(int newPower){
+		power+= newPower;
+	}
+
 	private String fueltoString(){
 		return power + LINE_SEPARATOR + times;
 	}

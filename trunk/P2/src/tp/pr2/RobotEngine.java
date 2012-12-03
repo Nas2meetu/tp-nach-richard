@@ -17,6 +17,8 @@ public class RobotEngine {
 	private Place actualPlace;
 	private Direction lookingDirection;
 	private Street[] cityMap;
+	private Fuel fuel;
+	private Garbage recycledMaterial;
 	
 	/**
 	 * 
@@ -158,6 +160,7 @@ public class RobotEngine {
 	 * @param instruction is a command that Robot processes
 	 * 
 	 */
+	
 	private void executeTurnAction(Instruction instruction) {
 		switch (instruction.getRotation()) {
 		case LEFT:
@@ -177,24 +180,18 @@ public class RobotEngine {
 	 * The Robot gives information about his instructions
 	 * @param interpreter is a command that Robot interpreters
 	 */
+	
 	private void executeHelpAction(Interpreter interpreter) {
 		System.out.println(interpreter.interpreterHelp());
 	}
 
-	public int getRecycledMaterial() {
-		return 0;
-	}
-
-	public int getFuel() {
-		return 0;
-	}
-
-	public void addFuel(int newFuel) {
 	
+	public void addFuel(int newFuel) {
+		fuel.totalFuel(newFuel);
 	}
 
 	public void addRecycledMaterial(int newMaterial) {
-	
+		recycledMaterial.totalGarbage(newMaterial);
 		
 	}
 

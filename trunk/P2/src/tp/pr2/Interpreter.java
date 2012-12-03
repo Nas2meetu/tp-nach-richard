@@ -15,12 +15,12 @@ public class Interpreter {
 
 	
 	private Instruction unknown;
-	//private Instruction turnUnknown;
+	private Instruction turnUnknown;
 	private Instruction pickUnknown;
 	
 	public Interpreter(){
 		this.unknown = new Instruction(Action.UNKNOWN);
-		//this.turnUnknown = new Instruction(Action.TURN, Rotation.UNKNONW);
+		this.turnUnknown = new Instruction(Action.TURN, Rotation.UNKNONW);
 		this.pickUnknown = new Instruction(Action.PICK, "");
  	}
 	
@@ -72,6 +72,12 @@ public class Interpreter {
 		*/
 	}
 	
+	/**
+	 * 
+	 * @param st
+	 * @return
+	 */
+	
 	private Instruction generateMove(StringTokenizer st) {
 		if(!st.hasMoreTokens())
 			return new Instruction(Action.MOVE);
@@ -89,7 +95,7 @@ public class Interpreter {
 			else if (token2.equals("RIGHT")) 
 				return new Instruction(Action.TURN, Rotation.RIGHT);
 			else 
-				return /*turn*/unknown;
+				return turnUnknown;
 
 		} else return unknown;
 	}

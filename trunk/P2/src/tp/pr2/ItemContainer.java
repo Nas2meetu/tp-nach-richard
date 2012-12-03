@@ -1,8 +1,12 @@
 package tp.pr2;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Vector;
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 1
+*
+*/
 
 import static tp.pr2.Constants.*;
 

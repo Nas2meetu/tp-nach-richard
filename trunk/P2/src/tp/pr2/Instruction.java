@@ -25,6 +25,7 @@ public class Instruction {
 	public Instruction(Action action) {
 		this.action = action;
 		this.rotation = Rotation.UNKNONW;
+		this.itemName = "";
 	}
 	
 	/**
@@ -37,6 +38,7 @@ public class Instruction {
 	public Instruction(Action action, Rotation rotation) {
 		this.action = action;
 		this.rotation = rotation;
+		this.itemName = "";
 	}
 	
 	/**
@@ -46,16 +48,18 @@ public class Instruction {
 	public Instruction() {
 		this.action = Action.UNKNOWN;
 		this.rotation = Rotation.UNKNONW;
+		this.itemName = "";
 	}
 	
 	public Instruction(Action action, String itemName) {
 		this.action = action;
+		this.rotation = Rotation.UNKNONW;
 		this.itemName = itemName;
 		
 	}
 
 	/**
-	 * Is a method to know if action and rotation are valids
+	 * Is a method to know if action and rotation are valid
 	 * @return isValid if action is not Unknown or turn rotation is not Unknown
 	 */
 
@@ -64,7 +68,6 @@ public class Instruction {
 		return !((action.equals(Action.UNKNOWN)) ||
 				  (action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW)) ||
 				  (action.equals(Action.PICK) && this.itemName.equals("")) ||
-				  (action.equals(Action.SCAN) && this.itemName==("")) ||
 				  (action.equals(Action.OPERATE) && this.itemName.equals("")));//mirar cuando el pick cogido es inexistente
 	}
 	
