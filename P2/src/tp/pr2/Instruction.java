@@ -68,8 +68,10 @@ public class Instruction {
 		return !((action.equals(Action.UNKNOWN)) ||
 				  (action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW)) ||
 				  (action.equals(Action.PICK) && this.itemName.equals("")) ||
-				  (action.equals(Action.OPERATE) && this.itemName.equals("")));
+				  (action.equals(Action.OPERATE) && this.itemName.equals("")));//mirar cuando el pick cogido es inexistente
+
 		}
+
 	
 	/**
 	 * 

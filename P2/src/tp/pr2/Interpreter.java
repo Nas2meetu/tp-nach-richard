@@ -17,15 +17,11 @@ public class Interpreter {
 
 	
 	private Instruction unknown;
-	private Instruction turnUnknown;
-	private Instruction pickUnknown;
-	private Instruction operateUnknown;
+	
 	
 	public Interpreter(){
 		this.unknown = new Instruction(Action.UNKNOWN);
-		this.turnUnknown = new Instruction(Action.TURN, Rotation.UNKNONW);
-		this.pickUnknown = new Instruction(Action.PICK, "");
-		this.operateUnknown = new Instruction(Action.OPERATE, "");
+		
  	}
 	
 	/**
@@ -99,19 +95,19 @@ public class Interpreter {
 			else if (token2.equals("RIGHT")) 
 				return new Instruction(Action.TURN, Rotation.RIGHT);
 			else 
-				return turnUnknown;
+				return unknown;
 
 		} else return unknown;
 	}
 	
 	private Instruction generatePick(StringTokenizer st) {
 		 
-		if(st.hasMoreTokens()){//pick mas algo
-			String token2 =  st.nextToken(); //algo se convierte en token2
-			if(st.hasMoreTokens()){//si hay 3 tokens unknown
+		if(st.hasMoreTokens()){
+			String token2 =  st.nextToken(); 
+			if(st.hasMoreTokens()){
 				return unknown;
-			}//else if (token2.equals(""){//como comparar el token2 con un item existente
-				return new Instruction(Action.PICK, token2);
+			}
+			return new Instruction(Action.PICK, token2);
 		}
 		else
 			return unknown;
@@ -136,7 +132,7 @@ public class Interpreter {
 			String token2 =  st.nextToken();
 			if(st.hasMoreTokens()){
 				return unknown;
-			}//
+			}
 			return new Instruction(Action.SCAN, token2);
 		}
 		else
