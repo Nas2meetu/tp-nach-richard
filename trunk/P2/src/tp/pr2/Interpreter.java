@@ -3,6 +3,8 @@ import static tp.pr2.Constants.*;
 
 import java.util.StringTokenizer;
 
+import org.omg.PortableServer.ID_ASSIGNMENT_POLICY_ID;
+
 /**
 *
 * @author Ignacio Cerda Sanchez
@@ -17,11 +19,13 @@ public class Interpreter {
 	private Instruction unknown;
 	private Instruction turnUnknown;
 	private Instruction pickUnknown;
+	private Instruction operateUnknown;
 	
 	public Interpreter(){
 		this.unknown = new Instruction(Action.UNKNOWN);
 		this.turnUnknown = new Instruction(Action.TURN, Rotation.UNKNONW);
 		this.pickUnknown = new Instruction(Action.PICK, "");
+		this.operateUnknown = new Instruction(Action.OPERATE, "");
  	}
 	
 	/**
@@ -101,15 +105,19 @@ public class Interpreter {
 	}
 	
 	private Instruction generatePick(StringTokenizer st) {
-		if(st.hasMoreTokens()){
-			String token2 =  st.nextToken();
-			if(st.hasMoreTokens()){
+		 
+		if(st.hasMoreTokens()){//pick mas algo
+			String token2 =  st.nextToken(); //algo se convierte en token2
+			if(st.hasMoreTokens()){//si hay 3 tokens unknown
 				return unknown;
-			}
-			return new Instruction(Action.PICK, token2);
+			}//else if (token2.equals(""){//como comparar el token2 con un item existente
+				return pickUnknown;
+			}	
+			else
+				return new Instruction(Action.PICK, token2);
 		}
 		else
-			return pickUnknown;
+			return unknown;
 	}
 	
 
