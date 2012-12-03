@@ -111,15 +111,11 @@ public class Interpreter {
 			if(st.hasMoreTokens()){//si hay 3 tokens unknown
 				return unknown;
 			}//else if (token2.equals(""){//como comparar el token2 con un item existente
-				return pickUnknown;
-			}	
-			else
 				return new Instruction(Action.PICK, token2);
 		}
 		else
 			return unknown;
 	}
-	
 
 	private Instruction generateHelp(StringTokenizer st) {
 		if(!st.hasMoreTokens())
@@ -140,7 +136,7 @@ public class Interpreter {
 			String token2 =  st.nextToken();
 			if(st.hasMoreTokens()){
 				return unknown;
-			}
+			}//
 			return new Instruction(Action.SCAN, token2);
 		}
 		else

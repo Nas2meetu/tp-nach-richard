@@ -17,6 +17,7 @@ public class Place {
 	private boolean isSpaceship;
 	private String placeDescription;
 	private Item[] itemsInPlace;
+	private int cont;
 
 	
 	/**
@@ -33,6 +34,15 @@ public class Place {
 		this.placeDescription = placeDescription;
 	}
 	
+	public Item[] getItem() {
+		return itemsInPlace;
+	}
+
+	public Place(){
+		itemsInPlace = new Item[100];
+		cont=0;
+	}
+	
 	/**
 	 * 
 	 * @return isSpaceship
@@ -42,8 +52,27 @@ public class Place {
 	public boolean isSpaceship() {
 		return isSpaceship;
 	}
+	
+	public boolean pickItem(String id) {
+		int i=0;
+		while (i<cont) {
+			if (itemsInPlace[i].getId().equals(id)){
+				return false;
+			}
+			i++;
+		}
+		return true;
+		}
+		
+	public boolean addItem(Item item) {
+		if (pickItem(item.getId()))
+			return false;
+		itemsInPlace[cont++]=item;
+		return true;
+	}
 
-	public Item pickItem(String id) {
+	
+	/*public Item pickItem(String id) {
 		int i=0;
 		while (i<itemsInPlace.length) {
 			if (itemsInPlace[i].getId().equals(id)){
@@ -53,12 +82,10 @@ public class Place {
 		}
 		itemsInPlace[itemsInPlace.length]=itemsInPlace[itemsInPlace.length-1];
 		return getItem(id);
-	}
+	}*/
 		
 
-	private Item getItem(String id) {
-		return null;
-	}
+	
 
 	/**
 	 * Override toString to show place information
@@ -84,19 +111,8 @@ public class Place {
 	 */
 	
 	
-	public boolean addItem(Item item) {
-		
-		int i=0;
-		while (i<itemsInPlace.length) {
-			if (itemsInPlace[i].getId().equals(item.getId())){
-				return false;
-			}else
-				i++;
-		}
-		itemsInPlace[itemsInPlace.length+1]=item;
-		return true;
 	
-	}
+
 
 
 }

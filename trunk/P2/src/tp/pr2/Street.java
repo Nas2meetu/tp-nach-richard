@@ -14,6 +14,9 @@ public class Street {
 	private Place sourcePlace;
 	private Direction direction;
 	private Place targetPlace;
+	private boolean isOpen;
+	private String code;
+	
 	
 	/**
 	 * 
@@ -31,6 +34,15 @@ public class Street {
 
 	}
 	
+	public Street(Place sourcePlace, Direction direction, Place targetPlace, boolean isOpen, String code) {
+		this.sourcePlace = sourcePlace;
+		this.direction = direction;
+		this.targetPlace = targetPlace;
+		this.isOpen = isOpen;
+		this.code = code;
+
+	}
+
 
 	public Place nextPlace(Place place) {
 		Place nextPlace = null;
@@ -79,5 +91,13 @@ public class Street {
 	private boolean comeOutFromSourcePlace(Place place, Direction fromDirection) {
 		return place.equals(sourcePlace) && direction.equals(fromDirection);
 	}
+
+
+
+	public boolean isOpen() {
+		return isOpen;
+	}
+	
+
 
 }
