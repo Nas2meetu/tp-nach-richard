@@ -1,5 +1,13 @@
 package tp.pr2;
 
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 1
+*
+*/
+
 import static tp.pr2.Constants.*;
 
 public class Garbage extends Item {	
@@ -13,6 +21,14 @@ public class Garbage extends Item {
 	
 	public boolean canBeUsed() {
 		return (recycledMaterial > 0);
+	}
+	
+	public int getRecycledMaterial() {
+		return recycledMaterial;
+	}
+	
+	public void totalGarbage(int newRecycledMaterial){
+		recycledMaterial+= newRecycledMaterial;
 	}
 
 	public boolean use(RobotEngine engine, Place place) {

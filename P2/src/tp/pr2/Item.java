@@ -1,5 +1,13 @@
 package tp.pr2;
 
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 1
+*
+*/
+
 import static tp.pr2.Constants.LINE_SEPARATOR;
 
 public abstract class Item {
