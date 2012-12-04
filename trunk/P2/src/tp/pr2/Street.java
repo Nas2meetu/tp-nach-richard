@@ -1,5 +1,7 @@
 package tp.pr2;
 
+import tp.pr2.testprofesor.MockCodeCard;
+
 /**
 *
 * @author Ignacio Cerda Sanchez
@@ -97,6 +99,15 @@ public class Street {
 	public boolean isOpen() {
 		return isOpen;
 	}
+
+	public boolean open(CodeCard card) {
+		return isOpen;
+	}
+	
+	public boolean close(CodeCard card){
+		return !isOpen;
+	}
+	
 	
 
 
