@@ -16,8 +16,9 @@ public class Place {
 	private String placeName;
 	private boolean isSpaceship;
 	private String placeDescription;
-	private Item[] itemsInPlace;
-	private int cont;
+	private ItemContainer itemsInPlace;
+	//private Item[] itemsInPlace;
+	//private int cont;
 
 	
 	/**
@@ -35,12 +36,12 @@ public class Place {
 	}
 	
 	public Item[] getItem() {
-		return itemsInPlace;
+		return itemsInPlace.getContainer();
 	}
 
 	public Place(){
-		itemsInPlace = new Item[100];
-		cont=0;
+		itemsInPlace = new ItemContainer();
+		
 	}
 	
 	/**
@@ -53,22 +54,20 @@ public class Place {
 		return isSpaceship;
 	}
 	
-	public boolean pickItem(String id) {
-		int i=0;
-		while (i<cont) {
-			if (itemsInPlace[i].getId().equals(id)){
-				return false;
-			}
-			i++;
+	public Item pickItem(String id) {
+		if (itemsInPlace.numberOfItems()==0){
+			return null;
 		}
-		return true;
-		}
-		
+		else
+			return itemsInPlace.pickItem(id);
+	}
 	public boolean addItem(Item item) {
-		if (pickItem(item.getId()))
+		
+		if (itemsInPlace.addItem(item)){
+			return true;
+		}else
 			return false;
-		itemsInPlace[cont++]=item;
-		return true;
+		
 	}
 
 	

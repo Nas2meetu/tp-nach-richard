@@ -1,6 +1,6 @@
 package tp.pr2;
 
-import tp.pr2.testprofesor.MockCodeCard;
+
 
 /**
 *
@@ -20,6 +20,7 @@ public class Street {
 	private String code;
 	
 	
+	
 	/**
 	 * 
 	 * Constructor of three parameters to create Streets 
@@ -33,14 +34,16 @@ public class Street {
 		this.sourcePlace = sourcePlace;
 		this.direction = direction;
 		this.targetPlace = targetPlace;
+		this.isOpen = true; 
+		this.code = null;
 
 	}
 	
-	public Street(Place sourcePlace, Direction direction, Place targetPlace, boolean isOpen, String code) {
+	public Street(Place sourcePlace, Direction direction, Place targetPlace, boolean Open, String code) {
 		this.sourcePlace = sourcePlace;
 		this.direction = direction;
 		this.targetPlace = targetPlace;
-		this.isOpen = isOpen;
+		this.isOpen = Open;
 		this.code = code;
 
 	}
@@ -94,17 +97,26 @@ public class Street {
 		return place.equals(sourcePlace) && direction.equals(fromDirection);
 	}
 
-
+//las puertas por defecto estan cerradas? 
 
 	public boolean isOpen() {
 		return isOpen;
 	}
 
+	//para abrir la puerta, es necesario comprobar que esta cerrada?
 	public boolean open(CodeCard card) {
+		if (card.getCode().equals(code)){
+			isOpen= true;
+		}else
+			isOpen = false;
 		return isOpen;
 	}
 	
 	public boolean close(CodeCard card){
+		
+		if(isOpen && card.getCode().equals(code)){
+			isOpen = false;
+		}
 		return !isOpen;
 	}
 	

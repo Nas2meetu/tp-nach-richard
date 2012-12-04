@@ -27,7 +27,7 @@ public class ItemContainer {
 	}
 
 	public int numberOfItems() {
-		return container.length;
+		return cont;
 		// return container.size();
 	}
 	
