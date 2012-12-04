@@ -8,7 +8,7 @@ package tp.pr2;
  *
  */
 
-import static tp.pr2.Constants.*;
+//import static tp.pr2.Constants.*;
 
 public class ItemContainer {
 
@@ -27,10 +27,22 @@ public class ItemContainer {
 	}
 
 	public int numberOfItems() {
+		while ((cont < container.length) && (container[cont]!=null)){
+			cont++;
+		}
 		return cont;
-		// return container.size();
 	}
 	
+	public Item getItem(String id){
+		
+		int i = 0;
+		while (i < cont) {
+			if (container[i].getId().equals(id)) {
+				return container[i];
+			}
+			i++;
+		}return null;
+	}
 	/**
 	 * Usamos el posItem para sacar la posicion del id del Item
 	 * Si la posicion es -1, devuelve item vacio
@@ -48,7 +60,6 @@ public class ItemContainer {
 			return null;
 		Item item = container[pos];
 		this.moveItemLeft(pos);
-		cont--;
 		return item;
 	}
 	
@@ -140,10 +151,10 @@ public class ItemContainer {
 		int pos = posItem(item.getId());
 		if (pos != -1)
 			return false;
+		else
 		pos = whereInsert(item.getId());
 		this.moveItemRight(pos);
 		container[pos]=item;
-		cont++;
 		return true;
 	
 	}
