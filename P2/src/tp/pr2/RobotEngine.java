@@ -195,4 +195,9 @@ public class RobotEngine {
 		
 	}
 
+	public int getFuel() {
+		
+		return fuel.getPower();
+	}
+
 }
