@@ -63,10 +63,8 @@ public class Place {
 	}
 	public boolean addItem(Item item) {
 		
-		if (itemsInPlace.addItem(item)){
-			return true;
-		}else
-			return false;
+		itemsInPlace.addItem(item);
+		return true;
 		
 	}
 
