@@ -26,9 +26,12 @@ public class Fuel extends Item {
 	}
 
 	public boolean use(RobotEngine robot, Place where) {
+		this.power=INITIAL_POWER;
+		this.times=DEFAULT_TIMES;
 		Place placeWhereIam = new Place ();
 		if (canBeUsed() && placeWhereIam.equals(where)){
 			robot.addFuel(power);
+			this.times--;
 			return true;
 		}return false;
 		

@@ -1,7 +1,5 @@
 package tp.pr2;
 
-
-
 /**
 *
 * @author Ignacio Cerda Sanchez
@@ -55,7 +53,8 @@ public class Street {
 			nextPlace = targetPlace;
 		} else if (place.equals(targetPlace)) {
 			nextPlace = sourcePlace;
-		}
+		}else 
+			nextPlace=null;
 
 		return nextPlace;
 	}
@@ -97,13 +96,13 @@ public class Street {
 		return place.equals(sourcePlace) && direction.equals(fromDirection);
 	}
 
-//las puertas por defecto estan cerradas? 
+ 
 
 	public boolean isOpen() {
 		return isOpen;
 	}
 
-	//para abrir la puerta, es necesario comprobar que esta cerrada?
+	
 	public boolean open(CodeCard card) {
 		if (card.getCode().equals(code)){
 			isOpen= true;
@@ -119,8 +118,5 @@ public class Street {
 		}
 		return !isOpen;
 	}
-	
-	
-
 
 }

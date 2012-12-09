@@ -115,7 +115,8 @@ public class Main {
 		Place[] places =  createPlaces();
 		Street[] streets = createStreets(places);
 		
-		RobotEngine engine = new RobotEngine(places[0],Direction.NORTH,streets);
+		
+		RobotEngine engine = new RobotEngine(new City(streets), places[0], Direction.NORTH); 
 		engine.startEngine();
 	}
 

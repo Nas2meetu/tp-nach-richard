@@ -16,7 +16,7 @@ public class RobotEngine {
 
 	private Place actualPlace;
 	private Direction lookingDirection;
-	private Street[] cityMap;
+	private City cityMap;
 	private Fuel fuel;
 	private Garbage recycledMaterial;
 	
@@ -29,10 +29,18 @@ public class RobotEngine {
 	 * 
 	 */
 
-	public RobotEngine(Place initialPlace, Direction direction, Street[] cityMap) {
+	/*public RobotEngine(Place initialPlace, Direction direction, Street[] cityMap) {
 		this.actualPlace = initialPlace;
 		this.lookingDirection = direction;
 		this.cityMap = cityMap;
+	}
+*/
+	public RobotEngine(City city, Place initialPlace, Direction direction) {
+		this.cityMap = city;
+		this.actualPlace = initialPlace;
+		this.lookingDirection = direction;
+		this.fuel = fuel;
+		this.recycledMaterial = recycledMaterial;
 	}
 
 	/**
@@ -40,19 +48,10 @@ public class RobotEngine {
 	 * @return lookingDirection is direction that Robot is looking at
 	 * 
 	 */
-	public Direction getDirection() {
+	/*public Direction getDirection() {
 		return lookingDirection;
 	}
-	
-	/**
-	 * 
-	 * @param direction
-	 */
-
-	public void setDirection(Direction direction) {
-		this.lookingDirection = direction;
-	}
-	
+	*/
 	/**
 	 * Is the Start game, show initial information and finish information if Player win game
 	 */
@@ -60,15 +59,16 @@ public class RobotEngine {
 	public void startEngine() {
 		
 		Scanner read = new Scanner(System.in);
-		Interpreter interpreter = new Interpreter();
+		//Interpreter interpreter = new Interpreter();
 		Instruction instruction = new Instruction();
-
+		
+		
 		System.out.println(actualPlace.toString() + LINE_SEPARATOR +  
 							TURN  + lookingDirection + LINE_SEPARATOR);
 
 		while (!isEndGame(instruction)) {
 			System.out.print(PROMPT);
-			instruction = interpreter.generateInstruction(read.nextLine().toUpperCase());
+			instruction = Interpreter.generateInstruction(read.nextLine().toUpperCase());
 			
 			if (instruction.isValid()) {
 				processInstruction(instruction);
@@ -98,13 +98,9 @@ public class RobotEngine {
 
 	public void processInstruction(Instruction instruction) {
 		
-		Interpreter interpreter = new Interpreter();
-
+		//Interpreter interpreter = new Interpreter();
+		
 		switch (instruction.getAction()) {
-
-		case HELP:
-			executeHelpAction(interpreter);
-			break;
 
 		case MOVE:
 			executeMoveAction();
@@ -113,45 +109,74 @@ public class RobotEngine {
 		case TURN:
 			executeTurnAction(instruction);
 			break;
+			
+		case HELP:
+			executeHelpAction(instruction);
+			break;
 
 		case QUIT:
 			System.out.println(QUIT);
 			System.exit(0);
 			
-		/*case PICK:
-			executePickAction(interpreter);
-			break;
-		case SCAN:
-			executeScanAction(interpreter);
-			break;
-		case OPERATE:
-			executeOperateAction(interpreter);
-			break;*/
-
 		case UNKNOWN:
 			break;
+			
+		case PICK:
+			executePickAction(instruction);
+			break;
+		
+		case OPERATE:
+			executeOperateAction(instruction);
+			break;
 
+		case SCAN:
+			executeScanAction(instruction);
+			break;
+				
 		}
 	}
 	
+	private void executeOperateAction(Instruction instruction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void executeScanAction(Instruction instruction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void executePickAction(Instruction instruction) {
+		if (instruction.getId()== null){
+			System.out.println("No puedo pickear el id" + instruction.getId());
+		}else if (instruction.getId().equals(fuel)){
+			
+		}
+	}
 	/**
 	 * Robot moves or not
 	 */
 
 	private void executeMoveAction() {
-		int i = 0;	
+			
 		boolean change = false;
-		while (!change && i < cityMap.length) 
-			if (cityMap[i].comeOutFrom(actualPlace, lookingDirection)) {
+		while (!change) {
+			//if (getHeadingStreet().equals(cityMap.getCityMap())) {
+				//actualPlace = cityMap[i].nextPlace(actualPlace);
+			/**
+			 * mirar esta comparacion, no la hace bien 
+			 */
+			//if (getHeadingStreet().nextPlace(actualPlace).equals(null)){
+			if (getHeadingStreet().equals(null)){
+				System.out.println(NO_STREET);
+			}
+			else if (getHeadingStreet().isOpen()){
+				actualPlace = getHeadingStreet().nextPlace(actualPlace);
 				System.out.println(MOVE + lookingDirection);
-				actualPlace = cityMap[i].nextPlace(actualPlace);
 				System.out.println(actualPlace.toString() + LINE_SEPARATOR + TURN 
 								   + lookingDirection + LINE_SEPARATOR);
 				change = true;
-				
-			}else i++;
-		if (!change){
-			System.out.println(NO_STREET);
+			}
 		}
 	}
 
@@ -181,23 +206,32 @@ public class RobotEngine {
 	 * @param interpreter is a command that Robot interpreters
 	 */
 	
-	private void executeHelpAction(Interpreter interpreter) {
-		System.out.println(interpreter.interpreterHelp());
+	private void executeHelpAction(Instruction instruction) {
+		System.out.println(HELP);
 	}
 
 	
 	public void addFuel(int newFuel) {
 		fuel.totalFuel(newFuel);
 	}
+	
 
 	public void addRecycledMaterial(int newMaterial) {
 		recycledMaterial.totalGarbage(newMaterial);
 		
 	}
-
+	
 	public int getFuel() {
-		
 		return fuel.getPower();
 	}
+	
 
+	public int getRecycledMaterial() {
+		return recycledMaterial.getGarbage();
+	}
+
+	public Street getHeadingStreet() {
+		return cityMap.lookForStreet(actualPlace, lookingDirection);
+			
+	}
 }

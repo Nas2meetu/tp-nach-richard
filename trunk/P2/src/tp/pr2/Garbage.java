@@ -12,23 +12,23 @@ import static tp.pr2.Constants.*;
 
 public class Garbage extends Item {	
 	
-	private int recycledMaterial;
+	private int garbage;
 
 	public Garbage(String id, String description, int recycledMaterial){
 		super(id, description);
-		this.recycledMaterial = recycledMaterial;
+		this.garbage = INITIAL_GARBAGE;
 	}
 	
 	public boolean canBeUsed() {
-		return (recycledMaterial > 0);
+		return (garbage > 0);
 	}
 	
-	public int getRecycledMaterial() {
-		return recycledMaterial;
+	public int getGarbage() {
+		return garbage;
 	}
 	
-	public void totalGarbage(int newRecycledMaterial){
-		recycledMaterial+= newRecycledMaterial;
+	public void totalGarbage(int newMaterial){
+		garbage+= newMaterial;
 	}
 
 	public boolean use(RobotEngine engine, Place place) {
@@ -36,6 +36,6 @@ public class Garbage extends Item {
 	}
 	
 	public String toString(){
-			return (super.toString() + LINE_SEPARATOR + recycledMaterial); 
+			return (super.toString() + LINE_SEPARATOR + garbage); 
 		}
 }

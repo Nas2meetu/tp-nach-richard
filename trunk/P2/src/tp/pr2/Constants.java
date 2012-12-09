@@ -13,6 +13,11 @@ public class Constants {
 /**
  * Define messages for Wall·E , prompt and line_separator
  */
+	public static final int INITIAL_POWER = 50;
+	
+	public static final int INITIAL_GARBAGE = 0;
+	
+	public static final int DEFAULT_TIMES = 0;
 	
 	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 

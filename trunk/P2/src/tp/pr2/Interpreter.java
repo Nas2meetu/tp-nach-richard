@@ -3,7 +3,7 @@ import static tp.pr2.Constants.*;
 
 import java.util.StringTokenizer;
 
-import org.omg.PortableServer.ID_ASSIGNMENT_POLICY_ID;
+
 
 /**
 *
@@ -16,13 +16,8 @@ import org.omg.PortableServer.ID_ASSIGNMENT_POLICY_ID;
 public class Interpreter {
 
 	
-	private Instruction unknown;
+	private static Instruction unknown;
 	
-	
-	public Interpreter(){
-		this.unknown = new Instruction(Action.UNKNOWN);
-		
- 	}
 	
 	/**
 	 * 
@@ -31,10 +26,10 @@ public class Interpreter {
 	 * 
 	 */
 	
-	public Instruction generateInstruction(String prompt) {
+	public static Instruction generateInstruction(String prompt) {
 		StringTokenizer st = new StringTokenizer(prompt, " ");
 		
-		String words = st.nextToken();
+		String words = st.nextToken().toUpperCase();
 		
 		if(words.equals("MOVE"))
 			return generateMove(st);
@@ -51,25 +46,9 @@ public class Interpreter {
 		if(words.equals("OPERATE"))
 			return generateOperate(st);
 		else
-			return unknown;
+			return new Instruction(Action.UNKNOWN);
 		
-	/*	if(words.equals("move"))
-			return generateMove(st);
-		if(words.equalsIgnoreCase("turn"))
-			return generateTurn(st);
-		if(words.equalsIgnoreCase("pick"))
-			return generatePick(st);
-		if(words.equalsIgnoreCase("help"))
-			return generateHelp(st);
-		if(words.equalsIgnoreCase("quit"))
-			return generateQuit(st);
-		if(words.equalsIgnoreCase("scan"))
-			return generateScan(st);
-		if(words.equalsIgnoreCase("operate"))
-			return generateOperate(st);
-		else
-			return unknown;
-		*/
+	
 	}
 	
 	/**
@@ -78,16 +57,16 @@ public class Interpreter {
 	 * @return
 	 */
 	
-	private Instruction generateMove(StringTokenizer st) {
+	private static Instruction generateMove(StringTokenizer st) {
 		if(!st.hasMoreTokens())
 			return new Instruction(Action.MOVE);
 		else
 			return unknown;
 	}
 	
-	private Instruction generateTurn(StringTokenizer st) {
+	private static Instruction generateTurn(StringTokenizer st) {
 		if (st.hasMoreTokens()){
-			String token2 = st.nextToken();
+			String token2 = st.nextToken().toUpperCase();
 			if (st.hasMoreTokens())
 				return unknown; 
 			else if (token2.equals("LEFT")) 
@@ -95,12 +74,12 @@ public class Interpreter {
 			else if (token2.equals("RIGHT")) 
 				return new Instruction(Action.TURN, Rotation.RIGHT);
 			else 
-				return unknown;
+				return new Instruction(Action.TURN, Rotation.UNKNONW);
 
-		} else return unknown;
+		} else return new Instruction(Action.UNKNOWN);
 	}
 	
-	private Instruction generatePick(StringTokenizer st) {
+	private static Instruction generatePick(StringTokenizer st) {
 		 
 		if(st.hasMoreTokens()){
 			String token2 =  st.nextToken(); 
@@ -110,24 +89,24 @@ public class Interpreter {
 			return new Instruction(Action.PICK, token2);
 		}
 		else
-			return unknown;
+			return new Instruction(Action.UNKNOWN);
 	}
 
-	private Instruction generateHelp(StringTokenizer st) {
+	private static Instruction generateHelp(StringTokenizer st) {
 		if(!st.hasMoreTokens())
 			return new Instruction(Action.HELP);
 		else
 			return unknown;
 	}
 	
-	private Instruction generateQuit(StringTokenizer st) {
+	private static Instruction generateQuit(StringTokenizer st) {
 		if(!st.hasMoreTokens())
 			return new Instruction(Action.QUIT);
 		else
 			return unknown;
 	}
 	
-	private Instruction generateScan(StringTokenizer st) {
+	private static Instruction generateScan(StringTokenizer st) {
 		if(st.hasMoreTokens()){
 			String token2 =  st.nextToken();
 			if(st.hasMoreTokens()){
@@ -138,7 +117,7 @@ public class Interpreter {
 		else
 			return new Instruction(Action.SCAN);
 	}
-	private Instruction generateOperate(StringTokenizer st) {
+	private static Instruction generateOperate(StringTokenizer st) {
 		if(st.hasMoreTokens()){
 			String token2 =  st.nextToken();
 			if(st.hasMoreTokens()){
@@ -147,7 +126,7 @@ public class Interpreter {
 			return new Instruction(Action.OPERATE, token2);
 		}
 		else
-			return unknown;
+			return new Instruction(Action.UNKNOWN);
 	}
 		
 	/**
@@ -155,7 +134,7 @@ public class Interpreter {
 	 * @return String override with help message
 	 */
 
-	public String interpreterHelp() {
+	public static String interpreterHelp() {
 		return HELP + LINE_SEPARATOR;
 	}
 
