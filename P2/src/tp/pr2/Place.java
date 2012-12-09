@@ -80,8 +80,6 @@ public class Place {
 		itemsInPlace[itemsInPlace.length]=itemsInPlace[itemsInPlace.length-1];
 		return getItem(id);
 	}*/
-		
-
 	
 
 	/**
@@ -91,25 +89,5 @@ public class Place {
 	public String toString() {
 		return  placeName + LINE_SEPARATOR + placeDescription;
 	}
-
-	/* Add a item in place
-	 * 
-	public boolean addItem(Item item) {
-		
-		return (this.itemsInPlace[itemsInPlace.length+1]=item);
-
-	
-	}*/
-	
-	/**
-	 * 
-	 * @param item Add a item in a place if item is not duplicate
-	 * @return item
-	 */
-	
-	
-	
-
-
 
 }
