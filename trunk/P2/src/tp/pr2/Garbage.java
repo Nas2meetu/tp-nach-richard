@@ -16,7 +16,7 @@ public class Garbage extends Item {
 
 	public Garbage(String id, String description, int recycledMaterial){
 		super(id, description);
-		this.garbage = INITIAL_GARBAGE;
+		this.garbage = recycledMaterial;
 	}
 	
 	public boolean canBeUsed() {
@@ -27,12 +27,13 @@ public class Garbage extends Item {
 		return garbage;
 	}
 	
-	public void totalGarbage(int newMaterial){
-		garbage+= newMaterial;
-	}
+	
 
-	public boolean use(RobotEngine engine, Place place) {
-		return false;
+	public boolean use(RobotEngine robot, Place place) {
+		if (canBeUsed()){
+			robot.addRecycledMaterial(garbage);
+			return true;
+		}return false; 
 	}
 	
 	public String toString(){

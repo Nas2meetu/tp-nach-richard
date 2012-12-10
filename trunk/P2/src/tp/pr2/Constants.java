@@ -22,6 +22,9 @@ public class Constants {
 	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	public static final String WALLE_SAYS = "WALL·E says: ";
+	
+	public static final String STREET_CLOSE = WALLE_SAYS 
+				+ "Arrggg, there is a street but it is closed!";
 
 	public static final String NO_STREET = WALLE_SAYS
 			+ "There is no street in direction ";
