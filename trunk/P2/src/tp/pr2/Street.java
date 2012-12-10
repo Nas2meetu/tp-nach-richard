@@ -111,6 +111,10 @@ public class Street {
 		return isOpen;
 	}
 	
+	public String getCode() {
+		return code;
+	}
+
 	public boolean close(CodeCard card){
 		
 		if(isOpen && card.getCode().equals(code)){

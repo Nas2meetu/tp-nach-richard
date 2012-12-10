@@ -35,9 +35,7 @@ public class Place {
 		this.placeDescription = placeDescription;
 	}
 	
-	public Item[] getItem() {
-		return itemsInPlace.getContainer();
-	}
+	
 
 	public Place(){
 		itemsInPlace = new ItemContainer();
@@ -55,32 +53,21 @@ public class Place {
 	}
 	
 	public Item pickItem(String id) {
-		if (itemsInPlace.numberOfItems()==0){
-			return null;
+		if (itemsInPlace != null){
+			return itemsInPlace.pickItem(id);
 		}
 		else
-			return itemsInPlace.pickItem(id);
+			return null;
 	}
 	public boolean addItem(Item item) {
-		
-		itemsInPlace.addItem(item);
-		return true;
-		
+		if (itemsInPlace != null){
+			itemsInPlace.addItem(item);		
+			return true;
+		}else
+			return false;
 	}
 
-	
-	/*public Item pickItem(String id) {
-		int i=0;
-		while (i<itemsInPlace.length) {
-			if (itemsInPlace[i].getId().equals(id)){
-				itemsInPlace[i]=itemsInPlace[i+1];
-				i++;
-			}	
-		}
-		itemsInPlace[itemsInPlace.length]=itemsInPlace[itemsInPlace.length-1];
-		return getItem(id);
-	}*/
-	
+		
 
 	/**
 	 * Override toString to show place information
