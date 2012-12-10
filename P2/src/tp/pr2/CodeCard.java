@@ -21,9 +21,17 @@ public class CodeCard extends Item {
 		return true;
 	}
 
-	public boolean use(RobotEngine engine, Place place) {
-		return false;
-	}
+	public boolean use(RobotEngine robot, Place where) {
+		if ((this.code == null) || (where == null)){
+			return false;
+		}if (robot.getHeadingStreet() != null && this.code.equals(robot.getHeadingStreet().getCode())){
+			robot.getHeadingStreet().open(this);
+			return true;
+		}else
+			return false;
+			
+		}
+	
 
 
 	public String getCode() {

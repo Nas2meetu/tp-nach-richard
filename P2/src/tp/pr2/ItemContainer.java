@@ -1,5 +1,7 @@
 package tp.pr2;
 
+import static tp.pr2.Constants.LINE_SEPARATOR;
+
 /**
  *
  * @author Ignacio Cerda Sanchez
@@ -59,6 +61,7 @@ public class ItemContainer {
 		if (pos == -1)
 			return null;
 		Item item = container[pos];
+		getItem(item.getId());
 		this.moveItemLeft(pos);
 		return item;
 	}
@@ -185,8 +188,8 @@ public class ItemContainer {
 	 * 
 	 * 
 	 * public ArrayList<Item> getContainer() { return container; }
-	 * 
-	 * public String toString(){ return showContainer(); }
-	 */
+	 * */
+	  
+	 
 
 }
