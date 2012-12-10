@@ -17,8 +17,8 @@ public class RobotEngine {
 	private Place actualPlace;
 	private Direction lookingDirection;
 	private City cityMap;
-	private Fuel fuel;
-	private Garbage recycledMaterial;
+	private int contFuel;
+	private int contRecycledMaterial;
 	
 	/**
 	 * 
@@ -39,8 +39,8 @@ public class RobotEngine {
 		this.cityMap = city;
 		this.actualPlace = initialPlace;
 		this.lookingDirection = direction;
-		this.fuel = fuel;
-		this.recycledMaterial = recycledMaterial;
+		this.contFuel = INITIAL_POWER;
+		this.contRecycledMaterial = INITIAL_GARBAGE;
 	}
 
 	/**
@@ -147,11 +147,9 @@ public class RobotEngine {
 	}
 
 	private void executePickAction(Instruction instruction) {
-		if (instruction.getId()== null){
-			System.out.println("No puedo pickear el id" + instruction.getId());
-		}else if (instruction.getId().equals(fuel)){
+		
 			
-		}
+		
 	}
 	/**
 	 * Robot moves or not
@@ -159,25 +157,17 @@ public class RobotEngine {
 
 	private void executeMoveAction() {
 			
-		boolean change = false;
-		while (!change) {
-			//if (getHeadingStreet().equals(cityMap.getCityMap())) {
-				//actualPlace = cityMap[i].nextPlace(actualPlace);
-			/**
-			 * mirar esta comparacion, no la hace bien 
-			 */
-			//if (getHeadingStreet().nextPlace(actualPlace).equals(null)){
-			if (getHeadingStreet().equals(null)){
-				System.out.println(NO_STREET);
-			}
-			else if (getHeadingStreet().isOpen()){
-				actualPlace = getHeadingStreet().nextPlace(actualPlace);
-				System.out.println(MOVE + lookingDirection);
-				System.out.println(actualPlace.toString() + LINE_SEPARATOR + TURN 
-								   + lookingDirection + LINE_SEPARATOR);
-				change = true;
-			}
+		if (getHeadingStreet()==null){
+			System.out.println(NO_STREET);
 		}
+		else if (getHeadingStreet().isOpen()){
+			actualPlace = getHeadingStreet().nextPlace(actualPlace);
+			System.out.println(MOVE + lookingDirection);
+			System.out.println(actualPlace.toString() + LINE_SEPARATOR + TURN 
+							   + lookingDirection + LINE_SEPARATOR);
+				
+		}else
+			System.out.println(STREET_CLOSE);
 	}
 
 	/**
@@ -212,22 +202,22 @@ public class RobotEngine {
 
 	
 	public void addFuel(int newFuel) {
-		fuel.totalFuel(newFuel);
+		contFuel += newFuel;
 	}
 	
 
 	public void addRecycledMaterial(int newMaterial) {
-		recycledMaterial.totalGarbage(newMaterial);
+		contRecycledMaterial += newMaterial;
 		
 	}
 	
 	public int getFuel() {
-		return fuel.getPower();
+		return contFuel;
 	}
 	
 
 	public int getRecycledMaterial() {
-		return recycledMaterial.getGarbage();
+		return contRecycledMaterial;
 	}
 
 	public Street getHeadingStreet() {
