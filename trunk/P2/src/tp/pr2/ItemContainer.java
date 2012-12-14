@@ -29,9 +29,9 @@ public class ItemContainer {
 	}
 
 	public int numberOfItems() {
-		while ((cont < container.length) && (container[cont]!=null)){
-			cont++;
-		}
+		//while ((cont < container.length) && (container[cont]!=null)){
+			//cont++;
+		//}
 		return cont;
 	}
 	
@@ -86,7 +86,7 @@ public class ItemContainer {
 			}else
 				i++;
 		}
-		return cont+1;
+		return i;
 	}
 	
 	/**
@@ -133,7 +133,7 @@ public class ItemContainer {
 	private void moveItemRight(int i) {
 
 		for (int j = cont; j < i; j--) {
-			container[j] = container[j + 1];
+			container[j+1] = container[j];
 		}
 		cont++;
 	}
