@@ -10,12 +10,11 @@ import static tp.pr2.Constants.LINE_SEPARATOR;
  *
  */
 
-//import static tp.pr2.Constants.*;
+
 
 public class ItemContainer {
 
-	// private ArrayList<Item> container;
-	// private Vector<Item> container;
+	
 	private int cont;
 	private Item[] container;
 
@@ -29,9 +28,6 @@ public class ItemContainer {
 	}
 
 	public int numberOfItems() {
-		//while ((cont < container.length) && (container[cont]!=null)){
-			//cont++;
-		//}
 		return cont;
 	}
 	
