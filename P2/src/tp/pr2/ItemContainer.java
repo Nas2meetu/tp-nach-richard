@@ -1,6 +1,6 @@
 package tp.pr2;
 
-import static tp.pr2.Constants.LINE_SEPARATOR;
+import static tp.pr2.Constants.*;
 
 /**
  *
@@ -157,6 +157,21 @@ public class ItemContainer {
 		return true;
 	
 	}
+	
+	public String toString(){
+	
+		String showItems = "";
+		if (numberOfItems() == 0) { 
+			return CONTAINER_EMPTY;
+		} else {
+			for (int i = 0; i < numberOfItems(); i++) {
+				showItems += container[i].toString();
+			}
+			return showItems;
+
+		}
+	}
+}
 
 	/*
 	 * public Item pickItem(String id) {
@@ -188,4 +203,4 @@ public class ItemContainer {
 	  
 	 
 
-}
+

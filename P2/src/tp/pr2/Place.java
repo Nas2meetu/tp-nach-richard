@@ -17,8 +17,7 @@ public class Place {
 	private boolean isSpaceship;
 	private String placeDescription;
 	private ItemContainer itemsInPlace;
-	//private Item[] itemsInPlace;
-	//private int cont;
+	
 
 	
 	/**
@@ -60,13 +59,13 @@ public class Place {
 			return null;
 	}
 	public boolean addItem(Item item) {
-		if (itemsInPlace != null){
-			itemsInPlace.addItem(item);		
-			return true;
-		}else
-			return false;
+			if(itemsInPlace.addItem(item))
+				return true;
+			else
+				return false;
+			
 	}
-
+	
 		
 
 	/**
