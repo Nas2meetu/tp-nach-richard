@@ -145,7 +145,7 @@ public class RobotEngine {
 
 	private void executeScanAction(Instruction instruction) {
 		if(instruction.getId()==null){
-			container.showContainer(); 
+			container.toString(); 
 		}else
 			container.getItem(instruction.getId()).toString();
 		

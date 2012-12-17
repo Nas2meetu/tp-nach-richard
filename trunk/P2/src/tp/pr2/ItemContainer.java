@@ -164,7 +164,7 @@ public class ItemContainer {
 	
 	}
 	
-	public String showContainer(){
+	public String toString(){
 	
 		String showItems = "";
 		if (numberOfItems() == 0) { 
