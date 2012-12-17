@@ -93,6 +93,7 @@ public class Instruction {
 		return rotation;
 	}
 
+	
 	public String getId() {
 		return itemName;
 	}

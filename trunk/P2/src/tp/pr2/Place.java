@@ -32,6 +32,7 @@ public class Place {
 		this.placeName = placeName;
 		this.isSpaceship = isSpaceship;
 		this.placeDescription = placeDescription;
+		itemsInPlace = new ItemContainer();
 	}
 	
 	
