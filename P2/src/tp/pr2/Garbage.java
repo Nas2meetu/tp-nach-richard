@@ -13,14 +13,18 @@ import static tp.pr2.Constants.*;
 public class Garbage extends Item {	
 	
 	private int garbage;
+	private boolean canBeUse;
 
 	public Garbage(String id, String description, int recycledMaterial){
 		super(id, description);
 		this.garbage = recycledMaterial;
+		canBeUse = true;
+		
 	}
 	
 	public boolean canBeUsed() {
-		return (garbage > 0);
+		return (garbage > 0 && canBeUse);
+		
 	}
 	
 	public int getGarbage() {
@@ -32,6 +36,7 @@ public class Garbage extends Item {
 	public boolean use(RobotEngine robot, Place place) {
 		if (canBeUsed()){
 			robot.addRecycledMaterial(garbage);
+			canBeUse = false;
 			return true;
 		}return false; 
 	}

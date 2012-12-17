@@ -19,6 +19,8 @@ public class RobotEngine {
 	private City cityMap;
 	private int contFuel;
 	private int contRecycledMaterial;
+	private ItemContainer container;
+	
 	
 	/**
 	 * 
@@ -59,7 +61,7 @@ public class RobotEngine {
 	public void startEngine() {
 		
 		Scanner read = new Scanner(System.in);
-		//Interpreter interpreter = new Interpreter();
+		
 		Instruction instruction = new Instruction();
 		
 		
@@ -142,9 +144,13 @@ public class RobotEngine {
 	}
 
 	private void executeScanAction(Instruction instruction) {
-		// TODO Auto-generated method stub
+		if(instruction.getId()==null){
+			container.showContainer(); 
+		}else
+			container.getItem(instruction.getId()).toString();
 		
-	}
+		
+	}//mirar esto
 
 	private void executePickAction(Instruction instruction) {
 		

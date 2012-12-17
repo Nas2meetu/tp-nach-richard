@@ -15,12 +15,12 @@ import static tp.pr2.Constants.*;
 public class ItemContainer {
 
 	
-	private int cont;
+	private int numberOfItems;
 	private Item[] container;
 
 	public ItemContainer() {
 		container = new Item[100];
-		cont = 0;
+		numberOfItems = 0;
 	}
 
 	public Item[] getContainer() {
@@ -28,13 +28,13 @@ public class ItemContainer {
 	}
 
 	public int numberOfItems() {
-		return cont;
+		return numberOfItems;
 	}
 	
 	public Item getItem(String id){
 		
 		int i = 0;
-		while (i < cont) {
+		while (i < numberOfItems) {
 			if (container[i].getId().equals(id)) {
 				return container[i];
 			}
@@ -52,14 +52,17 @@ public class ItemContainer {
 	 * @return
 	 */
 	public Item pickItem(String id) { 
-
+		Item picked;
 		int pos = posItem(id);
 		if (pos == -1)
-			return null;
-		Item item = container[pos];
-		getItem(item.getId());
-		this.moveItemLeft(pos);
-		return item;
+			picked = null;
+		else{
+			Item item = container[pos];
+			getItem(item.getId());
+			this.moveItemLeft(pos);
+			picked = item;
+		}
+		return picked;
 	}
 	
 	/**
@@ -76,8 +79,8 @@ public class ItemContainer {
 
 	private int whereInsert(String id){
 		int i = 0;
-		while (i < cont) {
-			if (container[i].getId().compareTo(id)<0) {
+		while (i < numberOfItems) {
+			if (container[i].getId().compareTo(id)>0) {
 				return i;
 			}else
 				i++;
@@ -96,7 +99,7 @@ public class ItemContainer {
 	
 	private int posItem(String id) {
 		int i = 0;
-		while (i < cont) {
+		while (i < numberOfItems) {
 			if (container[i].getId().equals(id)) {
 				return i;
 			}
@@ -112,11 +115,11 @@ public class ItemContainer {
 	 * @param i
 	 */
 
-	private void moveItemLeft(int i) {
-		for (int j = i; j < cont; j++) {
+	private void moveItemLeft(int pos) {
+		for (int j = pos; j < numberOfItems; j++) {
 			container[j] = container[j + 1];
 		}
-		cont--;
+		numberOfItems--;
 	}
 	
 	/**
@@ -126,12 +129,12 @@ public class ItemContainer {
 	 * @param i
 	 */
 
-	private void moveItemRight(int i) {
+	private void moveItemRight(int pos) {
 
-		for (int j = cont; j < i; j--) {
+		for (int j = numberOfItems; j >= pos; j--) {
 			container[j+1] = container[j];
 		}
-		cont++;
+		numberOfItems++;
 	}
 	
 	/**
@@ -147,18 +150,21 @@ public class ItemContainer {
 	 */
 
 	public boolean addItem(Item item) {
+		boolean added;
 		int pos = posItem(item.getId());
 		if (pos != -1)
-			return false;
-		else
-		pos = whereInsert(item.getId());
-		this.moveItemRight(pos);
-		container[pos]=item;
-		return true;
+			added = false;
+		else{
+			pos = whereInsert(item.getId());
+			this.moveItemRight(pos);
+			container[pos]=item;
+			added = true;
+		}
+			return added;
 	
 	}
 	
-	public String toString(){
+	public String showContainer(){
 	
 		String showItems = "";
 		if (numberOfItems() == 0) { 
@@ -168,9 +174,10 @@ public class ItemContainer {
 				showItems += container[i].toString();
 			}
 			return showItems;
-
 		}
 	}
+	
+	 
 }
 
 	/*
