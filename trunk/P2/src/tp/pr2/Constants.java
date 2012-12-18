@@ -29,6 +29,7 @@ public class Constants {
 
 	public static final String QUIT = WALLE_SAYS
 			+ "I have communication problems. Bye bye";
+	
 	public static final String CONTAINER = WALLE_SAYS +
 	"I am carrying the following items "+ LINE_SEPARATOR;
 	

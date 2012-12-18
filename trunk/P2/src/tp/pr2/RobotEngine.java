@@ -61,8 +61,8 @@ public class RobotEngine {
 	public void startEngine() {
 		
 		Scanner read = new Scanner(System.in);
-		
 		Instruction instruction = new Instruction();
+		
 		
 		
 		System.out.println(actualPlace.toString() + LINE_SEPARATOR +  
@@ -144,11 +144,17 @@ public class RobotEngine {
 	}
 
 	private void executeScanAction(Instruction instruction) {
-		if(instruction.getId()==null){
-			container.toString(); 
-		}else
-			container.getItem(instruction.getId()).toString();
-		
+		ItemContainer container = new ItemContainer();
+		if(instruction.getId()==""){
+			System.out.println(CONTAINER);
+			System.out.println(container.toString());
+		}
+		else if (instruction.getId()!=""){
+			container.getItem(instruction.getId()).toString();//esto falla
+			if(container.numberOfItems()==0){
+				System.out.println(CONTAINER_EMPTY); 
+			}
+		}
 		
 	}//mirar esto
 
