@@ -21,6 +21,10 @@ public class Constants {
 
 	public static final String WALLE_SAYS = "WALL·E says: ";
 	
+	public static final String RECICLED_MATERIAL = "* My recycled material is: ";
+	
+	public static final String POWER = "* My Power is: ";
+	
 	public static final String STREET_CLOSE = WALLE_SAYS 
 				+ "Arrggg, there is a street but it is closed!";
 
@@ -31,10 +35,18 @@ public class Constants {
 			+ "I have communication problems. Bye bye";
 	
 	public static final String CONTAINER = WALLE_SAYS +
-	"I am carrying the following items "+ LINE_SEPARATOR;
+	"I am carrying the following items ";
 	
 	public static final String CONTAINER_EMPTY = WALLE_SAYS +
 			"My inventory is empty";
+	
+	public static final String PLACE_EMPTY = "The place contains these objects:";
+	
+	public static final String CONTAINER_ITEM = WALLE_SAYS + 
+			"I am happy! Now I have ";
+	
+	public static final String CONTAINER_REPEAT_ITEM = WALLE_SAYS +
+			"WALL·E says: I am stupid! I already have the object ";
 
 	public static final String HELP = "The valid instructions for WALL·E are:"
 			+ LINE_SEPARATOR

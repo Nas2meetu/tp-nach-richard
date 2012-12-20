@@ -100,7 +100,7 @@ public class ItemContainer {
 	private int posItem(String id) {
 		int i = 0;
 		while (i < numberOfItems) {
-			if (container[i].getId().equals(id)) {
+			if (container[i].getId().equalsIgnoreCase(id)) {
 				return i;
 			}
 			i++;
@@ -171,7 +171,7 @@ public class ItemContainer {
 			return CONTAINER_EMPTY;
 		} else {
 			for (int i = 0; i < numberOfItems(); i++) {
-				showItems += container[i].toString();
+				showItems += container[i].getId().toString();
 			}
 			return showItems;
 		}
@@ -208,6 +208,3 @@ public class ItemContainer {
 	 * public ArrayList<Item> getContainer() { return container; }
 	 * */
 	  
-	 
-
-

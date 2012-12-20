@@ -1,4 +1,5 @@
 package tp.pr2;
+
 import static tp.pr2.Constants.LINE_SEPARATOR;
 
 /**
@@ -32,7 +33,7 @@ public class Place {
 		this.placeName = placeName;
 		this.isSpaceship = isSpaceship;
 		this.placeDescription = placeDescription;
-		itemsInPlace = new ItemContainer();
+		this.itemsInPlace = new ItemContainer();
 	}
 	
 	
@@ -74,7 +75,10 @@ public class Place {
 	 */
 	
 	public String toString() {
-		return  placeName + LINE_SEPARATOR + placeDescription;
+			
+		 return  placeName + LINE_SEPARATOR + placeDescription+ LINE_SEPARATOR
+				 + "The place contains these objects: " + LINE_SEPARATOR 
+				+ itemsInPlace.toString();
 	}
 
 }
