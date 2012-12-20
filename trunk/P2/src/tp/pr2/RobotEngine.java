@@ -20,6 +20,7 @@ public class RobotEngine {
 	private int contFuel;
 	private int contRecycledMaterial;
 	private ItemContainer container;
+	private RobotEngine engine;
 	
 	
 	/**
@@ -29,18 +30,13 @@ public class RobotEngine {
 	 * @param direction is the default direction
 	 * @param cityMap is the map where the robot lives
 	 * 
-	 */
-
-	/*public RobotEngine(Place initialPlace, Direction direction, Street[] cityMap) {
-		this.actualPlace = initialPlace;
-		this.lookingDirection = direction;
-		this.cityMap = cityMap;
-	}
-*/
+	 **/
+	
 	public RobotEngine(City city, Place initialPlace, Direction direction) {
 		this.cityMap = city;
 		this.actualPlace = initialPlace;
 		this.lookingDirection = direction;
+		this.container = new ItemContainer();
 		this.contFuel = INITIAL_POWER;
 		this.contRecycledMaterial = INITIAL_GARBAGE;
 	}
@@ -50,10 +46,10 @@ public class RobotEngine {
 	 * @return lookingDirection is direction that Robot is looking at
 	 * 
 	 */
-	/*public Direction getDirection() {
+	public Direction getDirection() {
 		return lookingDirection;
 	}
-	*/
+	
 	/**
 	 * Is the Start game, show initial information and finish information if Player win game
 	 */
@@ -64,13 +60,13 @@ public class RobotEngine {
 		Instruction instruction = new Instruction();
 		
 		
-		
-		System.out.println(actualPlace.toString() + LINE_SEPARATOR +  
-							TURN  + lookingDirection + LINE_SEPARATOR);
+		System.out.println(actualPlace.toString() + LINE_SEPARATOR + 
+				POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial +
+				LINE_SEPARATOR + TURN + lookingDirection) ;
 
 		while (!isEndGame(instruction)) {
 			System.out.print(PROMPT);
-			instruction = Interpreter.generateInstruction(read.nextLine().toUpperCase());
+			instruction = Interpreter.generateInstruction(read.nextLine().toLowerCase());
 			
 			if (instruction.isValid()) {
 				processInstruction(instruction);
@@ -99,8 +95,7 @@ public class RobotEngine {
 	 */
 
 	public void processInstruction(Instruction instruction) {
-		
-		//Interpreter interpreter = new Interpreter();
+	
 		
 		switch (instruction.getAction()) {
 
@@ -139,28 +134,42 @@ public class RobotEngine {
 	}
 	
 	private void executeOperateAction(Instruction instruction) {
-		// TODO Auto-generated method stub
+		if (instruction.getId()!=""){
+			Item item = container.getItem(instruction.getId());
+			if(item==null)
+				System.out.println("uppsss esto no está");
+			else
+				item.use(engine, actualPlace);
+		}	
+		System.out.println("ups no se opera correctamente");
 		
+		
+	
 	}
 
 	private void executeScanAction(Instruction instruction) {
-		ItemContainer container = new ItemContainer();
 		if(instruction.getId()==""){
 			System.out.println(CONTAINER);
 			System.out.println(container.toString());
 		}
 		else if (instruction.getId()!=""){
-			container.getItem(instruction.getId()).toString();//esto falla
-			if(container.numberOfItems()==0){
-				System.out.println(CONTAINER_EMPTY); 
-			}
+			Item item = container.getItem(instruction.getId());
+			if(item==null)
+				System.out.println("uppsss esto no está");
+			System.out.println(item.toString());
 		}
 		
-	}//mirar esto
+	}
 
 	private void executePickAction(Instruction instruction) {
+		Item item = actualPlace.pickItem(instruction.getId());
 		
-			
+		if(item==null)
+			System.out.println("uppsss");
+		if(container.addItem(item)){
+			System.out.println(CONTAINER_ITEM + instruction.getId().toString());
+		}else
+			System.out.println(CONTAINER_REPEAT_ITEM + instruction.getId().toString());
 		
 	}
 	/**
