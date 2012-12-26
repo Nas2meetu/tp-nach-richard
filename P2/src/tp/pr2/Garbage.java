@@ -1,4 +1,5 @@
 package tp.pr2;
+import static tp.pr2.Constants.*;
 
 /**
 *
@@ -41,7 +42,11 @@ public class Garbage extends Item {
 		}return false; 
 	}
 	
+	private String garbagetoString(){
+		return " recycled material = " + garbage;
+	}
+	
 	public String toString(){
-			return super.toString(); 
-		}
+		return (super.toString() + "//" + garbagetoString());
+	}
 }

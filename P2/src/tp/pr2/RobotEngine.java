@@ -20,8 +20,7 @@ public class RobotEngine {
 	private int contFuel;
 	private int contRecycledMaterial;
 	private ItemContainer container;
-	private RobotEngine engine;
-	
+		
 	
 	/**
 	 * 
@@ -134,16 +133,18 @@ public class RobotEngine {
 	}
 	
 	private void executeOperateAction(Instruction instruction) {
-		if (instruction.getId()!=""){
+		RobotEngine robot = new RobotEngine(cityMap, actualPlace, lookingDirection);
+		if(instruction.getId()!=""){
 			Item item = container.getItem(instruction.getId());
-			if(item==null)
-				System.out.println("uppsss esto no está");
-			else
-				item.use(engine, actualPlace);
-		}	
-		System.out.println("ups no se opera correctamente");
-	
+			if (item == null)
+				System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
+			else{
+				item.use(robot, actualPlace);
+				System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial);
+			}
+		}
 	}
+
 
 	private void executeScanAction(Instruction instruction) {
 		if(instruction.getId()==""){
@@ -151,8 +152,10 @@ public class RobotEngine {
 		}
 		else{
 			Item item = container.getItem(instruction.getId());
-			if(item!=null)
-				System.out.println(item.getDescription());
+			if (item!=null)
+				System.out.println(WALLE_SAYS + item.toString());
+			else
+				System.out.println(SCAN_NO_ITEM);
 		}
 		
 	}
@@ -160,12 +163,12 @@ public class RobotEngine {
 	private void executePickAction(Instruction instruction) {
 		Item item = actualPlace.pickItem(instruction.getId());
 		
-		if(item==null)
-			System.out.println("uppsss");
-		if(container.addItem(item)){
-			System.out.println(CONTAINER_ITEM + instruction.getId().toString());
-		}else
-			System.out.println(CONTAINER_REPEAT_ITEM + instruction.getId().toString());
+		if(item == null)
+			System.out.println(PLACE_NO_ITEM + instruction.getId());
+		else if(container.addItem(item)){
+			System.out.println(CONTAINER_ITEM + instruction.getId());
+			}else
+				System.out.println(CONTAINER_REPEAT_ITEM + instruction.getId());
 		
 	}
 	/**
@@ -227,7 +230,7 @@ public class RobotEngine {
 		contFuel += newFuel;
 	}
 	
-
+	
 	public void addRecycledMaterial(int newMaterial) {
 		contRecycledMaterial += newMaterial;
 		

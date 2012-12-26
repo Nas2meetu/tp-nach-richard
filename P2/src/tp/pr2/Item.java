@@ -1,4 +1,5 @@
 package tp.pr2;
+import static tp.pr2.Constants.*;
 
 /**
 *
@@ -8,7 +9,6 @@ package tp.pr2;
 *
 */
 
-import static tp.pr2.Constants.LINE_SEPARATOR;
 
 public abstract class Item {
 
@@ -23,14 +23,14 @@ public abstract class Item {
 
 	public abstract boolean canBeUsed();
 	
-	public abstract boolean use(RobotEngine engine, Place place);
+	public abstract boolean use(RobotEngine robot, Place place);
 	
 
 	public String getId() {
 		return this.id;
 	}
 	public String toString() {
-		return  this.id + LINE_SEPARATOR;
+		return  this.id +": " + this.description;
 	}
 
 	public String getDescription() {

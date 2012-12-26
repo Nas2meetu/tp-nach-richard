@@ -35,7 +35,7 @@ public class ItemContainer {
 		
 		int i = 0;
 		while (i < numberOfItems) {
-			if (container[i].getId().equals(id)) {
+			if (container[i].getId().equalsIgnoreCase(id)) {
 				return container[i];
 			}
 			i++;
@@ -80,7 +80,7 @@ public class ItemContainer {
 	private int whereInsert(String id){
 		int i = 0;
 		while (i < numberOfItems) {
-			if (container[i].getId().compareTo(id)>0) {
+			if (container[i].getId().compareToIgnoreCase(id)>0) {
 				return i;
 			}else
 				i++;
@@ -171,7 +171,7 @@ public class ItemContainer {
 			return CONTAINER_EMPTY;
 		} else {
 			for (int i = 0; i < numberOfItems(); i++) {
-				showItems += container[i].toString();
+				showItems += container[i].getId() + LINE_SEPARATOR;
 			}
 			System.out.println(CONTAINER);
 			return showItems;
