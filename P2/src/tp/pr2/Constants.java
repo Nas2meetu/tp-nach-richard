@@ -30,6 +30,8 @@ public class Constants {
 
 	public static final String NO_STREET = WALLE_SAYS
 			+ "There is no street in direction ";
+	
+	public static final String MESSAGE_SCAN = "My items are:" + LINE_SEPARATOR;
 
 	public static final String QUIT = WALLE_SAYS
 			+ "I have communication problems. Bye bye";
@@ -63,5 +65,5 @@ public class Constants {
 	
 	public static final String MOVE = WALLE_SAYS + "Moving in direction ";
 	
-	public static final String TURN = "WALL·E is looking at direction ";
+	public static final String LOOKING_DIRECTION = "WALL·E is looking at direction ";
 }

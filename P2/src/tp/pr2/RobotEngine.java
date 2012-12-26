@@ -62,9 +62,9 @@ public class RobotEngine {
 		
 		System.out.println(actualPlace.toString() + LINE_SEPARATOR + 
 				POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial +
-				LINE_SEPARATOR + TURN + lookingDirection) ;
+				LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection) ;
 
-		while (!isEndGame(instruction)) {
+		while (!isEndGame(instruction) && contFuel>0) {
 			System.out.print(PROMPT);
 			instruction = Interpreter.generateInstruction(read.nextLine().toLowerCase());
 			
@@ -142,21 +142,17 @@ public class RobotEngine {
 				item.use(engine, actualPlace);
 		}	
 		System.out.println("ups no se opera correctamente");
-		
-		
 	
 	}
 
 	private void executeScanAction(Instruction instruction) {
 		if(instruction.getId()==""){
-			System.out.println(CONTAINER);
 			System.out.println(container.toString());
 		}
-		else if (instruction.getId()!=""){
+		else{
 			Item item = container.getItem(instruction.getId());
-			if(item==null)
-				System.out.println("uppsss esto no está");
-			System.out.println(item.toString());
+			if(item!=null)
+				System.out.println(item.getDescription());
 		}
 		
 	}
@@ -183,9 +179,10 @@ public class RobotEngine {
 		}
 		else if (getHeadingStreet().isOpen()){
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
+			contFuel+=-5;
 			System.out.println(MOVE + lookingDirection);
-			System.out.println(actualPlace.toString() + LINE_SEPARATOR + TURN 
-							   + lookingDirection + LINE_SEPARATOR);
+			System.out.println(actualPlace.toString() + LINE_SEPARATOR + 
+								LOOKING_DIRECTION + lookingDirection + LINE_SEPARATOR);
 				
 		}else
 			System.out.println(STREET_CLOSE);
@@ -201,11 +198,15 @@ public class RobotEngine {
 		switch (instruction.getRotation()) {
 		case LEFT:
 			lookingDirection = lookingDirection.turnLeft();
-			System.out.println(TURN + lookingDirection + LINE_SEPARATOR);
+			contFuel--;
+			System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL 
+					+ contRecycledMaterial + LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection);
 			break;
 		case RIGHT:
 			lookingDirection = lookingDirection.turnRight();
-			System.out.println(TURN + lookingDirection + LINE_SEPARATOR);
+			contFuel--;
+			System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL 
+					+ contRecycledMaterial + LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection);
 			break;
 		case UNKNONW:
 			break;

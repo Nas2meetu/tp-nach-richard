@@ -1,5 +1,7 @@
 package tp.pr2;
 
+
+
 /**
 *
 * @author Ignacio Cerda Sanchez
@@ -37,7 +39,6 @@ public class CodeCard extends Item {
 	public String getCode() {
 		return code;
 	}
-	
 	
 	
 

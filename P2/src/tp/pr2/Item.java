@@ -30,7 +30,11 @@ public abstract class Item {
 		return this.id;
 	}
 	public String toString() {
-		return  this.id + LINE_SEPARATOR + this.description;
+		return  this.id + LINE_SEPARATOR;
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 }

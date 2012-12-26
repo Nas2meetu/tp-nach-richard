@@ -8,7 +8,7 @@ package tp.pr2;
 *
 */
 
-import static tp.pr2.Constants.*;
+
 
 public class Fuel extends Item {	
 	
@@ -43,11 +43,11 @@ public class Fuel extends Item {
 		power+= newPower;
 	}
 
-	private String fueltoString(){
+	/*private String fueltoString(){
 		return power + LINE_SEPARATOR + times;
-	}
+	}*/
 	public String toString(){
-		return (super.toString() + LINE_SEPARATOR + fueltoString());
+		return super.toString(); //+ LINE_SEPARATOR + fueltoString());
 	}
 	/*
 		public String toString(){
