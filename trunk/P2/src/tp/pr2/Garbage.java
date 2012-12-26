@@ -8,7 +8,7 @@ package tp.pr2;
 *
 */
 
-import static tp.pr2.Constants.*;
+
 
 public class Garbage extends Item {	
 	
@@ -42,6 +42,6 @@ public class Garbage extends Item {
 	}
 	
 	public String toString(){
-			return (super.toString() + LINE_SEPARATOR + garbage); 
+			return super.toString(); 
 		}
 }

@@ -171,8 +171,9 @@ public class ItemContainer {
 			return CONTAINER_EMPTY;
 		} else {
 			for (int i = 0; i < numberOfItems(); i++) {
-				showItems += container[i].getId().toString();
+				showItems += container[i].toString();
 			}
+			System.out.println(CONTAINER);
 			return showItems;
 		}
 	}
