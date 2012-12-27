@@ -27,12 +27,12 @@ public class Fuel extends Item {
 	}
 
 	public boolean use(RobotEngine robot, Place where) {
-		
+		boolean used = false;
 		if (canBeUsed()){
-			robot.addFuel(power);
+			robot.addFuel(this.power);
 			this.times--;
-			return true;
-		}return false;
+			used = true;
+		}return used;
 		
 	}
 	
