@@ -173,11 +173,23 @@ public class ItemContainer {
 			for (int i = 0; i < numberOfItems(); i++) {
 				showItems += container[i].getId() + LINE_SEPARATOR;
 			}
-			System.out.println(CONTAINER);
 			return showItems;
 		}
 	}
 	
+	public String showItems(){
+		
+		String showItems = "";
+		if (numberOfItems() == 0) { 
+			return CONTAINER_EMPTY;
+		} else {
+			for (int i = 0; i < numberOfItems(); i++) {
+				showItems += container[i].getId() + LINE_SEPARATOR;
+			}
+			System.out.println(CONTAINER);
+			return showItems;
+		}
+	}
 	 
 }
 

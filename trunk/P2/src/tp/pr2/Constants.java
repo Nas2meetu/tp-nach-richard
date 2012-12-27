@@ -66,10 +66,13 @@ public class Constants {
 			+ LINE_SEPARATOR + "  SCAN [ <id> ]"
 			+ LINE_SEPARATOR + "  OPERATE <id>"
 			+ LINE_SEPARATOR + "  HELP" 
-			+ LINE_SEPARATOR + "  QUIT";
+			+ LINE_SEPARATOR + "  QUIT"
+			+ LINE_SEPARATOR;
 
 	public static final String END_GAME = WALLE_SAYS + "I am at my spaceship. Shutting down... Bye bye";
 
+	public static final String END_FUEL = WALLE_SAYS + "I have not fuel. Shutting down... Bye bye";
+	
 	public static final String PROMPT = "WALL·E > ";
 
 	public static final String BAD_INSTRUCTION = WALLE_SAYS + "I do not understand. Please repeat";

@@ -72,8 +72,10 @@ public class RobotEngine {
 			}else
 				System.out.println(BAD_INSTRUCTION+LINE_SEPARATOR);
 		}read.close();
-		
-		System.out.println(END_GAME);
+		if (contFuel<=0)
+			System.out.println(END_FUEL);
+		else
+			System.out.println(END_GAME);
 
 	}
 	
@@ -148,7 +150,7 @@ public class RobotEngine {
 
 	private void executeScanAction(Instruction instruction) {
 		if(instruction.getId()==""){
-			System.out.println(container.toString());
+			System.out.println(container.showItems());
 		}
 		else{
 			Item item = container.getItem(instruction.getId());
@@ -182,7 +184,7 @@ public class RobotEngine {
 		}
 		else if (getHeadingStreet().isOpen()){
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
-			contFuel+=-5;
+			addFuel(-5);
 			System.out.println(MOVE + lookingDirection);
 			System.out.println(actualPlace.toString() + LINE_SEPARATOR + 
 								LOOKING_DIRECTION + lookingDirection + LINE_SEPARATOR);
@@ -201,13 +203,13 @@ public class RobotEngine {
 		switch (instruction.getRotation()) {
 		case LEFT:
 			lookingDirection = lookingDirection.turnLeft();
-			contFuel--;
+			addFuel(-1);
 			System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL 
 					+ contRecycledMaterial + LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection);
 			break;
 		case RIGHT:
 			lookingDirection = lookingDirection.turnRight();
-			contFuel--;
+			addFuel(-1);
 			System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL 
 					+ contRecycledMaterial + LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection);
 			break;
@@ -227,7 +229,7 @@ public class RobotEngine {
 
 	
 	public void addFuel(int newFuel) {
-		contFuel += newFuel;
+		this.contFuel += newFuel;
 	}
 	
 	
