@@ -17,6 +17,8 @@ public class Constants {
 	
 	public static final int INITIAL_GARBAGE = 0;
 	
+	public static final int DEFAULT_TIMES = 1;
+	
 	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	public static final String WALLE_SAYS = "WALL·E says: ";
