@@ -1,6 +1,5 @@
 package tp.pr2;
 
-import java.util.ArrayList;
 import static tp.pr2.Constants.*;
 
 /**
@@ -83,23 +82,23 @@ public class Main {
 	 */
 	
 	public static Street[] createStreets(Place[] _places){
-		ArrayList<Street>streets = new ArrayList<Street>();
-		
-		streets.add(new Street(_places[0],Direction.NORTH,_places[3]));
-		streets.add(new Street(_places[0],Direction.SOUTH, _places[9]));
-		streets.add(new Street(_places[0],Direction.EAST, _places[5]));
-		streets.add(new Street(_places[0],Direction.WEST, _places[1]));
+        Street[] _streets = new Street[11];
+        
+        _streets[0]= new Street(_places[0],Direction.NORTH,_places[3],false, "red_pill");
+        _streets[1]= new Street(_places[0],Direction.SOUTH, _places[9]);
+        _streets[2]= new Street(_places[0],Direction.EAST, _places[5],false, "12345");
+        _streets[3]= new Street(_places[0],Direction.WEST, _places[1]);
 
-		streets.add(new Street(_places[1],Direction.NORTH, _places[2]));
-		
-		streets.add(new Street(_places[3],Direction.WEST, _places[2]));
-		
-		streets.add(new Street(_places[5],Direction.NORTH, _places[4]));
-		streets.add(new Street(_places[5],Direction.EAST, _places[8]));
-		streets.add(new Street(_places[5],Direction.SOUTH, _places[6]));
-		
-		streets.add(new Street(_places[6],Direction.SOUTH, _places[7]));
-		streets.add(new Street(_places[9],Direction.EAST, _places[6]));
+        _streets[4] = new Street(_places[1],Direction.NORTH, _places[2]);
+      
+        _streets[5] = new Street(_places[3],Direction.WEST, _places[2]);
+      
+        _streets[6] = new Street(_places[5],Direction.NORTH, _places[4],false, "Joshua");
+        _streets[7] = new Street(_places[5],Direction.EAST, _places[8],false, "eva");
+        _streets[8] = new Street(_places[5],Direction.SOUTH, _places[6]);
+      
+        _streets[9] = new Street(_places[6],Direction.SOUTH, _places[7]);
+        _streets[10] = new Street(_places[9],Direction.EAST, _places[6]);
 		
 		_places[0].addItem(new Garbage("newspapers","news on sports",5));
         _places[0].addItem(new Fuel("grapes","celebrations of the new year",1,1));
@@ -128,9 +127,7 @@ public class Main {
         _places[7].addItem(new CodeCard("falken-card","Shall we play a game?","Joshua"));
 		
 		
-        Street [] s = new Street[0];
-		s = streets.toArray(s);
-		return s;
+       return _streets;
 	}
 
 	/**

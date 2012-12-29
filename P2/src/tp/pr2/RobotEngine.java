@@ -135,19 +135,27 @@ public class RobotEngine {
 	}
 	
 	private void executeOperateAction(Instruction instruction) {
-		RobotEngine robot = new RobotEngine(cityMap, actualPlace, lookingDirection);
-		if(instruction.getId()!=""){
+		Item item = container.getItem(instruction.getId());
+		if (item == null)
+			System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
+		else if (item.use(this, actualPlace) || !item.canBeUsed()) {
+			System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial);
+			container.pickItem(instruction.getId());
+			System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
+		} else
+			System.out.println(ITEM_PROBLEMS + instruction.getId());
+	}
+		/*if(instruction.getId()!=""){
 			Item item = container.getItem(instruction.getId());
 			if (item == null)
 				System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
 			else{
-				item.use(robot ,actualPlace);
-				contFuel = robot.contFuel;
-				contRecycledMaterial = robot.contRecycledMaterial;
-				System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial);
+				if (!item.use(this ,actualPlace))
+					container.pickItem(instruction.getId());
 			}
-		}
-	}
+			System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial);
+		}*/
+	
 
 
 	private void executeScanAction(Instruction instruction) {
