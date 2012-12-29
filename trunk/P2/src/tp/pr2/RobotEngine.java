@@ -20,7 +20,7 @@ public class RobotEngine {
 	private int contFuel;
 	private int contRecycledMaterial;
 	private ItemContainer container;
-		
+	
 	
 	/**
 	 * 
@@ -141,7 +141,9 @@ public class RobotEngine {
 			if (item == null)
 				System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
 			else{
-				item.use(robot, actualPlace);
+				item.use(robot ,actualPlace);
+				contFuel = robot.contFuel;
+				contRecycledMaterial = robot.contRecycledMaterial;
 				System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial);
 			}
 		}
@@ -234,7 +236,7 @@ public class RobotEngine {
 	
 	
 	public void addRecycledMaterial(int newMaterial) {
-		contRecycledMaterial += newMaterial;
+		this.contRecycledMaterial += newMaterial;
 		
 	}
 	
