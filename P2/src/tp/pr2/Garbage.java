@@ -1,5 +1,5 @@
 package tp.pr2;
-
+import static tp.pr2.Constants.*;
 
 /**
 *
@@ -11,20 +11,18 @@ package tp.pr2;
 
 
 
-public class Garbage extends Item {	
+public class Garbage extends ExpirationItem {	
 	
 	private int garbage;
-	private boolean canBeUse;
 
 	public Garbage(String id, String description, int recycledMaterial){
-		super(id, description);
+		super(id, description, DEFAULT_TIMES);
 		this.garbage = recycledMaterial;
-		canBeUse = true;
 		
 	}
 	
 	public boolean canBeUsed() {
-		return (garbage > 0 && canBeUse);
+		return (garbage > 0);
 		
 	}
 	
@@ -34,19 +32,16 @@ public class Garbage extends Item {
 	
 	
 
-	public boolean use(RobotEngine robot, Place place) {
-		if (canBeUsed()){
-            robot.addRecycledMaterial(garbage);
-            canBeUse = false;
-            return true;
-		}return false; 
+	public boolean use(RobotEngine robot, Place where) {
+		if (canBeUsed()) {
+			super.use(robot, where);
+			robot.addRecycledMaterial(this.garbage);
+			return true;
+		} else
+			return false;
 	}
 	
-	private String garbagetoString(){
-		return " recycled material = " + garbage;
-	}
-	
-	public String toString(){
-		return (super.toString() + "//" + garbagetoString());
+	public String toString() {
+		return super.toString() + Constants.LINE_SEPARATOR;
 	}
 }

@@ -1,5 +1,5 @@
 package tp.pr2;
-
+import static tp.pr2.Constants.*;
 
 /**
 *
@@ -11,45 +11,43 @@ package tp.pr2;
 
 
 
-public class Fuel extends Item {	
+public class Fuel extends ExpirationItem {	
 	
 	private int power;
-	private int times;
 
-	public Fuel(String id, String description, int power, int times){
-		super(id, description);
+	public Fuel(String id, String description, int power){
+		super(id, description, DEFAULT_TIMES);
 		this.power = power;
-		this.times = times;
 	}
 	
-	public boolean canBeUsed() {
-		return (this.times > 0);
+	public Fuel(String id, String description, int power, int times){
+		super(id, description, times);
+		this.power = power;
 	}
-
+	
+	
 	public boolean use(RobotEngine robot, Place where) {
 		boolean used = false;
 		if (canBeUsed()){
-			robot.addFuel(this.power);
-			this.times--;
+			super.use(robot, where);
 			used = true;
-		}return used;
-		
+		}else
+			used = false;
+		return used;
 	}
 	
-	public int getTimes() {
-		return times;
-	}
+	
 
 	public int getPower() {
 		return power;
 	}
 	
 
-	private String fueltoString(){
+	/*private String fueltoString(){
 		return " power = "+ power + "," + " times = " + times;
 	}
 	public String toString(){
 		return (super.toString() + "//" + fueltoString());
-	}
+	}*/
 	
 }

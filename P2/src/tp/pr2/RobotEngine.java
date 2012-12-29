@@ -137,6 +137,17 @@ public class RobotEngine {
 	private void executeOperateAction(Instruction instruction) {
 		Item item = container.getItem(instruction.getId());
 		if (item == null)
+			System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");		
+		else if (item.use(this, actualPlace)) {
+			System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial);
+			if (!item.canBeUsed()) {
+				System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
+				container.pickItem(instruction.getId());
+			}
+		} else
+			System.out.println(ITEM_PROBLEMS + instruction.getId() );
+	}	
+		/*if (item == null)
 			System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
 		else if (item.use(this, actualPlace) || !item.canBeUsed()) {
 			System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial);
@@ -144,17 +155,8 @@ public class RobotEngine {
 			System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
 		} else
 			System.out.println(ITEM_PROBLEMS + instruction.getId());
-	}
-		/*if(instruction.getId()!=""){
-			Item item = container.getItem(instruction.getId());
-			if (item == null)
-				System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
-			else{
-				if (!item.use(this ,actualPlace))
-					container.pickItem(instruction.getId());
-			}
-			System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial);
-		}*/
+*/	
+		
 	
 
 

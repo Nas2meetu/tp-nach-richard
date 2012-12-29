@@ -19,6 +19,7 @@ public class CodeCard extends Item {
 		this.code = code;
 	}
 	
+	@Override
 	public boolean canBeUsed() {
 		return true;
 	}
@@ -33,13 +34,9 @@ public class CodeCard extends Item {
 			return false;
 			
 		}
-	
-
 
 	public String getCode() {
 		return code;
 	}
-	
-	
 
 }

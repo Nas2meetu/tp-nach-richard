@@ -1,6 +1,6 @@
 package tp.pr2;
 
-import static tp.pr2.Constants.LINE_SEPARATOR;
+import static tp.pr2.Constants.*;
 
 /**
 *
