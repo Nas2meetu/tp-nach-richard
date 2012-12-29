@@ -37,9 +37,10 @@ public class Garbage extends Item {
 	public boolean use(RobotEngine robot, Place place) {
 		if (canBeUsed()){
 			robot.addRecycledMaterial(garbage);
-			canBeUse = false;
-			return true;
-		}return false; 
+			canBeUse = true;
+		}else
+			canBeUse= false;
+		return canBeUse; 
 	}
 	
 	private String garbagetoString(){
