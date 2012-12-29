@@ -1,5 +1,5 @@
 package tp.pr2;
-import static tp.pr2.Constants.*;
+
 
 /**
 *
@@ -36,11 +36,10 @@ public class Garbage extends Item {
 
 	public boolean use(RobotEngine robot, Place place) {
 		if (canBeUsed()){
-			robot.addRecycledMaterial(garbage);
-			canBeUse = true;
-		}else
-			canBeUse= false;
-		return canBeUse; 
+            robot.addRecycledMaterial(garbage);
+            canBeUse = false;
+            return true;
+		}return false; 
 	}
 	
 	private String garbagetoString(){

@@ -42,6 +42,9 @@ public class Constants {
 	public static final String CONTAINER_EMPTY = WALLE_SAYS +
 			"My inventory is empty";
 	
+	public static final String ITEM_PROBLEMS = WALLE_SAYS +
+				"I have problems using the object";
+	
 	public static final String PLACE_EMPTY = "The place contains these objects:";
 	
 	public static final String CONTAINER_ITEM = WALLE_SAYS + 
@@ -57,7 +60,7 @@ public class Constants {
 					"What a pity! I have no more ";
 	
 	public static final String CONTAINER_REPEAT_ITEM = WALLE_SAYS +
-			"WALL·E says: I am stupid! I already have the object ";
+			" I am stupid! I already have the object ";
 
 	public static final String HELP = "The valid instructions for WALL·E are:"
 			+ LINE_SEPARATOR + "  MOVE"

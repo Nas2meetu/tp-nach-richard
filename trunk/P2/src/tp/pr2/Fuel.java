@@ -1,5 +1,5 @@
 package tp.pr2;
-import static tp.pr2.Constants.*;
+
 
 /**
 *
@@ -36,6 +36,10 @@ public class Fuel extends Item {
 		
 	}
 	
+	public int getTimes() {
+		return times;
+	}
+
 	public int getPower() {
 		return power;
 	}
@@ -47,8 +51,5 @@ public class Fuel extends Item {
 	public String toString(){
 		return (super.toString() + "//" + fueltoString());
 	}
-	/*
-		public String toString(){
-			return (super.toString() + LINE_SEPARATOR + power + LINE_SEPARATOR + times; 
-	 */
+	
 }
