@@ -40,7 +40,6 @@ public class Place {
 
 	public Place(){
 		itemsInPlace = new ItemContainer();
-		
 	}
 	
 	/**
@@ -54,7 +53,7 @@ public class Place {
 	}
 	
 	public Item pickItem(String id) {
-		if (itemsInPlace != null){
+		if (itemsInPlace != null && !itemsInPlace.getItem(id).equals(itemsInPlace.getContainer())){// mirar esto
 			return itemsInPlace.pickItem(id);
 		}
 		else

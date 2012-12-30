@@ -176,14 +176,12 @@ public class RobotEngine {
 
 	private void executePickAction(Instruction instruction) {
 		Item item = actualPlace.pickItem(instruction.getId());
-		
 		if(item == null)
 			System.out.println(PLACE_NO_ITEM + instruction.getId());
 		else if(container.addItem(item)){
 			System.out.println(CONTAINER_ITEM + instruction.getId());
-			}else
-				System.out.println(CONTAINER_REPEAT_ITEM + instruction.getId());
-		
+		}else
+			System.out.println(CONTAINER_REPEAT_ITEM + instruction.getId());
 	}
 	/**
 	 * Robot moves or not
