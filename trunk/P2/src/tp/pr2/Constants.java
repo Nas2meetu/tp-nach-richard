@@ -23,9 +23,9 @@ public class Constants {
 
 	public static final String WALLE_SAYS = "WALL·E says: ";
 	
-	public static final String RECICLED_MATERIAL = "* My recycled material is: ";
+	public static final String RECICLED_MATERIAL = "   * My recycled material is: ";
 	
-	public static final String POWER = "* My Power is: ";
+	public static final String POWER = "    * My Power is ";
 	
 	public static final String STREET_CLOSE = WALLE_SAYS 
 				+ "Arrggg, there is a street but it is closed!";
@@ -39,7 +39,7 @@ public class Constants {
 			+ "I have communication problems. Bye bye";
 	
 	public static final String CONTAINER = WALLE_SAYS 
-				+ "I am carrying the following items ";
+				+ "I am carrying the following items";
 	
 	public static final String CONTAINER_EMPTY = WALLE_SAYS +
 			"My inventory is empty";
@@ -50,7 +50,7 @@ public class Constants {
 	public static final String PLACE_EMPTY = "The place contains these objects:";
 	
 	public static final String CONTAINER_ITEM = WALLE_SAYS + 
-			"I am happy! Now I have ";
+			"I am happy! Now I have  ";
 	
 	public static final String PLACE_NO_ITEM = WALLE_SAYS +
 			"Ooops, this place has not the object ";
@@ -64,19 +64,19 @@ public class Constants {
 	public static final String CONTAINER_REPEAT_ITEM = WALLE_SAYS +
 			"I am stupid! I already have the object ";
 
-	public static final String HELP = "The valid instructions for WALL·E are:"
-			+ LINE_SEPARATOR + "  MOVE"
-			+ LINE_SEPARATOR + "  TURN <LEFT | RIGHT>"
-			+ LINE_SEPARATOR + "  PICK <id>"
-			+ LINE_SEPARATOR + "  SCAN [ <id> ]"
-			+ LINE_SEPARATOR + "  OPERATE <id>"
-			+ LINE_SEPARATOR + "  HELP" 
-			+ LINE_SEPARATOR + "  QUIT"
+	public static final String HELP = "The valid instructions for WALL-E are:"
+			+ LINE_SEPARATOR + "     MOVE"
+			+ LINE_SEPARATOR + "     TURN <LEFT | RIGHT>"
+			+ LINE_SEPARATOR + "     PICK <id>"
+			+ LINE_SEPARATOR + "     SCAN [ <id> ]"
+			+ LINE_SEPARATOR + "     OPERATE <id>"
+			+ LINE_SEPARATOR + "     HELP" 
+			+ LINE_SEPARATOR + "     QUIT"
 			+ LINE_SEPARATOR;
 
-	public static final String END_GAME = WALLE_SAYS + "I am at my spaceship. Shutting down... Bye bye";
+	public static final String END_GAME = WALLE_SAYS + "I am at my space ship. Bye Bye";
 
-	public static final String END_FUEL = WALLE_SAYS + "I have not fuel. Shutting down... Bye bye";
+	public static final String END_FUEL = WALLE_SAYS + "I run out of fuel. I cannot move. Shutting down...";
 	
 	public static final String PROMPT = "WALL·E > ";
 
