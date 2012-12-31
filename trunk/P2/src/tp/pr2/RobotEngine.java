@@ -60,7 +60,7 @@ public class RobotEngine {
 		
 		
 		System.out.println(actualPlace.toString() + LINE_SEPARATOR + 
-				"   * My Power is " + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial +
+				POWER2 + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial +
 				LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection) ;
 
 		while (!isEndGame(instruction) && contFuel>0) {
@@ -139,7 +139,11 @@ public class RobotEngine {
 		if (item == null)
 			System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");		
 		else if (item.use(this, actualPlace)) {
-				System.out.println("   * My Power is " + contFuel + LINE_SEPARATOR 
+			
+			if(item instanceof CodeCard){ //instancia de la clase
+                item = (CodeCard)item;
+             }else
+				System.out.println(POWER2 + contFuel + LINE_SEPARATOR 
 									+ RECICLED_MATERIAL + contRecycledMaterial);
 			if (!item.canBeUsed()) {
 				System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
@@ -148,16 +152,7 @@ public class RobotEngine {
 		} else
 			System.out.println(ITEM_PROBLEMS + instruction.getId() );
 	}	
-		/*if (item == null)
-			System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
-		else if (item.use(this, actualPlace) || !item.canBeUsed()) {
-			System.out.println(POWER + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial);
-			container.pickItem(instruction.getId());
-			System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
-		} else
-			System.out.println(ITEM_PROBLEMS + instruction.getId());
-*/	
-		
+			
 	
 
 
@@ -201,7 +196,7 @@ public class RobotEngine {
 			addFuel(-5);
 			System.out.println(MOVE + lookingDirection);
 			System.out.println(actualPlace.toString() + LINE_SEPARATOR + 
-					"   * My Power is " + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial +
+					POWER2 + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial +
 					LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection) ;
 				
 		}else
@@ -219,13 +214,13 @@ public class RobotEngine {
 		case LEFT:
 			lookingDirection = lookingDirection.turnLeft();
 			addFuel(-1);
-			System.out.println("   * My Power is " + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL 
+			System.out.println(POWER2 + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL 
 					+ contRecycledMaterial + LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection);
 			break;
 		case RIGHT:
 			lookingDirection = lookingDirection.turnRight();
 			addFuel(-1);
-			System.out.println("   * My Power is " + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL 
+			System.out.println(POWER2 + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL 
 					+ contRecycledMaterial + LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection);
 			break;
 		case UNKNONW:
