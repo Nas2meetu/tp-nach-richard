@@ -36,6 +36,9 @@ public class Place {
 		this.itemsInPlace = new ItemContainer();
 	}
 	
+	public Item getItem(String id){
+		return itemsInPlace.getItem(id);
+	}
 	
 
 	public Place(){
@@ -53,21 +56,13 @@ public class Place {
 	}
 	
 	public Item pickItem(String id) {
-		if (itemsInPlace != null && !itemsInPlace.getItem(id).equals(itemsInPlace.getContainer())){// mirar esto
 			return itemsInPlace.pickItem(id);
-		}
-		else
-			return null;
-	}
-	public boolean addItem(Item item) {
-			if(itemsInPlace.addItem(item))
-				return true;
-			else
-				return false;
-			
 	}
 	
-		
+	public boolean addItem(Item item) {
+		return itemsInPlace.addItem(item);
+	}
+	
 
 	/**
 	 * Override toString to show place information
@@ -77,7 +72,7 @@ public class Place {
 			
 		 return  placeName + LINE_SEPARATOR + placeDescription+ LINE_SEPARATOR
 				 + "The place contains these objects: " + LINE_SEPARATOR 
-				+ itemsInPlace.toString();
+				 + itemsInPlace.toString();
 	}
 
 }

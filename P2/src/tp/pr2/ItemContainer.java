@@ -171,7 +171,7 @@ public class ItemContainer {
 			return CONTAINER_EMPTY;
 		} else {
 			for (int i = 0; i < numberOfItems(); i++) {
-				showItems += container[i].getId() + LINE_SEPARATOR;
+				showItems += "   " + container[i].getId() + LINE_SEPARATOR;
 			}
 			return showItems;
 		}
@@ -184,7 +184,7 @@ public class ItemContainer {
 			return CONTAINER_EMPTY;
 		} else {
 			for (int i = 0; i < numberOfItems(); i++) {
-				showItems += container[i].getId() + LINE_SEPARATOR;
+				showItems += "   " + container[i].getId() + LINE_SEPARATOR;
 			}
 			System.out.println(CONTAINER);
 			return showItems;
