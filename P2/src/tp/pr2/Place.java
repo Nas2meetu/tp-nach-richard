@@ -69,9 +69,13 @@ public class Place {
 	 */
 	
 	public String toString() {
-			
-		 return  placeName + LINE_SEPARATOR + placeDescription+ LINE_SEPARATOR
-				 + "The place contains these objects: " + LINE_SEPARATOR 
+		if (itemsInPlace.numberOfItems() == 0)
+			return  placeName + LINE_SEPARATOR + placeDescription+ LINE_SEPARATOR
+					 + PLACE_EMPTY + LINE_SEPARATOR 
+					 + itemsInPlace.toString();
+		else
+			return  placeName + LINE_SEPARATOR + placeDescription+ LINE_SEPARATOR
+				 + SHOW_PLACE + LINE_SEPARATOR 
 				 + itemsInPlace.toString();
 	}
 
