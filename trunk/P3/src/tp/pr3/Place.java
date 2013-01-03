@@ -1,6 +1,6 @@
 package tp.pr3;
 
-import static tp.pr2.Constants.*;
+import static tp.pr3.Constants.*;
 
 /**
 *
@@ -21,6 +21,10 @@ public class Place {
 	
 
 	
+	public ItemContainer getItemsInPlace() {
+		return itemsInPlace;
+	}
+
 	/**
 	 * Constructor of three parameters with name and description place and if this place has a Robot Space Ship
 	 * @param placeName is place name

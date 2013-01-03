@@ -2,7 +2,7 @@ package tp.pr3;
 
 
 import java.util.Scanner;
-import static tp.pr2.Constants.*;
+import static tp.pr3.Constants.*;
 
 /**
 *
@@ -130,10 +130,37 @@ public class RobotEngine {
 		case SCAN:
 			executeScanAction(instruction);
 			break;
+		case DROP:
+			executeDropAction(instruction);
+			break;
+		case RADAR:
+			executeRadarAction(instruction);
+			break;
 				
 		}
 	}
 	
+	private void executeRadarAction(Instruction instruction) {
+		Item[] items = actualPlace.getItemsInPlace().getContainer();
+		if (items!=null)
+			System.out.println(WALLE_SAYS + actualPlace.toString());
+		else
+			System.out.println(SCAN_NO_ITEM);
+		
+	}
+
+	private void executeDropAction(Instruction instruction) {
+		 Item item = container.getItem(instruction.getId());
+         if(item == null)
+             System.out.println(CONTAINER_NO_ITEM + instruction.getId());
+         else if(actualPlace.addItem(item)){
+        	 container.pickItem(instruction.getId());
+             System.out.println(PLACE_ITEM + instruction.getId());
+         }else
+        	 System.out.println(PLACE_REPEAT_ITEM + instruction.getId());
+		
+	}
+
 	private void executeOperateAction(Instruction instruction) {
 		Item item = container.getItem(instruction.getId());
 		if (item == null)

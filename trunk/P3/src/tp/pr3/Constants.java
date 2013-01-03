@@ -56,8 +56,14 @@ public class Constants {
 	public static final String CONTAINER_ITEM = WALLE_SAYS + 
 			"I am happy! Now I have  ";
 	
+	public static final String PLACE_ITEM = WALLE_SAYS +
+				"Great! I have dropped ";
+			
 	public static final String PLACE_NO_ITEM = WALLE_SAYS +
 			"Ooops, this place has not the object ";
+	
+	public static final String CONTAINER_NO_ITEM = WALLE_SAYS +
+			"You do not have any ";
 	
 	public static final String SCAN_NO_ITEM = WALLE_SAYS +
 					"I have not such object";
@@ -68,6 +74,9 @@ public class Constants {
 	public static final String CONTAINER_REPEAT_ITEM = WALLE_SAYS +
 			"I am stupid! I already have the object ";
 
+	public static final String PLACE_REPEAT_ITEM = WALLE_SAYS +
+			"I am stupid! The Place already has the object ";
+	
 	public static final String HELP = "The valid instructions for WALL-E are:"
 			+ LINE_SEPARATOR + "     MOVE"
 			+ LINE_SEPARATOR + "     TURN <LEFT | RIGHT>"

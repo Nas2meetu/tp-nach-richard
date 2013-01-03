@@ -1,5 +1,5 @@
 package tp.pr3;
-import static tp.pr2.Constants.*;
+import static tp.pr3.Constants.*;
 
 import java.util.StringTokenizer;
 
@@ -45,12 +45,35 @@ public class Interpreter {
 			return generateScan(st);
 		if(words.equals("OPERATE"))
 			return generateOperate(st);
+		if(words.equals("DROP"))
+			return generateDrop(st);
+		if(words.equals("RADAR"))
+			return generateRadar(st);
 		else
 			return new Instruction(Action.UNKNOWN);
 		
 	
 	}
 	
+	private static Instruction generateRadar(StringTokenizer st) {
+		if (!st.hasMoreTokens())
+			return new Instruction(Action.RADAR);
+		else
+			return unknown;
+	}
+
+	private static Instruction generateDrop(StringTokenizer st) {
+		if (st.hasMoreTokens()){
+			String token2 = st.nextToken();
+			if(st.hasMoreTokens())
+				return unknown;
+			else
+				return new Instruction(Action.DROP, token2);
+		}
+		else
+			return new Instruction(Action.UNKNOWN);
+	}
+
 	/**
 	 * 
 	 * @param st
