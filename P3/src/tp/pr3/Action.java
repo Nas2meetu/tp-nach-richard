@@ -15,7 +15,7 @@ public enum Action {
 	  *  Define valid instructions for Wall·E
 	  */
 
-	MOVE, TURN, HELP, QUIT, UNKNOWN, PICK, OPERATE, SCAN 
+	MOVE, TURN, HELP, QUIT, UNKNOWN, PICK, OPERATE, SCAN, DROP, RADAR 
 		
 }
 	
