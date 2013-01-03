@@ -1,5 +1,5 @@
 package tp.pr3;
-import static tp.pr3.Constants.*;
+import static tp.pr2.Constants.*;
 
 import java.util.StringTokenizer;
 

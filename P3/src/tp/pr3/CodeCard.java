@@ -36,7 +36,7 @@ public class CodeCard extends Item {
         }else
             return false;
            
-    }
+        }
 
 	public String getCode() {
 		return code;
