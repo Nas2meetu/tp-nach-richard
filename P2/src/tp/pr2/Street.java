@@ -21,10 +21,12 @@ public class Street {
 	
 	/**
 	 * 
-	 * Constructor of three parameters to create Streets 
+	 * Constructor of five parameters to create Streets 
 	 * @param sourcePlace is one side of street
 	 * @param direction is default direction
-	 * @param targetPlace is opposite side of street 
+	 * @param targetPlace is opposite side of street
+	 * @param isOpen if street is open or not
+	 * @param code is the code to open street if it is closed
 	 * 
 	 */
 
@@ -96,12 +98,18 @@ public class Street {
 		return place.equals(sourcePlace) && direction.equals(fromDirection);
 	}
 
- 
-
+	
 	public boolean isOpen() {
 		return isOpen;
 	}
 
+	/**
+	 * 
+	 * If code of codeCard equal than code of street open the street
+	 * 
+	 * @param card is a CodeCard of Wall·E container.
+	 * @return isOpen if street is open or not
+	 */
 	
 	public boolean open(CodeCard card) {
 		if (card.getCode().equals(code)){
@@ -115,6 +123,15 @@ public class Street {
 		return code;
 	}
 
+	/**
+	 * 
+	 * If isOpen is true and CodeCard of Wall·E container is equal than code of street 
+	 * return false, because street is open not close.
+	 * 
+	 * @param card is a CodeCard of Wall·E container.
+	 * @return isOpen is false if street is open.
+	 */
+	
 	public boolean close(CodeCard card){
 		
 		if(isOpen && card.getCode().equals(code)){
