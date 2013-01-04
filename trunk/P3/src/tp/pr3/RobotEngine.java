@@ -8,7 +8,7 @@ import static tp.pr3.Constants.*;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 3
 * 
 */
 
@@ -100,54 +100,47 @@ public class RobotEngine {
 		
 		switch (instruction.getAction()) {
 
-		case MOVE:
-			executeMoveAction();
-			break;
-
-		case TURN:
-			executeTurnAction(instruction);
+		case DROP:
+			executeDropAction(instruction);
 			break;
 			
 		case HELP:
 			executeHelpAction(instruction);
 			break;
 
-		case QUIT:
-			System.out.println(QUIT);
-			System.exit(0);
+		case MOVE:
+			executeMoveAction();
+			break;
 			
-		case UNKNOWN:
+		case OPERATE:
+			executeOperateAction(instruction);
 			break;
 			
 		case PICK:
 			executePickAction(instruction);
 			break;
+			
+		case QUIT:
+			executeQuit();
 		
-		case OPERATE:
-			executeOperateAction(instruction);
+		case RADAR:
+			executeRadarAction(instruction);
 			break;
-
+			
 		case SCAN:
 			executeScanAction(instruction);
 			break;
-		case DROP:
-			executeDropAction(instruction);
+			
+		case TURN:
+			executeTurnAction(instruction);
 			break;
-		case RADAR:
-			executeRadarAction(instruction);
+			
+		case UNKNOWN:
 			break;
 				
 		}
 	}
-	
-	private void executeRadarAction(Instruction instruction) {
-		Item[] items = actualPlace.getItemsInPlace().getContainer();
-		if (items!=null)
-			System.out.println(WALLE_SAYS + actualPlace.toString());
-		else
-			System.out.println(SCAN_NO_ITEM);
-		
-	}
+
 
 	private void executeDropAction(Instruction instruction) {
 		 Item item = container.getItem(instruction.getId());
@@ -159,6 +152,36 @@ public class RobotEngine {
          }else
         	 System.out.println(PLACE_REPEAT_ITEM + instruction.getId());
 		
+	}
+	
+	/**
+	 * The Robot gives information about his instructions
+	 * @param interpreter is a command that Robot interpreters
+	 */
+	
+	private void executeHelpAction(Instruction instruction) {
+		System.out.println(HELP);
+	}
+	
+	/**
+	 * Robot moves or not
+	 */
+
+	private void executeMoveAction() {
+			
+		if (getHeadingStreet()==null){
+			System.out.println(NO_STREET);
+		}
+		else if (getHeadingStreet().isOpen()){
+			actualPlace = getHeadingStreet().nextPlace(actualPlace);
+			addFuel(-5);
+			System.out.println(MOVE + lookingDirection);
+			System.out.println(actualPlace.toString() + LINE_SEPARATOR + 
+					POWER2 + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial +
+					LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection) ;
+				
+		}else
+			System.out.println(STREET_CLOSE);
 	}
 
 	private void executeOperateAction(Instruction instruction) {
@@ -180,8 +203,30 @@ public class RobotEngine {
 			System.out.println(ITEM_PROBLEMS + instruction.getId() );
 	}	
 			
-	
-
+	 private void executePickAction(Instruction instruction) {
+         Item item = actualPlace.getItem(instruction.getId());
+         if(item == null)
+             System.out.println(PLACE_NO_ITEM + instruction.getId());
+         else if(container.addItem(item)){
+        	 actualPlace.pickItem(instruction.getId());
+             System.out.println(CONTAINER_ITEM + instruction.getId());
+         }else
+        	 System.out.println(CONTAINER_REPEAT_ITEM + instruction.getId());
+	 }
+	 
+	 private void executeQuit() {
+			System.out.println(QUIT);
+			System.exit(0);
+	 }
+	 
+	private void executeRadarAction(Instruction instruction) {
+		Item[] items = actualPlace.getItemsInPlace().getContainer();
+		if (items!=null)
+			System.out.println(WALLE_SAYS + actualPlace.toString());
+		else
+			System.out.println(SCAN_NO_ITEM);
+		
+	}
 
 	private void executeScanAction(Instruction instruction) {
 		if(instruction.getId()==""){
@@ -197,38 +242,6 @@ public class RobotEngine {
 		
 	}
 
-	 private void executePickAction(Instruction instruction) {
-         Item item = actualPlace.getItem(instruction.getId());
-         if(item == null)
-             System.out.println(PLACE_NO_ITEM + instruction.getId());
-         else if(container.addItem(item)){
-        	 actualPlace.pickItem(instruction.getId());
-             System.out.println(CONTAINER_ITEM + instruction.getId());
-         }else
-        	 System.out.println(CONTAINER_REPEAT_ITEM + instruction.getId());
- }
-
-
-	/**
-	 * Robot moves or not
-	 */
-
-	private void executeMoveAction() {
-			
-		if (getHeadingStreet()==null){
-			System.out.println(NO_STREET);
-		}
-		else if (getHeadingStreet().isOpen()){
-			actualPlace = getHeadingStreet().nextPlace(actualPlace);
-			addFuel(-5);
-			System.out.println(MOVE + lookingDirection);
-			System.out.println(actualPlace.toString() + LINE_SEPARATOR + 
-					POWER2 + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial +
-					LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection) ;
-				
-		}else
-			System.out.println(STREET_CLOSE);
-	}
 
 	/**
 	 * Robot turns or not
@@ -253,15 +266,6 @@ public class RobotEngine {
 		case UNKNONW:
 			break;
 		}
-	}
-
-	/**
-	 * The Robot gives information about his instructions
-	 * @param interpreter is a command that Robot interpreters
-	 */
-	
-	private void executeHelpAction(Instruction instruction) {
-		System.out.println(HELP);
 	}
 
 	
