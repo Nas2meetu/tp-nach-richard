@@ -4,7 +4,7 @@ package tp.pr3;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 3
 *
 */
 
@@ -15,7 +15,7 @@ public enum Action {
 	  *  Define valid instructions for Wall·E
 	  */
 
-	MOVE, TURN, HELP, QUIT, UNKNOWN, PICK, OPERATE, SCAN, DROP, RADAR 
+	 DROP, HELP, MOVE, OPERATE, PICK, QUIT, RADAR, SCAN, TURN, UNKNOWN 
 		
 }
 	
