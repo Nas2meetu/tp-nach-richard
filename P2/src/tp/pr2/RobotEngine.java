@@ -30,6 +30,7 @@ public class RobotEngine {
 	 * @param cityMap is the map where the robot lives
 	 * 
 	 **/
+
 	
 	public RobotEngine(City city, Place initialPlace, Direction direction) {
 		this.cityMap = city;
@@ -45,12 +46,13 @@ public class RobotEngine {
 	 * @return lookingDirection is direction that Robot is looking at
 	 * 
 	 */
+	
 	public Direction getDirection() {
 		return lookingDirection;
 	}
 	
 	/**
-	 * Is the Start game, show initial information and finish information if Player win game
+	 * Is the Start game, show initial information and finish information if Player win or lost game
 	 */
 
 	public void startEngine() {
@@ -91,9 +93,10 @@ public class RobotEngine {
 	}
 	
 	/**
-	 * @param instruction is a command that Robot processes
+	 * @param instruction is a command that Robot processes.
 	 * 
 	 */
+	
 
 	public void processInstruction(Instruction instruction) {
 	
@@ -134,6 +137,14 @@ public class RobotEngine {
 		}
 	}
 	
+	/**
+	 * 
+	 * Execute OPERATE action, with this action Robot can
+	 * use an item of Wall·E container.
+	 * 
+	 * @param instruction is a command that Robot processes.
+	 */
+	
 	private void executeOperateAction(Instruction instruction) {
 		Item item = container.getItem(instruction.getId());
 		if (item == null)
@@ -154,7 +165,14 @@ public class RobotEngine {
 	}	
 			
 	
-
+	/**
+	 * 
+	 * Execute SCAN action, with this action Robot can
+	 * revise one or all items of Wall·E container.
+	 * 
+	 * @param instruction is a command that Robot processes.
+	 * 
+	 */
 
 	private void executeScanAction(Instruction instruction) {
 		if(instruction.getId()==""){
@@ -169,6 +187,14 @@ public class RobotEngine {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 * Execute PICK action, with this action Robot takes an item of street
+	 * ,delete of street and put into Wall·E container.
+	 * 
+	 * @param instruction is a command that Robot processes.
+	 */
 
 	 private void executePickAction(Instruction instruction) {
          Item item = actualPlace.getItem(instruction.getId());
@@ -183,7 +209,9 @@ public class RobotEngine {
 
 
 	/**
-	 * Robot moves or not
+	 * 
+	 * Execute MOVE action, Robot moves or not.
+	 * 
 	 */
 
 	private void executeMoveAction() {
@@ -204,7 +232,9 @@ public class RobotEngine {
 	}
 
 	/**
-	 * Robot turns or not
+	 * 
+	 * Execute TURN action, Robot turns or not.
+	 * 
 	 * @param instruction is a command that Robot processes
 	 * 
 	 */
@@ -229,34 +259,69 @@ public class RobotEngine {
 	}
 
 	/**
+	 * 
 	 * The Robot gives information about his instructions
-	 * @param interpreter is a command that Robot interpreters
+	 * @param instruction is a command that Robot interpreters
+	 * 
 	 */
 	
 	private void executeHelpAction(Instruction instruction) {
 		System.out.println(HELP);
 	}
 
+	/**
+	 * 
+	 * Robot increase his fuel counter.
+	 * 
+	 * @param newFuel is one unit of energy.
+	 */
 	
 	public void addFuel(int newFuel) {
 		this.contFuel += newFuel;
 	}
 	
+	/**
+	 * 
+	 * Robot increase his recycled material counter.
+	 * 
+	 * @param newMaterial is one unit of recycled material.
+	 */
 	
 	public void addRecycledMaterial(int newMaterial) {
 		this.contRecycledMaterial += newMaterial;
 		
 	}
 	
+	/**
+	 * 
+	 * Return a public method (contFuel) of a private attribute (Fuel).
+	 * 
+	 * @return contFuel is a counter of energy.
+	 */
+	
 	public int getFuel() {
 		return contFuel;
 	}
 	
 
+	/**
+	 * 
+	 * Return a public method (contRecyledMaterial) of a private attribute (RecycledMaterial).
+	 * 
+	 * @return ContRecycledMaterial is counter of recycled material.
+	 */
+	
 	public int getRecycledMaterial() {
 		return contRecycledMaterial;
 	}
 
+	/**
+	 * 
+	 * Return a public method (lookForStreet) of a private attribute (HeadingStreet).
+	 * 
+	 * @return lookForStreet is the actual place and direction where Robot is looking at.
+	 */
+	
 	public Street getHeadingStreet() {
 		return cityMap.lookForStreet(actualPlace, lookingDirection);
 			

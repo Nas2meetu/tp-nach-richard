@@ -8,18 +8,18 @@ package tp.pr2;
 */
 
 public class Instruction {
-	
-	/**
-     * Receive and execute instructions
-     */
+
 
 	private Action action;
 	private Rotation rotation;
 	private String itemName;
 	
 	/**
+	 * 
 	 * Constructor of one parameter action
+	 * 
 	 * @param action is an action made by Robot
+	 * 
 	 */
 
 	public Instruction(Action action) {
@@ -29,7 +29,9 @@ public class Instruction {
 	}
 	
 	/**
+	 * 
 	 * Constructor of two parameter action, includes turn and direction to rotation
+	 * 
 	 * @param action is an action to turn Robot
 	 * @param rotation is rotation of Robot left or right
 	 *  
@@ -42,7 +44,9 @@ public class Instruction {
 	}
 	
 	/**
-	 * Default Constructor without parameters 
+	 * 
+	 * Default Constructor without parameters. 
+	 * 
 	 */
 
 	public Instruction() {
@@ -50,6 +54,16 @@ public class Instruction {
 		this.rotation = Rotation.UNKNONW;
 		this.itemName = "";
 	}
+	
+	
+	/**
+	 * 
+	 * Constructor without rotation parameter.
+	 * 
+	 * @param action is an action to turn Robot.
+	 * @param itemName name of item.
+	 */
+	
 	
 	public Instruction(Action action, String itemName) {
 		this.action = action;

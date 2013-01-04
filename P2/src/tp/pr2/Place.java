@@ -36,6 +36,12 @@ public class Place {
 		this.itemsInPlace = new ItemContainer();
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return itemsInPlace 
+	 */
+	
 	public Item getItem(String id){
 		return itemsInPlace.getItem(id);
 	}

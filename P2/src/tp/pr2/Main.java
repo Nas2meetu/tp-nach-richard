@@ -11,8 +11,10 @@ import static tp.pr2.Constants.*;
 public class Main {
 
 	/**
+	 * 
 	 * Create the places and configure the initial current place.
 	 * @return The place where the player starts the game
+	 * 
 	 */
 	
 	private static Place[] createPlaces(){
@@ -75,7 +77,9 @@ public class Main {
 	}
 
 	/**
+	 * 
 	 * Create streets and configure the initials current streets who´s connected our places
+	 * 
 	 * @param _places The places where the player play game
 	 * @return Streets where the player use to move in the game 
 	 * 
@@ -131,8 +135,11 @@ public class Main {
 	}
 
 	/**
+	 * 
 	 * Start the game 
+	 * 
 	 * @param args initial arguments for start game
+	 * 
 	 */
 	
 	public static void main(String[] args){

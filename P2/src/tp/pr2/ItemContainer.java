@@ -11,7 +11,6 @@ import static tp.pr2.Constants.*;
  */
 
 
-
 public class ItemContainer {
 
 	
@@ -49,7 +48,7 @@ public class ItemContainer {
 	 * ponemos el cont uno menos, al finalizar, devolvemos el item 
 	 * 
 	 * @param id
-	 * @return
+	 * @return picked
 	 */
 	public Item pickItem(String id) { 
 		Item picked;
@@ -74,7 +73,7 @@ public class ItemContainer {
 	 * entonces la posicion donde insertar el item será "cont" o "cont + 1"  
 	 * 
 	 * @param id
-	 * @return
+	 * @return i
 	 */
 
 	private int whereInsert(String id){
@@ -94,7 +93,7 @@ public class ItemContainer {
 	 * devuelve -1
 	 * 
 	 * @param id
-	 * @return
+	 * @return -1
 	 */
 	
 	private int posItem(String id) {
@@ -163,6 +162,12 @@ public class ItemContainer {
 			return added;
 	
 	}
+	
+	/**
+	 * 
+	 * Show content of ItemContainer
+	 * 
+	 */
 	
 	public String toString(){
 	

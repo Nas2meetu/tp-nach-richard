@@ -21,14 +21,15 @@ public class Street {
 	
 	/**
 	 * 
-	 * Constructor of five parameters to create Streets 
+	 * Constructor of three parameters to create Streets 
+	 * 
+	 * 
 	 * @param sourcePlace is one side of street
 	 * @param direction is default direction
 	 * @param targetPlace is opposite side of street
-	 * @param isOpen if street is open or not
-	 * @param code is the code to open street if it is closed
 	 * 
 	 */
+	
 
 	public Street(Place sourcePlace, Direction direction, Place targetPlace) {
 		this.sourcePlace = sourcePlace;
@@ -39,6 +40,17 @@ public class Street {
 
 	}
 	
+	/**
+	 * 
+	 * Constructor of five parameters to create Streets
+	 * 
+	 * @param sourcePlace is one side of street
+	 * @param direction is default direction
+	 * @param targetPlace is opposite side of street
+	 * @param Open is default street situation
+	 * @param code is default code
+	 */
+	
 	public Street(Place sourcePlace, Direction direction, Place targetPlace, boolean Open, String code) {
 		this.sourcePlace = sourcePlace;
 		this.direction = direction;
@@ -47,6 +59,14 @@ public class Street {
 		this.code = code;
 
 	}
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 * @param place is place where Robot is.
+	 * @return nextPlace is place where Robot can move.
+	 */
 
 
 	public Place nextPlace(Place place) {

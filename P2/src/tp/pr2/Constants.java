@@ -11,8 +11,11 @@ package tp.pr2;
 public class Constants {
 	
 /**
+ * 
  * Define messages for Wall·E , prompt and line_separator
+ * 
  */
+	
 	public static final int INITIAL_POWER = 50;
 	
 	public static final int INITIAL_GARBAGE = 0;
