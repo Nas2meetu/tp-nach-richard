@@ -11,7 +11,9 @@ package tp.pr2;
 
 public enum Rotation {
 	/**
+	 * 
 	 * Define valid rotation for Wall·E
+	 * 
 	 */
 		LEFT, RIGHT, UNKNONW
 }
