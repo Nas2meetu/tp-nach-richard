@@ -47,9 +47,17 @@ public class ItemContainer {
 	 * usamos despues moveItemLeft para desplazar desde la posicion (pos) a la izquierda y
 	 * ponemos el cont uno menos, al finalizar, devolvemos el item 
 	 * 
-	 * @param id
-	 * @return picked
+	 * We use posItem to know the position of item's id. 
+	 * If position is -1, return an empty item.
+	 * Make an instance Item and put into container's item in position (pos)
+	 * we use after moveItemLeft to shift move position (pos) to left and
+	 * decrease cont one unit, finally return item.
+	 * 
+	 * @param id is a reference to identify an item.
+	 * 
+	 * @return picked item has been pick or not.
 	 */
+	
 	public Item pickItem(String id) { 
 		Item picked;
 		int pos = posItem(id);
@@ -72,7 +80,7 @@ public class ItemContainer {
 	 * "i", que será la posición. Si llega hasta el final del array y no hay ninguno menor,
 	 * entonces la posicion donde insertar el item será "cont" o "cont + 1"  
 	 * 
-	 * @param id
+	 * @param id is a reference to identify an item.
 	 * @return i
 	 */
 
@@ -92,7 +100,7 @@ public class ItemContainer {
 	 * y el "id" del container son iguales, si es asi devuelve la posicion "i" del array. Sino
 	 * devuelve -1
 	 * 
-	 * @param id
+	 * @param id is a reference to identify an item.
 	 * @return -1
 	 */
 	
@@ -108,10 +116,12 @@ public class ItemContainer {
 	}
 	
 	/**
-	 * moveItemLeft deplaza la posicion del container una posicion a la izquierda a partir de un
-	 * "i" dado.
+	 * moveItemLeft moves Item's position one to left from initial position (pos).
 	 * 
-	 * @param i
+	 * deplaza la posicion del container una posicion a la izquierda a partir de un
+	 * "pos" dado.
+	 * 
+	 * @param pos
 	 */
 
 	private void moveItemLeft(int pos) {
@@ -168,6 +178,7 @@ public class ItemContainer {
 	 * Show content of ItemContainer
 	 * 
 	 */
+
 	
 	public String toString(){
 	

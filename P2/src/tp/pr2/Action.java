@@ -8,14 +8,13 @@ package tp.pr2;
 *
 */
 
+/**
+ * 
+ *  Define valid instructions for Wall·E
+ *  
+ */
 
-public enum Action {
-	
-	 /**
-	  * 
-	  *  Define valid instructions for Wall·E
-	  */
-	
+public enum Action {	
 
 	MOVE, TURN, HELP, QUIT, UNKNOWN, PICK, OPERATE, SCAN 
 		

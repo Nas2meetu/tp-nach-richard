@@ -13,7 +13,6 @@ import static tp.pr2.Constants.*;
 
 public class Place {
 	
-
 	private String placeName;
 	private boolean isSpaceship;
 	private String placeDescription;
@@ -22,6 +21,7 @@ public class Place {
 
 	
 	/**
+	 * 
 	 * Constructor of three parameters with name and description place and if this place has a Robot Space Ship
 	 * @param placeName is place name
 	 * @param isSpaceship is place where Spaceship is it
@@ -38,8 +38,10 @@ public class Place {
 	
 	/**
 	 * 
-	 * @param id
+	 * @param id is a reference to identify an item.
+	 * 
 	 * @return itemsInPlace 
+	 * 
 	 */
 	
 	public Item getItem(String id){
@@ -61,9 +63,25 @@ public class Place {
 		return isSpaceship;
 	}
 	
+	/**
+	 * 
+	 * @param id is a reference to identify an item.
+	 * 
+	 * @return
+	 * 
+	 */
+	
 	public Item pickItem(String id) {
 			return itemsInPlace.pickItem(id);
 	}
+	
+	/**
+	 * 
+	 * @param item
+	 * 
+	 * @return
+	 * 
+	 */
 	
 	public boolean addItem(Item item) {
 		return itemsInPlace.addItem(item);
@@ -71,7 +89,9 @@ public class Place {
 	
 
 	/**
+	 * 
 	 * Override toString to show place information
+	 * 
 	 */
 	
 	public String toString() {

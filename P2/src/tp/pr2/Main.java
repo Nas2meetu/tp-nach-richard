@@ -13,6 +13,7 @@ public class Main {
 	/**
 	 * 
 	 * Create the places and configure the initial current place.
+	 * 
 	 * @return The place where the player starts the game
 	 * 
 	 */

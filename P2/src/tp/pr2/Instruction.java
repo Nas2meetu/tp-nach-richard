@@ -32,7 +32,7 @@ public class Instruction {
 	 * 
 	 * Constructor of two parameter action, includes turn and direction to rotation
 	 * 
-	 * @param action is an action to turn Robot
+	 * @param action is an action of Robot
 	 * @param rotation is rotation of Robot left or right
 	 *  
 	 */
@@ -73,8 +73,11 @@ public class Instruction {
 	}
 
 	/**
-	 * Is a method to know if action and rotation are valid
+	 * 
+	 * Is a method to know if action and rotation are valid.
+	 * 
 	 * @return isValid if action is not Unknown or turn rotation is not Unknown
+	 * 
 	 */
 
 	public boolean isValid() {
@@ -89,7 +92,9 @@ public class Instruction {
 	
 	/**
 	 * 
-	 * @return action
+	 * Return a public method (action) of a private attribute (Action).
+	 * 
+	 * @return action is an action of Robot.
 	 * 
 	 */
 
@@ -99,7 +104,9 @@ public class Instruction {
 	
 	/**
 	 * 
-	 * @return rotation
+	 * Return a public method (rotation) of a private attribute (Rotation).
+	 * 
+	 * @return rotation is rotation of Robot left or right.
 	 * 
 	 */
 
@@ -107,6 +114,12 @@ public class Instruction {
 		return rotation;
 	}
 
+	/**
+	 * 
+	 * 
+	 * @return itemName name of item.
+	 * 
+	 */
 	
 	public String getId() {
 		return itemName;
