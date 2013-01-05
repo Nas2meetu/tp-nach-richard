@@ -21,7 +21,7 @@ public class Interpreter {
 	
 	/**
 	 * 
-	 * Verified if instruction syntax is correct.
+	 * Verified if instruction's syntax is correct.
 	 * 
 	 * @param prompt is introduced by player 
 	 * @return instruction is a instruction to interpreter by Robot
@@ -54,6 +54,7 @@ public class Interpreter {
 	}
 	
 	/**
+	 * 
 	 * Generate an action of type MOVE
 	 * 
 	 * @param st is a possible instruction introduced by player 
@@ -117,6 +118,7 @@ public class Interpreter {
 	 * 
 	 * @param st is an instruction introduced by player
 	 * @return instruction is a instruction of type HELP
+	 * 
 	 */
 	
 
@@ -133,6 +135,7 @@ public class Interpreter {
 	 * 
 	 * @param st is an instruction introduced by player
 	 * @return instruction is a instruction of type QUIT
+	 * 
 	 */
 	
 	private static Instruction generateQuit(StringTokenizer st) {
@@ -148,6 +151,7 @@ public class Interpreter {
 	 * 
 	 * @param st is an instruction introduced by player
 	 * @return instruction is a instruction of type SCAN
+	 * 
 	 */
 	
 	private static Instruction generateScan(StringTokenizer st) {
@@ -168,6 +172,7 @@ public class Interpreter {
 	 * 
 	 * @param st is an instruction introduced by player
 	 * @return instruction is a instruction of type OPERATE
+	 * 
 	 */
 	
 	private static Instruction generateOperate(StringTokenizer st) {

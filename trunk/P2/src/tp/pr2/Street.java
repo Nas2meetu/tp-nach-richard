@@ -23,13 +23,11 @@ public class Street {
 	 * 
 	 * Constructor of three parameters to create Streets 
 	 * 
-	 * 
 	 * @param sourcePlace is one side of street
 	 * @param direction is default direction
 	 * @param targetPlace is opposite side of street
 	 * 
 	 */
-	
 
 	public Street(Place sourcePlace, Direction direction, Place targetPlace) {
 		this.sourcePlace = sourcePlace;
@@ -62,7 +60,7 @@ public class Street {
 	
 	/**
 	 * 
-	 * 
+	 * Define possible next place to Robot.
 	 * 
 	 * @param place is place where Robot is.
 	 * @return nextPlace is place where Robot can move.

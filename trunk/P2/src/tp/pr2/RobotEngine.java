@@ -25,6 +25,7 @@ public class RobotEngine {
 	/**
 	 * 
 	 * Creates a new Robot Engine
+	 * 
 	 * @param initialPlace is the initial place of the robot
 	 * @param direction is the default direction
 	 * @param cityMap is the map where the robot lives
@@ -52,7 +53,9 @@ public class RobotEngine {
 	}
 	
 	/**
-	 * Is the Start game, show initial information and finish information if Player win or lost game
+	 * 
+	 * Is the Start game, show initial information and finish information and if Player win or lost game.
+	 * 
 	 */
 
 	public void startEngine() {
@@ -83,6 +86,8 @@ public class RobotEngine {
 	
 	/**
 	 * 
+	 * Verified if game has finished.
+	 * 
 	 * @param instruction is a command that Robot processes
 	 * @return isEndGame is one of possible ways to finish game
 	 * 
@@ -93,6 +98,9 @@ public class RobotEngine {
 	}
 	
 	/**
+	 * 
+	 * Process valid instructions.
+	 * 
 	 * @param instruction is a command that Robot processes.
 	 * 
 	 */
@@ -143,6 +151,7 @@ public class RobotEngine {
 	 * use an item of Wall·E container.
 	 * 
 	 * @param instruction is a command that Robot processes.
+	 * 
 	 */
 	
 	private void executeOperateAction(Instruction instruction) {
@@ -194,6 +203,7 @@ public class RobotEngine {
 	 * ,delete of street and put into Wall·E container.
 	 * 
 	 * @param instruction is a command that Robot processes.
+	 * 
 	 */
 
 	 private void executePickAction(Instruction instruction) {
@@ -260,7 +270,8 @@ public class RobotEngine {
 
 	/**
 	 * 
-	 * The Robot gives information about his instructions
+	 * Robot gives information about his instructions
+	 * 
 	 * @param instruction is a command that Robot interpreters
 	 * 
 	 */
@@ -297,6 +308,7 @@ public class RobotEngine {
 	 * Return a public method (contFuel) of a private attribute (Fuel).
 	 * 
 	 * @return contFuel is a counter of energy.
+	 * 
 	 */
 	
 	public int getFuel() {
@@ -309,6 +321,7 @@ public class RobotEngine {
 	 * Return a public method (contRecyledMaterial) of a private attribute (RecycledMaterial).
 	 * 
 	 * @return ContRecycledMaterial is counter of recycled material.
+	 * 
 	 */
 	
 	public int getRecycledMaterial() {
@@ -320,6 +333,7 @@ public class RobotEngine {
 	 * Return a public method (lookForStreet) of a private attribute (HeadingStreet).
 	 * 
 	 * @return lookForStreet is the actual place and direction where Robot is looking at.
+	 * 
 	 */
 	
 	public Street getHeadingStreet() {

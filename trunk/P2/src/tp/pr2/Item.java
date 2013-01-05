@@ -25,10 +25,15 @@ public abstract class Item {
 	
 	public abstract boolean use(RobotEngine robot, Place place);
 	
+	/**
+	 * 
+	 * @return id is a reference to identify an item.
+	 */
 
 	public String getId() {
 		return this.id;
 	}
+	
 	public String toString() {
 		return  this.id +": " + this.description;
 	}
