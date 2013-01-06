@@ -50,9 +50,8 @@ public class City {
 	
 	/**
 	 * 
-	 * Return a public method (i) of a private attribute (CitySize).
+	 * @return i is a size of map.
 	 * 
-	 * @return cityMap.length is a size of map.
 	 */
 	
 	public int getCitySize() {
@@ -65,12 +64,8 @@ public class City {
 	
 	/**
 	 * 
-	 * Constructor of two parameters to define lookForStreet.
-	 * 
-	 * 
 	 * @param source is one side of street.
 	 * @param direction is direction that robot is looking at
-	 * 
 	 * 
 	 * @return street a street of map.
 	 */

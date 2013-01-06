@@ -23,6 +23,7 @@ public class Place {
 	/**
 	 * 
 	 * Constructor of three parameters with name and description place and if this place has a Robot Space Ship
+	 * 
 	 * @param placeName is place name
 	 * @param isSpaceship is place where Spaceship is it
 	 * @param placeDescription is information about place

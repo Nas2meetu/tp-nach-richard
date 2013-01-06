@@ -330,7 +330,7 @@ public class RobotEngine {
 
 	/**
 	 * 
-	 * Return a public method (lookForStreet) of a private attribute (HeadingStreet).
+	 * Return a public method (actualPlace and lookingDirection) of a private attribute (HeadingStreet).
 	 * 
 	 * @return lookForStreet is the actual place and direction where Robot is looking at.
 	 * 

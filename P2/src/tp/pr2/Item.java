@@ -58,7 +58,7 @@ public abstract class Item {
 	
 	/**
 	 * 
-	 * Show description about item.
+	 * Return a public method (description) of a private attribute (Description).
 	 * 
 	 * @return description is description of item.
 	 */
