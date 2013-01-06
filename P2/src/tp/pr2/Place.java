@@ -38,9 +38,11 @@ public class Place {
 	
 	/**
 	 * 
+	 * Return a public method (getItem) of a private attribute (id).
+	 * 
 	 * @param id is a reference to identify an item.
 	 * 
-	 * @return itemsInPlace 
+	 * @return getItem 
 	 * 
 	 */
 	
@@ -55,7 +57,7 @@ public class Place {
 	
 	/**
 	 * 
-	 * @return isSpaceship
+	 * @return isSpaceship if spaceship is in this place.
 	 * 
 	 */
 
@@ -65,9 +67,11 @@ public class Place {
 	
 	/**
 	 * 
+	 * Return a public method (pickItem) of a private attribute (id).
+	 * 
 	 * @param id is a reference to identify an item.
 	 * 
-	 * @return
+	 * @return pickItem
 	 * 
 	 */
 	
@@ -77,9 +81,11 @@ public class Place {
 	
 	/**
 	 * 
+	 * Return a public method (addItem) of a private attribute (item).
+	 * 
 	 * @param item
 	 * 
-	 * @return
+	 * @return addItem
 	 * 
 	 */
 	
@@ -90,7 +96,7 @@ public class Place {
 
 	/**
 	 * 
-	 * Override toString to show place information
+	 * Override toString to show place information.
 	 * 
 	 */
 	

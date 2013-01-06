@@ -21,11 +21,11 @@ public class Street {
 	
 	/**
 	 * 
-	 * Constructor of three parameters to create Streets 
+	 * Constructor of three parameters to create Streets.
 	 * 
-	 * @param sourcePlace is one side of street
-	 * @param direction is default direction
-	 * @param targetPlace is opposite side of street
+	 * @param sourcePlace is one side of street.
+	 * @param direction is default direction.
+	 * @param targetPlace is opposite side of street.
 	 * 
 	 */
 
@@ -40,13 +40,13 @@ public class Street {
 	
 	/**
 	 * 
-	 * Constructor of five parameters to create Streets
+	 * Constructor of five parameters to create Streets.
 	 * 
-	 * @param sourcePlace is one side of street
-	 * @param direction is default direction
-	 * @param targetPlace is opposite side of street
-	 * @param Open is default street situation
-	 * @param code is default code
+	 * @param sourcePlace is one side of street.
+	 * @param direction is default direction.
+	 * @param targetPlace is opposite side of street.
+	 * @param Open is default street situation.
+	 * @param code is default code.
 	 */
 	
 	public Street(Place sourcePlace, Direction direction, Place targetPlace, boolean Open, String code) {

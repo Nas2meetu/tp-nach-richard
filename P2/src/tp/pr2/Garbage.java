@@ -17,6 +17,16 @@ public class Garbage extends Item {
        
         private int garbage;
         private boolean canBeUse;
+        
+        /**
+         * 
+         * Constructor of three parameters to define garbage of robot.
+         * 
+         * @param id is a reference to identify an item.
+         * @param description is description of item.
+         * @param recycledMaterial count of recycle material.
+         * 
+         */
 
         public Garbage(String id, String description, int recycledMaterial){
                 super(id, description);
@@ -24,17 +34,34 @@ public class Garbage extends Item {
                 canBeUse = true;
                
         }
+        
+        /**
+         * 
+         * Verify if robot can be recycled garbage or not.
+         * 
+         */
        
         public boolean canBeUsed() {
                 return (garbage > 0 && canBeUse);
                
         }
+        
+        /**
+         * 
+         * Return a public method (garbage) of a private attribute (Garbage).
+         * 
+         * @return garbage count of garbage to recycle.
+         */
        
         public int getGarbage() {
                 return garbage;
         }
        
-       
+       /**
+        * 
+        * Verify if garbage can be recycle or not.
+        * 
+        */
 
         public boolean use(RobotEngine robot, Place place) {
                 if (canBeUsed()){
@@ -44,6 +71,14 @@ public class Garbage extends Item {
                 }return false;
         }
        
+        
+        /**
+         * 
+         * Show number of garbage was recycled and number of garbage to recycle.
+         * 
+         * @return recycled material + garbage.
+         */
+        
         private String garbagetoString(){
                 return " recycled material = " + garbage;
         }
