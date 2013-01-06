@@ -10,13 +10,12 @@ import static tp.pr2.Constants.*;
  *
  */
 
-
 public class ItemContainer {
 
 	
 	private int numberOfItems;
 	private Item[] container;
-
+	
 	public ItemContainer() {
 		container = new Item[100];
 		numberOfItems = 0;
@@ -47,10 +46,10 @@ public class ItemContainer {
 	 * usamos despues moveItemLeft para desplazar desde la posicion (pos) a la izquierda y
 	 * ponemos el cont uno menos, al finalizar, devolvemos el item 
 	 * 
-	 * We use posItem to know the position of item's id. 
+	 * Use posItem to know the position of item's id. 
 	 * If position is -1, return an empty item.
 	 * Make an instance Item and put into container's item in position (pos)
-	 * we use after moveItemLeft to shift move position (pos) to left and
+	 * Use after moveItemLeft to shift move position (pos) to left and
 	 * decrease cont one unit, finally return item.
 	 * 
 	 * @param id is a reference to identify an item.
@@ -80,8 +79,16 @@ public class ItemContainer {
 	 * "i", que será la posición. Si llega hasta el final del array y no hay ninguno menor,
 	 * entonces la posicion donde insertar el item será "cont" o "cont + 1"  
 	 * 
+	 * Recibe and item's id, and find position to insert this item.
+	 * Use i parameter to move around container's array, from i position to end of container's array.
+	 * Compare all item container with id was received from method. 
+	 * If comparation is small than 0 return i (position to insert item)
+	 * else increase i counter.
+	 * If counter i find the end of array position of insert item is i.
+	 * 
 	 * @param id is a reference to identify an item.
-	 * @return i
+	 * 
+	 * @return i is a position to insert item.
 	 */
 
 	private int whereInsert(String id){
@@ -100,7 +107,12 @@ public class ItemContainer {
 	 * y el "id" del container son iguales, si es asi devuelve la posicion "i" del array. Sino
 	 * devuelve -1
 	 * 
+	 * PosItem recive an item's id, move around item's container and 
+	 * compare item's id with container's id, if equal return i. 
+	 * Else return -1
+	 * 
 	 * @param id is a reference to identify an item.
+	 * 
 	 * @return -1
 	 */
 	
@@ -121,7 +133,7 @@ public class ItemContainer {
 	 * deplaza la posicion del container una posicion a la izquierda a partir de un
 	 * "pos" dado.
 	 * 
-	 * @param pos
+	 * @param pos initial position.
 	 */
 
 	private void moveItemLeft(int pos) {
@@ -135,7 +147,9 @@ public class ItemContainer {
 	 * moveItemRight deplaza la posicion del container una posicion a la derecha a partir de un
 	 * "i" dado.
 	 * 
-	 * @param i
+	 * moveItemLeft moves Item's position one to right from initial position (i).
+	 * 
+	 * @param i initial position.
 	 */
 
 	private void moveItemRight(int pos) {
@@ -154,8 +168,11 @@ public class ItemContainer {
 	 * el array container una posicion a la derecha e insertamos el item. Incrementamos el "cont"
 	 * en 1 y devolvemos true. 
 	 * 
+	 * addItem insert an item in itemContainer's container.
+	 * 
 	 * @param item
-	 * @return
+	 * 
+	 * @return added
 	 */
 
 	public boolean addItem(Item item) {
@@ -178,7 +195,6 @@ public class ItemContainer {
 	 * Show content of ItemContainer
 	 * 
 	 */
-
 	
 	public String toString(){
 	
@@ -192,6 +208,13 @@ public class ItemContainer {
 			return showItems;
 		}
 	}
+	
+	/**
+	 * 
+	 * Show items of container.
+	 * 
+	 * @return showItems items of container.
+	 */
 	
 	public String showItems(){
 		

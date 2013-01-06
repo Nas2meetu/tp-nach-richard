@@ -13,7 +13,15 @@ package tp.pr2;
 public class City {
 
 	private Street[] cityMap;
-
+	
+	/**
+	 * 
+	 * Constructor of cityMap.
+	 *
+	 * @param cityMap map of city.
+	 * 
+	 */
+	
 	public City(Street[] cityMap) {
 		this.cityMap = cityMap;
 	}
@@ -60,11 +68,11 @@ public class City {
 	 * Constructor of two parameters to define lookForStreet.
 	 * 
 	 * 
-	 * @param source
-	 * @param direction
+	 * @param source is one side of street.
+	 * @param direction is direction that robot is looking at
 	 * 
 	 * 
-	 * @return street
+	 * @return street a street of map.
 	 */
 	
 	public Street lookForStreet(Place source, Direction direction) {
