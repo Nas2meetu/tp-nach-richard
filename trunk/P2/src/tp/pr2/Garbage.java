@@ -37,6 +37,8 @@ public class Garbage extends Item {
         
         /**
          * 
+         * Return a public methods (garbage and canBeUse) of a private attribute (canBeUse).
+         * 
          * Verify if robot can be recycled garbage or not.
          * 
          */

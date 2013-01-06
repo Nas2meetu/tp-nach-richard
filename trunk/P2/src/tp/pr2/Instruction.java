@@ -116,6 +116,7 @@ public class Instruction {
 
 	/**
 	 * 
+	 * Return a public method (itemName) of a private attribute (Id).
 	 * 
 	 * @return itemName name of item.
 	 * 
