@@ -8,7 +8,7 @@ import static tp.pr2.Constants.*;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 2
 * 
 */
 
@@ -160,8 +160,8 @@ public class RobotEngine {
 			System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");		
 		else if (item.use(this, actualPlace)) {
 			
-			if(item instanceof CodeCard){ //instancia de la clase
-                item = (CodeCard)item;
+			if(item instanceof CodeCard){ 
+				item = (CodeCard)item;
              }else
 				System.out.println(POWER2 + contFuel + LINE_SEPARATOR 
 									+ RECICLED_MATERIAL + contRecycledMaterial);
