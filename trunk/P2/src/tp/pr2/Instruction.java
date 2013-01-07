@@ -4,7 +4,7 @@ package tp.pr2;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 2
 */
 
 public class Instruction {
@@ -74,9 +74,9 @@ public class Instruction {
 
 	/**
 	 * 
-	 * Is a method to know if action and rotation are valid.
+	 * Is a method to know if action, rotation, pick or operate are valid.
 	 * 
-	 * @return isValid if action is not Unknown or turn rotation is not Unknown
+	 * @return isValid if action is not Unknown, turn rotation is not Unknown or pick or operate with a exists items  
 	 * 
 	 */
 
@@ -85,7 +85,7 @@ public class Instruction {
 		return !((action.equals(Action.UNKNOWN)) ||
 				  (action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW)) ||
 				  (action.equals(Action.PICK) && this.itemName.equals("")) ||
-				  (action.equals(Action.OPERATE) && this.itemName.equals("")));//mirar cuando el pick cogido es inexistente
+				  (action.equals(Action.OPERATE) && this.itemName.equals("")));
 
 		}
 

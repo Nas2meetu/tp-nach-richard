@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 2
 *
 */
 

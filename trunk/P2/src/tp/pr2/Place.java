@@ -6,7 +6,7 @@ import static tp.pr2.Constants.*;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 2
 * 
 */
 
@@ -38,6 +38,14 @@ public class Place {
 	}
 	
 	/**
+	 * Constructor without parameters
+	 * 
+	 */
+	public Place(){
+		itemsInPlace = new ItemContainer();
+	}
+	
+	/**
 	 * 
 	 * Return a public method (getItem) of a private attribute (id).
 	 * 
@@ -51,10 +59,6 @@ public class Place {
 		return itemsInPlace.getItem(id);
 	}
 	
-
-	public Place(){
-		itemsInPlace = new ItemContainer();
-	}
 	
 	/**
 	 * 

@@ -6,7 +6,7 @@ package tp.pr2;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 2
 *
 */
 
@@ -49,6 +49,8 @@ public class City {
 	}
 	
 	/**
+	 * 
+	 * Return size of a array map
 	 * 
 	 * @return i is a size of map.
 	 * 

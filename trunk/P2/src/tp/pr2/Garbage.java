@@ -7,7 +7,7 @@ package tp.pr2;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 2
 *
 */
 
@@ -66,11 +66,11 @@ public class Garbage extends Item {
         */
 
         public boolean use(RobotEngine robot, Place place) {
-                if (canBeUsed()){
-            robot.addRecycledMaterial(garbage);
-            canBeUse = false;
-            return true;
-                }return false;
+            if (canBeUsed()){
+            	robot.addRecycledMaterial(garbage);
+            	canBeUse = false;
+            	return true;
+            }return false;
         }
        
         

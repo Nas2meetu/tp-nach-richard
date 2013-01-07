@@ -4,7 +4,7 @@ package tp.pr2;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 2
 *
 */
 
@@ -116,6 +116,11 @@ public class Street {
 		return place.equals(sourcePlace) && direction.equals(fromDirection);
 	}
 
+	/**
+	 * Return a public method (isOpen) of a private attribute (isOpen).
+	 * 
+	 * @return isOpen
+	 */
 	
 	public boolean isOpen() {
 		return isOpen;

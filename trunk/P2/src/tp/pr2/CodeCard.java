@@ -6,7 +6,7 @@ package tp.pr2;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 2
 *
 */
 
@@ -20,7 +20,7 @@ public class CodeCard extends Item {
 	 * 
      * @param id is a reference to identify an item.
      * @param description is description of item.
-	 * @param code is a password to open a street.
+	 * @param code is a password to open or close a street.
 	 * 
 	 */
 	
@@ -29,6 +29,9 @@ public class CodeCard extends Item {
 		this.code = code;
 	}
 	
+	/**
+	 * This item always can be used, override method Item class 
+	 */
 	@Override
 	public boolean canBeUsed() {
 		return true;
@@ -56,7 +59,7 @@ public class CodeCard extends Item {
 	
 	/**
 	 * 
-	 * Return a public method (code) of a private attribute Code).
+	 * Return a public method (code) of a private attribute Code.
 	 * 
 	 * @return code is a password to open a street
 	 */
