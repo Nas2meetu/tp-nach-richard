@@ -191,7 +191,7 @@ public class ItemContainer {
 	
 	/**
 	 * 
-	 * Show content of ItemContainer
+	 * Show content of ItemContainer of place.
 	 * 
 	 */
 	
@@ -212,7 +212,7 @@ public class ItemContainer {
 	 * 
 	 * Show items of container.
 	 * 
-	 * @return showItems items of container.
+	 * @return showItems items of container of robot´s container.
 	 */
 	
 	public String showItems(){
