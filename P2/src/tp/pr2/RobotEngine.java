@@ -72,7 +72,7 @@ public class RobotEngine {
 			System.out.print(PROMPT);
 			instruction = Interpreter.generateInstruction(read.nextLine().toLowerCase());
 			
-			if (instruction.isValid()) {
+			if ((instruction == null) || instruction.isValid()) {
 				processInstruction(instruction);
 			}else
 				System.out.println(BAD_INSTRUCTION+LINE_SEPARATOR);

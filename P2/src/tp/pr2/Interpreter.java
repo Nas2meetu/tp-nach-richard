@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
 public class Interpreter {
 
 	
-	private static Instruction unknown;
+	
 	
 	
 	/**
@@ -65,7 +65,7 @@ public class Interpreter {
 		if(!st.hasMoreTokens())
 			return new Instruction(Action.MOVE);
 		else
-			return unknown;
+			return new Instruction(Action.UNKNOWN);
 	}
 	
 	/**
@@ -80,7 +80,7 @@ public class Interpreter {
 		if (st.hasMoreTokens()){
 			String token2 = st.nextToken().toUpperCase();
 			if (st.hasMoreTokens())
-				return unknown; 
+				return new Instruction(Action.UNKNOWN); 
 			else if (token2.equals("LEFT")) 
 				return new Instruction(Action.TURN, Rotation.LEFT);
 			else if (token2.equals("RIGHT")) 
@@ -104,7 +104,7 @@ public class Interpreter {
 		if(st.hasMoreTokens()){
 			String token2 =  st.nextToken(); 
 			if(st.hasMoreTokens()){
-				return unknown;
+				return new Instruction(Action.UNKNOWN);
 			}
 			return new Instruction(Action.PICK, token2);
 		}
@@ -126,7 +126,7 @@ public class Interpreter {
 		if(!st.hasMoreTokens())
 			return new Instruction(Action.HELP);
 		else
-			return unknown;
+			return new Instruction(Action.UNKNOWN);
 	}
 	
 	/**
@@ -142,7 +142,7 @@ public class Interpreter {
 		if(!st.hasMoreTokens())
 			return new Instruction(Action.QUIT);
 		else
-			return unknown;
+			return new Instruction(Action.UNKNOWN);
 	}
 	
 	/**
@@ -158,7 +158,7 @@ public class Interpreter {
 		if(st.hasMoreTokens()){
 			String token2 =  st.nextToken();
 			if(st.hasMoreTokens()){
-				return unknown;
+				return new Instruction(Action.UNKNOWN);
 			}
 			return new Instruction(Action.SCAN, token2);
 		}
@@ -179,7 +179,7 @@ public class Interpreter {
 		if(st.hasMoreTokens()){
 			String token2 =  st.nextToken();
 			if(st.hasMoreTokens()){
-				return unknown;
+				return new Instruction(Action.UNKNOWN);
 			}
 			return new Instruction(Action.OPERATE, token2);
 		}

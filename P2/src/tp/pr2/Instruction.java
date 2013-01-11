@@ -83,9 +83,9 @@ public class Instruction {
 	public boolean isValid() {
 	
 		return !((action.equals(Action.UNKNOWN)) ||
-				  (action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW)) ||
-				  (action.equals(Action.PICK) && this.itemName.equals("")) ||
-				  (action.equals(Action.OPERATE) && this.itemName.equals("")));
+				(action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW)) ||
+				(action.equals(Action.PICK) && this.itemName.equals("")) ||
+				(action.equals(Action.OPERATE) && this.itemName.equals("")));
 
 		}
 
