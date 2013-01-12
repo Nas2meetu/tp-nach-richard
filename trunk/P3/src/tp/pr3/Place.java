@@ -6,71 +6,109 @@ import static tp.pr3.Constants.*;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 3
 * 
 */
 
 
 public class Place {
-	
+    
+    private String placeName;
+    private boolean isSpaceship;
+    private String placeDescription;
+    private ItemContainer itemsInPlace;
+   
 
-	private String placeName;
-	private boolean isSpaceship;
-	private String placeDescription;
-	private ItemContainer itemsInPlace;
-	
+   
+    /**
+     *
+     * Constructor of three parameters with name and description place and if this place has a Robot Space Ship
+     *
+     * @param placeName is place name
+     * @param isSpaceship is place where Spaceship is it
+     * @param placeDescription is information about place
+     *
+     */
 
-	
-	public ItemContainer getItemsInPlace() {
-		return itemsInPlace;
-	}
+    public Place(String placeName, boolean isSpaceship, String placeDescription) {
+            this.placeName = placeName;
+            this.isSpaceship = isSpaceship;
+            this.placeDescription = placeDescription;
+            this.itemsInPlace = new ItemContainer();
+    }
+   
+    /**
+     * Constructor without parameters
+     *
+     */
+    public Place(){
+            itemsInPlace = new ItemContainer();
+    }
+    
+    public ItemContainer getItemsInPlace() {
+        return itemsInPlace;
+    }
 
-	/**
-	 * Constructor of three parameters with name and description place and if this place has a Robot Space Ship
-	 * @param placeName is place name
-	 * @param isSpaceship is place where Spaceship is it
-	 * @param placeDescription is information about place
-	 * 
-	 */
+    /**
+     *
+     * Return a public method (getItem) of a private attribute (id).
+     *
+     * @param id is a reference to identify an item.
+     *
+     * @return getItem
+     *
+     */
+   
+    public Item getItem(String id){
+            return itemsInPlace.getItem(id);
+    }
+   
+   
+    /**
+     *
+     * @return isSpaceship if spaceship is in this place.
+     *
+     */
 
-	public Place(String placeName, boolean isSpaceship, String placeDescription) {
-		this.placeName = placeName;
-		this.isSpaceship = isSpaceship;
-		this.placeDescription = placeDescription;
-		this.itemsInPlace = new ItemContainer();
-	}
-	
-	public Item getItem(String id){
-		return itemsInPlace.getItem(id);
-	}
-	
+    public boolean isSpaceship() {
+            return isSpaceship;
+    }
+   
+    /**
+     *
+     * Return a public method (pickItem) of a private attribute (id).
+     *
+     * @param id is a reference to identify an item.
+     *
+     * @return pickItem
+     *
+     */
+   
+    public Item pickItem(String id) {
+    	return itemsInPlace.pickItem(id);
+    }
+   
+    /**
+     *
+     * Return a public method (addItem) of a private attribute (item).
+     *
+     * @param item
+     *
+     * @return addItem
+     *
+     */
+   
+    public boolean addItem(Item item) {
+            return itemsInPlace.addItem(item);
+    }
+   
 
-	public Place(){
-		itemsInPlace = new ItemContainer();
-	}
-	
-	/**
-	 * 
-	 * @return isSpaceship
-	 * 
-	 */
+    /**
+     *
+     * Override toString to show place information.
+     *
+     */
 
-	public boolean isSpaceship() {
-		return isSpaceship;
-	}
-	
-	public Item pickItem(String id) {
-			return itemsInPlace.pickItem(id);
-	}
-	
-	public boolean addItem(Item item) {
-		return itemsInPlace.addItem(item);
-	}
-	
-
-	/**
-	 * Override toString to show place information
-	 */
 	
 	public String toString() {
 		if (itemsInPlace.numberOfItems() == 0)

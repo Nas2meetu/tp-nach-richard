@@ -4,7 +4,7 @@ package tp.pr3;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 3
 *
 */
 
@@ -17,18 +17,16 @@ public class Street {
 	private boolean isOpen;
 	private String code;
 	
+	 /**
+    *
+    * Constructor of three parameters to create Streets.
+    *
+    * @param sourcePlace is one side of street.
+    * @param direction is default direction.
+    * @param targetPlace is opposite side of street.
+    *
+    */
 	
-	
-	/**
-	 * 
-	 * Constructor of five parameters to create Streets 
-	 * @param sourcePlace is one side of street
-	 * @param direction is default direction
-	 * @param targetPlace is opposite side of street
-	 * @param isOpen if street is open or not
-	 * @param code is the code to open street if it is closed
-	 * 
-	 */
 
 	public Street(Place sourcePlace, Direction direction, Place targetPlace) {
 		this.sourcePlace = sourcePlace;
@@ -39,6 +37,17 @@ public class Street {
 
 	}
 	
+	/**
+    *
+    * Constructor of five parameters to create Streets.
+    *
+    * @param sourcePlace is one side of street.
+    * @param direction is default direction.
+    * @param targetPlace is opposite side of street.
+    * @param Open is default street situation.
+    * @param code is default code.
+    */
+
 	public Street(Place sourcePlace, Direction direction, Place targetPlace, boolean Open, String code) {
 		this.sourcePlace = sourcePlace;
 		this.direction = direction;
@@ -48,6 +57,13 @@ public class Street {
 
 	}
 
+	 /**
+    *
+    * Define possible next place to Robot.
+    *
+    * @param place is place where Robot is.
+    * @return nextPlace is place where Robot can move.
+    */
 
 	public Place nextPlace(Place place) {
 		Place nextPlace = null;
@@ -97,6 +113,12 @@ public class Street {
 	private boolean comeOutFromSourcePlace(Place place, Direction fromDirection) {
 		return place.equals(sourcePlace) && direction.equals(fromDirection);
 	}
+
+    /**
+     * Return a public method (isOpen) of a private attribute (isOpen).
+     *
+     * @return isOpen
+     */
 
 	
 	public boolean isOpen() {

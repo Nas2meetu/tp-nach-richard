@@ -6,7 +6,7 @@ import static tp.pr3.Constants.*;
  *
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 1
+ * @version 3
  *
  */
 
@@ -18,18 +18,45 @@ public class ItemContainer {
 	private int numberOfItems;
 	private Item[] container;
 
+	 /**
+     * Constructor of two parameters to define robot´s Container
+     */
+
 	public ItemContainer() {
 		container = new Item[100];
 		numberOfItems = 0;
 	}
 
-	public Item[] getContainer() {
-		return container;
-	}
+	/**
+     * Return a public method (container) of a private attribute (container).
+     *
+     * @return all items in Robot´s container
+     *
+     */
 
-	public int numberOfItems() {
-		return numberOfItems;
-	}
+    public Item[] getContainer() {
+            return container;
+    }
+   
+    /**
+     * Return a public method (numberOfItems) of a private attribute (numberOfItems).
+     *
+     * @return the number of Items who´s robot has
+     *
+     */
+
+    public int numberOfItems() {
+            return numberOfItems;
+    }
+   
+    /**
+     * This method return an item if item´s id and container´s id are equals
+     *
+     * @param id is a reference to identify an item.
+     *
+     * @return item if item´s id and container´s id are the same
+     */
+
 	
 	public Item getItem(String id){
 		
@@ -41,16 +68,20 @@ public class ItemContainer {
 			i++;
 		}return null;
 	}
+
 	/**
-	 * Usamos el posItem para sacar la posicion del id del Item
-	 * Si la posicion es -1, devuelve item vacio
-	 * Creamos una instancia Item en la que metemos el item del container en la posicion (pos)
-	 * usamos despues moveItemLeft para desplazar desde la posicion (pos) a la izquierda y
-	 * ponemos el cont uno menos, al finalizar, devolvemos el item 
-	 * 
-	 * @param id
-	 * @return
-	 */
+    *
+    * Use posItem to know the position of item's id.
+    * If position is -1, return an empty item.
+    * Make an instance Item and put into container's item in position (pos)
+    * Use after moveItemLeft to shift move position (pos) to left and
+    * decrease cont one unit, finally return item.
+    *
+    * @param id is a reference to identify an item.
+    *
+    * @return picked item has been pick or not.
+    */
+
 	public Item pickItem(String id) { 
 		Item picked;
 		int pos = posItem(id);
@@ -65,17 +96,20 @@ public class ItemContainer {
 		return picked;
 	}
 	
-	/**
-	 * En whereInsert recibimos un id de un item y sabremos la posicion donde hay que insertarlo
-	 * Para ello, usamos una variable "i" para recorrer el array container hasta el final del 
-	 * container, donde iremos comparando todos los items del container con el "id" del item que
-	 * recibe el metodo, si la comparacion es menor que 0, querrá decir que es menor y devolverá
-	 * "i", que será la posición. Si llega hasta el final del array y no hay ninguno menor,
-	 * entonces la posicion donde insertar el item será "cont" o "cont + 1"  
-	 * 
-	 * @param id
-	 * @return
-	 */
+	/**  
+    *
+    * Recibe and item's id, and find position to insert this item.
+    * Use i parameter to move around container's array, from i position to end of container's array.
+    * Compare all item container with id was received from method.
+    * If comparation is small than 0 return i (position to insert item)
+    * else increase i counter.
+    * If counter i find the end of array position of insert item is i.
+    *
+    * @param id is a reference to identify an item.
+    *
+    * @return i is a position to insert item.
+    */
+
 
 	private int whereInsert(String id){
 		int i = 0;
@@ -89,13 +123,16 @@ public class ItemContainer {
 	}
 	
 	/**
-	 * PosItem recibe un "id" de un item, recorre el array container y mira si el "id" del item
-	 * y el "id" del container son iguales, si es asi devuelve la posicion "i" del array. Sino
-	 * devuelve -1
-	 * 
-	 * @param id
-	 * @return
-	 */
+    *
+    * PosItem receive an item's id, move around item's container and
+    * compare item's id with container's id, if equal return i.
+    * Else return -1
+    *
+    * @param id is a reference to identify an item.
+    *
+    * @return -1
+    */
+
 	
 	private int posItem(String id) {
 		int i = 0;
@@ -109,11 +146,12 @@ public class ItemContainer {
 	}
 	
 	/**
-	 * moveItemLeft deplaza la posicion del container una posicion a la izquierda a partir de un
-	 * "i" dado.
-	 * 
-	 * @param i
-	 */
+     * moveItemLeft moves Item's position one to left from initial position (pos).
+     *  
+     * @param pos initial position.
+     *
+     */
+
 
 	private void moveItemLeft(int pos) {
 		for (int j = pos; j < numberOfItems; j++) {
@@ -123,11 +161,11 @@ public class ItemContainer {
 	}
 	
 	/**
-	 * moveItemRight deplaza la posicion del container una posicion a la derecha a partir de un
-	 * "i" dado.
-	 * 
-	 * @param i
-	 */
+     * moveItemLeft moves Item's position one to right from initial position (i).
+     *
+     * @param i initial position.
+     */
+
 
 	private void moveItemRight(int pos) {
 
@@ -138,16 +176,14 @@ public class ItemContainer {
 	}
 	
 	/**
-	 * addItem se encarga de añadir un item al container de itemContainer. Para ello, crea una 
-	 * instancia "pos" con la posicion generada por el metodo posItem con el "id" del item, si la
-	 * posicion es -1 entonces devuelve false y no añade el item. Por el contrario, sino es asi
-	 * modifica la posicion "pos" con la posicion donde tendremos que insertar el item, desplazamos
-	 * el array container una posicion a la derecha e insertamos el item. Incrementamos el "cont"
-	 * en 1 y devolvemos true. 
-	 * 
-	 * @param item
-	 * @return
-	 */
+    *
+    * addItem insert an item in itemContainer's container.
+    *
+    * @param item
+    *
+    * @return added
+    */
+
 
 	public boolean addItem(Item item) {
 		boolean added;
@@ -164,19 +200,30 @@ public class ItemContainer {
 	
 	}
 	
+	 /**
+    *
+    * Show content of ItemContainer of place.
+    *
+    */
+
+	
 	public String toString(){
 	
 		String showItems = "";
-		if (numberOfItems() == 0) { 
-			return CONTAINER_EMPTY;
-		} else {
+		if (numberOfItems() != 0)
 			for (int i = 0; i < numberOfItems(); i++) {
 				showItems += "   " + container[i].getId() + LINE_SEPARATOR;
 			}
 			return showItems;
-		}
 	}
 	
+	/**
+    *
+    * Show items of container.
+    *
+    * @return showItems items of container of robot´s container.
+    */
+
 	public String showItems(){
 		
 		String showItems = "";
@@ -192,32 +239,4 @@ public class ItemContainer {
 	}
 	 
 }
-
-	/*
-	 * public Item pickItem(String id) {
-	 * 
-	 * 
-	 * //container.remove(id); return item; }
-	 */
-
-	/*
-	 * public boolean addItem(Item item) {
-	 * 
-	 * int i = 0; while (i < this.container.size() &&
-	 * !(this.container.elementAt(i).getId().equals(item.getId()))) i++; if (i
-	 * == container.size()) { container.add(item); return true; } else return
-	 * false; }
-	 */
-
-	/*
-	 * private String showContainer(){ String list = CONTAINER; Iterator <Item>
-	 * walleitem = container.iterator();
-	 * 
-	 * while (walleitem.hasNext()){ list = list + (walleitem.next().toString());
-	 * } if (container.size() == 0){ // no items en el container list =
-	 * (CONTAINER_EMPTY); } return list; }
-	 * 
-	 * 
-	 * public ArrayList<Item> getContainer() { return container; }
-	 * */
 	  
