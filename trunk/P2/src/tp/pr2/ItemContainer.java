@@ -198,14 +198,11 @@ public class ItemContainer {
 	public String toString(){
 	
 		String showItems = "";
-		if (numberOfItems() == 0) { 
-			return CONTAINER_EMPTY;
-		} else {
+		if (numberOfItems() != 0) 
 			for (int i = 0; i < numberOfItems(); i++) {
 				showItems += "   " + container[i].getId() + LINE_SEPARATOR;
 			}
 			return showItems;
-		}
 	}
 	
 	/**
