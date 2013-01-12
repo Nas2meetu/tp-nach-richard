@@ -233,7 +233,7 @@ public class RobotEngine {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
 			addFuel(-5);
 			System.out.println(MOVE + lookingDirection);
-			System.out.println(actualPlace.toString() + LINE_SEPARATOR + 
+			System.out.println(actualPlace.toString() + 
 					POWER2 + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial +
 					LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection) ;
 				
