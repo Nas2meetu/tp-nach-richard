@@ -64,6 +64,15 @@ public class Interpreter {
 			return new Instruction(Action.UNKNOWN);
 	}
 	
+	/**
+    *
+    * Generate an action of type HELP
+    *
+    * @param st is an instruction introduced by player
+    * @return instruction is a instruction of type HELP
+    *
+    */
+
 	private static Instruction generateHelp(StringTokenizer st) {
 		if(!st.hasMoreTokens())
 			return new Instruction(Action.HELP);
@@ -71,12 +80,14 @@ public class Interpreter {
 			return new Instruction(Action.UNKNOWN);
 	}
 	
-
 	/**
-	 * 
-	 * @param st
-	 * @return
-	 */
+    *
+    * Generate an action of type MOVE
+    *
+    * @param st is a possible instruction introduced by player
+    * @return instruction is a instruction of type MOVE
+    */
+
 	
 	private static Instruction generateMove(StringTokenizer st) {
 		if(!st.hasMoreTokens())
@@ -85,6 +96,14 @@ public class Interpreter {
 			return new Instruction(Action.UNKNOWN);
 	}
 	
+	/**
+    *
+    * Generate an action of type OPERATE
+    *
+    * @param st is an instruction introduced by player
+    * @return instruction is a instruction of type OPERATE
+    *
+    */
 	
 	private static Instruction generateOperate(StringTokenizer st) {
 		if(st.hasMoreTokens()){
@@ -98,6 +117,14 @@ public class Interpreter {
 			return new Instruction(Action.UNKNOWN);
 	}
 	
+	 /**
+    *
+    * Generate an action of type PICK
+    *
+    * @param st is an instruction introduced by player
+    * @return instruction is a instruction of type PICK
+    */
+
 	private static Instruction generatePick(StringTokenizer st) {
 		 
 		if(st.hasMoreTokens()){
@@ -110,6 +137,16 @@ public class Interpreter {
 		else
 			return new Instruction(Action.UNKNOWN);
 	}
+	
+	/**
+    *
+    * Generate an action of type QUIT
+    *
+    * @param st is an instruction introduced by player
+    * @return instruction is a instruction of type QUIT
+    *
+    */
+
 	
 	private static Instruction generateQuit(StringTokenizer st) {
 		if(!st.hasMoreTokens())
@@ -125,6 +162,16 @@ public class Interpreter {
 			return new Instruction(Action.UNKNOWN);
 	}
 	
+	/**
+    *
+    * Generate an action of type SCAN
+    *
+    * @param st is an instruction introduced by player
+    * @return instruction is a instruction of type SCAN
+    *
+    */
+
+	
 	private static Instruction generateScan(StringTokenizer st) {
 		if(st.hasMoreTokens()){
 			String token2 =  st.nextToken();
@@ -137,6 +184,14 @@ public class Interpreter {
 			return new Instruction(Action.SCAN);
 	}
 	
+	/**
+    *
+    * Verified if TURN instruction syntax is correct.
+    *
+    * @param st is an instruction introduced by player
+    * @return instruction is a instruction of type TURN
+    */
+
 	private static Instruction generateTurn(StringTokenizer st) {
 		if (st.hasMoreTokens()){
 			String token2 = st.nextToken().toUpperCase();

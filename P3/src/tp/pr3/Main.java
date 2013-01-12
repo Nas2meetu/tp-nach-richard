@@ -6,7 +6,7 @@ import static tp.pr3.Constants.*;
 * 
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 3
 */
 public class Main {
 

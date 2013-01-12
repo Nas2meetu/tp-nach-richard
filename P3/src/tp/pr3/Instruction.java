@@ -4,62 +4,77 @@ package tp.pr3;
 *
 * @author Ignacio Cerda Sanchez
 * @author Ricardo Eugui Fernandez
-* @version 1
+* @version 3
 */
 
 public class Instruction {
-	
-	/**
-     * Receive and execute instructions
+
+
+    private Action action;
+    private Rotation rotation;
+    private String itemName;
+   
+    /**
+     *
+     * Constructor of one parameter action
+     *
+     * @param action is an action made by Robot
+     *
      */
 
-	private Action action;
-	private Rotation rotation;
-	private String itemName;
-	
-	/**
-	 * Constructor of one parameter action
-	 * @param action is an action made by Robot
-	 */
+    public Instruction(Action action) {
+            this.action = action;
+            this.rotation = Rotation.UNKNONW;
+            this.itemName = "";
+    }
+   
+    /**
+     *
+     * Constructor of two parameter action, includes turn and direction to rotation
+     *
+     * @param action is an action of Robot
+     * @param rotation is rotation of Robot left or right
+     *  
+     */
 
-	public Instruction(Action action) {
-		this.action = action;
-		this.rotation = Rotation.UNKNONW;
-		this.itemName = "";
-	}
-	
-	/**
-	 * Constructor of two parameter action, includes turn and direction to rotation
-	 * @param action is an action to turn Robot
-	 * @param rotation is rotation of Robot left or right
-	 *  
-	 */
+    public Instruction(Action action, Rotation rotation) {
+            this.action = action;
+            this.rotation = rotation;
+            this.itemName = "";
+    }
+   
+    /**
+     *
+     * Default Constructor without parameters.
+     *
+     */
 
-	public Instruction(Action action, Rotation rotation) {
-		this.action = action;
-		this.rotation = rotation;
-		this.itemName = "";
-	}
-	
-	/**
-	 * Default Constructor without parameters 
-	 */
+    public Instruction() {
+            this.action = Action.UNKNOWN;
+            this.rotation = Rotation.UNKNONW;
+            this.itemName = "";
+    }
+   
+   
+    /**
+     *
+     * Constructor without rotation parameter.
+     *
+     * @param action is an action to turn Robot.
+     * @param itemName name of item.
+     */
+   
+   
+    public Instruction(Action action, String itemName) {
+            this.action = action;
+            this.rotation = Rotation.UNKNONW;
+            this.itemName = itemName;
+           
+    }
 
-	public Instruction() {
-		this.action = Action.UNKNOWN;
-		this.rotation = Rotation.UNKNONW;
-		this.itemName = "";
-	}
-	
-	public Instruction(Action action, String itemName) {
-		this.action = action;
-		this.rotation = Rotation.UNKNONW;
-		this.itemName = itemName;
-		
-	}
 
 	/**
-	 * Is a method to know if action and rotation are valid
+	 * Is a method to know if action, rotation, pick or operate are valid
 	 * @return isValid if action is not Unknown or turn rotation is not Unknown
 	 */
 
@@ -73,29 +88,41 @@ public class Instruction {
 		}
 
 	
-	/**
-	 * 
-	 * @return action
-	 * 
-	 */
+	 /**
+    *
+    * Return a public method (action) of a private attribute (Action).
+    *
+    * @return action is an action of Robot.
+    *
+    */
 
-	public Action getAction() {	
-		return action;
-	}
-	
-	/**
-	 * 
-	 * @return rotation
-	 * 
-	 */
+   public Action getAction() {    
+           return action;
+   }
+  
+   /**
+    *
+    * Return a public method (rotation) of a private attribute (Rotation).
+    *
+    * @return rotation is rotation of Robot left or right.
+    *
+    */
 
-	public Rotation getRotation() {
-		return rotation;
-	}
+   public Rotation getRotation() {
+           return rotation;
+   }
 
-	
-	public String getId() {
-		return itemName;
-	}
+   /**
+    *
+    * Return a public method (itemName) of a private attribute (Id).
+    *
+    * @return itemName name of item.
+    *
+    */
+  
+   public String getId() {
+           return itemName;
+   }
+
 
 }
