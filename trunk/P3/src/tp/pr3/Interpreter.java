@@ -51,7 +51,15 @@ public class Interpreter {
 			return new Instruction(Action.UNKNOWN);
 		
 	}
-	
+
+	/**
+    *
+    * Generate an action of type DROP
+    *
+    * @param st is an instruction introduced by player
+    * @return instruction is a instruction of type DROP
+    */	
+
 	private static Instruction generateDrop(StringTokenizer st) {
 		if (st.hasMoreTokens()){
 			String token2 = st.nextToken();
@@ -117,7 +125,7 @@ public class Interpreter {
 			return new Instruction(Action.UNKNOWN);
 	}
 	
-	 /**
+	/**
     *
     * Generate an action of type PICK
     *
@@ -154,6 +162,15 @@ public class Interpreter {
 		else
 			return new Instruction(Action.UNKNOWN);
 	}
+
+	/**
+    *
+    * Generate an action of type RADAR
+    *
+    * @param st is an instruction introduced by player
+    * @return instruction is a instruction of type RADAR
+    *
+    */
 	
 	private static Instruction generateRadar(StringTokenizer st) {
 		if (!st.hasMoreTokens())
