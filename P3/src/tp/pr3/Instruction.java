@@ -74,7 +74,7 @@ public class Instruction {
 
 
 	/**
-	 * Is a method to know if action, rotation, pick or operate are valid
+	 * Is a method to know if action, drop, rotation, pick or operate are valid
 	 * @return isValid if action is not Unknown or turn rotation is not Unknown
 	 */
 

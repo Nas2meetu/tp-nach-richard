@@ -140,7 +140,15 @@ public class RobotEngine {
 				
 		}
 	}
-
+	
+	/**
+    *
+    * Execute DROP action, with this action Robot takes an item of Wall·E container
+    * ,delete of Wall·E container and put into Wall·E street.
+    *
+    * @param instruction is a command that Robot processes.
+    *
+    */
 
 	private void executeDropAction(Instruction instruction) {
 		 Item item = container.getItem(instruction.getId());
@@ -241,10 +249,25 @@ public class RobotEngine {
         	 System.out.println(CONTAINER_REPEAT_ITEM + instruction.getId());
 	 }
 	 
+	 /**
+	  * 
+	  * Execute EXIT action to finish game.
+	  * 
+	  */
+	 
 	 private void executeQuit() {
 			System.out.println(QUIT);
 			System.exit(0);
 	 }
+	 
+	/**
+	*
+	* Execute RADAR action, with this action Robot can
+	* revise all items of street.
+	*	
+	* @param instruction is a command that Robot processes.
+	*
+	*/
 	 
 	private void executeRadarAction(Instruction instruction) {
 		Item[] items = actualPlace.getItemsInPlace().getContainer();
