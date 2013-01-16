@@ -72,57 +72,58 @@ public class Instruction {
            
     }
 
+    /**
+     *
+     * Is a method to know if action, drop, rotation, pick or operate are valid.
+     *
+     * @return isValid if action is not Unknown, turn rotation is not Unknown or pick or operate with a exists items  
+     *
+     */
 
-	/**
-	 * Is a method to know if action, drop, rotation, pick or operate are valid
-	 * @return isValid if action is not Unknown or turn rotation is not Unknown
-	 */
+    public boolean isValid() {
+   
+    return !((action.equals(Action.DROP) && this.itemName.equals("")) ||
+                    (action.equals(Action.OPERATE) && this.itemName.equals("")) ||
+                    (action.equals(Action.PICK) && this.itemName.equals("")) ||
+                    (action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW)) ||
+                    (action.equals(Action.UNKNOWN)));
+    }
 
-	public boolean isValid() {
-	
-		return !((action.equals(Action.DROP) && this.itemName.equals("")) ||
-				(action.equals(Action.OPERATE) && this.itemName.equals("")) ||
-				(action.equals(Action.PICK) && this.itemName.equals("")) ||
-				(action.equals(Action.TURN) && rotation.equals(Rotation.UNKNONW)) ||
-				(action.equals(Action.UNKNOWN)));
-		}
+   
+    /**
+     *
+     * Return a public method (action) of a private attribute (Action).
+     *
+     * @return action is an action of Robot.
+     *
+     */
 
-	
-	 /**
-    *
-    * Return a public method (action) of a private attribute (Action).
-    *
-    * @return action is an action of Robot.
-    *
-    */
+    public Action getAction() {    
+            return action;
+    }
+   
+    /**
+     *
+     * Return a public method (rotation) of a private attribute (Rotation).
+     *
+     * @return rotation is rotation of Robot left or right.
+     *
+     */
 
-   public Action getAction() {    
-           return action;
-   }
-  
-   /**
-    *
-    * Return a public method (rotation) of a private attribute (Rotation).
-    *
-    * @return rotation is rotation of Robot left or right.
-    *
-    */
+    public Rotation getRotation() {
+            return rotation;
+    }
 
-   public Rotation getRotation() {
-           return rotation;
-   }
-
-   /**
-    *
-    * Return a public method (itemName) of a private attribute (Id).
-    *
-    * @return itemName name of item.
-    *
-    */
-  
-   public String getId() {
-           return itemName;
-   }
-
+    /**
+     *
+     * Return a public method (itemName) of a private attribute (Id).
+     *
+     * @return itemName name of item.
+     *
+     */
+   
+    public String getId() {
+            return itemName;
+    }
 
 }

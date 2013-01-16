@@ -1,5 +1,6 @@
 package tp.pr3;
 
+import static tp.pr3.Constants.*;
 
 /**
 *
@@ -8,7 +9,6 @@ package tp.pr3;
 * @version 3
 *
 */
-
 
 
 public class Garbage extends Item {    
@@ -67,8 +67,14 @@ public class Garbage extends Item {
         if (canBeUsed()){
             robot.addRecycledMaterial(garbage);
             canBeUse = false;
+             System.out.println(POWER2 + robot.getFuel() + LINE_SEPARATOR
+                                            + RECICLED_MATERIAL + robot.getRecycledMaterial());
             return true;
-        }return false;
+        }
+        else{
+            System.out.println(ITEM_PROBLEMS + getId());
+            return false;
+        }
     }
    
    

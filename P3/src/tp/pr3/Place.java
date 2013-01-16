@@ -44,11 +44,7 @@ public class Place {
     public Place(){
             itemsInPlace = new ItemContainer();
     }
-    
-    public ItemContainer getItemsInPlace() {
-        return itemsInPlace;
-    }
-
+   
     /**
      *
      * Return a public method (getItem) of a private attribute (id).
@@ -85,7 +81,7 @@ public class Place {
      */
    
     public Item pickItem(String id) {
-    	return itemsInPlace.pickItem(id);
+                    return itemsInPlace.pickItem(id);
     }
    
     /**
@@ -108,17 +104,17 @@ public class Place {
      * Override toString to show place information.
      *
      */
-
-	
-	public String toString() {
-		if (itemsInPlace.numberOfItems() == 0)
-			return  placeName + LINE_SEPARATOR + placeDescription+ LINE_SEPARATOR
-					 + PLACE_EMPTY + LINE_SEPARATOR 
-					 + itemsInPlace.toString();
-		else
-			return  placeName + LINE_SEPARATOR + placeDescription+ LINE_SEPARATOR
-				 + SHOW_PLACE + LINE_SEPARATOR 
-				 + itemsInPlace.toString();
-	}
+   
+    public String toString() {
+            if (itemsInPlace.numberOfItems() == 0)
+                    return  placeName + LINE_SEPARATOR + placeDescription+ LINE_SEPARATOR
+                                     + PLACE_EMPTY + LINE_SEPARATOR
+                                     + itemsInPlace.toString();
+            else
+                    return  placeName + LINE_SEPARATOR + placeDescription+ LINE_SEPARATOR
+                             + SHOW_PLACE + LINE_SEPARATOR
+                             + itemsInPlace.toString();
+    }
 
 }
+

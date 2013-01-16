@@ -1,4 +1,5 @@
 package tp.pr3;
+import static tp.pr3.Constants.*;
 
 /**
 *
@@ -42,7 +43,8 @@ public class CodeCard extends Item {
      */
    
     public boolean use(RobotEngine robot, Place where) {
-    if ((this.code == null) || (where == null)){
+   
+            if ((this.code == null) || (where == null)){
         return false;
     }if (robot.getHeadingStreet() != null && this.code.equals(robot.getHeadingStreet().getCode())){
         if (robot.getHeadingStreet().isOpen())
@@ -50,10 +52,11 @@ public class CodeCard extends Item {
         else
             robot.getHeadingStreet().open(this);
         return true;
-    }else
+    }else{
+            System.out.println(ITEM_PROBLEMS + getId().toLowerCase());
         return false;
-       
     }
+}
    
     /**
      *
@@ -67,4 +70,3 @@ public class CodeCard extends Item {
     }
 
 }
-
