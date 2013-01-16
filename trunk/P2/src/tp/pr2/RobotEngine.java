@@ -156,21 +156,16 @@ public class RobotEngine {
 	
 	private void executeOperateAction(Instruction instruction) {
 		Item item = container.getItem(instruction.getId());
-		if (item == null)
-			System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");		
-		else if (item.use(this, actualPlace)) {
+		if (item != null && item.canBeUsed()){
+			item.use(this, actualPlace);
 			
-			if(item instanceof CodeCard){ 
-				item = (CodeCard)item;
-             }else
-				System.out.println(POWER2 + contFuel + LINE_SEPARATOR 
-									+ RECICLED_MATERIAL + contRecycledMaterial);
-			if (!item.canBeUsed()) {
-				System.out.println(ITEM_CANT_USED + instruction.getId() + " in my inventory");
-				container.pickItem(instruction.getId());
-			}
-		} else
-			System.out.println(ITEM_PROBLEMS + instruction.getId() );
+		}
+		else
+			System.out.println(ITEM_PROBLEMS + instruction.getId() + " in my inventory");
+		if (item!=null && !item.canBeUsed()) {
+            container.pickItem(instruction.getId());
+            System.out.println(ITEM_CANT_USED+instruction.getId()+" in my inventory");
+		}
 	}	
 			
 	
@@ -289,6 +284,9 @@ public class RobotEngine {
 	
 	public void addFuel(int newFuel) {
 		this.contFuel += newFuel;
+		if (contFuel<0){
+			contFuel=0;
+		}
 	}
 	
 	/**
