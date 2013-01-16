@@ -2,6 +2,11 @@
 
 package tp.pr2;
 
+import static tp.pr2.Constants.ITEM_PROBLEMS;
+import static tp.pr2.Constants.LINE_SEPARATOR;
+import static tp.pr2.Constants.POWER2;
+import static tp.pr2.Constants.RECICLED_MATERIAL;
+
 
 /**
 *
@@ -69,8 +74,14 @@ public class Garbage extends Item {
             if (canBeUsed()){
             	robot.addRecycledMaterial(garbage);
             	canBeUse = false;
+            	 System.out.println(POWER2 + robot.getFuel() + LINE_SEPARATOR 
+ 						+ RECICLED_MATERIAL + robot.getRecycledMaterial());
             	return true;
-            }return false;
+            }
+            else{
+            	System.out.println(ITEM_PROBLEMS + getId()); 
+            	return false;
+            }
         }
        
         

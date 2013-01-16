@@ -28,9 +28,9 @@ public class Constants {
 	
 	public static final String RECICLED_MATERIAL = "   * My recycled material is: ";
 	
-	public static final String POWER = "    * My Power is ";
+	public static final String POWER = "    * My power is ";
 	
-	public static final String POWER2 = "   * My Power is ";
+	public static final String POWER2 = "   * My power is ";
 	
 	public static final String STREET_CLOSE = WALLE_SAYS 
 				+ "Arrggg, there is a street but it is closed!";
@@ -69,7 +69,7 @@ public class Constants {
 					"What a pity! I have no more ";
 	
 	public static final String CONTAINER_REPEAT_ITEM = WALLE_SAYS +
-			"I am stupid! I already have the object ";
+			"I am stupid! I had already the object ";
 
 	public static final String HELP = "The valid instructions for WALL-E are:"
 			+ LINE_SEPARATOR + "     MOVE"

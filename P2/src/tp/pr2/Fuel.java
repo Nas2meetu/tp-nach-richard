@@ -1,5 +1,10 @@
 package tp.pr2;
 
+import static tp.pr2.Constants.ITEM_PROBLEMS;
+import static tp.pr2.Constants.LINE_SEPARATOR;
+import static tp.pr2.Constants.POWER2;
+import static tp.pr2.Constants.RECICLED_MATERIAL;
+
 /**
 *
 * @author Ignacio Cerda Sanchez
@@ -52,7 +57,13 @@ public class Fuel extends Item {
             	robot.addFuel(this.power);
                 this.times--;
                 used = true;
-            }return used;
+                System.out.println(POWER2 + robot.getFuel() + LINE_SEPARATOR 
+						+ RECICLED_MATERIAL + robot.getRecycledMaterial());
+
+            }
+            else 
+            	System.out.println(ITEM_PROBLEMS + getId()); 
+            return used;
            
     }
    
