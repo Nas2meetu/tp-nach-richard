@@ -1,6 +1,8 @@
 package tp.pr3;
 
 import static tp.pr3.Constants.*;
+import tp.pr3.items.Item;
+import tp.pr3.items.ItemContainer;
 
 /**
 *

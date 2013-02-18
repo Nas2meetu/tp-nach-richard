@@ -1,4 +1,7 @@
-package tp.pr3;
+package tp.pr3.items;
+
+import tp.pr3.Place;
+import tp.pr3.RobotEngine;
 
 
 /**
