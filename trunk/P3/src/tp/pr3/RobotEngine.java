@@ -2,6 +2,9 @@ package tp.pr3;
 
 
 import java.util.Scanner;
+
+import tp.pr3.items.Item;
+import tp.pr3.items.ItemContainer;
 import static tp.pr3.Constants.*;
 
 /**

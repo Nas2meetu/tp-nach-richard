@@ -1,6 +1,9 @@
 package tp.pr3;
 
 import static tp.pr3.Constants.*;
+import tp.pr3.items.CodeCard;
+import tp.pr3.items.Fuel;
+import tp.pr3.items.Garbage;
 
 /**
 * 

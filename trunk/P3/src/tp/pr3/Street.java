@@ -1,5 +1,7 @@
 package tp.pr3;
 
+import tp.pr3.items.CodeCard;
+
 /**
 *
 * @author Ignacio Cerda Sanchez

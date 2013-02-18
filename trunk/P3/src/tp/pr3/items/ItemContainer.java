@@ -1,4 +1,4 @@
-package tp.pr3;
+package tp.pr3.items;
 
 import static tp.pr3.Constants.*;
 
