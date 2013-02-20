@@ -1,7 +1,21 @@
 package tp.pr3;
 import static tp.pr3.Constants.*;
 
+import java.util.ArrayList;
 import java.util.StringTokenizer;
+
+import tp.pr3.commands.Command;
+import tp.pr3.commands.exceptions.WrongCommandFormatException;
+import tp.pr3.instructions.DropInstruction;
+import tp.pr3.instructions.HelpInstruction;
+import tp.pr3.instructions.MoveInstruction;
+import tp.pr3.instructions.OperateInstruction;
+import tp.pr3.instructions.PickInstruction;
+import tp.pr3.instructions.QuitInstruction;
+import tp.pr3.instructions.RadarInstruction;
+import tp.pr3.instructions.ScanInstruction;
+import tp.pr3.instructions.TurnInstruction;
+import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
 
 
 
@@ -14,7 +28,8 @@ import java.util.StringTokenizer;
 */
 
 public class Interpreter {    
-    
+	
+	  
     /**
      *
      * Verified if instruction's syntax is correct.
@@ -25,11 +40,34 @@ public class Interpreter {
      */
    
     public static Instruction generateInstruction(String prompt) {
-            StringTokenizer st = new StringTokenizer(prompt, " ");
+           /* StringTokenizer st = new StringTokenizer(prompt, " ");
            
-            String words = st.nextToken().toUpperCase();
+            String words = st.nextToken().toUpperCase();*/
+            
+    	Instruction[] allInstructions = new Instruction[]{
+     	
+    	new DropInstruction();
+    	new HelpInstruction();
+    	new MoveInstruction();
+    	new OperateInstruction();
+    	new PickInstruction();
+    	new QuitInstruction();
+    	new RadarInstruction();
+    	new ScanInstruction();
+    	new TurnInstruction();	
+    	}
+    	
+    		for (Instruction aux : allInstructions) {
+    			try {
+    				return aux.parse(prompt);
+    				
+    			} catch (WrongInstructionFormatException wife) {
+    		}
+    			throw new WrongCommandFormatException();
+    	
+    }
            
-    if(words.equals("DROP"))
+   /* if(words.equals("DROP"))
             return generateDrop(st);
     if(words.equals("HELP"))
                     return generateHelp(st);
@@ -48,11 +86,10 @@ public class Interpreter {
     if(words.equals("TURN"))
             return generateTurn(st);
     else
-            return new Instruction(Action.UNKNOWN);
+            return new Instruction(Action.UNKNOWN);*/
 
            
    
-    }
    
 /**
  *
