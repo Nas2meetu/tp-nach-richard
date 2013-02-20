@@ -64,7 +64,7 @@ public class RobotEngine {
     public void startEngine() {
            
             Scanner read = new Scanner(System.in);
-            Instruction instruction = new Instruction();
+            Instruction_old instruction = new Instruction_old();
            
            
             System.out.println(actualPlace.toString() + LINE_SEPARATOR +
@@ -96,7 +96,7 @@ public class RobotEngine {
      *
      */
 
-    private boolean isEndGame(Instruction instruction) {
+    private boolean isEndGame(Instruction_old instruction) {
             return instruction.equals("QUIT") || actualPlace.isSpaceship();
     }
    
@@ -109,7 +109,7 @@ public class RobotEngine {
      */
    
 
-public void processInstruction(Instruction instruction) {
+public void processInstruction(Instruction_old instruction) {
    
    
             switch (instruction.getAction()) {
@@ -164,7 +164,7 @@ public void processInstruction(Instruction instruction) {
  *
  */
 
-private void executeDropAction(Instruction instruction) {
+private void executeDropAction(Instruction_old instruction) {
          Item item = container.getItem(instruction.getId());
  if(item == null)
      System.out.println(CONTAINER_NO_ITEM + instruction.getId());
@@ -184,7 +184,7 @@ private void executeDropAction(Instruction instruction) {
      *
      */
    
-    private void executeHelpAction(Instruction instruction) {
+    private void executeHelpAction(Instruction_old instruction) {
             System.out.println(HELP);
     }
 
@@ -220,7 +220,7 @@ private void executeDropAction(Instruction instruction) {
      *
      */
    
-    private void executeOperateAction(Instruction instruction) {
+    private void executeOperateAction(Instruction_old instruction) {
             Item item = container.getItem(instruction.getId());
             if (item != null && item.canBeUsed()){
                     item.use(this, actualPlace);
@@ -243,7 +243,7 @@ private void executeDropAction(Instruction instruction) {
      *
      */
 
-     private void executePickAction(Instruction instruction) {
+     private void executePickAction(Instruction_old instruction) {
      Item item = actualPlace.getItem(instruction.getId());
      if(item == null)
          System.out.println(PLACE_NO_ITEM + instruction.getId());
@@ -274,7 +274,7 @@ private void executeQuit() {
 *
 */
  
-private void executeRadarAction(Instruction instruction) {
+private void executeRadarAction(Instruction_old instruction) {
            
                     System.out.println(WALLE_SAYS + actualPlace.toString());
 
@@ -289,7 +289,7 @@ private void executeRadarAction(Instruction instruction) {
      *
      */
 
-    private void executeScanAction(Instruction instruction) {
+    private void executeScanAction(Instruction_old instruction) {
             if(instruction.getId()==""){
                     System.out.println(container.showItems());
             }
@@ -312,7 +312,7 @@ private void executeRadarAction(Instruction instruction) {
      *
      */
    
-    private void executeTurnAction(Instruction instruction) {
+    private void executeTurnAction(Instruction_old instruction) {
             switch (instruction.getRotation()) {
             case LEFT:
                     lookingDirection = lookingDirection.turnLeft();
