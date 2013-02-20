@@ -10,8 +10,8 @@ public class HelpInstruction implements Instruction {
 
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
-		// TODO Auto-generated method stub
-		return null;
+
+	return null;
 	}
 
 	@Override
