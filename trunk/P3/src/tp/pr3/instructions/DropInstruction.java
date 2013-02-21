@@ -1,16 +1,21 @@
 package tp.pr3.instructions;
 
 import static tp.pr3.Constants.*;
-
 import java.util.StringTokenizer;
-
-import sun.org.mozilla.javascript.internal.Interpreter;
 import tp.pr3.NavigationModule;
 import tp.pr3.Place;
 import tp.pr3.RobotEngine;
 import tp.pr3.intructions.exceptions.*;
 import tp.pr3.items.Item;
 import tp.pr3.items.ItemContainer;
+
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 3
+*
+*/
 
 public class DropInstruction implements Instruction {
 
@@ -47,8 +52,7 @@ public class DropInstruction implements Instruction {
 
 	@Override
 	public String getHelp() {
-		return "DROP|SOLTAR <id>";
-
+		return "DROP | SOLTAR <id>";
 	}
 
 	@Override

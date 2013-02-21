@@ -6,6 +6,13 @@ import tp.pr3.intructions.exceptions.InstructionExecutionException;
 import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
 import tp.pr3.items.ItemContainer;
 
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 3
+*
+*/
 
 public interface Instruction {
 	

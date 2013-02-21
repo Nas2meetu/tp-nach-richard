@@ -1,23 +1,46 @@
 package tp.pr3.instructions;
 
+import static tp.pr3.Constants.HELP;
+
+import java.util.StringTokenizer;
+
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 import tp.pr3.intructions.exceptions.InstructionExecutionException;
 import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
 import tp.pr3.items.ItemContainer;
 
-public class HelpInstruction implements Instruction {
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 3
+*
+*/
 
+public class HelpInstruction implements Instruction {
+	
+	/*public HelpInstruction() {
+	}*/
+	
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
 
-	return null;
+		StringTokenizer st = new StringTokenizer(cad, " ");
+		String words = st.nextToken().toUpperCase();
+		if((words.equals("HELP")) || (words.equals("AYUDA"))){
+			if (!st.hasMoreTokens())
+				return new HelpInstruction();
+			else
+				throw new WrongInstructionFormatException();
+		}
+		else
+			throw new WrongInstructionFormatException();
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return "HELP | AYUDA";
 	}
 
 	@Override
@@ -29,7 +52,7 @@ public class HelpInstruction implements Instruction {
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		// TODO Auto-generated method stub
+		 System.out.println(HELP);
 
 	}
 
