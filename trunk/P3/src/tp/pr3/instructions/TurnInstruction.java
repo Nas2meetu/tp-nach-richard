@@ -7,6 +7,7 @@ import static tp.pr3.Constants.RECICLED_MATERIAL;
 
 import java.util.StringTokenizer;
 
+import tp.pr3.Direction;
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 import tp.pr3.Rotation;
@@ -15,22 +16,26 @@ import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
 import tp.pr3.items.ItemContainer;
 
 /**
-*
-* @author Ignacio Cerda Sanchez
-* @author Ricardo Eugui Fernandez
-* @version 3
-*
-*/
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 3
+ * 
+ */
 
 public class TurnInstruction implements Instruction {
 
-	private String id;
-	
-	public TurnInstructionLeft(String token2) {
-		this.id = token2;
+	private Rotation rotation;
+	private Direction lookingDirection;
+	private RobotEngine robot;
+	private NavigationModule navigation;
+
+	public TurnInstruction(Rotation token2) {
+		this.rotation = token2;
 	}
-	public TurnInstructionRight(String token2) {
-		this.id = token2;
+
+	public TurnInstruction() {
+
 	}
 
 	@Override
@@ -39,18 +44,21 @@ public class TurnInstruction implements Instruction {
 		StringTokenizer st = new StringTokenizer(cad, " ");
 		String words = st.nextToken().toUpperCase();
 		if ((words.equals("TURN")) || (words.equals("GIRAR"))) {
-			if (st.hasMoreTokens()){
-                String token2 = st.nextToken().toUpperCase();
-                if (st.hasMoreTokens())
-                	throw new WrongInstructionFormatException();
-                else if ((token2.equals("LEFT")) || (token2.equals("IZQUIERDA"))) 
-                		return new TurnInstructionLeft(token2);
-                else if ((token2.equals("RIGHT")) || (token2.equals("DERECHA")))
-                        return new TurnInstructionRight(token2);
-                else
-                	throw new WrongInstructionFormatException();
-
-        } else throw new WrongInstructionFormatException();
+			if (st.hasMoreTokens()) {
+				String token2 = st.nextToken().toUpperCase();
+				if (st.hasMoreTokens())
+					throw new WrongInstructionFormatException();
+				else if ((token2.equals("LEFT"))
+						|| (token2.equals("IZQUIERDA")))
+					return new TurnInstruction(Rotation.LEFT);
+				else if ((token2.equals("RIGHT")) || (token2.equals("DERECHA")))
+					return new TurnInstruction(Rotation.RIGHT);
+				else
+					throw new WrongInstructionFormatException();
+			}
+			throw new WrongInstructionFormatException();
+		} else
+			throw new WrongInstructionFormatException();
 
 	}
 
@@ -62,27 +70,19 @@ public class TurnInstruction implements Instruction {
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// TODO Auto-generated method stub
+		this.robot = engine;
+		this.navigation = navigation;
 
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-        switch (id) {
-        case LEFT:
-                lookingDirection = lookingDirection.turnLeft();
-                addFuel(-1);
-                System.out.println(POWER2 + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL
-                                + contRecycledMaterial + LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection);
-                break;
-        case RIGHT:
-                lookingDirection = lookingDirection.turnRight();
-                addFuel(-1);
-                System.out.println(POWER2 + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL
-                                + contRecycledMaterial + LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection);
-                break;
-        case UNKNONW:
-                break;
-        }
+		navigation.rotate(rotation);
+		robot.addFuel(-1);
+		System.out.println(POWER2 + robot.getFuel() + LINE_SEPARATOR
+				+ RECICLED_MATERIAL + robot.getRecycledMaterial()
+				+ LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection);
+
+	}
 
 }

@@ -25,7 +25,9 @@ public class RobotEngine {
     private ItemContainer container;
    
    
-    /**
+  
+
+	/**
      *
      * Creates a new Robot Engine
      *
@@ -60,8 +62,12 @@ public class RobotEngine {
      * Is the Start game, show initial information and finish information and if Player win or lost game.
      *
      */
+    
+    public ItemContainer getContainer() {
+  		return container;
+  	}
 
-    public void startEngine() {
+    /*public void startEngine() {
            
             Scanner read = new Scanner(System.in);
             Instruction_old instruction = new Instruction_old();
@@ -86,7 +92,7 @@ public class RobotEngine {
                     System.out.println(END_GAME);
 
     }
-   
+*/   
     /**
      *
      * Verified if game has finished.
@@ -96,9 +102,9 @@ public class RobotEngine {
      *
      */
 
-    private boolean isEndGame(Instruction_old instruction) {
+  /*  private boolean isEndGame(Instruction_old instruction) {
             return instruction.equals("QUIT") || actualPlace.isSpaceship();
-    }
+    }*/
    
     /**
      *
@@ -109,7 +115,7 @@ public class RobotEngine {
      */
    
 
-public void processInstruction(Instruction_old instruction) {
+/*public void processInstruction(Instruction_old instruction) {
    
    
             switch (instruction.getAction()) {
@@ -153,7 +159,7 @@ public void processInstruction(Instruction_old instruction) {
                     break;
                    
     }
-}
+}*/
 
 /**
  *
@@ -164,7 +170,7 @@ public void processInstruction(Instruction_old instruction) {
  *
  */
 
-private void executeDropAction(Instruction_old instruction) {
+/*private void executeDropAction(Instruction_old instruction) {
          Item item = container.getItem(instruction.getId());
  if(item == null)
      System.out.println(CONTAINER_NO_ITEM + instruction.getId());
@@ -174,7 +180,7 @@ private void executeDropAction(Instruction_old instruction) {
  }else
          System.out.println(PLACE_REPEAT_ITEM + instruction.getId());
        
-}
+}*/
 
     /**
      *
@@ -184,9 +190,9 @@ private void executeDropAction(Instruction_old instruction) {
      *
      */
    
-    private void executeHelpAction(Instruction_old instruction) {
+   /* private void executeHelpAction(Instruction_old instruction) {
             System.out.println(HELP);
-    }
+    }*/
 
     /**
      *
@@ -194,7 +200,7 @@ private void executeDropAction(Instruction_old instruction) {
      *
      */
 
-    private void executeMoveAction() {
+   /* private void executeMoveAction() {
                    
             if (getHeadingStreet()==null){
                     System.out.println(NO_STREET);
@@ -210,7 +216,7 @@ private void executeDropAction(Instruction_old instruction) {
             }else
                     System.out.println(STREET_CLOSE);
     }
-   
+   */
     /**
      *
      * Execute OPERATE action, with this action Robot can
@@ -220,7 +226,7 @@ private void executeDropAction(Instruction_old instruction) {
      *
      */
    
-    private void executeOperateAction(Instruction_old instruction) {
+    /*private void executeOperateAction(Instruction_old instruction) {
             Item item = container.getItem(instruction.getId());
             if (item != null && item.canBeUsed()){
                     item.use(this, actualPlace);
@@ -232,7 +238,7 @@ private void executeDropAction(Instruction_old instruction) {
         container.pickItem(instruction.getId());
         System.out.println(ITEM_CANT_USED+instruction.getId()+" in my inventory");
             }
-    }      
+    }      */
    
     /**
      *
@@ -243,7 +249,7 @@ private void executeDropAction(Instruction_old instruction) {
      *
      */
 
-     private void executePickAction(Instruction_old instruction) {
+   /*  private void executePickAction(Instruction_old instruction) {
      Item item = actualPlace.getItem(instruction.getId());
      if(item == null)
          System.out.println(PLACE_NO_ITEM + instruction.getId());
@@ -253,17 +259,17 @@ private void executeDropAction(Instruction_old instruction) {
      }else
              System.out.println(CONTAINER_REPEAT_ITEM + instruction.getId());
 }
-   
+   */
  /**
  *
  * Execute EXIT action to finish game.
  *
  */
 
-private void executeQuit() {
+    public void requestQuit(){
                System.out.println(QUIT);
                System.exit(0);
-}
+	}
 
     /**
 *
@@ -274,11 +280,11 @@ private void executeQuit() {
 *
 */
  
-private void executeRadarAction(Instruction_old instruction) {
+/*private void executeRadarAction(Instruction_old instruction) {
            
                     System.out.println(WALLE_SAYS + actualPlace.toString());
 
-}                  
+}                  */
    
     /**
      *
@@ -289,7 +295,7 @@ private void executeRadarAction(Instruction_old instruction) {
      *
      */
 
-    private void executeScanAction(Instruction_old instruction) {
+   /* private void executeScanAction(Instruction_old instruction) {
             if(instruction.getId()==""){
                     System.out.println(container.showItems());
             }
@@ -302,7 +308,7 @@ private void executeRadarAction(Instruction_old instruction) {
             }
            
     }
-   
+   */
 
     /**
      *
@@ -312,7 +318,7 @@ private void executeRadarAction(Instruction_old instruction) {
      *
      */
    
-    private void executeTurnAction(Instruction_old instruction) {
+    /*private void executeTurnAction(Instruction_old instruction) {
             switch (instruction.getRotation()) {
             case LEFT:
                     lookingDirection = lookingDirection.turnLeft();
@@ -329,7 +335,7 @@ private void executeRadarAction(Instruction_old instruction) {
             case UNKNONW:
                     break;
             }
-    }
+    }*/
 
 
     /**
@@ -395,4 +401,9 @@ private void executeRadarAction(Instruction_old instruction) {
             return cityMap.lookForStreet(actualPlace, lookingDirection);
                    
     }
+
+	public void requestHelp() {
+		System.out.println(Interpreter.interpreterHelp());
+		
+	}
 }

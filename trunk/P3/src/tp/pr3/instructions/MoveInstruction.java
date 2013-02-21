@@ -23,11 +23,8 @@ import tp.pr3.items.ItemContainer;
 
 public class MoveInstruction implements Instruction {
 	
-	private Place actualPlace;
-	private Direction lookingDirection;
-	private Integer contFuel;
-	private Integer contRecycledMaterial;
-	private City cityMap;
+	private NavigationModule navigation;
+	private RobotEngine robot;
 
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
@@ -52,25 +49,14 @@ public class MoveInstruction implements Instruction {
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// TODO Auto-generated method stub
+		this.navigation=navigation;
+		this.robot=engine;
 
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		if (getHeadingStreet()==null){
-            System.out.println(NO_STREET);
-    }
-    else if (getHeadingStreet().isOpen()){
-            actualPlace = getHeadingStreet().nextPlace(actualPlace);
-            addFuel(-5);
-            System.out.println(MOVE + lookingDirection);
-            System.out.println(actualPlace.toString() +
-                            POWER2 + contFuel + LINE_SEPARATOR + RECICLED_MATERIAL + contRecycledMaterial +
-                            LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection) ;
-                   
-    }else
-            System.out.println(STREET_CLOSE);
+		navigation.move();
 }
 
     public void addFuel(int newFuel) {

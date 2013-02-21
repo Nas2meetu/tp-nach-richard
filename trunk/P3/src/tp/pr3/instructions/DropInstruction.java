@@ -3,32 +3,31 @@ package tp.pr3.instructions;
 import static tp.pr3.Constants.*;
 import java.util.StringTokenizer;
 import tp.pr3.NavigationModule;
-import tp.pr3.Place;
 import tp.pr3.RobotEngine;
 import tp.pr3.intructions.exceptions.*;
 import tp.pr3.items.Item;
 import tp.pr3.items.ItemContainer;
 
 /**
-*
-* @author Ignacio Cerda Sanchez
-* @author Ricardo Eugui Fernandez
-* @version 3
-*
-*/
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 3
+ * 
+ */
 
 public class DropInstruction implements Instruction {
 
+	private NavigationModule navigation;
+	private Item item;
 	private String id;
-	private ItemContainer container;
-	private Place actualPlace;
 
 	public DropInstruction(String token2) {
-		this.id = token2;
+		id = token2;
 	}
 
 	public DropInstruction() {
-		
+
 	}
 
 	@Override
@@ -38,10 +37,10 @@ public class DropInstruction implements Instruction {
 		String words = st.nextToken().toUpperCase();
 		if ((words.equals("DROP")) || (words.equals("SOLTAR"))) {
 			if (st.hasMoreTokens()) {
-				String token2 = st.nextToken();
+				id = st.nextToken();
 				if (!st.hasMoreTokens())
-					return new DropInstruction(token2);
-				else 
+					return new DropInstruction(id);
+				else
 					throw new WrongInstructionFormatException();
 			} else
 				throw new WrongInstructionFormatException();
@@ -58,21 +57,13 @@ public class DropInstruction implements Instruction {
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// TODO Auto-generated method stub
+		this.navigation = navigation;
 
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		 Item item = container.getItem(id);
-		 if(item == null)
-		     System.out.println(CONTAINER_NO_ITEM + id);
-		 else if(actualPlace.addItem(item)){
-		         container.pickItem(id);
-		     System.out.println(PLACE_ITEM + id);
-		 }else
-		         System.out.println(PLACE_REPEAT_ITEM + id);
-		       
+		navigation.dropItemAtCurrentPlace(item);
 
 	}
 }
