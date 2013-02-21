@@ -1,23 +1,43 @@
 package tp.pr3.instructions;
 
+import static tp.pr3.Constants.QUIT;
+
+import java.util.StringTokenizer;
+
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 import tp.pr3.intructions.exceptions.InstructionExecutionException;
 import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
 import tp.pr3.items.ItemContainer;
 
+/**
+*
+* @author Ignacio Cerda Sanchez
+* @author Ricardo Eugui Fernandez
+* @version 3
+*
+*/
+
 public class QuitInstruction implements Instruction {
 
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
-		// TODO Auto-generated method stub
-		return null;
+
+		StringTokenizer st = new StringTokenizer(cad, " ");
+		String words = st.nextToken().toUpperCase();
+		if((words.equals("QUIT")) || (words.equals("SALIR"))){
+			if (!st.hasMoreTokens())
+				return new QuitInstruction();
+			else
+				throw new WrongInstructionFormatException();
+		}
+		else
+			throw new WrongInstructionFormatException();
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return "QUIT | SALIR";
 	}
 
 	@Override
@@ -29,7 +49,8 @@ public class QuitInstruction implements Instruction {
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		// TODO Auto-generated method stub
+        System.out.println(QUIT);
+        System.exit(0);
 
 	}
 
