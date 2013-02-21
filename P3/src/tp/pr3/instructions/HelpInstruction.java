@@ -1,9 +1,6 @@
 package tp.pr3.instructions;
 
-import static tp.pr3.Constants.HELP;
-
 import java.util.StringTokenizer;
-
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 import tp.pr3.intructions.exceptions.InstructionExecutionException;
@@ -20,9 +17,8 @@ import tp.pr3.items.ItemContainer;
 
 public class HelpInstruction implements Instruction {
 	
-	/*public HelpInstruction() {
-	}*/
-	
+	private RobotEngine robot;
+
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
 
@@ -46,13 +42,13 @@ public class HelpInstruction implements Instruction {
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// TODO Auto-generated method stub
+		this.robot=engine;
 
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		 System.out.println(HELP);
+		 robot.requestHelp();
 
 	}
 
