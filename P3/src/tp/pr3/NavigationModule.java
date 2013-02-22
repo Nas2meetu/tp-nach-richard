@@ -1,8 +1,6 @@
 package tp.pr3;
 
 import static tp.pr3.Constants.*;
-
-import tp.pr3.instructions.testprofesor.TurnInstructionTest;
 import tp.pr3.intructions.exceptions.*;
 import tp.pr3.items.Item;
 import tp.pr3.items.ItemContainer;
@@ -37,6 +35,10 @@ public class NavigationModule {
 			lookingDirection = lookingDirection.turnRight();
 	}
 
+	public City getCityMap() {
+		return cityMap;
+	}
+
 	public Direction getCurrentHeading() {
 		return lookingDirection;
 	}
@@ -51,14 +53,14 @@ public class NavigationModule {
 	}
 
 	public void dropItemAtCurrentPlace(Item it) {
-		 Item item = actualPlace.getItem(it.getId());
-		 if(item == null)
-		     System.out.println(CONTAINER_NO_ITEM + it.getId());
-		 else if(actualPlace.addItem(it)){
-			 robotContainer.pickItem(item.getId());
-		     System.out.println(PLACE_ITEM + it.getId());
-		 }else
-		         System.out.println(PLACE_REPEAT_ITEM + item.getId());
+		Item item = actualPlace.getItem(it.getId());
+		if (item == null)
+			System.out.println(CONTAINER_NO_ITEM + it.getId());
+		else if (actualPlace.addItem(it)) {
+			robotContainer.pickItem(item.getId());
+			System.out.println(PLACE_ITEM + it.getId());
+		} else
+			System.out.println(PLACE_REPEAT_ITEM + item.getId());
 	}
 
 	public boolean findItemAtCurrentPlace(String id) {
@@ -67,29 +69,35 @@ public class NavigationModule {
 	}
 
 	public void move() throws InstructionExecutionException {
-		if (getHeadingStreet()==null){
-            throw new InstructionExecutionException(NO_STREET);
-    }
-    else if (getHeadingStreet().isOpen()){
-            getHeadingStreet().nextPlace(.getCurrentPlace());
-            robot.addFuel(-5);
-            System.out.println(MOVE + etCurrentHeading());
-            System.out.println(getCurrentPlace().toString() +
-                            POWER2 + robot.getFuel() + LINE_SEPARATOR + RECICLED_MATERIAL + robot.getRecycledMaterial() +
-                            LINE_SEPARATOR + LOOKING_DIRECTION + navigation.getCurrentHeading());
-                   
-    }else
-            System.out.println(STREET_CLOSE);
-	}
+		if (getHeadingStreet() == null) {
+			throw new InstructionExecutionException(NO_STREET);
+		} else if (getHeadingStreet().isOpen()) {
+			actualPlace = getHeadingStreet().nextPlace(actualPlace);
+			robot.addFuel(-5);
+			System.out.println(MOVE + lookingDirection);
+			System.out.println(actualPlace.toString() + POWER2
+					+ robot.getFuel() + LINE_SEPARATOR + RECICLED_MATERIAL
+					+ robot.getRecycledMaterial() + LINE_SEPARATOR
+					+ LOOKING_DIRECTION + lookingDirection);
 
-	public Item pickItemFromCurrentPlace(String id) {
-
-		String idItem = actualPlace.getItem(id).getId();
-
-		if (idItem.equals(id)) {
-			return actualPlace.pickItem(id);
 		} else
-			return null;
+		throw new InstructionExecutionException(STREET_CLOSE);
 	}
 
+	public void pickItemAtCurrentPlace(Item it) {
+		Item item = actualPlace.getItem(it.getId());
+		if (item == null)
+			System.out.println(PLACE_NO_ITEM + it.getId());
+		else if (robotContainer.addItem(it)) {
+			actualPlace.pickItem(item.getId());
+			System.out.println(CONTAINER_ITEM + it.getId());
+		} else
+			System.out.println(CONTAINER_REPEAT_ITEM + item.getId());
+	}
+
+	public void operateItemAtCurrentPlace(Item it) {
+
+		it.use(robot, actualPlace);
+
+	}
 }

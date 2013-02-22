@@ -1,8 +1,8 @@
 package tp.pr3.instructions;
-import static tp.pr3.Constants.*;
+
+
 
 import java.util.StringTokenizer;
-
 import tp.pr3.City;
 import tp.pr3.Direction;
 import tp.pr3.NavigationModule;
@@ -24,7 +24,9 @@ import tp.pr3.items.ItemContainer;
 public class MoveInstruction implements Instruction {
 	
 	private NavigationModule navigation;
-	private RobotEngine robot;
+	private int contFuel;
+
+
 
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
@@ -50,7 +52,7 @@ public class MoveInstruction implements Instruction {
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
 		this.navigation=navigation;
-		this.robot=engine;
+		
 
 	}
 
@@ -67,7 +69,11 @@ public class MoveInstruction implements Instruction {
 }
 
 	public Street getHeadingStreet() {
-        return cityMap.lookForStreet(actualPlace, lookingDirection);
+		City map = navigation.getCityMap(); 
+		Place actualPlace = navigation.getCurrentPlace();
+		Direction lookingDirection = navigation.getCurrentHeading();
+        return map.lookForStreet(actualPlace,lookingDirection); //merece la pena ponerlo asi de 
+        														//resumido o todo en el mismo chorro
 	}
 
 }
