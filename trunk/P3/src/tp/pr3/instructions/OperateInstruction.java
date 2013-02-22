@@ -20,9 +20,10 @@ import tp.pr3.items.ItemContainer;
 
 public class OperateInstruction implements Instruction {
 
-	private ItemContainer container;
+	
+	private NavigationModule navigation;
 	private String id;
-	private Place actualPlace;
+	private Item item;
 	
 	public OperateInstruction(String token2) {
 		this.id = token2;
@@ -37,6 +38,7 @@ public class OperateInstruction implements Instruction {
 	
 		StringTokenizer st = new StringTokenizer(cad, " ");
 		String words = st.nextToken().toUpperCase();
+	
 		if ((words.equals("OPERATE")) || (words.equals("OPERAR"))) {
 			if (st.hasMoreTokens()) {
 				String token2 = st.nextToken();
@@ -58,24 +60,14 @@ public class OperateInstruction implements Instruction {
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// TODO Auto-generated method stub
-
+		this.navigation = navigation;
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
 		
-		 Item item = container.getItem(id);
-         if (item != null && item.canBeUsed()){
-                 item.use(this, actualPlace);
-                
-         }
-         else
-                 System.out.println(ITEM_PROBLEMS + id + " in my inventory");
-         if (item!=null && !item.canBeUsed()) {
-     container.pickItem(id);
-     System.out.println(ITEM_CANT_USED+id+" in my inventory");
-         }
+		navigation.operateItemAtCurrentPlace();
+        
 
 	}
 

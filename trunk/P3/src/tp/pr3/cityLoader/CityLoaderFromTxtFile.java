@@ -1,5 +1,7 @@
 package tp.pr3.cityLoader;
 
+import java.io.File;
+
 import tp.pr3.City;
 import tp.pr3.Place;
 

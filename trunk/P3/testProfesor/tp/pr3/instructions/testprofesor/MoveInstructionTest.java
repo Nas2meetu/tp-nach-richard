@@ -15,8 +15,9 @@ import tp.pr3.RobotEngine;
 import tp.pr3.Street;
 import tp.pr3.instructions.MoveInstruction;
 import tp.pr3.instructions.Instruction;
-import tp.pr3.instructions.exceptions.InstructionExecutionException;
-import tp.pr3.instructions.exceptions.WrongInstructionFormatException;
+import tp.pr3.intructions.exceptions.InstructionExecutionException;
+import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
+
 import tp.pr3.items.testprofesor.MockItem;
 import tp.pr3.testprofesor.MockPlace;
 import tp.pr3.testprofesor.MockRobotEngine;

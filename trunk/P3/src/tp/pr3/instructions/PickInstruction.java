@@ -21,7 +21,8 @@ import tp.pr3.items.ItemContainer;
 
 public class PickInstruction implements Instruction {
 	
-	private Place actualPlace;
+	private NavigationModule navigation;
+	private Item item;
 	private ItemContainer container;
 	private String id;
 
@@ -62,21 +63,11 @@ public class PickInstruction implements Instruction {
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// TODO Auto-generated method stub
-
+		this.navigation = navigation;
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-	    
-		Item item = actualPlace.getItem(id);
-	     if(item == null)
-	         System.out.println(PLACE_NO_ITEM + id);
-	     else if(container.addItem(item)){
-	             actualPlace.pickItem(id);
-	         System.out.println(CONTAINER_ITEM + id);
-	     }else
-	             System.out.println(CONTAINER_REPEAT_ITEM + id);
+		navigation.pickItemAtCurrentPlace(item);
 	}
-
 }

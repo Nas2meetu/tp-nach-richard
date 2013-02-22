@@ -18,6 +18,8 @@ public class Place {
 	private boolean isSpaceship;
 	private String placeDescription;
 	private ItemContainer itemsInPlace;
+	
+	
 
 	/**
 	 * 
@@ -38,6 +40,7 @@ public class Place {
 		this.isSpaceship = isSpaceship;
 		this.placeDescription = placeDescription;
 		this.itemsInPlace = new ItemContainer();
+		
 	}
 
 	/**
@@ -46,6 +49,14 @@ public class Place {
 	 */
 	public Place() {
 		itemsInPlace = new ItemContainer();
+	}
+
+	public boolean dropItem(Item it) {
+		if (itemsInPlace.getItem(it.getId()).equals(it.getId()))
+			return false;
+		else
+			return true;
+						
 	}
 
 	/**
@@ -120,7 +131,7 @@ public class Place {
 	}
 
 	public boolean existItem(String id) {
-		return (itemsInPlace.getItem(id)!= null); //mirar
+		return itemsInPlace.getItem(id) != null; // mirar
 	}
 
 }
