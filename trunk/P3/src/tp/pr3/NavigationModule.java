@@ -17,6 +17,7 @@ public class NavigationModule {
 
 		this.cityMap = city;
 		this.actualPlace = currentPlace;
+
 	}
 
 	public void initHeading(Direction heading) {
@@ -53,22 +54,17 @@ public class NavigationModule {
 	}
 
 	public void dropItemAtCurrentPlace(Item it) {
-		Item item = actualPlace.getItem(it.getId());
-		if (item == null)
-			System.out.println(CONTAINER_NO_ITEM + it.getId());
-		else if (actualPlace.addItem(it)) {
-			robotContainer.pickItem(item.getId());
-			System.out.println(PLACE_ITEM + it.getId());
-		} else
-			System.out.println(PLACE_REPEAT_ITEM + item.getId());
+		this.robot = new RobotEngine(cityMap, actualPlace, lookingDirection);
+		robot.getContainer().pickItem(it.getId());
 	}
 
 	public boolean findItemAtCurrentPlace(String id) {
-		return (actualPlace.getItem(id) != null && actualPlace.getItem(id)
-				.getId().equalsIgnoreCase(id));
+		return actualPlace.existItem(id)
+				&& actualPlace.getItem(id).getId().equals(id);
 	}
 
 	public void move() throws InstructionExecutionException {
+		this.robot = new RobotEngine(cityMap, actualPlace, lookingDirection);
 		if (getHeadingStreet() == null) {
 			throw new InstructionExecutionException(NO_STREET);
 		} else if (getHeadingStreet().isOpen()) {
@@ -81,7 +77,8 @@ public class NavigationModule {
 					+ LOOKING_DIRECTION + lookingDirection);
 
 		} else
-		throw new InstructionExecutionException(STREET_CLOSE);
+			throw new InstructionExecutionException(STREET_CLOSE);
+
 	}
 
 	public void pickItemAtCurrentPlace(Item it) {
@@ -97,7 +94,7 @@ public class NavigationModule {
 
 	public void operateItemAtCurrentPlace(Item it) {
 
-		it.use(robot, actualPlace);
+		it.use(robot, this);
 
 	}
 }

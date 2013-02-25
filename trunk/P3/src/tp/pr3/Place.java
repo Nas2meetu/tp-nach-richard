@@ -40,7 +40,7 @@ public class Place {
 		this.isSpaceship = isSpaceship;
 		this.placeDescription = placeDescription;
 		this.itemsInPlace = new ItemContainer();
-		
+
 	}
 
 	/**
@@ -49,14 +49,22 @@ public class Place {
 	 */
 	public Place() {
 		itemsInPlace = new ItemContainer();
+		
 	}
+	
 
 	public boolean dropItem(Item it) {
-		if (itemsInPlace.getItem(it.getId()).equals(it.getId()))
-			return false;
-		else
-			return true;
-						
+		
+		if (itemsInPlace.containsItem(it.getId()))
+			System.out.println(CONTAINER_NO_ITEM + it.getId());
+		else if(itemsInPlace.addItem(it)){
+		    System.out.println(PLACE_ITEM + it.getId());
+		    return true;
+		}else
+			 System.out.println(PLACE_REPEAT_ITEM + it.getId());
+		return false;
+		       
+
 	}
 
 	/**
