@@ -1,7 +1,5 @@
 package tp.pr3;
 
-import java.util.Scanner;
-
 import tp.pr3.instructions.Instruction;
 import tp.pr3.intructions.exceptions.InstructionExecutionException;
 import tp.pr3.items.ItemContainer;

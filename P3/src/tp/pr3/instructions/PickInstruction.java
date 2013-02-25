@@ -4,7 +4,6 @@ package tp.pr3.instructions;
 import static tp.pr3.Constants.*;
 import java.util.StringTokenizer;
 import tp.pr3.NavigationModule;
-import tp.pr3.Place;
 import tp.pr3.RobotEngine;
 import tp.pr3.intructions.exceptions.InstructionExecutionException;
 import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
@@ -22,9 +21,8 @@ import tp.pr3.items.ItemContainer;
 public class PickInstruction implements Instruction {
 	
 	private NavigationModule navigation;
-	private Item item;
-	private ItemContainer container;
 	private String id;
+	private ItemContainer robotContainer;
 
 	public PickInstruction(String token2) {
 		this.id = token2;
@@ -64,10 +62,14 @@ public class PickInstruction implements Instruction {
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
 		this.navigation = navigation;
+		this.robotContainer = robotContainer;
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
+		Item item = robotContainer.getItem(id);
+		if(item == null)
+			throw new InstructionExecutionException();
 		navigation.pickItemAtCurrentPlace(item);
 	}
 }

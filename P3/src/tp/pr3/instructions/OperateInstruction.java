@@ -11,40 +11,40 @@ import tp.pr3.items.Item;
 import tp.pr3.items.ItemContainer;
 
 /**
-*
-* @author Ignacio Cerda Sanchez
-* @author Ricardo Eugui Fernandez
-* @version 3
-*
-*/
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 3
+ * 
+ */
 
 public class OperateInstruction implements Instruction {
 
-	
 	private NavigationModule navigation;
 	private String id;
 	private Item item;
-	
+	private RobotEngine robot;
+
 	public OperateInstruction(String token2) {
 		this.id = token2;
 	}
-	
+
 	public OperateInstruction() {
-		
+
 	}
 
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
-	
+
 		StringTokenizer st = new StringTokenizer(cad, " ");
 		String words = st.nextToken().toUpperCase();
-	
+
 		if ((words.equals("OPERATE")) || (words.equals("OPERAR"))) {
 			if (st.hasMoreTokens()) {
 				String token2 = st.nextToken();
 				if (!st.hasMoreTokens())
 					return new OperateInstruction(token2);
-				else 
+				else
 					throw new WrongInstructionFormatException();
 			} else
 				throw new WrongInstructionFormatException();
@@ -61,13 +61,24 @@ public class OperateInstruction implements Instruction {
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
 		this.navigation = navigation;
+		this.robot = engine;
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		
-		navigation.operateItemAtCurrentPlace();
-        
+
+		Item item = robot.getContainer().getItem(id);
+		if (item != null && item.canBeUsed()) {
+			item.use(this, actualPlace);
+
+		} else
+			System.out.println(ITEM_PROBLEMS + instruction.getId()
+					+ " in my inventory");
+		if (item != null && !item.canBeUsed()) {
+			container.pickItem(instruction.getId());
+			System.out.println(ITEM_CANT_USED + instruction.getId()
+					+ " in my inventory");
+		}
 
 	}
 

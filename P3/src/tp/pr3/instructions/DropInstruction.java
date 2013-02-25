@@ -2,6 +2,9 @@ package tp.pr3.instructions;
 
 import static tp.pr3.Constants.*;
 import java.util.StringTokenizer;
+
+import javax.management.InstanceAlreadyExistsException;
+
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 import tp.pr3.intructions.exceptions.*;
@@ -19,11 +22,12 @@ import tp.pr3.items.ItemContainer;
 public class DropInstruction implements Instruction {
 
 	private NavigationModule navigation;
-	private Item item;
 	private String id;
+	private ItemContainer robotContainer;
+	
 
-	public DropInstruction(String token2) {
-		id = token2;
+	private DropInstruction(String id) {
+		this.id = id;
 	}
 
 	public DropInstruction() {
@@ -58,12 +62,21 @@ public class DropInstruction implements Instruction {
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
 		this.navigation = navigation;
+		this.robotContainer = robotContainer;
 
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		navigation.dropItemAtCurrentPlace(item);
-
+		 
+		Item item = robotContainer.getItem(id);
+		if(item == null)
+			throw new InstructionExecutionException(CONTAINER_NO_ITEM);
+		if(navigation.findItemAtCurrentPlace(id))
+			throw new InstructionExecutionException(PLACE_REPEAT_ITEM);
+		if(navigation.getCurrentPlace().addItem(item)){
+			navigation.dropItemAtCurrentPlace(item);
+			System.out.println(PLACE_ITEM);
+		}
 	}
 }

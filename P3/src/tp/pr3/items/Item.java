@@ -1,6 +1,6 @@
 package tp.pr3.items;
 
-import tp.pr3.Place;
+import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 
 
@@ -35,7 +35,7 @@ public abstract class Item {
 
     public abstract boolean canBeUsed();
    
-    public abstract boolean use(RobotEngine robot, Place place);
+    public abstract boolean use(RobotEngine robot, NavigationModule navigation);
    
     /**
      *

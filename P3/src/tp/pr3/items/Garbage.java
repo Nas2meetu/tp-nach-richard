@@ -1,7 +1,7 @@
 package tp.pr3.items;
 
 import static tp.pr3.Constants.*;
-import tp.pr3.Place;
+import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 
 /**
@@ -65,7 +65,7 @@ public class Garbage extends Item {
     *
     */
 
-    public boolean use(RobotEngine robot, Place place) {
+    public boolean use(RobotEngine robot, NavigationModule navigation) {
         if (canBeUsed()){
             robot.addRecycledMaterial(garbage);
             canBeUse = false;
