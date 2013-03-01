@@ -59,8 +59,7 @@ public class NavigationModule {
 	}
 
 	public boolean findItemAtCurrentPlace(String id) {
-		return actualPlace.existItem(id)
-				&& actualPlace.getItem(id).getId().equals(id);
+		return actualPlace.existItem(id);
 	}
 
 	public void move() throws InstructionExecutionException {
@@ -92,9 +91,4 @@ public class NavigationModule {
 			System.out.println(CONTAINER_REPEAT_ITEM + item.getId());
 	}
 
-	public void operateItemAtCurrentPlace(Item it) {
-
-		it.use(robot, this);
-
-	}
 }

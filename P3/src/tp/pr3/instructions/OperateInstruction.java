@@ -1,6 +1,7 @@
 package tp.pr3.instructions;
 
 import static tp.pr3.Constants.*;
+
 import java.util.StringTokenizer;
 import tp.pr3.NavigationModule;
 import tp.pr3.Place;
@@ -22,11 +23,11 @@ public class OperateInstruction implements Instruction {
 
 	private NavigationModule navigation;
 	private String id;
-	private Item item;
 	private RobotEngine robot;
+	private ItemContainer robotContainer;
 
-	public OperateInstruction(String token2) {
-		this.id = token2;
+	public OperateInstruction(String id) {
+		this.id = id;
 	}
 
 	public OperateInstruction() {
@@ -41,15 +42,15 @@ public class OperateInstruction implements Instruction {
 
 		if ((words.equals("OPERATE")) || (words.equals("OPERAR"))) {
 			if (st.hasMoreTokens()) {
-				String token2 = st.nextToken();
+				String id = st.nextToken();
 				if (!st.hasMoreTokens())
-					return new OperateInstruction(token2);
+					return new OperateInstruction(id);
 				else
-					throw new WrongInstructionFormatException();
+					throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 			} else
-				throw new WrongInstructionFormatException();
+				throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 		} else
-			throw new WrongInstructionFormatException();
+			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 
 	@Override
@@ -62,24 +63,24 @@ public class OperateInstruction implements Instruction {
 			NavigationModule navigation, ItemContainer robotContainer) {
 		this.navigation = navigation;
 		this.robot = engine;
+		this.robotContainer = robotContainer;
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-
-		Item item = robot.getContainer().getItem(id);
-		if (item != null && item.canBeUsed()) {
-			item.use(this, actualPlace);
-
-		} else
-			System.out.println(ITEM_PROBLEMS + instruction.getId()
-					+ " in my inventory");
-		if (item != null && !item.canBeUsed()) {
-			container.pickItem(instruction.getId());
-			System.out.println(ITEM_CANT_USED + instruction.getId()
-					+ " in my inventory");
+		Item item = robotContainer.getItem(id);
+		if (item != null && item.canBeUsed()
+				&& robotContainer.getId(item).equalsIgnoreCase(id)) {
+			if (!item.use(robot, navigation))
+				throw new InstructionExecutionException(ITEM_PROBLEMS + id
+						+ IN_MY_INVENTORY);
 		}
-
+		if (item != null && !item.canBeUsed()) {
+			robotContainer.pickItem(id);
+			System.out.println(ITEM_CANT_USED + id + IN_MY_INVENTORY);
+		} else
+			throw new InstructionExecutionException(ITEM_PROBLEMS + id
+					+ IN_MY_INVENTORY);
 	}
 
 }

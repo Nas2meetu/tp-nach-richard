@@ -2,13 +2,9 @@ package tp.pr3.instructions;
 
 import static tp.pr3.Constants.*;
 import java.util.StringTokenizer;
-
-import javax.management.InstanceAlreadyExistsException;
-
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 import tp.pr3.intructions.exceptions.*;
-import tp.pr3.items.Item;
 import tp.pr3.items.ItemContainer;
 
 /**
@@ -24,7 +20,6 @@ public class DropInstruction implements Instruction {
 	private NavigationModule navigation;
 	private String id;
 	private ItemContainer robotContainer;
-	
 
 	private DropInstruction(String id) {
 		this.id = id;
@@ -45,11 +40,11 @@ public class DropInstruction implements Instruction {
 				if (!st.hasMoreTokens())
 					return new DropInstruction(id);
 				else
-					throw new WrongInstructionFormatException();
+					throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 			} else
-				throw new WrongInstructionFormatException();
+				throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 		} else
-			throw new WrongInstructionFormatException();
+			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 
 	}
 
@@ -68,15 +63,14 @@ public class DropInstruction implements Instruction {
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		 
-		Item item = robotContainer.getItem(id);
-		if(item == null)
-			throw new InstructionExecutionException(CONTAINER_NO_ITEM);
-		if(navigation.findItemAtCurrentPlace(id))
-			throw new InstructionExecutionException(PLACE_REPEAT_ITEM);
-		if(navigation.getCurrentPlace().addItem(item)){
-			navigation.dropItemAtCurrentPlace(item);
-			System.out.println(PLACE_ITEM);
-		}
+		if (id != null && robotContainer.containsItem(id))
+			if (!navigation.findItemAtCurrentPlace(id)) {
+				navigation.getCurrentPlace().addItem(
+						robotContainer.pickItem(id));
+				System.out.println(PLACE_ITEM);
+			} else
+				throw new InstructionExecutionException(PLACE_REPEAT_ITEM+ id);
+		else
+			throw new InstructionExecutionException(CONTAINER_NO_ITEM + id + ".");
 	}
 }

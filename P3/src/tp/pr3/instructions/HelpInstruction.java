@@ -6,17 +6,18 @@ import tp.pr3.RobotEngine;
 import tp.pr3.intructions.exceptions.InstructionExecutionException;
 import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
 import tp.pr3.items.ItemContainer;
+import static tp.pr3.Constants.*;
 
 /**
-*
-* @author Ignacio Cerda Sanchez
-* @author Ricardo Eugui Fernandez
-* @version 3
-*
-*/
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 3
+ * 
+ */
 
 public class HelpInstruction implements Instruction {
-	
+
 	private RobotEngine robot;
 
 	@Override
@@ -24,14 +25,13 @@ public class HelpInstruction implements Instruction {
 
 		StringTokenizer st = new StringTokenizer(cad, " ");
 		String words = st.nextToken().toUpperCase();
-		if((words.equals("HELP")) || (words.equals("AYUDA"))){
+		if ((words.equals("HELP")) || (words.equals("AYUDA"))) {
 			if (!st.hasMoreTokens())
 				return new HelpInstruction();
 			else
-				throw new WrongInstructionFormatException();
-		}
-		else
-			throw new WrongInstructionFormatException();
+				throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+		} else
+			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 
 	@Override
@@ -42,14 +42,13 @@ public class HelpInstruction implements Instruction {
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		this.robot=engine;
+		this.robot = engine;
 
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		 robot.requestHelp();
-
+		robot.requestHelp();
 	}
 
 }
