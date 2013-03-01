@@ -1,7 +1,7 @@
 package tp.pr3.cityLoader;
 
-import java.io.File;
 
+import java.io.InputStream;
 import tp.pr3.City;
 import tp.pr3.Place;
 
@@ -15,11 +15,18 @@ import tp.pr3.Place;
 public class CityLoaderFromTxtFile {
 	
 
-	public City loadCity (File file) {
+	public CityLoaderFromTxtFile(){
 		
 	}
 	
+	
+	
 	public Place getInitialPlace() {
-		return getIntialPlace;
+		
+	}
+
+	public void loadCity(InputStream file) {
+		// TODO Auto-generated method stub
+		
 	}
 }

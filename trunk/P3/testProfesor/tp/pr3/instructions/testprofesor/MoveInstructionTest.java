@@ -3,10 +3,8 @@ package tp.pr3.instructions.testprofesor;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import tp.pr3.City;
 import tp.pr3.Direction;
 import tp.pr3.NavigationModule;
@@ -17,7 +15,6 @@ import tp.pr3.instructions.MoveInstruction;
 import tp.pr3.instructions.Instruction;
 import tp.pr3.intructions.exceptions.InstructionExecutionException;
 import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
-
 import tp.pr3.items.testprofesor.MockItem;
 import tp.pr3.testprofesor.MockPlace;
 import tp.pr3.testprofesor.MockRobotEngine;

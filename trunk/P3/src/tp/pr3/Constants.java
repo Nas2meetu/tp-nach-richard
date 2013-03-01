@@ -81,7 +81,7 @@ public class Constants {
 
 	public static final String PLACE_REPEAT_ITEM = WALLE_SAYS
 			+ "I am stupid! The Place already has the object ";
-	
+
 	public static final String HEAD_HELP = "The valid instructions for WALL-E are:";
 
 	public static final String HELP = "The valid instructions for WALL-E are:"
@@ -101,6 +101,8 @@ public class Constants {
 
 	public static final String BAD_INSTRUCTION = WALLE_SAYS
 			+ "I do not understand. Please repeat";
+
+	public static final String IN_MY_INVENTORY = " in my inventory";
 
 	public static final String MOVE = WALLE_SAYS + "Moving in direction ";
 

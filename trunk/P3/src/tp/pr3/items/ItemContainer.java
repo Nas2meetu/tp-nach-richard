@@ -22,8 +22,6 @@ public class ItemContainer {
 		container = new Item[100];
 		numberOfItems = 0;
 	}
-	
-	
 
 	/**
 	 * Return a public method (container) of a private attribute (container).
@@ -47,12 +45,22 @@ public class ItemContainer {
 	public int numberOfItems() {
 		return numberOfItems;
 	}
-	
-	public boolean containsItem(String id){
-		int pos = posItem(id);
-		return (pos != -1);
-			
+
+	public boolean containsItem(String id) {
+		boolean contains = false;
+		int i = 0;
+		while (i < numberOfItems() && !contains) {
+			contains = container[i].getId().equalsIgnoreCase(id);
+			i++;
+		}
+		return contains;
+
 	}
+	
+	public String getId(Item it){
+		return it.getId() ;
+	}
+
 	/**
 	 * This method return an item if item´s id and container´s id are equals
 	 * 
@@ -147,7 +155,7 @@ public class ItemContainer {
 		}
 		return -1;
 	}
-	
+
 	/**
 	 * moveItemLeft moves Item's position one to left from initial position
 	 * (pos).
