@@ -4,7 +4,6 @@ import static tp.pr3.Constants.*;
 
 import java.util.StringTokenizer;
 import tp.pr3.NavigationModule;
-import tp.pr3.Place;
 import tp.pr3.RobotEngine;
 import tp.pr3.intructions.exceptions.InstructionExecutionException;
 import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
@@ -68,19 +67,18 @@ public class OperateInstruction implements Instruction {
 
 	@Override
 	public void execute() throws InstructionExecutionException {
+		
 		Item item = robotContainer.getItem(id);
 		if (item != null && item.canBeUsed()
 				&& robotContainer.getId(item).equalsIgnoreCase(id)) {
 			if (!item.use(robot, navigation))
-				throw new InstructionExecutionException(ITEM_PROBLEMS + id
-						+ IN_MY_INVENTORY);
+				throw new InstructionExecutionException(ITEM_PROBLEMS);
 		}
 		if (item != null && !item.canBeUsed()) {
 			robotContainer.pickItem(id);
 			System.out.println(ITEM_CANT_USED + id + IN_MY_INVENTORY);
-		} else
-			throw new InstructionExecutionException(ITEM_PROBLEMS + id
-					+ IN_MY_INVENTORY);
+		} else if (item==null)
+			throw new InstructionExecutionException(ITEM_PROBLEMS);
 	}
 
 }

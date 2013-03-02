@@ -74,7 +74,6 @@ public class Garbage extends Item {
             return true;
         }
         else{
-            System.out.println(ITEM_PROBLEMS + getId());
             return false;
         }
     }
