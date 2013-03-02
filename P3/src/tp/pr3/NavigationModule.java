@@ -3,7 +3,6 @@ package tp.pr3;
 import static tp.pr3.Constants.*;
 import tp.pr3.intructions.exceptions.*;
 import tp.pr3.items.Item;
-import tp.pr3.items.ItemContainer;
 
 public class NavigationModule {
 
@@ -11,7 +10,6 @@ public class NavigationModule {
 	private Direction lookingDirection;
 	private City cityMap;
 	private RobotEngine robot;
-	private ItemContainer robotContainer;
 
 	public NavigationModule(City city, Place currentPlace) {
 

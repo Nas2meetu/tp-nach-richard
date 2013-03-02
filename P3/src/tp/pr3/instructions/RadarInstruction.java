@@ -1,9 +1,7 @@
 package tp.pr3.instructions;
 
-import static tp.pr3.Constants.WALLE_SAYS;
-
+import static tp.pr3.Constants.*;
 import java.util.StringTokenizer;
-
 import tp.pr3.NavigationModule;
 import tp.pr3.Place;
 import tp.pr3.RobotEngine;
@@ -22,6 +20,7 @@ import tp.pr3.items.ItemContainer;
 public class RadarInstruction implements Instruction {
 	
 	private Place actualPlace;
+	private NavigationModule navigation;
 	
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
@@ -32,10 +31,10 @@ public class RadarInstruction implements Instruction {
 			if (!st.hasMoreTokens())
 				return new RadarInstruction();
 			else
-				throw new WrongInstructionFormatException();
+				throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 		}
 		else
-			throw new WrongInstructionFormatException();
+			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 	@Override
 	public String getHelp() {
@@ -45,13 +44,16 @@ public class RadarInstruction implements Instruction {
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// TODO Auto-generated method stub
+		this.navigation=navigation;
 
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		System.out.println(WALLE_SAYS + actualPlace.toString());
+		if (navigation.getCurrentPlace()!=null)
+			System.out.println(WALLE_SAYS + navigation.getCurrentPlace().toString());
+		else
+			throw new InstructionExecutionException();
 	}
 
 }

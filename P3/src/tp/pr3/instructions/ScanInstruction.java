@@ -1,8 +1,6 @@
 package tp.pr3.instructions;
 
-import static tp.pr3.Constants.SCAN_NO_ITEM;
-import static tp.pr3.Constants.WALLE_SAYS;
-
+import static tp.pr3.Constants.*;
 import java.util.StringTokenizer;
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
@@ -12,24 +10,24 @@ import tp.pr3.items.Item;
 import tp.pr3.items.ItemContainer;
 
 /**
-*
-* @author Ignacio Cerda Sanchez
-* @author Ricardo Eugui Fernandez
-* @version 3
-*
-*/
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 3
+ * 
+ */
 
 public class ScanInstruction implements Instruction {
 
 	private String id;
-	private ItemContainer container;
-	
+	private ItemContainer robotContainer;
+
 	public ScanInstruction(String token2) {
 		this.id = token2;
 	}
-	
+
 	public ScanInstruction() {
-		
+
 	}
 
 	@Override
@@ -42,12 +40,12 @@ public class ScanInstruction implements Instruction {
 				String token2 = st.nextToken();
 				if (!st.hasMoreTokens())
 					return new ScanInstruction(token2);
-				else 
-					throw new WrongInstructionFormatException();
+				else
+					throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 			} else
-				throw new WrongInstructionFormatException();
+				return new ScanInstruction();
 		} else
-			throw new WrongInstructionFormatException();
+			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 
 	}
 
@@ -59,21 +57,20 @@ public class ScanInstruction implements Instruction {
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// TODO Auto-generated method stub
+		this.robotContainer = robotContainer;
 
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-        if(id==""){
-            System.out.println(container.showItems());
-    }
-    else{
-            Item item = container.getItem(id);
-            if (item!=null)
-                    System.out.println(WALLE_SAYS + item.toString());
-            else
-                    System.out.println(SCAN_NO_ITEM);
-    	}
+		if (id == "") {
+			System.out.println(robotContainer.showItems());
+		} else {
+			Item item = robotContainer.getItem(id);
+			if (item != null)
+				System.out.println(WALLE_SAYS + item.toString());
+			else
+				throw new InstructionExecutionException(SCAN_NO_ITEM);
+		}
 	}
 }
