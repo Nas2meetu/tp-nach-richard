@@ -9,8 +9,8 @@ import org.junit.Test;
 
 import tp.pr3.instructions.QuitInstruction;
 import tp.pr3.instructions.Instruction;
-import tp.pr3.instructions.exceptions.InstructionExecutionException;
-import tp.pr3.instructions.exceptions.WrongInstructionFormatException;
+import tp.pr3.intructions.exceptions.InstructionExecutionException;
+import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
 import tp.pr3.testprofesor.MockRobotEngine;
 
 

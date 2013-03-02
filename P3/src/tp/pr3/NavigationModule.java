@@ -82,13 +82,9 @@ public class NavigationModule {
 
 	public void pickItemAtCurrentPlace(Item it) {
 		Item item = actualPlace.getItem(it.getId());
-		if (item == null)
-			System.out.println(PLACE_NO_ITEM + it.getId());
-		else if (robotContainer.addItem(it)) {
-			actualPlace.pickItem(item.getId());
-			System.out.println(CONTAINER_ITEM + it.getId());
-		} else
-			System.out.println(CONTAINER_REPEAT_ITEM + item.getId());
+		if (item != null) {
+			actualPlace.pickItem(it.getId());
+		} 
 	}
 
 }

@@ -43,11 +43,11 @@ public class PickInstruction implements Instruction {
 				if (!st.hasMoreTokens())
 					return new PickInstruction(token2);
 				else
-					throw new WrongInstructionFormatException();
+					throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 			} else
-				throw new WrongInstructionFormatException();
+				throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 		} else
-			throw new WrongInstructionFormatException();
+			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 
 	@Override
@@ -64,14 +64,14 @@ public class PickInstruction implements Instruction {
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		Item item = robotContainer.getItem(id);
-		if (item == null)
-			throw new InstructionExecutionException();
-		else if (!robotContainer.addItem(item))
-			throw new InstructionExecutionException();
-		else
-			navigation.pickItemAtCurrentPlace(item);
+		Item item = navigation.getCurrentPlace().getItem(id);
+	     if(item == null)
+	         throw new InstructionExecutionException(PLACE_NO_ITEM + id);
+	     else if(robotContainer.addItem(item)){
+	             navigation.pickItemAtCurrentPlace(item);
+	         System.out.println(CONTAINER_ITEM + id);
+	     }else
+	         throw new InstructionExecutionException(CONTAINER_REPEAT_ITEM + id);
 	}
-	
-	
+
 }
