@@ -20,6 +20,11 @@ public class QuitInstruction implements Instruction {
 
 	private RobotEngine robot;
 
+	/*
+	 * Read a string with an action, compare if this action is correct 
+	 * and generate QuitInstruction, else throw an exception.
+	 */
+	
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
 
@@ -33,6 +38,10 @@ public class QuitInstruction implements Instruction {
 		} else
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
+	
+	/*
+	 * Show information about QUIT instruction syntax.
+	 */
 
 	@Override
 	public String getHelp() {
