@@ -3,7 +3,6 @@ package tp.pr3.instructions;
 import static tp.pr3.Constants.*;
 import java.util.StringTokenizer;
 import tp.pr3.NavigationModule;
-import tp.pr3.Place;
 import tp.pr3.RobotEngine;
 import tp.pr3.intructions.exceptions.InstructionExecutionException;
 import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
@@ -19,7 +18,6 @@ import tp.pr3.items.ItemContainer;
 
 public class RadarInstruction implements Instruction {
 	
-	private Place actualPlace;
 	private NavigationModule navigation;
 	
 	@Override

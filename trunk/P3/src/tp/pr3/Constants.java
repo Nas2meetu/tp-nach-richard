@@ -107,4 +107,10 @@ public class Constants {
 	public static final String MOVE = WALLE_SAYS + "Moving in direction ";
 
 	public static final String LOOKING_DIRECTION = "WALL·E is looking at direction ";
+
+	public static final String BEGIN_PLACES_NOT_FOUND = "BeginPlaces not found in file";
+	
+	public static final String BEGIN_STREETS_NOT_FOUND = "BeginStreets not found in file";
+	
+	public static final String BEGIN_ITEMS_NOT_FOUND = "BeginItems not found in file";
 }
