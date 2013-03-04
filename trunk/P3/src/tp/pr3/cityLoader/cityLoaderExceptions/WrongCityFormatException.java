@@ -1,6 +1,8 @@
 package tp.pr3.cityLoader.cityLoaderExceptions;
 
-public class WrongCityFormatException extends Exception {
+import java.io.IOException;
+
+public class WrongCityFormatException extends IOException {
 
 	/**
 	 * 

@@ -25,11 +25,21 @@ public class DropInstruction implements Instruction {
 		this.id = id;
 	}
 
+	/*
+	 * 
+	 */
+	
 	public DropInstruction() {
 
 	}
-
+	
+	/*
+	 * Read a string with an action, compare if this action is correct 
+	 * and generate DropInstruction, else throw an exception.
+	 */
+	
 	@Override
+	
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
 
 		StringTokenizer st = new StringTokenizer(cad, " ");
@@ -47,12 +57,20 @@ public class DropInstruction implements Instruction {
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 
 	}
-
+	/*
+	 * Show information about DROP instruction syntax.
+	 */
+	
 	@Override
 	public String getHelp() {
 		return "DROP | SOLTAR <id>";
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see tp.pr3.instructions.Instruction#configureContext(tp.pr3.RobotEngine, tp.pr3.NavigationModule, tp.pr3.items.ItemContainer)
+	 */
+	
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
@@ -60,7 +78,12 @@ public class DropInstruction implements Instruction {
 		this.robotContainer = robotContainer;
 
 	}
-
+	
+	/*
+	 * Verified if item is null, Place hasn't got this item and put into Place.
+	 * @see tp.pr3.instructions.Instruction#execute()
+	 */
+	
 	@Override
 	public void execute() throws InstructionExecutionException {
 		if (id != null && robotContainer.containsItem(id))
