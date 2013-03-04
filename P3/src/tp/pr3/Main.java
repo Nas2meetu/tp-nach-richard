@@ -1,12 +1,8 @@
 package tp.pr3;
 
 import static tp.pr3.Constants.*;
-
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import tp.pr3.cityLoader.CityLoaderFromTxtFile;
 
 
@@ -44,7 +40,7 @@ public class Main {
 		FileInputStream file;
 		try {
 			file = new FileInputStream(args[0]);
-			cityMap = cityLoader.loadCity(file);				
+			//cityMap = cityLoader.loadCity(file);				
 		} catch (IOException e1) {
 			System.err.println("Error reading the map file: "+args[0]+" (No existe el fichero o el directorio)");
 			System.exit(2);
