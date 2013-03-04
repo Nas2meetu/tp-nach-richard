@@ -29,6 +29,11 @@ public class ScanInstruction implements Instruction {
 	public ScanInstruction() {
 
 	}
+	
+	/*
+	 * Read a string with an action, compare if this action is correct 
+	 * and generate ScanInstruction, else throw an exception.
+	 */
 
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
@@ -49,6 +54,10 @@ public class ScanInstruction implements Instruction {
 
 	}
 
+	/*
+	 * Show information about SCAN instruction syntax.
+	 */
+	
 	@Override
 	public String getHelp() {
 		return "SCAN | ESCANEAR <id>";

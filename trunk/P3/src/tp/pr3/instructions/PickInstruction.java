@@ -31,6 +31,11 @@ public class PickInstruction implements Instruction {
 	public PickInstruction() {
 
 	}
+	
+	/*
+	 * Read a string with an action, compare if this action is correct 
+	 * and generate PickInstruction, else throw an exception.
+	 */
 
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
@@ -50,6 +55,10 @@ public class PickInstruction implements Instruction {
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 
+	/*
+	 * Show information about PICK instruction syntax.
+	 */
+	
 	@Override
 	public String getHelp() {
 		return "PICK | COGER <id>";

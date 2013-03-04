@@ -37,6 +37,11 @@ public class TurnInstruction implements Instruction {
 	public TurnInstruction() {
 
 	}
+	
+	/*
+	 * Read a string with an action, compare if this action is correct 
+	 * and generate TurnInstruction, else throw an exception.
+	 */
 
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
@@ -62,6 +67,10 @@ public class TurnInstruction implements Instruction {
 
 	}
 
+	/*
+	 * Show information about TURN instruction syntax.
+	 */
+	
 	@Override
 	public String getHelp() {
 		return "TURN | GIRAR <LEFT|RIGHT>";

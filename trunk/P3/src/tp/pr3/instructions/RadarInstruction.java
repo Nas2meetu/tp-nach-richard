@@ -20,6 +20,11 @@ public class RadarInstruction implements Instruction {
 	
 	private NavigationModule navigation;
 	
+	/*
+	 * Read a string with an action, compare if this action is correct 
+	 * and generate RadarInstruction, else throw an exception.
+	 */
+	
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
 
@@ -34,6 +39,11 @@ public class RadarInstruction implements Instruction {
 		else
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
+	
+	/*
+	 * Show information about RADAR instruction syntax.
+	 */
+	
 	@Override
 	public String getHelp() {
 		return "RADAR";

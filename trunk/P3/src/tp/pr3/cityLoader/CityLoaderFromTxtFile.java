@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 import static tp.pr3.Constants.*;
 import tp.pr3.City;
+import tp.pr3.Direction;
 import tp.pr3.NavigationModule;
 import tp.pr3.Place;
 import tp.pr3.RobotEngine;
@@ -76,7 +77,7 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/*
-	 * 
+	 * Load Items of text file
 	 */
 
 	private void loadItems(ArrayList<Item> items) throws IOException {
@@ -95,7 +96,10 @@ public class CityLoaderFromTxtFile {
 
 	}
 
-
+	/*
+	 * Load Places of text file
+	 */
+	
 	private void loadPlaces(ArrayList<Place> places) throws IOException {
 
 		String fileLine = bufferedReader.readLine();
@@ -171,23 +175,41 @@ public class CityLoaderFromTxtFile {
 		if (!words.equalsIgnoreCase("STREET"))
 			throw new WrongCityFormatException();
 		String pos = st.nextToken();
-		int posnum = Integer.parseInt(pos);
-		if (num != posnum)
+		int posStreet = Integer.parseInt(pos);
+		if (num != posStreet)
 			throw new WrongCityFormatException();
 		if (!words.equalsIgnoreCase("PLACE"))
 			throw new WrongCityFormatException();
-		Place sourcePlace = st.nextToken();		
+			
+			/* mirar si existe ese place en array places*/
+			
+		String pos2 = st.nextToken();
+		
+		int posSource = Integer.parseInt(pos2);
+		if (places.size()<posSource)
+			throw new WrongCityFormatException();
+		
+		Place sourcePlace = places.get(posSource);		
 		String direction = st.nextToken();
+		int i;
+		while(Direction.values().length<i){
+			Direction.values().equals(direction);
+		}
+			
+			
 		if (!words.equalsIgnoreCase("PLACE"))
+			throw new WrongCityFormatException();	
+		String pos3 = st.nextToken();
+		
+		int posTarget = Integer.parseInt(pos3);
+		if (places.size()<posTarget)
 			throw new WrongCityFormatException();
-		Place targetPlace= st.nextToken();
+		Place targetPlace= places.get(posTarget);
 		String isOpen = st.nextToken();
 		boolean Open = Boolean.parseBoolean(isOpen);
 		Open = isOpen.equalsIgnoreCase("open");
 		String code = st.nextToken();
 		streets.add(new Street(sourcePlace, direction, targetPlace, Open, code));
-
-		// TODO Auto-generated method stub
 
 	}
 
