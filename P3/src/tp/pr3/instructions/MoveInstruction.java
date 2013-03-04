@@ -20,6 +20,11 @@ public class MoveInstruction implements Instruction {
 
 	private NavigationModule navigation;
 
+	/*
+	 * Read a string with an action, compare if this action is correct 
+	 * and generate MoveInstruction, else throw an exception.
+	 */
+	
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
 
@@ -34,6 +39,10 @@ public class MoveInstruction implements Instruction {
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 
+	/*
+	 * Show information about MOVE instruction syntax.
+	 */
+	
 	@Override
 	public String getHelp() {
 		return "MOVE | MOVER";
@@ -45,6 +54,10 @@ public class MoveInstruction implements Instruction {
 		this.navigation = navigation;
 
 	}
+	
+	/*
+	 * Execute MOVE instruction
+	 */
 
 	@Override
 	public void execute() throws InstructionExecutionException {

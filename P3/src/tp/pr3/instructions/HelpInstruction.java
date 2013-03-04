@@ -19,7 +19,12 @@ import static tp.pr3.Constants.*;
 public class HelpInstruction implements Instruction {
 
 	private RobotEngine robot;
-
+	
+	/*
+	 * Read a string with an action, compare if this action is correct 
+	 * and generate DropInstruction, else throw an exception.
+	 */
+	
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
 
@@ -34,6 +39,10 @@ public class HelpInstruction implements Instruction {
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 
+	/*
+	 * Show information about HELP instruction syntax.
+	 */
+	
 	@Override
 	public String getHelp() {
 		return "HELP | AYUDA";
@@ -45,7 +54,11 @@ public class HelpInstruction implements Instruction {
 		this.robot = engine;
 
 	}
-
+	
+	/*
+	 * Execute HELP instruction
+	 */
+	
 	@Override
 	public void execute() throws InstructionExecutionException {
 		robot.requestHelp();
