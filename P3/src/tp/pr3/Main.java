@@ -8,10 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import tp.pr3.cityLoader.CityLoaderFromTxtFile;
-import tp.pr3.cityLoader.cityLoaderExceptions.WrongCityFormatException;
-import tp.pr3.items.CodeCard;
-import tp.pr3.items.Fuel;
-import tp.pr3.items.Garbage;
+
 
 /**
 * 
@@ -21,11 +18,7 @@ import tp.pr3.items.Garbage;
 */
 public class Main {
 
-   
 
-    private static Street[] streets;
-	private static Place[] places;
-	
 
 	/**
      *
@@ -40,39 +33,28 @@ public class Main {
        
     
     public static void main(String[] args) throws IOException{
+    	City cityMap = null;
+		if (args == null) {
+			System.err.println ("Bad params."+ LINE_SEPARATOR+"Usage: java tp.pr3.Main <mapfile>"+LINE_SEPARATOR+
+					LINE_SEPARATOR+"<mapfile> : file with the description of the city.");
+			System.exit(1);
+		}	
+		else{
+		CityLoaderFromTxtFile cityLoader = new CityLoaderFromTxtFile();
+		FileInputStream file;
+		try {
+			file = new FileInputStream(args[0]);
+			cityMap = cityLoader.loadCity(file);				
+		} catch (IOException e1) {
+			System.err.println("Error reading the map file: "+args[0]+" (No existe el fichero o el directorio)");
+			System.exit(2);
+		}
+		RobotEngine robot = new RobotEngine(cityMap, cityLoader.getInitialPlace(), Direction.NORTH);
+		robot.startEngine();
 
+		}
 		
-    	FileInputStream file = null;	
-    	City city = null;
-    	RobotEngine robot = new RobotEngine(new City(streets), places[0], Direction.NORTH);
-    			
-
-    	try {
-    		CityLoaderFromTxtFile mfile = new CityLoaderFromTxtFile();
-    		File f = new File(args[0]); // "map.txt"
-    		file = new FileInputStream(f);		
-    		//city = mfile.loadCity(file);
-    		
-    		robot.startEngine();
-    	
-    		
-    	} catch (FileNotFoundException e){
-    		System.err.println("Error opening file");
-    		
-    	} catch (ArrayIndexOutOfBoundsException e){
-    		
-    			System.err.println("No map file specified." 
-    			+ LINE_SEPARATOR +"Usage: tp.pr3.Main <mapFile>" + LINE_SEPARATOR );
-    			System.exit(1);
-    			
-    			
-    	//} catch (WrongCityFormatException e) {
-    		
-    		e.printStackTrace();
-    	}		
-    			
-    		
-    	} 
+    } 
   }
    
 
