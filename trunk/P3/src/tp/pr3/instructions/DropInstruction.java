@@ -24,10 +24,6 @@ public class DropInstruction implements Instruction {
 	private DropInstruction(String id) {
 		this.id = id;
 	}
-
-	/*
-	 * 
-	 */
 	
 	public DropInstruction() {
 
@@ -80,8 +76,8 @@ public class DropInstruction implements Instruction {
 	}
 	
 	/*
-	 * Verified if item is null, Place hasn't got this item and put into Place.
-	 * @see tp.pr3.instructions.Instruction#execute()
+	 * Execute DROP instruction
+	 * Verified if item isn't null, Place hasn't got this item and put into Place.
 	 */
 	
 	@Override

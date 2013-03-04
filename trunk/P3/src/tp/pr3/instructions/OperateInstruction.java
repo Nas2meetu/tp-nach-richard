@@ -32,6 +32,11 @@ public class OperateInstruction implements Instruction {
 	public OperateInstruction() {
 
 	}
+	
+	/*
+	 * Read a string with an action, compare if this action is correct 
+	 * and generate OperateInstruction, else throw an exception.
+	 */
 
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
@@ -51,6 +56,10 @@ public class OperateInstruction implements Instruction {
 		} else
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
+	
+	/*
+	 * Show information about OPERATE instruction syntax.
+	 */
 
 	@Override
 	public String getHelp() {
@@ -64,7 +73,12 @@ public class OperateInstruction implements Instruction {
 		this.robot = engine;
 		this.robotContainer = robotContainer;
 	}
-
+	
+	/*
+	 * Execute OPERATE instruction
+	 * Verified if item isn't null and can be used.
+	 */
+	
 	@Override
 	public void execute() throws InstructionExecutionException {
 		

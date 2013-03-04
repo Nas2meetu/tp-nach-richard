@@ -9,7 +9,9 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 import static tp.pr3.Constants.*;
 import tp.pr3.City;
+import tp.pr3.NavigationModule;
 import tp.pr3.Place;
+import tp.pr3.RobotEngine;
 import tp.pr3.Street;
 import tp.pr3.cityLoader.cityLoaderExceptions.WrongCityFormatException;
 import tp.pr3.items.Item;
@@ -47,7 +49,7 @@ public class CityLoaderFromTxtFile {
 
 			loadPlaces(places);
 			loadStreets(streets);
-			loadITems(items);
+			loadItems(items);
 
 			fileLine = bufferedReader.readLine();
 			if (!fileLine.equalsIgnoreCase("EndCity"))
@@ -77,18 +79,24 @@ public class CityLoaderFromTxtFile {
 	 * 
 	 */
 
-	private void loadITems(ArrayList<Item> items2) {
-		// TODO Auto-generated method stub
+	private void loadItems(ArrayList<Item> items) throws IOException {
+		
+		String fileLine = bufferedReader.readLine();
+		if (!fileLine.equalsIgnoreCase("BeginItems"))
+			throw new WrongCityFormatException();
+
+		int num = 0;
+		while (!fileLine.equalsIgnoreCase("EndItems")) {
+			fileLine = bufferedReader.readLine();
+			loadItem(fileLine, num++);
+
+		}
+		throw new WrongCityFormatException();
 
 	}
 
-	private void loadStreets(ArrayList<Street> streets2) {
-		// TODO Auto-generated method stub
 
-	}
-
-	private void loadPlaces(ArrayList<Place> places)
-			throws IOException {
+	private void loadPlaces(ArrayList<Place> places) throws IOException {
 
 		String fileLine = bufferedReader.readLine();
 		if (!fileLine.equalsIgnoreCase("BeginPlaces"))
@@ -104,6 +112,34 @@ public class CityLoaderFromTxtFile {
 
 	}
 
+	private void loadStreets(ArrayList<Street> streets) throws IOException {
+
+		String fileLine = bufferedReader.readLine();
+		if (!fileLine.equalsIgnoreCase("BeginStreets"))
+			throw new WrongCityFormatException();
+
+		int num = 0;
+		while (!fileLine.equalsIgnoreCase("EndStreets"))
+			fileLine = bufferedReader.readLine();
+		loadStreet(fileLine, num++);
+
+	}
+	
+	private void loadItem(String fileLine, int num) 
+			throws WrongCityFormatException {
+	/*	StringTokenizer st = new StringTokenizer(fileLine, " ");
+		String Item = st.nextToken();
+		String pos = st.nextToken();
+		int posnum = Integer.parseInt(pos);
+		if (num != posnum)
+			throw new WrongCityFormatException();
+		String name = st.nextToken();
+		String description = st.nextToken();
+		items.add(new Item
+		// TODO Auto-generated method stub
+	*/	
+	}
+	
 	private void loadPlace(String fileLine, int num)
 			throws WrongCityFormatException {
 		StringTokenizer st = new StringTokenizer(fileLine, " ");
@@ -125,6 +161,33 @@ public class CityLoaderFromTxtFile {
 				places.add(new Place(name, isSpaceShip, description));
 			}
 		}
+
+	}
+
+	private void loadStreet(String fileLine, int num)
+			throws WrongCityFormatException {
+		StringTokenizer st = new StringTokenizer(fileLine, " ");
+		String words = st.nextToken();
+		if (!words.equalsIgnoreCase("STREET"))
+			throw new WrongCityFormatException();
+		String pos = st.nextToken();
+		int posnum = Integer.parseInt(pos);
+		if (num != posnum)
+			throw new WrongCityFormatException();
+		if (!words.equalsIgnoreCase("PLACE"))
+			throw new WrongCityFormatException();
+		Place sourcePlace = st.nextToken();		
+		String direction = st.nextToken();
+		if (!words.equalsIgnoreCase("PLACE"))
+			throw new WrongCityFormatException();
+		Place targetPlace= st.nextToken();
+		String isOpen = st.nextToken();
+		boolean Open = Boolean.parseBoolean(isOpen);
+		Open = isOpen.equalsIgnoreCase("open");
+		String code = st.nextToken();
+		streets.add(new Street(sourcePlace, direction, targetPlace, Open, code));
+
+		// TODO Auto-generated method stub
 
 	}
 
