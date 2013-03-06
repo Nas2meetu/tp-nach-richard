@@ -32,7 +32,7 @@ public class PickInstruction implements Instruction {
 
 	}
 	
-	/*
+	/**
 	 * Read a string with an action, compare if this action is correct 
 	 * and generate PickInstruction, else throw an exception.
 	 */
@@ -55,7 +55,7 @@ public class PickInstruction implements Instruction {
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 
-	/*
+	/**
 	 * Show information about PICK instruction syntax.
 	 */
 	
@@ -63,6 +63,10 @@ public class PickInstruction implements Instruction {
 	public String getHelp() {
 		return "PICK | COGER <id>";
 	}
+	
+	/**
+	 * 
+	 */
 
 	@Override
 	public void configureContext(RobotEngine engine,
@@ -71,6 +75,11 @@ public class PickInstruction implements Instruction {
 		this.robotContainer = robotContainer;
 	}
 
+	/**
+	 * Execute PICK instruction
+	 * Verified if item isn't null and if place has got thi item.
+	 */
+	
 	@Override
 	public void execute() throws InstructionExecutionException {
 		Item item = navigation.getCurrentPlace().getItem(id);

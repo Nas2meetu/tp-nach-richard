@@ -19,7 +19,6 @@ public class Place {
 	private String placeDescription;
 	private ItemContainer itemsInPlace;
 	
-	
 
 	/**
 	 * 
@@ -47,11 +46,17 @@ public class Place {
 	 * Constructor without parameters
 	 * 
 	 */
+	
 	public Place() {
 		itemsInPlace = new ItemContainer();
 		
 	}
 	
+	/**
+	 * 
+	 * @param it
+	 * @return
+	 */
 
 	public boolean dropItem(Item it) {
 		
@@ -62,8 +67,7 @@ public class Place {
 		    return true;
 		}else
 			 System.out.println(PLACE_REPEAT_ITEM + it.getId());
-		return false;
-		       
+		return false;	       
 
 	}
 
@@ -71,8 +75,7 @@ public class Place {
 	 * 
 	 * Return a public method (getItem) of a private attribute (id).
 	 * 
-	 * @param id
-	 *            is a reference to identify an item.
+	 * @param id is a reference to identify an item.
 	 * 
 	 * @return getItem
 	 * 

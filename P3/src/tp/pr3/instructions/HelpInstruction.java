@@ -20,7 +20,7 @@ public class HelpInstruction implements Instruction {
 
 	private RobotEngine robot;
 	
-	/*
+	/**
 	 * Read a string with an action, compare if this action is correct 
 	 * and generate DropInstruction, else throw an exception.
 	 */
@@ -39,7 +39,7 @@ public class HelpInstruction implements Instruction {
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 
-	/*
+	/**
 	 * Show information about HELP instruction syntax.
 	 */
 	
@@ -55,7 +55,7 @@ public class HelpInstruction implements Instruction {
 
 	}
 	
-	/*
+	/**
 	 * Execute HELP instruction
 	 */
 	

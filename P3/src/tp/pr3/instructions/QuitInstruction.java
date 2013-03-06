@@ -20,7 +20,7 @@ public class QuitInstruction implements Instruction {
 
 	private RobotEngine robot;
 
-	/*
+	/**
 	 * Read a string with an action, compare if this action is correct 
 	 * and generate QuitInstruction, else throw an exception.
 	 */
@@ -39,7 +39,7 @@ public class QuitInstruction implements Instruction {
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 	
-	/*
+	/**
 	 * Show information about QUIT instruction syntax.
 	 */
 
@@ -55,6 +55,10 @@ public class QuitInstruction implements Instruction {
 
 	}
 
+	/**
+	 * Execute QUIT intruction
+	 */
+	
 	@Override
 	public void execute() throws InstructionExecutionException {
 

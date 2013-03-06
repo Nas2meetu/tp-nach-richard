@@ -33,7 +33,7 @@ public class OperateInstruction implements Instruction {
 
 	}
 	
-	/*
+	/**
 	 * Read a string with an action, compare if this action is correct 
 	 * and generate OperateInstruction, else throw an exception.
 	 */
@@ -57,7 +57,7 @@ public class OperateInstruction implements Instruction {
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 	
-	/*
+	/**
 	 * Show information about OPERATE instruction syntax.
 	 */
 
@@ -74,7 +74,7 @@ public class OperateInstruction implements Instruction {
 		this.robotContainer = robotContainer;
 	}
 	
-	/*
+	/**
 	 * Execute OPERATE instruction
 	 * Verified if item isn't null and can be used.
 	 */

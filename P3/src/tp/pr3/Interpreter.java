@@ -14,7 +14,9 @@ import tp.pr3.intructions.exceptions.*;
 
 public class Interpreter {
 
-	
+	/*
+	 * Define an array of valid instructions.
+	 */
 
 	private static Instruction[] allInstructions = new Instruction[] {
 
