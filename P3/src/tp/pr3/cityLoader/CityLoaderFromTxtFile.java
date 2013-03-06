@@ -7,7 +7,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Vector;
+
+import com.sun.java.util.jar.pack.Instruction.Switch;
+
 import static tp.pr3.Constants.*;
+import sun.security.provider.JavaKeyStore.CaseExactJKS;
 import tp.pr3.City;
 import tp.pr3.Direction;
 import tp.pr3.NavigationModule;
@@ -184,7 +188,7 @@ public class CityLoaderFromTxtFile {
 			/* mirar si existe ese place en array places*/
 			
 		String pos2 = st.nextToken();
-		
+
 		int posSource = Integer.parseInt(pos2);
 		if (places.size()<posSource)
 			throw new WrongCityFormatException();
@@ -207,9 +211,17 @@ public class CityLoaderFromTxtFile {
 		Place targetPlace= places.get(posTarget);
 		String isOpen = st.nextToken();
 		boolean Open = Boolean.parseBoolean(isOpen);
-		Open = isOpen.equalsIgnoreCase("open");
-		String code = st.nextToken();
-		streets.add(new Street(sourcePlace, direction, targetPlace, Open, code));
+		
+		if (isOpen.equalsIgnoreCase ("CLOSE")) {
+			Open = false;
+			String code = st.nextToken();
+			streets.add(new Street(sourcePlace, direction, targetPlace, Open, code))
+		}
+		else {
+			Open = true;
+			String code = null;
+			streets.add(new Street(sourcePlace, direction, targetPlace, Open, code));
+		}
 
 	}
 
