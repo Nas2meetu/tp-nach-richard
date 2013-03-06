@@ -221,8 +221,8 @@ public class CityLoaderFromTxtFile {
 				
 				if (places.get(posplaces).equals(null))
 					throw new WrongCityFormatException();
-				else 
-					places.add(posplace,new Garbage(id, description, recycledMaterial));
+				/*else 
+					places.add(posplace,new Garbage(id, description, recycledMaterial));*/
 		 }	 
 		 else
 			 throw new WrongCityFormatException();
@@ -301,7 +301,19 @@ public class CityLoaderFromTxtFile {
 		
 		/* load direction */
 		
-		generateDirection(st);
+		String dir = st.nextToken();
+		Direction direction;
+		if (dir.equalsIgnoreCase("NORTH"))
+				direction = Direction.NORTH;
+		else if (dir.equalsIgnoreCase("SOUTH"))
+				direction = Direction.SOUTH;
+		else if (dir.equalsIgnoreCase("EAST"))
+				direction = Direction.EAST;
+		else if (dir.equalsIgnoreCase("WEST"))
+				direction = Direction.WEST;
+		else throw new WrongCityFormatException();
+		
+		/* generateDirection(st);
 		
 		private void generateDirection(StringTokenizer st) {
 			switch (st.nextToken()) {
@@ -324,7 +336,7 @@ public class CityLoaderFromTxtFile {
 			}
 			
 			return direction;
-		}
+		} /*
 		
 		/* look for word "place" */
 	    String words2 = st.nextToken();
@@ -344,7 +356,7 @@ public class CityLoaderFromTxtFile {
 		String isOpen = st.nextToken();
 		boolean Open = Boolean.parseBoolean(isOpen);
 		
-		if (isOpen.equalsIgnoreCase ("CLOSE")) { /* load code to open street */
+		if (isOpen.equalsIgnoreCase("CLOSE")) { /* load code to open street */
 			Open = false;
 			String code = st.nextToken();
 			streets.add(new Street(sourcePlace, direction, targetPlace, Open, code));
