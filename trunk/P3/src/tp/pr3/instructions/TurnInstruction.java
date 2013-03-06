@@ -38,7 +38,7 @@ public class TurnInstruction implements Instruction {
 
 	}
 	
-	/*
+	/**
 	 * Read a string with an action, compare if this action is correct 
 	 * and generate TurnInstruction, else throw an exception.
 	 */
@@ -67,7 +67,7 @@ public class TurnInstruction implements Instruction {
 
 	}
 
-	/*
+	/**
 	 * Show information about TURN instruction syntax.
 	 */
 	
@@ -75,7 +75,11 @@ public class TurnInstruction implements Instruction {
 	public String getHelp() {
 		return "TURN | GIRAR <LEFT|RIGHT>";
 	}
-
+	
+	/**
+	 * 
+	 */
+	
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
@@ -83,7 +87,10 @@ public class TurnInstruction implements Instruction {
 		this.navigation = navigation;
 
 	}
-
+	/**
+	 * Execute TURN instruction.
+	 */
+	
 	@Override
 	public void execute() throws InstructionExecutionException {
 		navigation.rotate(rotation);

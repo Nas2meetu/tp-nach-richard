@@ -14,6 +14,10 @@ import tp.pr3.items.ItemContainer;
 *
 */
 
+/**
+ * Interface with parse, getHelp, configureContext and execute heads
+ */
+
 public interface Instruction {
 	
 	public Instruction parse(String cad) throws WrongInstructionFormatException;

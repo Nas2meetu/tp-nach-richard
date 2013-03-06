@@ -25,7 +25,7 @@ public class NavigationModule {
 	public boolean atSpaceship() {
 		return actualPlace.isSpaceship();
 	}
-
+	
 	public void rotate(Rotation rotation) {
 
 		if (rotation.equals(Rotation.LEFT))

@@ -20,7 +20,7 @@ public class MoveInstruction implements Instruction {
 
 	private NavigationModule navigation;
 
-	/*
+	/**
 	 * Read a string with an action, compare if this action is correct 
 	 * and generate MoveInstruction, else throw an exception.
 	 */
@@ -39,7 +39,7 @@ public class MoveInstruction implements Instruction {
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 
-	/*
+	/**
 	 * Show information about MOVE instruction syntax.
 	 */
 	
@@ -55,7 +55,7 @@ public class MoveInstruction implements Instruction {
 
 	}
 	
-	/*
+	/**
 	 * Execute MOVE instruction
 	 */
 

@@ -29,7 +29,7 @@ public class DropInstruction implements Instruction {
 
 	}
 	
-	/*
+	/**
 	 * Read a string with an action, compare if this action is correct 
 	 * and generate DropInstruction, else throw an exception.
 	 */
@@ -53,7 +53,7 @@ public class DropInstruction implements Instruction {
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 
 	}
-	/*
+	/**
 	 * Show information about DROP instruction syntax.
 	 */
 	
@@ -62,10 +62,11 @@ public class DropInstruction implements Instruction {
 		return "DROP | SOLTAR <id>";
 	}
 	
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see tp.pr3.instructions.Instruction#configureContext(tp.pr3.RobotEngine, tp.pr3.NavigationModule, tp.pr3.items.ItemContainer)
 	 */
+	
 	
 	@Override
 	public void configureContext(RobotEngine engine,
@@ -75,11 +76,12 @@ public class DropInstruction implements Instruction {
 
 	}
 	
-	/*
+	/**
+	 * 
 	 * Execute DROP instruction
 	 * Verified if item isn't null, Place hasn't got this item and put into Place.
 	 */
-	
+
 	@Override
 	public void execute() throws InstructionExecutionException {
 		if (id != null && robotContainer.containsItem(id))

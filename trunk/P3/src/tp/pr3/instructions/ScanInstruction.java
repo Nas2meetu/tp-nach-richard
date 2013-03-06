@@ -30,7 +30,7 @@ public class ScanInstruction implements Instruction {
 
 	}
 	
-	/*
+	/**
 	 * Read a string with an action, compare if this action is correct 
 	 * and generate ScanInstruction, else throw an exception.
 	 */
@@ -54,7 +54,7 @@ public class ScanInstruction implements Instruction {
 
 	}
 
-	/*
+	/**
 	 * Show information about SCAN instruction syntax.
 	 */
 	
@@ -69,7 +69,11 @@ public class ScanInstruction implements Instruction {
 		this.robotContainer = robotContainer;
 
 	}
-
+	
+	/**
+	 * Execute SCAN instruction.
+	 */
+	
 	@Override
 	public void execute() throws InstructionExecutionException {
 		if (id == "") {

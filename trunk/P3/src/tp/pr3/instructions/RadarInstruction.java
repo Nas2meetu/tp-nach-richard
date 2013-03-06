@@ -20,7 +20,7 @@ public class RadarInstruction implements Instruction {
 	
 	private NavigationModule navigation;
 	
-	/*
+	/**
 	 * Read a string with an action, compare if this action is correct 
 	 * and generate RadarInstruction, else throw an exception.
 	 */
@@ -40,7 +40,7 @@ public class RadarInstruction implements Instruction {
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 	
-	/*
+	/**
 	 * Show information about RADAR instruction syntax.
 	 */
 	
@@ -48,6 +48,10 @@ public class RadarInstruction implements Instruction {
 	public String getHelp() {
 		return "RADAR";
 	}
+	
+	/**
+	 * 
+	 */
 
 	@Override
 	public void configureContext(RobotEngine engine,
@@ -55,6 +59,9 @@ public class RadarInstruction implements Instruction {
 		this.navigation=navigation;
 
 	}
+	/**
+	 * Execute RADAR instruction.
+	 */
 
 	@Override
 	public void execute() throws InstructionExecutionException {

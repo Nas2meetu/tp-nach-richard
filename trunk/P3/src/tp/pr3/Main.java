@@ -24,10 +24,6 @@ public class Main {
      *
      */
    
-             
-            
-       
-    
     public static void main(String[] args) throws IOException{
     	City cityMap = null;
 		if (args == null) {
