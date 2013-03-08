@@ -44,9 +44,11 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/**
+	 * Verify if file contains BeginCity and EndCity
 	 * 
 	 * @param file
 	 *            file with information about city.
+	 * 
 	 * @throws IOException
 	 * @throws WrongCityFormatException
 	 */
@@ -54,7 +56,6 @@ public class CityLoaderFromTxtFile {
 	public City loadCity(InputStream file) throws java.io.IOException {
 
 		bufferedReader = new BufferedReader(new InputStreamReader(file));
-		String fileLine = bufferedReader.readLine();
 		fileLine = bufferedReader.readLine();
 
 		if (fileLine == null || !fileLine.equalsIgnoreCase("BeginCity"))
@@ -74,7 +75,7 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/**
-	 * Verified if text line content BeginPlaces and EndPlaces identifiers and
+	 * Verify if text line content BeginPlaces and EndPlaces identifiers and
 	 * execute loadPlace
 	 * 
 	 * @param places
@@ -84,11 +85,7 @@ public class CityLoaderFromTxtFile {
 	private void loadPlaces(ArrayList<Place> places) throws IOException {
 
 		fileLine = bufferedReader.readLine();
-		if (fileLine == null)
-			throw new WrongCityFormatException();
-		StringTokenizer token = new StringTokenizer(fileLine, " ");
-		String words = token.nextToken();
-		if (!words.equalsIgnoreCase("BeginPlaces"))
+		if (fileLine == null || !fileLine.equalsIgnoreCase("BeginPlaces"))
 			throw new WrongCityFormatException();
 
 		int num = 0;
@@ -98,22 +95,30 @@ public class CityLoaderFromTxtFile {
 		StringTokenizer token2 = new StringTokenizer(fileLine, " ");
 		String words2 = token2.nextToken();
 		while (!words2.equalsIgnoreCase("EndPlaces")) {
-			loadPlace(words2, num++);
+			loadPlace(num++);
 			fileLine = bufferedReader.readLine();
 			if (fileLine == null)
 				throw new WrongCityFormatException();
 			StringTokenizer token3 = new StringTokenizer(fileLine, " ");
-			token3.nextToken();
+			if (!token3.hasMoreTokens())
+				throw new WrongCityFormatException();
+			words2 = token3.nextToken();
 		}
 
 	}
 
-	private void loadPlace(String fileLine, int num)
-			throws WrongCityFormatException {
-		StringTokenizer token = new StringTokenizer(fileLine);
-		String words = token.nextToken();
+	/**
+	 * Load Places from fileLine
+	 * 
+	 * @param num
+	 *            number of places.
+	 * @throws WrongCityFormatException
+	 */
 
-		if (!token.hasMoreElements() || !words.equalsIgnoreCase("PLACE"))
+	private void loadPlace(int num) throws WrongCityFormatException {
+		StringTokenizer token = new StringTokenizer(fileLine);
+		String word = token.nextToken();
+		if (!token.hasMoreElements() || !word.equalsIgnoreCase("Place"))
 			throw new WrongCityFormatException();
 
 		String pos = token.nextToken();
@@ -127,13 +132,12 @@ public class CityLoaderFromTxtFile {
 		ifMoreToken(token);
 
 		String description = token.nextToken();
-		ifMoreToken(token);
-
+		ifMoreToken(token); // si no hay más tokens debe dar error o el place no
+							// está completo.
 		description = description.replaceAll("_", " ");
+
 		String spaceShip = token.nextToken();
-		ifMoreToken(token);
 		boolean isSpaceShip = Boolean.parseBoolean(spaceShip);
-		isSpaceShip = spaceShip.equalsIgnoreCase("spaceShip");
 		places.add(new Place(name, isSpaceShip, description));
 
 	}
@@ -146,12 +150,12 @@ public class CityLoaderFromTxtFile {
 	 */
 	private void ifMoreToken(StringTokenizer token)
 			throws WrongCityFormatException {
-		if (!token.hasMoreElements())
+		if (!token.hasMoreTokens())
 			throw new WrongCityFormatException();
 	}
 
 	/**
-	 * Verified if text line content BeginStreets and EndStreets identifiers and
+	 * Verify if text line content BeginStreets and EndStreets identifiers and
 	 * execute loadStreet
 	 * 
 	 * @param streets
@@ -167,34 +171,42 @@ public class CityLoaderFromTxtFile {
 
 		int num = 0;
 		fileLine = bufferedReader.readLine();
-
-		while (fileLine == null || !fileLine.equalsIgnoreCase("EndStreets")) {
-			loadStreet(fileLine, num++);
+		if (fileLine == null)
+			throw new WrongCityFormatException();
+		StringTokenizer token2 = new StringTokenizer(fileLine, " ");
+		String words2 = token2.nextToken();
+		while (!words2.equalsIgnoreCase("EndStreets")) {
+			loadStreet(num++);
 			fileLine = bufferedReader.readLine();
 			if (fileLine == null)
 				throw new WrongCityFormatException();
+			StringTokenizer token3 = new StringTokenizer(fileLine, " ");
+			if (!token3.hasMoreTokens())
+				throw new WrongCityFormatException();
+			words2 = token3.nextToken();
 		}
 	}
 
 	/**
-	 * Load Places from text file
+	 * Load Streets from text file
 	 * 
 	 * @param fileLine
 	 *            line of file to parse.
+	 * 
 	 * @param num
 	 *            number of streets.
+	 * 
 	 * @throws WrongCityFormatException
 	 */
 
-	private void loadStreet(String fileLine, int num)
-			throws WrongCityFormatException {
+	private void loadStreet(int num) throws WrongCityFormatException {
 		StringTokenizer token = new StringTokenizer(fileLine, " ");
 
 		/* look for word "street" */
 
 		String words = token.nextToken();
 		ifMoreToken(token);
-		if (!words.equalsIgnoreCase("STREET"))
+		if (!token.hasMoreElements() || !words.equalsIgnoreCase("STREET"))
 			throw new WrongCityFormatException();
 
 		/* look for word "place" */
@@ -225,7 +237,7 @@ public class CityLoaderFromTxtFile {
 
 		String dir = token.nextToken();
 		ifMoreToken(token);
-		Direction direction = Direction.valueOf(dir);
+		Direction direction = Direction.valueOf(dir.toUpperCase());
 
 		/* look for word "place" */
 		String words2 = token.nextToken();
@@ -249,14 +261,12 @@ public class CityLoaderFromTxtFile {
 		/* load or not boolean Open/Close */
 
 		String isOpen = token.nextToken();
-		ifMoreToken(token);
 
 		boolean Open = Boolean.parseBoolean(isOpen);
 
-		if (isOpen.equalsIgnoreCase("CLOSE")) { /* load code to open street */
+		if (isOpen.equalsIgnoreCase("closed")) { /* load code to open street */
 			Open = false;
 			String code = token.nextToken();
-			ifMoreToken(token);
 			streets.add(new Street(sourcePlace, direction, targetPlace, Open,
 					code));
 		} else {
@@ -287,7 +297,7 @@ public class CityLoaderFromTxtFile {
 		while (fileLine == null || !fileLine.equalsIgnoreCase("EndItems")) {
 			loadItem(fileLine, num++);
 			fileLine = bufferedReader.readLine();
-			if(fileLine == null)
+			if (fileLine == null)
 				throw new WrongCityFormatException();
 		}
 		// throw new WrongCityFormatException();
@@ -299,6 +309,7 @@ public class CityLoaderFromTxtFile {
 	 * 
 	 * @param fileLine
 	 *            line of file to parse.
+	 * 
 	 * @param num
 	 *            number of items.
 	 * @throws WrongCityFormatException
@@ -308,19 +319,19 @@ public class CityLoaderFromTxtFile {
 			throws WrongCityFormatException {
 
 		StringTokenizer token = new StringTokenizer(fileLine, " ");
-		String item = token.nextToken();
+		String item = token.nextToken().toUpperCase();
 		ifMoreToken(token);
 		switch (item) {
 		case "FUEL": {
-			loadFuelItem(token);
+			loadFuelItem(token, num++);
 			break;
 		}
 		case "CODECARD": {
-			loadCodeCardItem(token);
+			loadCodeCardItem(token, num++);
 			break;
 		}
 		case "GARBAGE": {
-			loadGarbageItem(token);
+			loadGarbageItem(token, num++);
 			break;
 		}
 		default:
@@ -329,8 +340,13 @@ public class CityLoaderFromTxtFile {
 		}
 	}
 
-	private void loadGarbageItem(StringTokenizer token)
+	private void loadGarbageItem(StringTokenizer token,int num)
 			throws WrongCityFormatException {
+		String pos = token.nextToken();
+		ifMoreToken(token);
+		int posnum = Integer.parseInt(pos);
+		if (num != posnum)
+			throw new WrongCityFormatException();
 		String id = token.nextToken();
 		ifMoreToken(token);
 		String description = token.nextToken();
@@ -344,7 +360,6 @@ public class CityLoaderFromTxtFile {
 		if (!words.equalsIgnoreCase("PLACE"))
 			throw new WrongCityFormatException();
 		String posPlaces = token.nextToken();
-		ifMoreToken(token);
 		int posplaces = Integer.parseInt(posPlaces);
 
 		if (!places.get(posplaces).addItem(
@@ -352,8 +367,13 @@ public class CityLoaderFromTxtFile {
 			throw new WrongCityFormatException();
 	}
 
-	private void loadCodeCardItem(StringTokenizer token)
+	private void loadCodeCardItem(StringTokenizer token,int num)
 			throws WrongCityFormatException {
+		String pos = token.nextToken();
+		ifMoreToken(token);
+		int posnum = Integer.parseInt(pos);
+		if (num != posnum)
+			throw new WrongCityFormatException();
 		String id = token.nextToken();
 		ifMoreToken(token);
 		String description = token.nextToken();
@@ -366,14 +386,18 @@ public class CityLoaderFromTxtFile {
 		if (!words.equalsIgnoreCase("PLACE"))
 			throw new WrongCityFormatException();
 		String posPlaces = token.nextToken();
-		ifMoreToken(token);
 		int posPlace = Integer.parseInt(posPlaces);
 		if (!places.get(posPlace).addItem(new CodeCard(id, description, code)))
 			throw new WrongCityFormatException();
 	}
 
-	private void loadFuelItem(StringTokenizer token)
+	private void loadFuelItem(StringTokenizer token, int num)
 			throws WrongCityFormatException {
+		String pos = token.nextToken();
+		ifMoreToken(token);
+		int posnum = Integer.parseInt(pos);
+		if (num != posnum)
+			throw new WrongCityFormatException();
 		String id = token.nextToken();
 		ifMoreToken(token);
 		String description = token.nextToken();
@@ -390,7 +414,6 @@ public class CityLoaderFromTxtFile {
 		if (!words.equalsIgnoreCase("PLACE"))
 			throw new WrongCityFormatException();
 		String posPlaces = token.nextToken();
-		ifMoreToken(token);
 		int posPlace = Integer.parseInt(posPlaces);
 		if (!places.get(posPlace).addItem(
 				new Fuel(id, description, power, times)))

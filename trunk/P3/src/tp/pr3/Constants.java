@@ -27,7 +27,7 @@ public class Constants {
 
 	public static final String WALLE_SAYS = "WALL·E says: ";
 
-	public static final String RECICLED_MATERIAL = "   * My recycled material is: ";
+	public static final String RECICLED_MATERIAL = "   * My recycled material is ";
 
 	public static final String POWER = "    * My power is ";
 
