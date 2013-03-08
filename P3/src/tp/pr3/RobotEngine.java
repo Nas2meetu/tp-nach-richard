@@ -1,7 +1,11 @@
 package tp.pr3;
 
+import java.util.Scanner;
+
 import tp.pr3.instructions.Instruction;
+import tp.pr3.instructions.QuitInstruction;
 import tp.pr3.intructions.exceptions.InstructionExecutionException;
+import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
 import tp.pr3.items.ItemContainer;
 import static tp.pr3.Constants.*;
 
@@ -19,6 +23,8 @@ public class RobotEngine {
 	private int contRecycledMaterial;
 	private ItemContainer container;
 	private NavigationModule navigation;
+	private Direction direction;
+	private boolean quit;
 
 	/**
 	 * 
@@ -39,6 +45,8 @@ public class RobotEngine {
 		this.contFuel = INITIAL_POWER;
 		this.contRecycledMaterial = INITIAL_GARBAGE;
 		this.navigation = new NavigationModule(city, initialPlace);
+		this.navigation.initHeading(direction);
+		
 	}
 
 	/**
@@ -69,18 +77,17 @@ public class RobotEngine {
 	 */
 
 	public void requestQuit() {
-
+		quit=true;
 		System.out.println(QUIT);
-		System.exit(0);
-
+		
 	}
 
 	public void printRobotState() {
 
 		System.out.println(navigation.getCurrentPlace().toString()
+				+ LOOKING_DIRECTION + navigation.getCurrentHeading()
 				+ LINE_SEPARATOR + POWER2 + contFuel + LINE_SEPARATOR
-				+ RECICLED_MATERIAL + contRecycledMaterial + LINE_SEPARATOR
-				+ LOOKING_DIRECTION + navigation.getCurrentHeading());
+				+ RECICLED_MATERIAL + contRecycledMaterial + LINE_SEPARATOR);
 	}
 
 	/**
@@ -112,26 +119,58 @@ public class RobotEngine {
 	}
 
 	public void startEngine() {
-
-		/*Scanner read = new Scanner(System.in);
+		boolean instrucValid;
+		Instruction instruction=null;
+		printRobotState();
+		Scanner read = new Scanner(System.in);
 		
-		
-		while (!isEndGame(instruction) && contFuel > 0) {
-			System.out.print(PROMPT);
-			String word = read.nextLine().toLowerCase();
+		while (!quit && !navigation.atSpaceship()){
+			if (this.contFuel<=0){
+				System.out.println(END_FUEL);
+				quit=true;
+			}
+			else {
+				instrucValid=false;
+					while (!instrucValid) {
+				
+				System.out.println(PROMPT);
+				String readed = read.nextLine();
+				
+				try {
+					instruction = Interpreter.generateInstruction(readed);
 					
-
-			if ((word == null) || word.isValid()) {
-				processInstruction(instruction);
-			} else
-				System.out.println(BAD_INSTRUCTION + LINE_SEPARATOR);
+				} catch (WrongInstructionFormatException wife) {
+					System.out.println(BAD_INSTRUCTION+LINE_SEPARATOR);
+					instrucValid=false;
+				
+		}
+					}
+				this.communicateRobot(instruction);
 		}
 		read.close();
-		if (contFuel <= 0)
-			System.out.println(END_FUEL);
-		else
-			System.out.println(END_GAME);
-	*/}
+		
+        if (contFuel<=0)
+            System.out.println(END_FUEL);
+        else
+            System.out.println(END_GAME);
+	}
+	}
+		
+		 
+          
+        
+	/**
+    *
+    * Verified if game has finished.
+    *
+    * @param instruction is a command that Robot processes
+    * @return isEndGame is one of possible ways to finish game
+    *
+    */
+
+   private boolean isEndGame(QuitInstruction instruction) {
+           return navigation.getCurrentPlace().isSpaceship();
+   }
 
 	/**
 	 * 
