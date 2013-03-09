@@ -21,8 +21,7 @@ public class Main {
 		if (args.length == 0) {
 			System.err.println("Bad params.");
 			System.err.println("Usage: java tp.pr3.Main <mapfile>" + LINE_SEPARATOR);
-			System.err
-					.println("<mapfile> : file with the description of the city.");
+			System.err.println("<mapfile> : file with the description of the city.");
 			System.exit(1);
 		} else {
 			try {
@@ -33,11 +32,10 @@ public class Main {
 				robot.startEngine();
 			} catch (FileNotFoundException e) {
 				//System.err.println("noExiste.txt");
-				System.err
-						.println("Error reading the map file: noExiste.txt (No existe el fichero o el directorio)");
+				System.err.println(FILE_READ_ERROR);
 				System.exit(2);
 			} catch (IOException e) {
-				System.err.println("Error de formato");
+				System.err.println(FILE_FORMAT_ERROR);
 				System.exit(2);
 			}
 		}

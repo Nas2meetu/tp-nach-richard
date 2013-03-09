@@ -14,9 +14,10 @@ import tp.pr3.intructions.exceptions.*;
 
 public class Interpreter {
 
-	/*
+	/**
 	 * Define an array of valid instructions.
 	 */
+
 
 	private static Instruction[] allInstructions = new Instruction[] {
 
@@ -26,6 +27,13 @@ public class Interpreter {
 			new ScanInstruction(), new TurnInstruction()
 
 	};
+	
+	/**
+	 * 
+	 * @param line
+	 * @return
+	 * @throws WrongInstructionFormatException
+	 */
 
 	public static Instruction generateInstruction(String line)
 			throws WrongInstructionFormatException {
@@ -42,6 +50,8 @@ public class Interpreter {
 	}
 
 	/**
+	 * 
+	 * Show information about permitted instructions
 	 * 
 	 * @return String override with help message
 	 * 
