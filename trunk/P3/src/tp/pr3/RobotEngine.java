@@ -1,9 +1,7 @@
 package tp.pr3;
 
 import java.util.Scanner;
-
 import tp.pr3.instructions.Instruction;
-import tp.pr3.instructions.QuitInstruction;
 import tp.pr3.intructions.exceptions.InstructionExecutionException;
 import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
 import tp.pr3.items.ItemContainer;
@@ -23,8 +21,8 @@ public class RobotEngine {
 	private int contRecycledMaterial;
 	private ItemContainer container;
 	private NavigationModule navigation;
-	private Direction direction;
-	private boolean quit;
+	private boolean endGame;
+	private Instruction instruction;
 
 	/**
 	 * 
@@ -46,7 +44,7 @@ public class RobotEngine {
 		this.contRecycledMaterial = INITIAL_GARBAGE;
 		this.navigation = new NavigationModule(city, initialPlace);
 		this.navigation.initHeading(direction);
-		
+
 	}
 
 	/**
@@ -58,6 +56,35 @@ public class RobotEngine {
 
 	public ItemContainer getContainer() {
 		return container;
+	}
+
+	public void startEngine() {
+
+		Scanner reader = new Scanner(System.in);
+		printRobotState();
+
+		while (!this.dead() && !endGame) {
+			System.out.print(PROMPT);
+			String input = reader.nextLine();
+
+			try {
+				instruction = Interpreter.generateInstruction(input);
+				this.communicateRobot(instruction);
+
+			} catch (WrongInstructionFormatException e) {
+
+				System.out.println(e.getMessage());
+			}
+		}
+
+		System.out.println(END_GAME + LINE_SEPARATOR);
+	}
+
+	/**
+	 * Requests the game to quit
+	 */
+	public void requestQuit() {
+		endGame = true;
 	}
 
 	public void communicateRobot(Instruction c) {
@@ -76,18 +103,24 @@ public class RobotEngine {
 	 * 
 	 */
 
-	public void requestQuit() {
-		quit=true;
-		System.out.println(QUIT);
-		
-	}
+	/*
+	 * public void requestQuit() { quit = true; System.out.println(QUIT);
+	 * 
+	 * }
+	 */
 
 	public void printRobotState() {
 
 		System.out.println(navigation.getCurrentPlace().toString()
 				+ LOOKING_DIRECTION + navigation.getCurrentHeading()
-				+ LINE_SEPARATOR + POWER2 + contFuel + LINE_SEPARATOR
+				+ LINE_SEPARATOR + POWER2 + this.contFuel + LINE_SEPARATOR
 				+ RECICLED_MATERIAL + contRecycledMaterial + LINE_SEPARATOR);
+	}
+
+	public boolean dead() {
+
+		return this.contFuel <= 0;
+
 	}
 
 	/**
@@ -118,60 +151,7 @@ public class RobotEngine {
 
 	}
 
-	public void startEngine() {
-		boolean instrucValid;
-		Instruction instruction=null;
-		printRobotState();
-		Scanner read = new Scanner(System.in);
-		
-		while (!quit && !navigation.atSpaceship()){
-			if (this.contFuel<=0){
-				System.out.println(END_FUEL);
-				quit=true;
-			}
-			else {
-				instrucValid=false;
-					while (!instrucValid) {
-				
-				System.out.println(PROMPT);
-				String readed = read.nextLine();
-				
-				try {
-					instruction = Interpreter.generateInstruction(readed);
-					
-				} catch (WrongInstructionFormatException wife) {
-					System.out.println(BAD_INSTRUCTION+LINE_SEPARATOR);
-					instrucValid=false;
-				
-		}
-					}
-				this.communicateRobot(instruction);
-		}
-		read.close();
-		
-        if (contFuel<=0)
-            System.out.println(END_FUEL);
-        else
-            System.out.println(END_GAME);
-	}
-	}
-		
-		 
-          
-        
-	/**
-    *
-    * Verified if game has finished.
-    *
-    * @param instruction is a command that Robot processes
-    * @return isEndGame is one of possible ways to finish game
-    *
-    */
-
-   private boolean isEndGame(QuitInstruction instruction) {
-           return navigation.getCurrentPlace().isSpaceship();
-   }
-
+	
 	/**
 	 * 
 	 * Return a public method (contFuel) of a private attribute (Fuel).

@@ -51,7 +51,7 @@ public class Interpreter {
 
 		String messageHelp = HEAD_HELP;
 		for (Instruction instruction : allInstructions) {
-			messageHelp = messageHelp + instruction.getHelp();
+			messageHelp = messageHelp + instruction.getHelp() + LINE_SEPARATOR;
 
 		}
 		return messageHelp;

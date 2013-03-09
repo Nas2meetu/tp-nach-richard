@@ -19,6 +19,7 @@ import static tp.pr3.Constants.*;
 public class MoveInstruction implements Instruction {
 
 	private NavigationModule navigation;
+	private RobotEngine robot;
 
 	/**
 	 * Read a string with an action, compare if this action is correct 
@@ -52,7 +53,7 @@ public class MoveInstruction implements Instruction {
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
 		this.navigation = navigation;
-
+		this.robot = engine;
 	}
 	
 	/**
@@ -62,13 +63,12 @@ public class MoveInstruction implements Instruction {
 	@Override
 	public void execute() throws InstructionExecutionException {
 		navigation.move();
+		robot.addFuel(-5);
+		System.out.println(MOVE + navigation.getCurrentHeading());
+		robot.printRobotState();
+		
 	}
 
-	/*public Street getHeadingStreet() {
-		City map = navigation.getCityMap();
-		Place actualPlace = navigation.getCurrentPlace();
-		Direction lookingDirection = navigation.getCurrentHeading();
-		return map.lookForStreet(actualPlace, lookingDirection);
-	}*/
+	
 
 }

@@ -25,7 +25,7 @@ public class NavigationModule {
 	public boolean atSpaceship() {
 		return actualPlace.isSpaceship();
 	}
-	
+
 	public void rotate(Rotation rotation) {
 
 		if (rotation.equals(Rotation.LEFT))
@@ -52,7 +52,7 @@ public class NavigationModule {
 	}
 
 	public void dropItemAtCurrentPlace(Item it) {
-		this.robot = new RobotEngine(cityMap, actualPlace, lookingDirection);
+		//this.robot = new RobotEngine(cityMap, actualPlace, lookingDirection);
 		robot.getContainer().pickItem(it.getId());
 	}
 
@@ -61,18 +61,11 @@ public class NavigationModule {
 	}
 
 	public void move() throws InstructionExecutionException {
-		this.robot = new RobotEngine(cityMap, actualPlace, lookingDirection);
+
 		if (getHeadingStreet() == null) {
 			throw new InstructionExecutionException(NO_STREET);
 		} else if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
-			robot.addFuel(-5);
-			System.out.println(MOVE + lookingDirection);
-			System.out.println(actualPlace.toString() + POWER2
-					+ robot.getFuel() + LINE_SEPARATOR + RECICLED_MATERIAL
-					+ robot.getRecycledMaterial() + LINE_SEPARATOR
-					+ LOOKING_DIRECTION + lookingDirection);
-
 		} else
 			throw new InstructionExecutionException(STREET_CLOSE);
 
@@ -82,7 +75,7 @@ public class NavigationModule {
 		Item item = actualPlace.getItem(it.getId());
 		if (item != null) {
 			actualPlace.pickItem(it.getId());
-		} 
+		}
 	}
 
 }
