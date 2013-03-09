@@ -34,9 +34,9 @@ public class CityLoaderFromTxtFile {
 	private String fileLine;
 
 	/**
-         *
-         */
-
+	 * 
+	 */
+	
 	public CityLoaderFromTxtFile() {
 		this.places = new ArrayList<Place>();
 		this.streets = new ArrayList<Street>();
@@ -45,9 +45,9 @@ public class CityLoaderFromTxtFile {
 
 	/**
 	 * Verify if file contains BeginCity and EndCity
+	 * and execute loadPlaces, Streets and Items
 	 * 
-	 * @param file
-	 *            file with information about city.
+	 * @param file file with information about city.
 	 * 
 	 * @throws IOException
 	 * @throws WrongCityFormatException
@@ -190,11 +190,9 @@ public class CityLoaderFromTxtFile {
 	/**
 	 * Load Streets from text file
 	 * 
-	 * @param fileLine
-	 *            line of file to parse.
+	 * @param fileLine line of file to parse. 
 	 * 
-	 * @param num
-	 *            number of streets.
+	 * @param num number of streets.       
 	 * 
 	 * @throws WrongCityFormatException
 	 */
@@ -307,11 +305,9 @@ public class CityLoaderFromTxtFile {
 	/**
 	 * Load Items from text file
 	 * 
-	 * @param fileLine
-	 *            line of file to parse.
-	 * 
-	 * @param num
-	 *            number of items.
+	 * @param fileLine line of file to parse.       
+	 * @param num number of items.
+	 *            
 	 * @throws WrongCityFormatException
 	 */
 
@@ -339,6 +335,14 @@ public class CityLoaderFromTxtFile {
 
 		}
 	}
+	
+	/**
+	 * Load a garbage of type Item
+	 * 
+	 * @param token sentence with garbage information
+	 * @param num count of number of garbage
+	 * @throws WrongCityFormatException
+	 */
 
 	private void loadGarbageItem(StringTokenizer token,int num)
 			throws WrongCityFormatException {
@@ -367,6 +371,14 @@ public class CityLoaderFromTxtFile {
 			throw new WrongCityFormatException();
 	}
 
+	/**
+	 * Load a codecard of type Item
+	 * 
+	 * @param token sentence with codecard information
+	 * @param num count of number of codecard
+	 * @throws WrongCityFormatException
+	 */
+	
 	private void loadCodeCardItem(StringTokenizer token,int num)
 			throws WrongCityFormatException {
 		String pos = token.nextToken();
@@ -390,6 +402,14 @@ public class CityLoaderFromTxtFile {
 		if (!places.get(posPlace).addItem(new CodeCard(id, description, code)))
 			throw new WrongCityFormatException();
 	}
+	
+	/**
+	 * Load a fuel of type Item
+	 * 
+	 * @param token sentence with fuel information
+	 * @param num count of number of fuel
+	 * @throws WrongCityFormatException
+	 */
 
 	private void loadFuelItem(StringTokenizer token, int num)
 			throws WrongCityFormatException {
@@ -421,8 +441,9 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/**
+	 * Show initial place
 	 * 
-	 * @return
+	 * @return place initial Place
 	 */
 
 	public Place getInitialPlace() {
