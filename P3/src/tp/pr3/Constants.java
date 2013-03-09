@@ -113,4 +113,8 @@ public class Constants {
 	public static final String BEGIN_STREETS_NOT_FOUND = "BeginStreets not found in file";
 	
 	public static final String BEGIN_ITEMS_NOT_FOUND = "BeginItems not found in file";
+	
+	public static final String FILE_READ_ERROR = "Error reading map, file or directory not exist";
+	
+	public static final String FILE_FORMAT_ERROR = "Format error";
 }

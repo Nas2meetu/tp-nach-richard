@@ -7,7 +7,6 @@ import static tp.pr3.Constants.RECICLED_MATERIAL;
 
 import java.util.StringTokenizer;
 
-import tp.pr3.Direction;
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 import tp.pr3.Rotation;
