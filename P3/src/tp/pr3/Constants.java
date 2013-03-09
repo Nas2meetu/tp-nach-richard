@@ -27,11 +27,11 @@ public class Constants {
 
 	public static final String WALLE_SAYS = "WALL·E says: ";
 
-	public static final String RECICLED_MATERIAL = "   * My recycled material is ";
+	public static final String RECICLED_MATERIAL = "      * My recycled material is ";
 
 	public static final String POWER = "    * My power is ";
 
-	public static final String POWER2 = "   * My power is ";
+	public static final String POWER2 = "      * My power is ";
 
 	public static final String STREET_CLOSE = WALLE_SAYS
 			+ "Arrggg, there is a street but it is closed!";
@@ -53,13 +53,13 @@ public class Constants {
 	public static final String ITEM_PROBLEMS = WALLE_SAYS
 			+ "I have problems using the object ";
 
-	public static final String SHOW_PLACE = "The place contains these objects: ";
+	public static final String SHOW_PLACE = "The place contains these objects:";
 
 	public static final String PLACE_EMPTY = "The place is empty. There are no objects to pick"
 			+ LINE_SEPARATOR;
 
 	public static final String CONTAINER_ITEM = WALLE_SAYS
-			+ "I am happy! Now I have  ";
+			+ "I am happy! Now I have ";
 
 	public static final String PLACE_ITEM = WALLE_SAYS
 			+ "Great! I have dropped ";
@@ -82,7 +82,7 @@ public class Constants {
 	public static final String PLACE_REPEAT_ITEM = WALLE_SAYS
 			+ "I am stupid! The Place already has the object ";
 
-	public static final String HEAD_HELP = "The valid instructions for WALL-E are:";
+	public static final String HEAD_HELP = "The valid instructions for WALL-E are:" + LINE_SEPARATOR;
 
 	public static final String HELP = "The valid instructions for WALL-E are:"
 			+ LINE_SEPARATOR + "     MOVE" + LINE_SEPARATOR

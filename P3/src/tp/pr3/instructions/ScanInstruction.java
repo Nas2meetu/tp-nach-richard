@@ -76,7 +76,7 @@ public class ScanInstruction implements Instruction {
 	
 	@Override
 	public void execute() throws InstructionExecutionException {
-		if (id == "") {
+		if (id == null) {
 			System.out.println(robotContainer.showItems());
 		} else {
 			Item item = robotContainer.getItem(id);

@@ -26,7 +26,6 @@ import tp.pr3.items.ItemContainer;
 public class TurnInstruction implements Instruction {
 
 	private Rotation rotation;
-	private Direction lookingDirection;
 	private RobotEngine robot;
 	private NavigationModule navigation;
 
@@ -37,10 +36,10 @@ public class TurnInstruction implements Instruction {
 	public TurnInstruction() {
 
 	}
-	
+
 	/**
-	 * Read a string with an action, compare if this action is correct 
-	 * and generate TurnInstruction, else throw an exception.
+	 * Read a string with an action, compare if this action is correct and
+	 * generate TurnInstruction, else throw an exception.
 	 */
 
 	@Override
@@ -70,16 +69,16 @@ public class TurnInstruction implements Instruction {
 	/**
 	 * Show information about TURN instruction syntax.
 	 */
-	
+
 	@Override
 	public String getHelp() {
 		return "TURN | GIRAR <LEFT|RIGHT>";
 	}
-	
+
 	/**
 	 * 
 	 */
-	
+
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
@@ -87,17 +86,18 @@ public class TurnInstruction implements Instruction {
 		this.navigation = navigation;
 
 	}
+
 	/**
 	 * Execute TURN instruction.
 	 */
-	
+
 	@Override
 	public void execute() throws InstructionExecutionException {
 		navigation.rotate(rotation);
-		robot.addFuel(-1);
-		System.out.println(POWER2 + robot.getFuel() + LINE_SEPARATOR
-				+ RECICLED_MATERIAL + robot.getRecycledMaterial()
-				+ LINE_SEPARATOR + LOOKING_DIRECTION + lookingDirection);
+		robot.addFuel(-5);
+		System.out.println(LOOKING_DIRECTION + navigation.getCurrentHeading()
+				+ LINE_SEPARATOR + POWER2 + robot.getFuel() + LINE_SEPARATOR
+				+ RECICLED_MATERIAL + robot.getRecycledMaterial());
 
 	}
 
