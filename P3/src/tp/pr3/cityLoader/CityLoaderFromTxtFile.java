@@ -435,6 +435,8 @@ public class CityLoaderFromTxtFile {
 			throw new WrongCityFormatException();
 		String posPlaces = token.nextToken();
 		int posPlace = Integer.parseInt(posPlaces);
+		if (num != posPlace)
+			throw new WrongCityFormatException();
 		if (!places.get(posPlace).addItem(
 				new Fuel(id, description, power, times)))
 			throw new WrongCityFormatException();
