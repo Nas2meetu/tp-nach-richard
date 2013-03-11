@@ -48,7 +48,8 @@ public class CityLoaderFromTxtFile {
 	 */
 
 	public City loadCity(InputStream file) throws java.io.IOException {
-
+		places.clear();
+		streets.clear();
 		bufferedReader = new BufferedReader(new InputStreamReader(file));
 		String fileLine = bufferedReader.readLine();
 
