@@ -1,7 +1,7 @@
 package tp.pr3.instructions.testprofesor;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -13,8 +13,8 @@ import tp.pr3.Place;
 import tp.pr3.RobotEngine;
 import tp.pr3.instructions.DropInstruction;
 import tp.pr3.instructions.Instruction;
-import tp.pr3.intructions.exceptions.InstructionExecutionException;
-import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
+import tp.pr3.instructions.exceptions.InstructionExecutionException;
+import tp.pr3.instructions.exceptions.WrongInstructionFormatException;
 
 import tp.pr3.items.Item;
 import tp.pr3.items.ItemContainer;

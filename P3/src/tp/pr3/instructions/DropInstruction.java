@@ -4,7 +4,7 @@ import static tp.pr3.Constants.*;
 import java.util.StringTokenizer;
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
-import tp.pr3.intructions.exceptions.*;
+import tp.pr3.instructions.exceptions.*;
 import tp.pr3.items.ItemContainer;
 
 /**

@@ -16,7 +16,7 @@ import tp.pr3.NavigationModule;
 import tp.pr3.Place;
 import tp.pr3.Rotation;
 import tp.pr3.Street;
-import tp.pr3.intructions.exceptions.InstructionExecutionException;
+import tp.pr3.instructions.exceptions.InstructionExecutionException;
 
 
 public class NavigationModuleTest {

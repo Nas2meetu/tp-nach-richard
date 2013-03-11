@@ -1,7 +1,7 @@
 package tp.pr3;
 
 import static tp.pr3.Constants.*;
-import tp.pr3.intructions.exceptions.*;
+import tp.pr3.instructions.exceptions.*;
 import tp.pr3.items.Item;
 
 public class NavigationModule {

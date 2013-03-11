@@ -2,8 +2,8 @@ package tp.pr3;
 
 import java.util.Scanner;
 import tp.pr3.instructions.Instruction;
-import tp.pr3.intructions.exceptions.InstructionExecutionException;
-import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
+import tp.pr3.instructions.exceptions.InstructionExecutionException;
+import tp.pr3.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr3.items.ItemContainer;
 import static tp.pr3.Constants.*;
 

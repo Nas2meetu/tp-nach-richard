@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import tp.pr3.instructions.Instruction;
 import tp.pr3.instructions.RadarInstruction;
-import tp.pr3.intructions.exceptions.WrongInstructionFormatException;
+import tp.pr3.instructions.exceptions.WrongInstructionFormatException;
 
 
 
