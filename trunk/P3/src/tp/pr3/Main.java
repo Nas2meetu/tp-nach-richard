@@ -31,7 +31,6 @@ public class Main {
 				RobotEngine robot = new RobotEngine(city, fileLoader.getInitialPlace(), Direction.NORTH);
 				robot.startEngine();
 			} catch (FileNotFoundException e) {
-				//System.err.println("noExiste.txt");
 				System.err.println(FILE_READ_ERROR);
 				System.exit(2);
 			} catch (IOException e) {

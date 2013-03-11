@@ -36,7 +36,7 @@ public class CityLoaderFromTxtFile {
 	/**
 	 * 
 	 */
-	
+
 	public CityLoaderFromTxtFile() {
 		this.places = new ArrayList<Place>();
 		this.streets = new ArrayList<Street>();
@@ -44,10 +44,11 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/**
-	 * Verify if file contains BeginCity and EndCity
-	 * and execute loadPlaces, Streets and Items
+	 * Verify if file contains BeginCity and EndCity and execute loadPlaces,
+	 * Streets and Items
 	 * 
-	 * @param file file with information about city.
+	 * @param file
+	 *            file with information about city.
 	 * 
 	 * @throws IOException
 	 * @throws WrongCityFormatException
@@ -92,19 +93,16 @@ public class CityLoaderFromTxtFile {
 		fileLine = bufferedReader.readLine();
 		if (fileLine == null)
 			throw new WrongCityFormatException();
-		StringTokenizer token2 = new StringTokenizer(fileLine, " ");
-		String words2 = token2.nextToken();
-		while (!words2.equalsIgnoreCase("EndPlaces")) {
+		// StringTokenizer token2 = new StringTokenizer(fileLine, " ");
+		// String words2 = token2.nextToken();
+		while (!fileLine.equalsIgnoreCase("EndPlaces")) {
 			loadPlace(num++);
 			fileLine = bufferedReader.readLine();
-			if (fileLine == null)
+			if (fileLine == null) {
 				throw new WrongCityFormatException();
-			StringTokenizer token3 = new StringTokenizer(fileLine, " ");
-			if (!token3.hasMoreTokens())
-				throw new WrongCityFormatException();
-			words2 = token3.nextToken();
-		}
+			}
 
+		}
 	}
 
 	/**
@@ -112,10 +110,10 @@ public class CityLoaderFromTxtFile {
 	 * 
 	 * @param num
 	 *            number of places.
-	 * @throws WrongCityFormatException
+	 * @throws IOException
 	 */
 
-	private void loadPlace(int num) throws WrongCityFormatException {
+	private void loadPlace(int num) throws IOException {
 		StringTokenizer token = new StringTokenizer(fileLine);
 		String word = token.nextToken();
 		if (!token.hasMoreElements() || !word.equalsIgnoreCase("Place"))
@@ -132,16 +130,17 @@ public class CityLoaderFromTxtFile {
 		ifMoreToken(token);
 
 		String description = token.nextToken();
-		ifMoreToken(token); // si no hay más tokens debe dar error o el place no
-							// está completo.
+		ifMoreToken(token); 
 		description = description.replaceAll("_", " ");
 
 		String spaceShip = token.nextToken();
+		if (!spaceShip.equalsIgnoreCase("spaceShip")
+				&& !spaceShip.equalsIgnoreCase("noSpaceShip"))
+			throw new WrongCityFormatException();
 		boolean isSpaceShip = Boolean.parseBoolean(spaceShip);
 		places.add(new Place(name, isSpaceShip, description));
-
+		
 	}
-
 	/**
 	 * Verify if has got more elements, else throw exception
 	 * 
@@ -190,9 +189,11 @@ public class CityLoaderFromTxtFile {
 	/**
 	 * Load Streets from text file
 	 * 
-	 * @param fileLine line of file to parse. 
+	 * @param fileLine
+	 *            line of file to parse.
 	 * 
-	 * @param num number of streets.       
+	 * @param num
+	 *            number of streets.
 	 * 
 	 * @throws WrongCityFormatException
 	 */
@@ -305,9 +306,11 @@ public class CityLoaderFromTxtFile {
 	/**
 	 * Load Items from text file
 	 * 
-	 * @param fileLine line of file to parse.       
-	 * @param num number of items.
-	 *            
+	 * @param fileLine
+	 *            line of file to parse.
+	 * @param num
+	 *            number of items.
+	 * 
 	 * @throws WrongCityFormatException
 	 */
 
@@ -335,16 +338,18 @@ public class CityLoaderFromTxtFile {
 
 		}
 	}
-	
+
 	/**
 	 * Load a garbage of type Item
 	 * 
-	 * @param token sentence with garbage information
-	 * @param num count of number of garbage
+	 * @param token
+	 *            sentence with garbage information
+	 * @param num
+	 *            count of number of garbage
 	 * @throws WrongCityFormatException
 	 */
 
-	private void loadGarbageItem(StringTokenizer token,int num)
+	private void loadGarbageItem(StringTokenizer token, int num)
 			throws WrongCityFormatException {
 		String pos = token.nextToken();
 		ifMoreToken(token);
@@ -374,12 +379,14 @@ public class CityLoaderFromTxtFile {
 	/**
 	 * Load a codecard of type Item
 	 * 
-	 * @param token sentence with codecard information
-	 * @param num count of number of codecard
+	 * @param token
+	 *            sentence with codecard information
+	 * @param num
+	 *            count of number of codecard
 	 * @throws WrongCityFormatException
 	 */
-	
-	private void loadCodeCardItem(StringTokenizer token,int num)
+
+	private void loadCodeCardItem(StringTokenizer token, int num)
 			throws WrongCityFormatException {
 		String pos = token.nextToken();
 		ifMoreToken(token);
@@ -402,12 +409,14 @@ public class CityLoaderFromTxtFile {
 		if (!places.get(posPlace).addItem(new CodeCard(id, description, code)))
 			throw new WrongCityFormatException();
 	}
-	
+
 	/**
 	 * Load a fuel of type Item
 	 * 
-	 * @param token sentence with fuel information
-	 * @param num count of number of fuel
+	 * @param token
+	 *            sentence with fuel information
+	 * @param num
+	 *            count of number of fuel
 	 * @throws WrongCityFormatException
 	 */
 
