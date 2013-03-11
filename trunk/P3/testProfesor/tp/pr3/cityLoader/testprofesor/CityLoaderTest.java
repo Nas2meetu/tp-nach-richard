@@ -57,7 +57,9 @@ public class CityLoaderTest {
 					// Continue
 				}
 				catch (Exception e) {
+					e.printStackTrace();
 					fail("ERROR: loadCity throws an exception different from WrongCityFormatException: "+e);					
+						
 				}
 			}
 		}
