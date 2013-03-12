@@ -43,10 +43,9 @@ public class Interpreter {
 				return aux.parse(line);
 
 			} catch (WrongInstructionFormatException wife) {
-
 			}
 		}
-		throw new WrongInstructionFormatException();
+		throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 
 	/**

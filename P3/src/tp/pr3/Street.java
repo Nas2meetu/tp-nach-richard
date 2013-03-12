@@ -36,7 +36,7 @@ public class Street {
             this.direction = direction;
             this.targetPlace = targetPlace;
             this.isOpen = true;
-            this.code = null;
+            this.code = "";
 
     }
    
