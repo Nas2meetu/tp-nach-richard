@@ -63,7 +63,7 @@ public class RobotEngine {
 		Scanner reader = new Scanner(System.in);
 		printRobotState();
 
-		while (!this.dead() && !endGame) {
+		while (!this.noFuel() && !endGame) {
 			System.out.print(PROMPT);
 			String input = reader.nextLine();
 
@@ -117,10 +117,8 @@ public class RobotEngine {
 				+ RECICLED_MATERIAL + contRecycledMaterial + LINE_SEPARATOR);
 	}
 
-	public boolean dead() {
-
+	public boolean noFuel() {
 		return this.contFuel <= 0;
-
 	}
 
 	/**

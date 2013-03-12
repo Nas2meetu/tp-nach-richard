@@ -46,11 +46,11 @@ public class DropInstruction implements Instruction {
 				if (!st.hasMoreTokens())
 					return new DropInstruction(id);
 				else
-					throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+					throw new WrongInstructionFormatException();
 			} else
-				throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+				throw new WrongInstructionFormatException();
 		} else
-			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+			throw new WrongInstructionFormatException();
 
 	}
 	/**
