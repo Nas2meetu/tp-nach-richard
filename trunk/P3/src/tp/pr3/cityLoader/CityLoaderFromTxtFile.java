@@ -314,7 +314,7 @@ public class CityLoaderFromTxtFile {
 			throw new WrongCityFormatException(e);
 		}
 
-		if (num > posPlace)//falla aqui
+		if(posPlace >= places.size())
 			throw new WrongCityFormatException();
 		if (!places.get(posPlace).addItem(
 				new Fuel(line[2], description, power, times)))
@@ -356,8 +356,9 @@ public class CityLoaderFromTxtFile {
 			throw new WrongCityFormatException(e);
 		}
 
-		if (num != posPlace)
+		if(posPlace >= places.size())
 			throw new WrongCityFormatException();
+		
 		if (!places.get(posPlace).addItem(
 				new Garbage(line[2], description, garbage)))
 			throw new WrongCityFormatException();
@@ -389,7 +390,7 @@ public class CityLoaderFromTxtFile {
 		} catch (NumberFormatException e) {
 			throw new WrongCityFormatException(e);
 		}
-		if (num != posPlace)
+		if(posPlace >= places.size())
 			throw new WrongCityFormatException();
 
 		if (!places.get(posPlace).addItem(
