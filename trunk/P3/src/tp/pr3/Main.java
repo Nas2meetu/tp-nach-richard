@@ -18,11 +18,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		if (args.length == 0) {
-			System.err.println("Bad params.");
-			System.err.println("Usage: java tp.pr3.Main <mapfile>"
-					+ LINE_SEPARATOR);
-			System.err
-					.println("<mapfile> : file with the description of the city.");
+			System.err.println(BAD_PARAMS);
+			System.err.println(USAGE_MAPFILE + LINE_SEPARATOR);
+			System.err.println(MAPFILE);
 			System.exit(1);
 		} else {
 			try {
