@@ -72,7 +72,7 @@ public class MoveInstruction implements Instruction {
 					+ LINE_SEPARATOR);
 
 		} catch (InstructionExecutionException e) {
-			throw new InstructionExecutionException();
+			throw new InstructionExecutionException(e.getMessage());
 		}
 
 	}
