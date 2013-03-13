@@ -83,13 +83,6 @@ public class Constants {
 	public static final String HEAD_HELP = "The valid instructions for WALL-E are:"
 			+ LINE_SEPARATOR;
 
-	public static final String HELP = "The valid instructions for WALL-E are:"
-			+ LINE_SEPARATOR + "     MOVE" + LINE_SEPARATOR
-			+ "     TURN <LEFT | RIGHT>" + LINE_SEPARATOR + "     PICK <id>"
-			+ LINE_SEPARATOR + "     SCAN [ <id> ]" + LINE_SEPARATOR
-			+ "     OPERATE <id>" + LINE_SEPARATOR + "     HELP"
-			+ LINE_SEPARATOR + "     QUIT" + LINE_SEPARATOR;
-
 	public static final String END_GAME = WALLE_SAYS
 			+ "I am at my space ship. Bye Bye";
 
@@ -118,4 +111,11 @@ public class Constants {
 	public static final String FILE_READ_ERROR2 = " (No existe el fichero o el directorio)";
 
 	public static final String FILE_FORMAT_ERROR = "Format error";
+	
+	public static final String BAD_PARAMS = "Bad params.";
+	
+	public static final String USAGE_MAPFILE = "Usage: java tp.pr3.Main <mapfile>";
+	
+	public static final String MAPFILE = "<mapfile> : file with the description of the city.";
+	
 }
