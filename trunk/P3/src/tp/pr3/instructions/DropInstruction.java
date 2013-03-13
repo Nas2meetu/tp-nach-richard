@@ -24,18 +24,17 @@ public class DropInstruction implements Instruction {
 	private DropInstruction(String id) {
 		this.id = id;
 	}
-	
+
 	public DropInstruction() {
 
 	}
-	
+
 	/**
-	 * Read a string with an action, compare if this action is correct 
-	 * and generate DropInstruction, else throw an exception.
+	 * Read a string with an action, compare if this action is correct and
+	 * generate DropInstruction, else throw an exception.
 	 */
-	
+
 	@Override
-	
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
 
 		StringTokenizer st = new StringTokenizer(cad, " ");
@@ -53,21 +52,23 @@ public class DropInstruction implements Instruction {
 			throw new WrongInstructionFormatException();
 
 	}
+
 	/**
 	 * Show information about DROP instruction syntax.
 	 */
-	
+
 	@Override
 	public String getHelp() {
 		return "DROP | SOLTAR <id>";
 	}
-	
+
 	/**
 	 * (non-Javadoc)
-	 * @see tp.pr3.instructions.Instruction#configureContext(tp.pr3.RobotEngine, tp.pr3.NavigationModule, tp.pr3.items.ItemContainer)
+	 * 
+	 * @see tp.pr3.instructions.Instruction#configureContext(tp.pr3.RobotEngine,
+	 *      tp.pr3.NavigationModule, tp.pr3.items.ItemContainer)
 	 */
-	
-	
+
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
@@ -75,11 +76,11 @@ public class DropInstruction implements Instruction {
 		this.robotContainer = robotContainer;
 
 	}
-	
+
 	/**
 	 * 
-	 * Execute DROP instruction
-	 * Verified if item isn't null, Place hasn't got this item and put into Place.
+	 * Execute DROP instruction Verified if item isn't null, Place hasn't got
+	 * this item and put into Place.
 	 */
 
 	@Override
@@ -88,10 +89,11 @@ public class DropInstruction implements Instruction {
 			if (!navigation.findItemAtCurrentPlace(id)) {
 				navigation.getCurrentPlace().addItem(
 						robotContainer.pickItem(id));
-				System.out.println(PLACE_ITEM);
+				System.out.println(PLACE_ITEM + id);
 			} else
-				throw new InstructionExecutionException(PLACE_REPEAT_ITEM+ id);
+				throw new InstructionExecutionException(PLACE_REPEAT_ITEM + id);
 		else
-			throw new InstructionExecutionException(CONTAINER_NO_ITEM + id + ".");
+			throw new InstructionExecutionException(CONTAINER_NO_ITEM + id
+					+ ".");
 	}
 }

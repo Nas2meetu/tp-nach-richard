@@ -34,9 +34,9 @@ public class HelpInstruction implements Instruction {
 			if (!st.hasMoreTokens())
 				return new HelpInstruction();
 			else
-				throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+				throw new WrongInstructionFormatException();
 		} else
-			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+			throw new WrongInstructionFormatException();
 	}
 
 	/**

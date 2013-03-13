@@ -22,10 +22,10 @@ public class MoveInstruction implements Instruction {
 	private RobotEngine robot;
 
 	/**
-	 * Read a string with an action, compare if this action is correct 
-	 * and generate MoveInstruction, else throw an exception.
+	 * Read a string with an action, compare if this action is correct and
+	 * generate MoveInstruction, else throw an exception.
 	 */
-	
+
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
 
@@ -35,15 +35,15 @@ public class MoveInstruction implements Instruction {
 			if (!st.hasMoreTokens())
 				return new MoveInstruction();
 			else
-				throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+				throw new WrongInstructionFormatException();
 		} else
-			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+			throw new WrongInstructionFormatException();
 	}
 
 	/**
 	 * Show information about MOVE instruction syntax.
 	 */
-	
+
 	@Override
 	public String getHelp() {
 		return "MOVE | MOVER";
@@ -55,20 +55,26 @@ public class MoveInstruction implements Instruction {
 		this.navigation = navigation;
 		this.robot = engine;
 	}
-	
+
 	/**
 	 * Execute MOVE instruction
 	 */
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		navigation.move();
-		robot.addFuel(-5);
-		System.out.println(MOVE + navigation.getCurrentHeading());
-		robot.printRobotState();
-		
-	}
+		try {
+			navigation.move();
+			robot.addFuel(-5);
+			System.out.println(MOVE + navigation.getCurrentHeading());
+			System.out.println(navigation.getCurrentPlace().toString());
+			System.out.println(POWER2 + robot.getFuel() + LINE_SEPARATOR
+					+ RECYCLED_MATERIAL + robot.getRecycledMaterial()
+					+ LINE_SEPARATOR);
 
-	
+		} catch (InstructionExecutionException e) {
+			throw new InstructionExecutionException();
+		}
+
+	}
 
 }
