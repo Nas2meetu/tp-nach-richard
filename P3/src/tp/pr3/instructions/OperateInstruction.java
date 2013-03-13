@@ -50,11 +50,11 @@ public class OperateInstruction implements Instruction {
 				if (!st.hasMoreTokens())
 					return new OperateInstruction(id);
 				else
-					throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+					throw new WrongInstructionFormatException();
 			} else
-				throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+				throw new WrongInstructionFormatException();
 		} else
-			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+			throw new WrongInstructionFormatException();
 	}
 	
 	/**
@@ -86,13 +86,13 @@ public class OperateInstruction implements Instruction {
 		if (item != null && item.canBeUsed()
 				&& robotContainer.getId(item).equalsIgnoreCase(id)) {
 			if (!item.use(robot, navigation))
-				throw new InstructionExecutionException(ITEM_PROBLEMS);
+				throw new InstructionExecutionException(ITEM_PROBLEMS + id);
 		}
 		if (item != null && !item.canBeUsed()) {
 			robotContainer.pickItem(id);
 			System.out.println(ITEM_CANT_USED + id + IN_MY_INVENTORY);
 		} else if (item==null)
-			throw new InstructionExecutionException(ITEM_PROBLEMS);
+			throw new InstructionExecutionException(ITEM_PROBLEMS + id);
 	}
 
 }

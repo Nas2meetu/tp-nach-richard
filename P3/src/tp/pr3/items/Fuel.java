@@ -60,10 +60,10 @@ public class Fuel extends Item {
 			this.times--;
 			used = true;
 			System.out.println(POWER2 + robot.getFuel() + LINE_SEPARATOR
-					+ RECICLED_MATERIAL + robot.getRecycledMaterial());
+                    + RECYCLED_MATERIAL + robot.getRecycledMaterial());
 
-		} else
-			System.out.println(ITEM_PROBLEMS + getId());
+
+		}
 		return used;
 
 	}

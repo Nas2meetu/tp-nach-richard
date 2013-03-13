@@ -27,7 +27,7 @@ public class Constants {
 
 	public static final String WALLE_SAYS = "WALL·E says: ";
 
-	public static final String RECICLED_MATERIAL = "      * My recycled material is ";
+	public static final String RECYCLED_MATERIAL = "      * My reclycled material is ";
 
 	public static final String POWER = "    * My power is ";
 
@@ -61,14 +61,12 @@ public class Constants {
 	public static final String CONTAINER_ITEM = WALLE_SAYS
 			+ "I am happy! Now I have ";
 
-	public static final String PLACE_ITEM = WALLE_SAYS
-			+ "Great! I have dropped ";
+	public static final String PLACE_ITEM = "Great! I have dropped ";
 
 	public static final String PLACE_NO_ITEM = WALLE_SAYS
 			+ "Ooops, this place has not the object ";
 
-	public static final String CONTAINER_NO_ITEM = WALLE_SAYS
-			+ "You do not have any ";
+	public static final String CONTAINER_NO_ITEM = "You do not have any ";
 
 	public static final String SCAN_NO_ITEM = WALLE_SAYS
 			+ "I have not such object";
@@ -82,7 +80,8 @@ public class Constants {
 	public static final String PLACE_REPEAT_ITEM = WALLE_SAYS
 			+ "I am stupid! The Place already has the object ";
 
-	public static final String HEAD_HELP = "The valid instructions for WALL-E are:" + LINE_SEPARATOR;
+	public static final String HEAD_HELP = "The valid instructions for WALL-E are:"
+			+ LINE_SEPARATOR;
 
 	public static final String HELP = "The valid instructions for WALL-E are:"
 			+ LINE_SEPARATOR + "     MOVE" + LINE_SEPARATOR
@@ -109,12 +108,12 @@ public class Constants {
 	public static final String LOOKING_DIRECTION = "WALL·E is looking at direction ";
 
 	public static final String BEGIN_PLACES_NOT_FOUND = "BeginPlaces not found in file";
-	
+
 	public static final String BEGIN_STREETS_NOT_FOUND = "BeginStreets not found in file";
-	
+
 	public static final String BEGIN_ITEMS_NOT_FOUND = "BeginItems not found in file";
-	
+
 	public static final String FILE_READ_ERROR = "Error reading map, file or directory not exist";
-	
+
 	public static final String FILE_FORMAT_ERROR = "Format error";
 }

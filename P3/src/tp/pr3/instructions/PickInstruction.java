@@ -48,11 +48,11 @@ public class PickInstruction implements Instruction {
 				if (!st.hasMoreTokens())
 					return new PickInstruction(token2);
 				else
-					throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+					throw new WrongInstructionFormatException();
 			} else
-				throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+				throw new WrongInstructionFormatException();
 		} else
-			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+			throw new WrongInstructionFormatException();
 	}
 
 	/**

@@ -62,6 +62,7 @@ public class RobotEngine {
 
 		Scanner reader = new Scanner(System.in);
 		printRobotState();
+		endGame = false;
 
 		while (!this.noFuel() && !endGame) {
 			System.out.print(PROMPT);
@@ -70,21 +71,24 @@ public class RobotEngine {
 			try {
 				instruction = Interpreter.generateInstruction(input);
 				this.communicateRobot(instruction);
-
+				if (navigation.atSpaceship()) {
+					System.out.print(END_GAME + LINE_SEPARATOR);
+					endGame = true;
+				}
 			} catch (WrongInstructionFormatException e) {
-
 				System.out.println(e.getMessage());
 			}
 		}
+		reader.close();
 
-		System.out.println(END_GAME + LINE_SEPARATOR);
 	}
 
 	/**
 	 * Requests the game to quit
 	 */
 	public void requestQuit() {
-		endGame = true;
+		System.out.println(QUIT);
+		System.exit(0);
 	}
 
 	public void communicateRobot(Instruction c) {
@@ -92,6 +96,7 @@ public class RobotEngine {
 		try {
 			c.execute();
 		} catch (InstructionExecutionException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -114,7 +119,7 @@ public class RobotEngine {
 		System.out.println(navigation.getCurrentPlace().toString()
 				+ LOOKING_DIRECTION + navigation.getCurrentHeading()
 				+ LINE_SEPARATOR + POWER2 + this.contFuel + LINE_SEPARATOR
-				+ RECICLED_MATERIAL + contRecycledMaterial + LINE_SEPARATOR);
+				+ RECYCLED_MATERIAL + contRecycledMaterial + LINE_SEPARATOR);
 	}
 
 	public boolean noFuel() {
@@ -149,7 +154,6 @@ public class RobotEngine {
 
 	}
 
-	
 	/**
 	 * 
 	 * Return a public method (contFuel) of a private attribute (Fuel).

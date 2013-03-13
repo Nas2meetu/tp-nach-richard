@@ -3,7 +3,7 @@ package tp.pr3.instructions;
 import static tp.pr3.Constants.LINE_SEPARATOR;
 import static tp.pr3.Constants.LOOKING_DIRECTION;
 import static tp.pr3.Constants.POWER2;
-import static tp.pr3.Constants.RECICLED_MATERIAL;
+import static tp.pr3.Constants.RECYCLED_MATERIAL;
 
 import java.util.StringTokenizer;
 
@@ -96,7 +96,7 @@ public class TurnInstruction implements Instruction {
 		robot.addFuel(-5);
 		System.out.println(LOOKING_DIRECTION + navigation.getCurrentHeading()
 				+ LINE_SEPARATOR + POWER2 + robot.getFuel() + LINE_SEPARATOR
-				+ RECICLED_MATERIAL + robot.getRecycledMaterial());
+				+ RECYCLED_MATERIAL + robot.getRecycledMaterial());
 
 	}
 

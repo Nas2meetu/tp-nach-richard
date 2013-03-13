@@ -52,7 +52,7 @@ public class NavigationModule {
 	}
 
 	public void dropItemAtCurrentPlace(Item it) {
-		//this.robot = new RobotEngine(cityMap, actualPlace, lookingDirection);
+		
 		robot.getContainer().pickItem(it.getId());
 	}
 
@@ -63,7 +63,7 @@ public class NavigationModule {
 	public void move() throws InstructionExecutionException {
 
 		if (getHeadingStreet() == null) {
-			throw new InstructionExecutionException(NO_STREET);
+			throw new InstructionExecutionException(NO_STREET + lookingDirection);
 		} else if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
 		} else

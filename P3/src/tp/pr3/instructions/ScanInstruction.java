@@ -29,10 +29,10 @@ public class ScanInstruction implements Instruction {
 	public ScanInstruction() {
 
 	}
-	
+
 	/**
-	 * Read a string with an action, compare if this action is correct 
-	 * and generate ScanInstruction, else throw an exception.
+	 * Read a string with an action, compare if this action is correct and
+	 * generate ScanInstruction, else throw an exception.
 	 */
 
 	@Override
@@ -46,18 +46,18 @@ public class ScanInstruction implements Instruction {
 				if (!st.hasMoreTokens())
 					return new ScanInstruction(token2);
 				else
-					throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+					throw new WrongInstructionFormatException();
 			} else
 				return new ScanInstruction();
 		} else
-			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+			throw new WrongInstructionFormatException();
 
 	}
 
 	/**
 	 * Show information about SCAN instruction syntax.
 	 */
-	
+
 	@Override
 	public String getHelp() {
 		return "SCAN | ESCANEAR <id>";
@@ -69,11 +69,11 @@ public class ScanInstruction implements Instruction {
 		this.robotContainer = robotContainer;
 
 	}
-	
+
 	/**
 	 * Execute SCAN instruction.
 	 */
-	
+
 	@Override
 	public void execute() throws InstructionExecutionException {
 		if (id == null) {
@@ -83,7 +83,7 @@ public class ScanInstruction implements Instruction {
 			if (item != null)
 				System.out.println(WALLE_SAYS + item.toString());
 			else
-				throw new InstructionExecutionException(SCAN_NO_ITEM);
+				throw new InstructionExecutionException(SCAN_NO_ITEM + id);
 		}
 	}
 }
