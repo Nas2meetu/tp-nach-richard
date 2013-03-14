@@ -8,10 +8,13 @@ package tp.pr3;
 *
 */
 
+/**
+ * 
+ * Define valid rotation for Wall·E
+ *
+ */
+
 
 public enum Rotation {
-	/**
-	 * Define valid rotation for Wall·E
-	 */
 		LEFT, RIGHT, UNKNONW
 }

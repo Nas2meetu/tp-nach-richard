@@ -29,7 +29,10 @@ public class CityLoaderFromTxtFile {
 
 	/**
 	 * 
+	 * Constructor of two arrays to create city with places, streets and items.
+	 * 
 	 */
+
 
 	public CityLoaderFromTxtFile() {
 		this.places = new ArrayList<Place>();
@@ -38,14 +41,14 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/**
-	 * Verify if file contains BeginCity and EndCity and execute loadPlaces,
-	 * Streets and Items
 	 * 
-	 * @param file
-	 *            file with information about city.
+	 * Verify if file contains word "BeginCity" and "EndCity" if exists 
+	 * execute loadPlaces, loadStreets and loadItems.
 	 * 
-	 * @throws IOException
-	 * @throws WrongCityFormatException
+	 * @param file is a file with information about city.
+	 * @return City map of city.
+	 * @throws java.io.IOException
+	 * 
 	 */
 
 	public City loadCity(InputStream file) throws java.io.IOException {
@@ -54,6 +57,8 @@ public class CityLoaderFromTxtFile {
 		
 		bufferedReader = new BufferedReader(new InputStreamReader(file));
 		String fileLine = bufferedReader.readLine();
+		
+		/* find word "BeginCity" in line of file */
 
 		if (fileLine == null || !fileLine.equals("BeginCity"))
 			throw new WrongCityFormatException();
@@ -65,6 +70,8 @@ public class CityLoaderFromTxtFile {
 			throw new WrongCityFormatException(e);
 		}
 
+		/* find word "EndCity" in line of file */
+		
 		fileLine = bufferedReader.readLine();
 		if (fileLine == null || !fileLine.equalsIgnoreCase("EndCity"))
 			throw new WrongCityFormatException();
@@ -72,11 +79,23 @@ public class CityLoaderFromTxtFile {
 		streets.toArray(streetArray);
 		return new City(streetArray);
 	}
+	
+	/**
+	 * 
+	 * Verify if file has got places.
+	 * 
+	 * @throws IOException
+	 * @throws WrongCityFormatException
+	 * 
+	 */
 
 	private void loadPlaces() throws IOException, WrongCityFormatException {
 		String fileLine;
 		String[] line;
 		fileLine = bufferedReader.readLine();
+		
+		/* find word "BeginPlaces" in line of file */
+		
 		if (fileLine == null || !fileLine.equals("BeginPlaces"))
 			throw new WrongCityFormatException();
 
@@ -85,9 +104,15 @@ public class CityLoaderFromTxtFile {
 		if (fileLine == null) {
 			throw new WrongCityFormatException();
 		}
+		
+		/* delete initial and final " " of line */
+		
 		line = fileLine.split(" ");
 		if (line.length == 0)
 			throw new WrongCityFormatException();
+		
+		/* find word "EndPlacess" in line of file */
+		
 		while (!line[0].equals("EndPlaces")) {
 			loadPlace(line, num++);
 			fileLine = bufferedReader.readLine();
@@ -99,6 +124,15 @@ public class CityLoaderFromTxtFile {
 
 		}
 	}
+	
+	/**
+	 * 
+	 * Load places to city.
+	 * 
+	 * @param line is a line of text from file
+	 * @param num size of array of places.
+	 * @throws WrongCityFormatException
+	 */
 
 	private void loadPlace(String[] line, int num)
 			throws WrongCityFormatException {
@@ -109,6 +143,8 @@ public class CityLoaderFromTxtFile {
 		 * spaceship/noSpaceship, any other value is error
 		 */
 
+		/* verify if word "place" exist in line */
+		
 		if (!line[0].equals("place") || line.length != 5)
 			throw new WrongCityFormatException();
 
@@ -120,9 +156,14 @@ public class CityLoaderFromTxtFile {
 		}
 		if (num != posnum)
 			throw new WrongCityFormatException();
+		
+		/* replace "_" by " " */
 
 		String description = line[3].replaceAll("_", " ");
 
+		/* verify if word "nospaceship" or "spaceship" exist in line and 
+		   add place to array of places*/
+		
 		if (!line[4].equalsIgnoreCase("nospaceship")
 				&& !line[4].equalsIgnoreCase("spaceship"))
 			throw new WrongCityFormatException();
@@ -133,6 +174,14 @@ public class CityLoaderFromTxtFile {
 
 	}
 
+	/**
+	 * 
+	 * Verify if file has got streets.
+	 * 
+	 * @throws IOException
+	 * @throws WrongCityFormatException
+	 */
+	
 	private void loadStreets() throws IOException, WrongCityFormatException {
 		String fileLine;
 		String[] line;
@@ -159,6 +208,15 @@ public class CityLoaderFromTxtFile {
 		}
 	}
 
+	/**
+	 * 
+	 * Load streets to city.
+	 * 
+	 * @param line is a line of text from file
+	 * @param num size of array of streets.
+	 * @throws WrongCityFormatException
+	 */
+	
 	private void loadStreet(String[] line, int num)
 			throws WrongCityFormatException {
 
@@ -216,6 +274,14 @@ public class CityLoaderFromTxtFile {
 		else
 			throw new WrongCityFormatException();
 	}
+	
+	/**
+	 * 
+	 * Verify if file has got items.
+	 * 
+	 * @throws IOException
+	 * @throws WrongCityFormatException
+	 */
 
 	private void loadItems() throws IOException, WrongCityFormatException {
 		/**
@@ -252,6 +318,15 @@ public class CityLoaderFromTxtFile {
 				throw new WrongCityFormatException();
 		}
 	}
+	
+	/**
+	 * 
+	 * Verify type of items has got line and process this item.
+	 * 
+	 * @param line is a line of text from file
+	 * @param num size of array of items
+	 * @throws WrongCityFormatException
+	 */
 
 	private void loadItem(String[] line, int num)
 			throws WrongCityFormatException {
@@ -274,6 +349,15 @@ public class CityLoaderFromTxtFile {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * Load fuel items to map
+	 * 
+	 * @param line is a line of text from file
+	 * @param num size of array of items
+	 * @throws WrongCityFormatException
+	 */
 
 	private void loadFuelItem(String[] line, int num)
 			throws WrongCityFormatException {
@@ -322,6 +406,15 @@ public class CityLoaderFromTxtFile {
 
 	}
 
+	/**
+	 * 
+	 * Load garbage items to place.
+	 * 
+	 * @param line is a line of text from file
+	 * @param num size of array of items
+	 * @throws WrongCityFormatException
+	 */
+	
 	private void loadGarbageItem(String[] line, int num)
 			throws WrongCityFormatException {
 		
@@ -364,6 +457,15 @@ public class CityLoaderFromTxtFile {
 			throw new WrongCityFormatException();
 
 	}
+	
+	/**
+	 * 
+	 * Load codeCard items to place.
+	 * 
+	 * @param line is a line of text from file
+	 * @param num size of array of items
+	 * @throws WrongCityFormatException
+	 */
 
 	private void loadCodeCardItem(String[] line, int num)
 			throws WrongCityFormatException {
@@ -398,13 +500,13 @@ public class CityLoaderFromTxtFile {
 			throw new WrongCityFormatException();
 
 	}
-
+	
 	/**
-	 * Show initial place
+	 * Return a initial place.
 	 * 
-	 * @return place initial Place
+	 * @return place.get(0)
 	 */
-
+	
 	public Place getInitialPlace() {
 		return places.get(0);
 	}

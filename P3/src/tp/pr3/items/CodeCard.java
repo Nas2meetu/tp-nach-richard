@@ -20,13 +20,10 @@ public class CodeCard extends Item {
 	 * 
 	 * Constructor of three parameters to define CodeCard.
 	 * 
-	 * @param id
-	 *            is a reference to identify an item.
-	 * @param description
-	 *            is description of item.
-	 * @param code
-	 *            is a password to open or close a street.
-	 * 
+	 * @param id is a reference to identify an item.        
+	 * @param description is description of item.         
+	 * @param code is a password to open or close a street.
+	 *            
 	 */
 
 	public CodeCard(String id, String description, String code) {
@@ -37,6 +34,7 @@ public class CodeCard extends Item {
 	/**
 	 * This item always can be used, override method Item class
 	 */
+	
 	@Override
 	public boolean canBeUsed() {
 		return true;

@@ -49,6 +49,17 @@ public class MoveInstruction implements Instruction {
 		return "MOVE | MOVER";
 	}
 
+	/**
+	 * 
+	 * Method receives complete engine and use part of configureContext 
+	 * depends of the instruction needs.
+	 * 
+	 * engine robot engine
+     * navigation information about map (actualPlace, currentHeading, rotation...)
+     * robotContainer inventory of robot 
+	 * 
+	 */
+	
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {

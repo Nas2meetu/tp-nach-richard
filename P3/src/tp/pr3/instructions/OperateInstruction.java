@@ -66,6 +66,17 @@ public class OperateInstruction implements Instruction {
 		return "OPERATE | OPERAR <id>";
 	}
 
+	/**
+	 * 
+	 * Method receives complete engine and use part of configureContext 
+	 * depends of the instruction needs.
+	 * 
+	 * engine robot engine
+     * navigation information about map (actualPlace, currentHeading, rotation...)
+     * robotContainer inventory of robot 
+	 * 
+	 */
+	
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
@@ -76,7 +87,7 @@ public class OperateInstruction implements Instruction {
 	
 	/**
 	 * Execute OPERATE instruction
-	 * Verified if item isn't null and can be used.
+	 * Verify if item isn't null and can be used.
 	 */
 	
 	@Override

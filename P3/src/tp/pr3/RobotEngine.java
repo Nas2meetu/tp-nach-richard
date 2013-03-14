@@ -26,14 +26,11 @@ public class RobotEngine {
 
 	/**
 	 * 
-	 * Creates a new Robot Engine
+	 * Constructor of three parameters to create a new Robot Engine
 	 * 
-	 * @param initialPlace
-	 *            is the initial place of the robot
-	 * @param direction
-	 *            is the default direction
-	 * @param cityMap
-	 *            is the map where the robot lives
+	 * @param initialPlace is the initial place of the robot
+	 * @param direction is the default direction
+	 * @param city is the map where the robot lives
 	 * 
 	 **/
 
@@ -49,8 +46,8 @@ public class RobotEngine {
 
 	/**
 	 * 
-	 * Is the Start game, show initial information and finish information and if
-	 * Player win or lost game.
+	 * Is the Start of game, show initial information, finish information and if
+	 * player win or lost game.
 	 * 
 	 */
 
@@ -84,13 +81,21 @@ public class RobotEngine {
 	}
 
 	/**
+	 * 
 	 * Requests the game to quit
+	 *
 	 */
+	
 	public void requestQuit() {
 		System.out.println(QUIT);
 		System.exit(0);
 	}
-
+	
+	/**
+	 * 
+	 * @param c
+	 */
+	
 	public void communicateRobot(Instruction c) {
 		c.configureContext(this, navigation, container);
 		try {

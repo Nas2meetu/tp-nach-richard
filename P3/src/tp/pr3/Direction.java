@@ -8,10 +8,10 @@ package tp.pr3;
 * 
 */
 
-
 public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 
 	/**
+	 * 
 	 * Define opposite directions for Wall·E
 	 * 
 	 * @return oppositeDirection is opposite direction where robot is looking at

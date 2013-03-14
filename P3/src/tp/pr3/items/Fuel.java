@@ -21,14 +21,11 @@ public class Fuel extends Item {
 	 * 
 	 * Constructor of four parameters to define energy of Robot.
 	 * 
-	 * @param id
-	 *            is a reference to identify an item.
-	 * @param description
-	 *            is description of item.
-	 * @param power
-	 *            unit of energy.
-	 * @param times
-	 *            number of uses for this item.
+	 * @param id is a reference to identify an item.       
+	 * @param description is description of item.         
+	 * @param power unit of energy.       
+	 * @param times number of uses for this item.
+	 *            
 	 */
 
 	public Fuel(String id, String description, int power, int times) {

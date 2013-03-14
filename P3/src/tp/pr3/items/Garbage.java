@@ -21,12 +21,9 @@ public class Garbage extends Item {
 	 * 
 	 * Constructor of three parameters to define garbage of robot.
 	 * 
-	 * @param id
-	 *            is a reference to identify an item.
-	 * @param description
-	 *            is description of item.
-	 * @param recycledMaterial
-	 *            count of recycle material.
+	 * @param id is a reference to identify an item.         
+	 * @param description is description of item.       
+	 * @param recycledMaterial count of recycle material.           
 	 * 
 	 */
 

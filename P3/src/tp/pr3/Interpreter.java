@@ -15,7 +15,9 @@ import tp.pr3.instructions.exceptions.*;
 public class Interpreter {
 
 	/**
+	 * 
 	 * Define an array of valid instructions.
+	 * 
 	 */
 
 
@@ -30,11 +32,13 @@ public class Interpreter {
 	
 	/**
 	 * 
-	 * @param line
-	 * @return
+	 * Generate parse to instruction
+	 * 
+	 * @param line is a line receive from robotEngine (from keyboard)
+	 * @return line is instruction
 	 * @throws WrongInstructionFormatException
 	 */
-
+	
 	public static Instruction generateInstruction(String line)
 			throws WrongInstructionFormatException {
 

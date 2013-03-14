@@ -3,8 +3,9 @@ package tp.pr3.instructions.exceptions;
 public class InstructionExecutionException extends Exception {
 	
 	/**
-	 * 
+	 *  List of exceptions about instruction execution.
 	 */
+	
 	private static final long serialVersionUID = 1L;
 
 
