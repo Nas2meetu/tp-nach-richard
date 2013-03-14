@@ -28,6 +28,7 @@ public class Street {
      * @param sourcePlace is one side of street.
      * @param direction is default direction.
      * @param targetPlace is opposite side of street.
+     * 
      *
      */
 

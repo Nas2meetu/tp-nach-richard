@@ -18,6 +18,7 @@ public class ItemContainer {
 	/**
 	 * Constructor of two parameters to define robot´s Container
 	 */
+	
 	public ItemContainer() {
 		container = new Item[100];
 		numberOfItems = 0;

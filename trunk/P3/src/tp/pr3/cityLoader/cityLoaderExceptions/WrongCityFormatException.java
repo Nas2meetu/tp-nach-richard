@@ -5,8 +5,9 @@ import java.io.IOException;
 public class WrongCityFormatException extends IOException {
 
 	/**
-	 * 
+	 * List of exception about format of city.
 	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	public WrongCityFormatException() {

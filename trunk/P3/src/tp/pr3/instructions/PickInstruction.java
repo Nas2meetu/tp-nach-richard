@@ -66,6 +66,13 @@ public class PickInstruction implements Instruction {
 	
 	/**
 	 * 
+	 * Method receives complete engine and use part of configureContext 
+	 * depends of the instruction needs.
+	 * 
+	 * engine robot engine
+     * navigation information about map (actualPlace, currentHeading, rotation...)
+     * robotContainer inventory of robot 
+	 * 
 	 */
 
 	@Override
@@ -77,7 +84,7 @@ public class PickInstruction implements Instruction {
 
 	/**
 	 * Execute PICK instruction
-	 * Verified if item isn't null and if place has got thi item.
+	 * Verify if item isn't null and if place has got thi item.
 	 */
 	
 	@Override

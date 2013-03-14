@@ -12,7 +12,7 @@ public class Constants {
 
 	/**
 	 * 
-	 * Define messages for Wall·E , prompt and line_separator
+	 * Define messages for Wall·E , prompt, errors and line_separator
 	 * 
 	 */
 

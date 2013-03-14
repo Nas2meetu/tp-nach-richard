@@ -25,12 +25,9 @@ public class Place {
 	 * Constructor of three parameters with name and description place and if
 	 * this place has a Robot Space Ship
 	 * 
-	 * @param placeName
-	 *            is place name
-	 * @param isSpaceship
-	 *            is place where Spaceship is it
-	 * @param placeDescription
-	 *            is information about place
+	 * @param placeName is place name
+	 * @param isSpaceship is place where Spaceship is it
+	 * @param placeDescription is information about place
 	 * 
 	 */
 
@@ -87,7 +84,9 @@ public class Place {
 
 	/**
 	 * 
-	 * @return isSpaceship if spaceship is in this place.
+	 * Return a public method (isSpaceship) of a private attribute (isSpaceship).
+	 * 
+	 * @return isSpaceship if robot is at spaceship in this place.
 	 * 
 	 */
 
@@ -99,8 +98,7 @@ public class Place {
 	 * 
 	 * Return a public method (pickItem) of a private attribute (id).
 	 * 
-	 * @param id
-	 *            is a reference to identify an item.
+	 * @param id is a reference to identify an item.
 	 * 
 	 * @return pickItem
 	 * 
@@ -114,9 +112,9 @@ public class Place {
 	 * 
 	 * Return a public method (addItem) of a private attribute (item).
 	 * 
-	 * @param item
+	 * @param item is an item
 	 * 
-	 * @return addItem
+	 * @return addItem 
 	 * 
 	 */
 
@@ -141,6 +139,14 @@ public class Place {
 					+ itemsInPlace.toString();
 	}
 
+	/**
+	 * 
+	 * Return a public method (getItem) of a private attribute (existItem).
+	 * 
+	 * @param id
+	 * @return
+	 */
+	
 	public boolean existItem(String id) {
 		return itemsInPlace.getItem(id) != null; // mirar
 	}

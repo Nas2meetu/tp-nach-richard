@@ -16,6 +16,13 @@ import tp.pr3.cityLoader.CityLoaderFromTxtFile;
  */
 public class Main {
 
+	/**
+	 * 
+	 * Load file with places, streets and items, create city and start game
+	 * 
+	 * @param args
+	 */
+	
 	public static void main(String[] args) {
 		if (args.length == 0) {
 			System.err.println(BAD_PARAMS);

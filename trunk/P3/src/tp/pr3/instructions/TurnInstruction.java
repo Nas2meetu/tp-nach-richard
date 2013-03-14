@@ -76,6 +76,13 @@ public class TurnInstruction implements Instruction {
 
 	/**
 	 * 
+	 * Method receives complete engine and use part of configureContext 
+	 * depends of the instruction needs.
+	 * 
+	 * engine robot engine
+     * navigation information about map (actualPlace, currentHeading, rotation...)
+     * robotContainer inventory of robot 
+	 * 
 	 */
 
 	@Override

@@ -63,10 +63,14 @@ public class DropInstruction implements Instruction {
 	}
 
 	/**
-	 * (non-Javadoc)
 	 * 
-	 * @see tp.pr3.instructions.Instruction#configureContext(tp.pr3.RobotEngine,
-	 *      tp.pr3.NavigationModule, tp.pr3.items.ItemContainer)
+	 * Method receives complete engine and use part of configureContext 
+	 * depends of the instruction needs.
+	 * 
+	 * engine robot engine
+     * navigation information about map (actualPlace, currentHeading, rotation...)
+     * robotContainer inventory of robot 
+	 * 
 	 */
 
 	@Override
@@ -79,7 +83,7 @@ public class DropInstruction implements Instruction {
 
 	/**
 	 * 
-	 * Execute DROP instruction Verified if item isn't null, Place hasn't got
+	 * Execute DROP instruction Verify if item isn't null, Place hasn't got
 	 * this item and put into Place.
 	 */
 

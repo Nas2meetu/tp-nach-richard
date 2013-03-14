@@ -65,10 +65,10 @@ public class City {
 
    
     /**
+     * Looks for the street that starts from the given place in the given direction.
      *
      * @param source is one side of street.
      * @param direction is direction that robot is looking at
-     *
      * @return street a street of map.
      */
    

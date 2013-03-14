@@ -3,14 +3,11 @@ package tp.pr3.instructions.exceptions;
 public class WrongInstructionFormatException extends Exception {
 	
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * 
+	 * List of exception about instruction format.
 	 */
 	
+	private static final long serialVersionUID = 1L;
+
 
 	public WrongInstructionFormatException(){
 		super();
