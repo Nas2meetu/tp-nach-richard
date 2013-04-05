@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import tp.pr4.cityLoader.CityLoaderFromTxtFile;
+import tp.pr4.gui.MainWindow;
 
 /**
  * 
@@ -37,7 +38,8 @@ public class Main {
 				City city = fileLoader.loadCity(file);
 				RobotEngine robot = new RobotEngine(city,
 						fileLoader.getInitialPlace(), Direction.NORTH);
-				robot.startEngine();
+				//MainWindow gameWindow = new MainWindow(robot);
+				
 			} catch (FileNotFoundException e) {
 				System.err
 						.println(FILE_READ_ERROR + args[0] + FILE_READ_ERROR2);
