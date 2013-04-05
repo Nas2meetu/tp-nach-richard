@@ -86,6 +86,10 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 		}
 		return direction;
 	}
+	
+	public String getImage(){
+		return "";
+	}
 
 }
 

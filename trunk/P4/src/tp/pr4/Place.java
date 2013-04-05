@@ -20,6 +20,14 @@ public class Place {
 	private ItemContainer itemsInPlace;
 	
 
+	public String getPlaceName() {
+		return placeName;
+	}
+
+	public String getDescription(){
+		return placeDescription;
+	}
+	
 	/**
 	 * 
 	 * Constructor of three parameters with name and description place and if
