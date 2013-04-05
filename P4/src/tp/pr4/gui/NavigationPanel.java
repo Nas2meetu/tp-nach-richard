@@ -24,8 +24,7 @@ public class NavigationPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	private int column, row;
-	public JLabel robotIcon;
-	public JPanel robotImage;
+
 	
 	public enum Directions {
 		LEFT, RIGHT;
@@ -35,16 +34,14 @@ public class NavigationPanel extends JPanel {
 		super();
 
 		this.setLayout(new BorderLayout());
-		JPanel robotImage = new JPanel();
-		JLabel robotIcon= new JLabel();
-		JButton perro = new JButton("perro");
-		JButton gato = new JButton("gato");
+		JPanel pRobotImage = new JPanel();
 		
-		robotImage.add(Box.createVerticalGlue());
-		robotImage.add(perro);
-		robotImage.add(Box.createVerticalGlue());
-		robotImage.add(gato);
-		robotImage.add(Box.createVerticalGlue());
+		ImageIcon robotImage = new ImageIcon("C:/hlocal/workspace-4.2-32bits/tp4/src/tp/pr4/gui/images/walleNorth.png"); 
+		JLabel lbRobotIcon = new JLabel(robotImage); 
+		Box boxImage = Box.createVerticalBox();
+		boxImage.add(Box.createVerticalGlue());
+		boxImage.add(pRobotImage.add(lbRobotIcon));
+		boxImage.add(Box.createVerticalGlue());
 		
 		
 		JPanel pCity= new JPanel();
@@ -65,7 +62,7 @@ public class NavigationPanel extends JPanel {
 		pLog.add(new JScrollPane(txtLog),BorderLayout.CENTER);
 		
 		this.add(pCity, BorderLayout.CENTER);
-		this.add(robotImage, BorderLayout.WEST);
+		this.add(boxImage, BorderLayout.WEST);
 		this.add(pLog, BorderLayout.SOUTH);
 		
 	}
