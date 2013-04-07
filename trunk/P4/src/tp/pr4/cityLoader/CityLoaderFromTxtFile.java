@@ -34,7 +34,6 @@ public class CityLoaderFromTxtFile {
 	 * 
 	 */
 
-
 	public CityLoaderFromTxtFile() {
 		this.places = new ArrayList<Place>();
 		this.streets = new ArrayList<Street>();
@@ -43,10 +42,11 @@ public class CityLoaderFromTxtFile {
 
 	/**
 	 * 
-	 * Verify if file contains word "BeginCity" and "EndCity" if exists 
-	 * execute loadPlaces, loadStreets and loadItems.
+	 * Verify if file contains word "BeginCity" and "EndCity" if exists execute
+	 * loadPlaces, loadStreets and loadItems.
 	 * 
-	 * @param file is a file with information about city.
+	 * @param file
+	 *            is a file with information about city.
 	 * @return City map of city.
 	 * @throws java.io.IOException
 	 * 
@@ -55,10 +55,10 @@ public class CityLoaderFromTxtFile {
 	public City loadCity(InputStream file) throws java.io.IOException {
 		places.clear();
 		streets.clear();
-		
+
 		bufferedReader = new BufferedReader(new InputStreamReader(file));
 		String fileLine = bufferedReader.readLine();
-		
+
 		/* find word "BeginCity" in line of file */
 
 		if (fileLine == null || !fileLine.equals("BeginCity"))
@@ -72,7 +72,7 @@ public class CityLoaderFromTxtFile {
 		}
 
 		/* find word "EndCity" in line of file */
-		
+
 		fileLine = bufferedReader.readLine();
 		if (fileLine == null || !fileLine.equalsIgnoreCase("EndCity"))
 			throw new WrongCityFormatException();
@@ -80,7 +80,7 @@ public class CityLoaderFromTxtFile {
 		streets.toArray(streetArray);
 		return new City(streetArray);
 	}
-	
+
 	/**
 	 * 
 	 * Verify if file has got places.
@@ -94,9 +94,9 @@ public class CityLoaderFromTxtFile {
 		String fileLine;
 		String[] line;
 		fileLine = bufferedReader.readLine();
-		
+
 		/* find word "BeginPlaces" in line of file */
-		
+
 		if (fileLine == null || !fileLine.equals("BeginPlaces"))
 			throw new WrongCityFormatException();
 
@@ -105,33 +105,47 @@ public class CityLoaderFromTxtFile {
 		if (fileLine == null) {
 			throw new WrongCityFormatException();
 		}
-		
+
 		/* delete initial and final " " of line */
-		
+		// line = fileLine.split("\"");
+		if (fileLine.contains("\"")) {
+			line = fileLine.split("\"");
+			String desc = line[1];
+			desc = desc.replaceAll(" ", "_");
+			fileLine = line[0] + desc + line[2];
+		}
 		line = fileLine.split(" ");
 		if (line.length == 0)
 			throw new WrongCityFormatException();
-		
+
 		/* find word "EndPlacess" in line of file */
-		
+
 		while (!line[0].equals("EndPlaces")) {
 			loadPlace(line, num++);
 			fileLine = bufferedReader.readLine();
 			if (fileLine == null)
 				throw new WrongCityFormatException();
+			if (fileLine.contains("\"")) {
+				line = fileLine.split("\"");
+				String desc = line[1];
+				desc = desc.replaceAll(" ", "_");
+				fileLine = line[0] + desc + line[2];
+			}
 			line = fileLine.split(" ");
 			if (line.length == 0)
 				throw new WrongCityFormatException();
 
 		}
 	}
-	
+
 	/**
 	 * 
 	 * Load places to city.
 	 * 
-	 * @param line is a line of text from file
-	 * @param num size of array of places.
+	 * @param line
+	 *            is a line of text from file
+	 * @param num
+	 *            size of array of places.
 	 * @throws WrongCityFormatException
 	 */
 
@@ -145,7 +159,7 @@ public class CityLoaderFromTxtFile {
 		 */
 
 		/* verify if word "place" exist in line */
-		
+
 		if (!line[0].equals("place") || line.length != 5)
 			throw new WrongCityFormatException();
 
@@ -157,14 +171,16 @@ public class CityLoaderFromTxtFile {
 		}
 		if (num != posnum)
 			throw new WrongCityFormatException();
-		
+
 		/* replace "_" by " " */
 
 		String description = line[3].replaceAll("_", " ");
 
-		/* verify if word "nospaceship" or "spaceship" exist in line and 
-		   add place to array of places*/
-		
+		/*
+		 * verify if word "nospaceship" or "spaceship" exist in line and add
+		 * place to array of places
+		 */
+
 		if (!line[4].equalsIgnoreCase("nospaceship")
 				&& !line[4].equalsIgnoreCase("spaceship"))
 			throw new WrongCityFormatException();
@@ -182,7 +198,7 @@ public class CityLoaderFromTxtFile {
 	 * @throws IOException
 	 * @throws WrongCityFormatException
 	 */
-	
+
 	private void loadStreets() throws IOException, WrongCityFormatException {
 		String fileLine;
 		String[] line;
@@ -213,11 +229,13 @@ public class CityLoaderFromTxtFile {
 	 * 
 	 * Load streets to city.
 	 * 
-	 * @param line is a line of text from file
-	 * @param num size of array of streets.
+	 * @param line
+	 *            is a line of text from file
+	 * @param num
+	 *            size of array of streets.
 	 * @throws WrongCityFormatException
 	 */
-	
+
 	private void loadStreet(String[] line, int num)
 			throws WrongCityFormatException {
 
@@ -275,7 +293,7 @@ public class CityLoaderFromTxtFile {
 		else
 			throw new WrongCityFormatException();
 	}
-	
+
 	/**
 	 * 
 	 * Verify if file has got items.
@@ -295,7 +313,7 @@ public class CityLoaderFromTxtFile {
 
 		String fileLine;
 		String[] line;
-		
+
 		fileLine = bufferedReader.readLine();
 		if (fileLine == null || !fileLine.equals("BeginItems"))
 			throw new WrongCityFormatException();
@@ -305,27 +323,41 @@ public class CityLoaderFromTxtFile {
 		if (fileLine == null) {
 			throw new WrongCityFormatException();
 		}
+		if (fileLine.contains("\"")) {
+			line = fileLine.split("\"");
+			String desc = line[1];
+			desc = desc.replaceAll(" ", "_");
+			fileLine = line[0] + desc + line[2];
+		}
 		line = fileLine.split(" ");
 		if (line.length == 0)
 			throw new WrongCityFormatException();
-		
+
 		while (!line[0].equals("EndItems")) {
 			loadItem(line, num++);
 			fileLine = bufferedReader.readLine();
 			if (fileLine == null)
 				throw new WrongCityFormatException();
+			if (fileLine.contains("\"")) {
+				line = fileLine.split("\"");
+				String desc = line[1];
+				desc = desc.replaceAll(" ", "_");
+				fileLine = line[0] + desc + line[2];
+			}
 			line = fileLine.split(" ");
 			if (line.length == 0)
 				throw new WrongCityFormatException();
 		}
 	}
-	
+
 	/**
 	 * 
 	 * Verify type of items has got line and process this item.
 	 * 
-	 * @param line is a line of text from file
-	 * @param num size of array of items
+	 * @param line
+	 *            is a line of text from file
+	 * @param num
+	 *            size of array of items
 	 * @throws WrongCityFormatException
 	 */
 
@@ -350,13 +382,15 @@ public class CityLoaderFromTxtFile {
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * Load fuel items to map
 	 * 
-	 * @param line is a line of text from file
-	 * @param num size of array of items
+	 * @param line
+	 *            is a line of text from file
+	 * @param num
+	 *            size of array of items
 	 * @throws WrongCityFormatException
 	 */
 
@@ -375,7 +409,7 @@ public class CityLoaderFromTxtFile {
 		}
 		if (num != posnum)
 			throw new WrongCityFormatException();
-		
+
 		String description = line[3].replaceAll("_", " ");
 
 		try {
@@ -399,7 +433,7 @@ public class CityLoaderFromTxtFile {
 			throw new WrongCityFormatException(e);
 		}
 
-		if(posPlace >= places.size())
+		if (posPlace >= places.size())
 			throw new WrongCityFormatException();
 		if (!places.get(posPlace).addItem(
 				new Fuel(line[2], description, power, times)))
@@ -411,19 +445,21 @@ public class CityLoaderFromTxtFile {
 	 * 
 	 * Load garbage items to place.
 	 * 
-	 * @param line is a line of text from file
-	 * @param num size of array of items
+	 * @param line
+	 *            is a line of text from file
+	 * @param num
+	 *            size of array of items
 	 * @throws WrongCityFormatException
 	 */
-	
+
 	private void loadGarbageItem(String[] line, int num)
 			throws WrongCityFormatException {
-		
+
 		int posnum, posPlace, garbage;
-		
+
 		if (!line[0].equals("garbage") || line.length != 7)
 			throw new WrongCityFormatException();
-		
+
 		try {
 			posnum = Integer.parseInt(line[1]);
 
@@ -450,21 +486,23 @@ public class CityLoaderFromTxtFile {
 			throw new WrongCityFormatException(e);
 		}
 
-		if(posPlace >= places.size())
+		if (posPlace >= places.size())
 			throw new WrongCityFormatException();
-		
+
 		if (!places.get(posPlace).addItem(
 				new Garbage(line[2], description, garbage)))
 			throw new WrongCityFormatException();
 
 	}
-	
+
 	/**
 	 * 
 	 * Load codeCard items to place.
 	 * 
-	 * @param line is a line of text from file
-	 * @param num size of array of items
+	 * @param line
+	 *            is a line of text from file
+	 * @param num
+	 *            size of array of items
 	 * @throws WrongCityFormatException
 	 */
 
@@ -473,7 +511,7 @@ public class CityLoaderFromTxtFile {
 		int posnum, posPlace;
 		if (!line[0].equals("codecard") || line.length != 7)
 			throw new WrongCityFormatException();
-		
+
 		try {
 			posnum = Integer.parseInt(line[1]);
 
@@ -493,7 +531,7 @@ public class CityLoaderFromTxtFile {
 		} catch (NumberFormatException e) {
 			throw new WrongCityFormatException(e);
 		}
-		if(posPlace >= places.size())
+		if (posPlace >= places.size())
 			throw new WrongCityFormatException();
 
 		if (!places.get(posPlace).addItem(
@@ -501,13 +539,13 @@ public class CityLoaderFromTxtFile {
 			throw new WrongCityFormatException();
 
 	}
-	
+
 	/**
 	 * Return a initial place.
 	 * 
 	 * @return place.get(0)
 	 */
-	
+
 	public Place getInitialPlace() {
 		return places.get(0);
 	}
