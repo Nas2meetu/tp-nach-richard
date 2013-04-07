@@ -1,15 +1,9 @@
 package tp.pr4.gui;
 
-
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
-
-import tp.pr4.Direction;
-
 
 
 /**
@@ -23,12 +17,12 @@ import tp.pr4.Direction;
 public class NavigationPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	private int column, row;
+	//private int column, row;
 
 	
-	public enum Directions {
-		LEFT, RIGHT;
-	}
+	//public enum Directions {
+	//	LEFT, RIGHT;
+	//}
 	
 	public NavigationPanel(){
 		super();
@@ -36,7 +30,7 @@ public class NavigationPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 		JPanel pRobotImage = new JPanel();
 		
-		ImageIcon robotImage = new ImageIcon("C:/hlocal/workspace-4.2-32bits/tp4/src/tp/pr4/gui/images/walleNorth.png"); 
+		ImageIcon robotImage = new ImageIcon("C:/Users/Ricardo/workspace/tp4/src/tp/pr4/gui/images/walleNorth.png"); 
 		JLabel lbRobotIcon = new JLabel(robotImage); 
 		Box boxImage = Box.createVerticalBox();
 		boxImage.add(Box.createVerticalGlue());

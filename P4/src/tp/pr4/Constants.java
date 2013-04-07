@@ -114,7 +114,7 @@ public class Constants {
 	
 	public static final String BAD_PARAMS = "Bad params.";
 	
-	public static final String USAGE_MAPFILE = "Usage: java tp.pr3.Main <mapfile>";
+	public static final String USAGE_MAPFILE = "Usage: java tp.pr4.Main <mapfile>";
 	
 	public static final String MAPFILE = "<mapfile> : file with the description of the city.";
 	

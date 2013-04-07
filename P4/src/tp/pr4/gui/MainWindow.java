@@ -29,7 +29,7 @@ public class MainWindow extends JFrame {
 	 */
 	public MainWindow(RobotEngine robot) {
 		super("WALL·E the garbage collector");
-		this.setPreferredSize(new Dimension(200, 320));
+		this.setPreferredSize(new Dimension(720, 600));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
@@ -83,7 +83,6 @@ public class MainWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				window.pack(); /* compacta la ventana */
-				window.setSize(320, 200);
 				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
