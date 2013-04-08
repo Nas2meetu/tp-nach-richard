@@ -1,5 +1,12 @@
 package tp.pr4;
 
+import java.util.EnumMap;
+
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
+
+
 /**
 * 
 * @author Ignacio Cerda Sanchez
@@ -86,6 +93,20 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 		}
 		return direction;
 	}
+	
+	private EnumMap<Direction, ImageIcon> icons;
+	
+	public void directionImage(){
+		if (NORTH != null) 
+			icons.put(NORTH, new ImageIcon("images/walleNorth.png"));
+		if (WEST != null) 
+			icons.put(WEST, new ImageIcon("images/walleWest.png"));
+		if (SOUTH != null) 
+			icons.put(SOUTH, new ImageIcon("images/walleSouth.png"));
+		if (EAST != null) 
+			icons.put(EAST, new ImageIcon("images/walleEast.png"));
+	}
+	
 	
 	public String getImage(){
 		return "";
