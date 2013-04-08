@@ -2,8 +2,16 @@ package tp.pr4.gui;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+
+import tp.pr4.Direction;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
+import java.util.EnumMap;
 
 
 /**
@@ -29,8 +37,15 @@ public class NavigationPanel extends JPanel {
 
 		this.setLayout(new BorderLayout());
 		JPanel pRobotImage = new JPanel();
-		
-		ImageIcon robotImage = new ImageIcon("C:/Users/Ricardo/workspace/tp4/src/tp/pr4/gui/images/walleNorth.png"); 
+				
+		EnumMap<Direction, ImageIcon> icons = null;
+		//URL urlImage = MainWindow.class.getResource("images/*.png");
+		if (icons==null)
+			JOptionPane.showMessageDialog(getRootPane(), "The Folders image cannot found");
+		else{
+			URL urlImage2 = MainWindow.class.getResource("images/walleEast.png");
+		}
+		ImageIcon robotImage = new ImageIcon(); 
 		JLabel lbRobotIcon = new JLabel(robotImage); 
 		Box boxImage = Box.createVerticalBox();
 		boxImage.add(Box.createVerticalGlue());
