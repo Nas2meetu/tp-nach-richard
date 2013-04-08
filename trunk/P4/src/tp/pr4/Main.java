@@ -7,8 +7,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+
 import tp.pr4.cityLoader.CityLoaderFromTxtFile;
-import tp.pr4.gui.MainWindow;
 
 /**
  * 
@@ -25,7 +27,8 @@ public class Main {
 	 * @param args
 	 */
 	
-	public static void main(String[] args) {
+	
+	/*public static void main(String[] args) {
 		if (args.length == 0) {
 			System.err.println(BAD_PARAMS);
 			System.err.println(USAGE_MAPFILE + LINE_SEPARATOR);
@@ -49,5 +52,27 @@ public class Main {
 				System.exit(2);
 			}
 		}
+	}*/
+	
+	public static void main(String[] args) {
+		
+		//tp.pr4.Main [-h] [-i <type>] [-m <mapfile>]
+		//-h,--help Shows this help message
+		//-i,--interface <type> The type of interface: console or swing
+		//-m,--map <mapfile> File with the description of the city
+	
+		Options options= new Options();
+		Option helpOption= new Option("h", "help", false, "Show this help message");
+		Option interfacesOption = new Option("i", "interface", true, "The type of interface: console or swing");
+		interfacesOption.setArgName("type");
+		Option mapsOption = new Option("m", "map", true, "File with the description of the city");
+		mapsOption.setArgName("mapfile");
+		
+		options.addOption(helpOption);
+		options.addOption(interfacesOption);
+		options.addOption(mapsOption);
+		
+		
+		
 	}
 }
