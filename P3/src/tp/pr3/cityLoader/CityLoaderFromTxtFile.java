@@ -106,7 +106,12 @@ public class CityLoaderFromTxtFile {
 		}
 		
 		/* delete initial and final " " of line */
-		
+		if (fileLine.contains("\"")) {
+			line = fileLine.split("\"");
+			String desc = line[1];
+			desc = desc.replaceAll(" ", "_");
+			fileLine = line[0] + desc + line[2];
+		}
 		line = fileLine.split(" ");
 		if (line.length == 0)
 			throw new WrongCityFormatException();
@@ -118,6 +123,12 @@ public class CityLoaderFromTxtFile {
 			fileLine = bufferedReader.readLine();
 			if (fileLine == null)
 				throw new WrongCityFormatException();
+			if (fileLine.contains("\"")) {
+				line = fileLine.split("\"");
+				String desc = line[1];
+				desc = desc.replaceAll(" ", "_");
+				fileLine = line[0] + desc + line[2];
+			}
 			line = fileLine.split(" ");
 			if (line.length == 0)
 				throw new WrongCityFormatException();
@@ -304,6 +315,12 @@ public class CityLoaderFromTxtFile {
 		if (fileLine == null) {
 			throw new WrongCityFormatException();
 		}
+		if (fileLine.contains("\"")) {
+			line = fileLine.split("\"");
+			String desc = line[1];
+			desc = desc.replaceAll(" ", "_");
+			fileLine = line[0] + desc + line[2];
+		}
 		line = fileLine.split(" ");
 		if (line.length == 0)
 			throw new WrongCityFormatException();
@@ -313,6 +330,12 @@ public class CityLoaderFromTxtFile {
 			fileLine = bufferedReader.readLine();
 			if (fileLine == null)
 				throw new WrongCityFormatException();
+			if (fileLine.contains("\"")) {
+				line = fileLine.split("\"");
+				String desc = line[1];
+				desc = desc.replaceAll(" ", "_");
+				fileLine = line[0] + desc + line[2];
+			}
 			line = fileLine.split(" ");
 			if (line.length == 0)
 				throw new WrongCityFormatException();
