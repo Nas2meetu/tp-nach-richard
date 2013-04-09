@@ -2,6 +2,7 @@ package tp.pr4;
 
 import static tp.pr4.Constants.*;
 
+import java.awt.EventQueue;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
 import tp.pr4.cityLoader.CityLoaderFromTxtFile;
+import tp.pr4.gui.MainWindow;
 
 /**
  * 
@@ -28,7 +30,7 @@ public class Main {
 	 */
 	
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		if (args.length == 0) {
 			System.err.println(BAD_PARAMS);
 			System.err.println(USAGE_MAPFILE + LINE_SEPARATOR);
@@ -41,8 +43,14 @@ public class Main {
 				City city = fileLoader.loadCity(file);
 				RobotEngine robot = new RobotEngine(city,
 						fileLoader.getInitialPlace(), Direction.NORTH);
-				//MainWindow gameWindow = new MainWindow(robot);
-				
+				final MainWindow gameWindow = new MainWindow(robot);
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						gameWindow.pack(); // compacta la ventana 
+						gameWindow.setLocationRelativeTo(null);
+						gameWindow.setVisible(true);
+					}
+				});
 			} catch (FileNotFoundException e) {
 				System.err
 						.println(FILE_READ_ERROR + args[0] + FILE_READ_ERROR2);
@@ -52,9 +60,9 @@ public class Main {
 				System.exit(2);
 			}
 		}
-	}*/
+	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
 		//tp.pr4.Main [-h] [-i <type>] [-m <mapfile>]
 		//-h,--help Shows this help message
@@ -74,5 +82,5 @@ public class Main {
 		
 		
 		
-	}
+	}*/
 }
