@@ -29,6 +29,8 @@ public class MainWindow extends JFrame {
 	 */
 	public MainWindow(RobotEngine robot) {
 		super("WALL·E the garbage collector");
+		
+		
 		this.setPreferredSize(new Dimension(720, 600));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -77,16 +79,16 @@ public class MainWindow extends JFrame {
 		});
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 
 		final MainWindow window = new MainWindow(robot);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				window.pack(); /* compacta la ventana */
+				window.pack(); /* compacta la ventana /*
 				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});
 
-	}
+	}*/
 }
