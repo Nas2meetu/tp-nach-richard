@@ -23,7 +23,7 @@ public class DropInstruction implements Instruction {
 	private String id;
 	private ItemContainer robotContainer;
 
-	private DropInstruction(String id) {
+	public DropInstruction(String id) {
 		this.id = id;
 	}
 

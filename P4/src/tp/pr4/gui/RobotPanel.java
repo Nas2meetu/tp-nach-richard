@@ -1,14 +1,19 @@
 package tp.pr4.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 
+import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
+
+import tp.pr4.RobotEngine;
+import tp.pr4.items.Item;
+
 
 /**
  * 
@@ -20,8 +25,19 @@ import javax.swing.table.AbstractTableModel;
 
 public class RobotPanel extends JPanel {
 
-	JLabel lbFuel, lbRecycledMaterial;
-	JTable tbInventory;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JLabel lbFuel, lbRecycledMaterial;
+	private JTable tbInventory;
+	private RobotEngine robot;
+	private Inventory tableInventory;
+	private String fuel;
+	
+	//ItemContainer containerAux = new ItemContainer();
+	private ArrayList<Item> container1 = new ArrayList<>();
+	private ArrayList<Item> container2 = new ArrayList<>();
 
 	public RobotPanel() {
 		super();
@@ -29,28 +45,43 @@ public class RobotPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 
 		JLabel fuelLabel = new JLabel("Fuel");
-		JLabel fuelGarbage = new JLabel("Recycled");
+		JLabel gargabeLabel = new JLabel("Recycled");
 
-		this.lbFuel = new JLabel("65");
+		this.lbFuel = new JLabel(fuel);
 		this.lbRecycledMaterial = new JLabel("0");
 
-		String[][] inventory = { { "newspapers", "News on Sport" },
-				{ "petrol", "fuel" } };
+		String[][] inventory = { { "Newspapers", "News on sport"}};
 
-		tbInventory = new JTable(new inventory(inventory));
+		tbInventory = new JTable(new Inventory(inventory));
 		JPanel pContInfo = new JPanel();
 
 		pContInfo.add(fuelLabel);
 		pContInfo.add(lbFuel);
-		pContInfo.add(fuelGarbage);
+		pContInfo.add(gargabeLabel);
 		pContInfo.add(lbRecycledMaterial);
 
 		this.add(pContInfo, BorderLayout.NORTH);
 		this.add(new JScrollPane(this.tbInventory), BorderLayout.CENTER);
 		this.setPreferredSize(new Dimension(280, 115));
 	}
+	
+	public void setFuel(int fuel) {
+		lbFuel.setText(Integer.toString(fuel));
+	}
+	
+	public void setGarbage(int garbage) {
+		lbRecycledMaterial.setText(Integer.toString(garbage));
+	}
+	
+	
 
-	class inventory extends AbstractTableModel {
+	public RobotEngine getRobot() {
+		return robot;
+	}
+
+
+
+	class Inventory extends AbstractTableModel {
 
 		private static final long serialVersionUID = 1L;
 
@@ -58,7 +89,7 @@ public class RobotPanel extends JPanel {
 
 		public String[][] data;
 
-		public inventory(String[][] data) {
+		public Inventory(String[][] data) {
 			this.data = data;
 		}
 
@@ -83,5 +114,31 @@ public class RobotPanel extends JPanel {
 		}
 
 	}
+	
+	public JTable getTable() {
+		return tbInventory;
+	}
+	
+	
+	public void addItem(Item item) {
+		container1.add(item);
+		this.setInventory(container1);
+	}
+
+	public ArrayList<Item> getContainer1() {
+		return container1;
+	}
+
+	public ArrayList<Item> getContainer2() {
+		return container2;
+	}
+
+	private void setInventory(ArrayList<Item> container12) {
+		container2.clear();
+		container2.addAll(container1);
+		tableInventory.fireTableDataChanged();
+	}
+
+	
 
 }

@@ -14,7 +14,7 @@ public class MainWindow extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static RobotEngine robot;
+	private RobotEngine robot;
 	public RobotPanel robotPanel;
 	public NavigationPanel navigationPanel;
 
