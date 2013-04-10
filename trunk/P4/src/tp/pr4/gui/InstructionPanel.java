@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import tp.pr4.City;
 import tp.pr4.Direction;
 import tp.pr4.Place;
 import tp.pr4.RobotEngine;
+import tp.pr4.gui.listeners.ListenDrop;
 import tp.pr4.instructions.DropInstruction;
 import tp.pr4.instructions.Instruction;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -26,8 +28,10 @@ import tp.pr4.instructions.exceptions.InstructionExecutionException;
 public class InstructionPanel extends JPanel {
 	
 	private RobotEngine robot;
-	//private Instruction instruction;
 	private NavigationPanel cityPanel;
+	private City city;
+	private ArrayList<Instruction> lastInstructions;
+	
 	
 
 	public InstructionPanel(){
@@ -36,6 +40,8 @@ public class InstructionPanel extends JPanel {
 		this.cityPanel = new NavigationPanel();
 		this.setBorder(new TitledBorder("Instructions"));
 		this.setLayout(new GridLayout(4, 2, 3, 3));
+		RobotPanel robotPanel = new RobotPanel();
+		NavigationPanel navPanel = new NavigationPanel();
 		
 		JButton btMove = new JButton("MOVE");
 		this.add(btMove);
@@ -67,34 +73,33 @@ public class InstructionPanel extends JPanel {
 		this.add(txtBox);
 		JButton btDrop = new JButton("DROP");
 		this.add(btDrop);
-		btDrop.addActionListener(new ListenDrop());
-		//if (robot==null)
-			//btDrop.setEnabled(false);
+		btDrop.addActionListener(new ListenDrop(robotPanel, city,
+				navPanel, this));
+		initDropButton(btDrop, robotPanel, navPanel);
 		
 		JButton btOperate = new JButton("OPERATE");
 		this.add(btOperate);
 						
 	}
 	
+	private void initDropButton(JButton btDrop, RobotPanel robotPanel,
+			NavigationPanel navPanel) {
+		btDrop.setToolTipText("Drops the selected item from the inventory");
+		btDrop.addActionListener(new ListenDrop(robotPanel, city,
+				navPanel, this));
+	}
+	
+	
+	public ArrayList<Instruction> getLastInstructions() {
+		return lastInstructions;
+	}
+
+
 	public enum Directions {
 		LEFT, RIGHT;
 	}
 	
-	private class ListenDrop implements ActionListener {
-		
-		public void actionPerformed(ActionEvent e) {
-			DropInstruction instruction = new DropInstruction();
-			
-			try {
-				instruction.execute();
-				
-				//mpnl.setText(theGame.getCurrentMap().getCurrentRoom().getDescription()); //Se muestra la descripcion de la habitacion en el area 'Room'
-				//playPanel.updateInventory(g.getPlayer().getInventory());
-			} catch (InstructionExecutionException e1) {
-				//JOptionPane.showMessageDialog(theWindow, e1.getMessage(), "Warning", JOptionPane.WARNING_MESSAGE); //Mensaje Warning con un mensaje de la excepcion (warning es el titulo de la ventana)
-			}
-		}
-	}
+	
 	
 	
 }
