@@ -1,6 +1,7 @@
 package tp.pr4.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,6 +41,21 @@ public class InstructionPanel extends JPanel {
 		this.add(btMove);
 		JButton btQuit = new JButton("QUIT");
 		this.add(btQuit);
+		
+		btQuit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			       int result = JOptionPane.showConfirmDialog((Component) arg0.getSource(),"Finish game?");
+			           if (result == JOptionPane.YES_OPTION) {
+			             System.exit(0);
+			           } else if (result == JOptionPane.NO_OPTION) {
+			             System.out.println("Do nothing");
+			           }
+
+			}
+		});
+		
 		JButton btTurn = new JButton("TURN");
 		this.add(btTurn);
 		JComboBox cbDirections = new JComboBox(Directions.values()); //Saca todos los valores del enumerado
