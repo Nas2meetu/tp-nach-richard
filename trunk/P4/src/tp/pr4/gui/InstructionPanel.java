@@ -1,6 +1,5 @@
 package tp.pr4.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -16,27 +15,32 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import tp.pr4.City;
-import tp.pr4.Direction;
-import tp.pr4.Place;
 import tp.pr4.RobotEngine;
+import tp.pr4.Rotation;
 import tp.pr4.gui.listeners.ListenDrop;
+import tp.pr4.gui.listeners.ListenMove;
+import tp.pr4.gui.listeners.ListenOperate;
 import tp.pr4.instructions.DropInstruction;
 import tp.pr4.instructions.Instruction;
-import tp.pr4.instructions.exceptions.InstructionExecutionException;
+import tp.pr4.instructions.TurnInstruction;
+import tp.pr4.items.Item;
 
 
 public class InstructionPanel extends JPanel {
 	
-	private RobotEngine robot;
+	
 	private NavigationPanel cityPanel;
 	private City city;
 	private ArrayList<Instruction> lastInstructions;
+	private JComboBox<Rotation> cbDirections;
+	private RobotEngine robot;
 	
 	
 
-	public InstructionPanel(){
+	public InstructionPanel(RobotEngine robot){
 		
 		super();
+		this.robot= robot;
 		this.cityPanel = new NavigationPanel();
 		this.setBorder(new TitledBorder("Instructions"));
 		this.setLayout(new GridLayout(4, 2, 3, 3));
@@ -64,7 +68,9 @@ public class InstructionPanel extends JPanel {
 		
 		JButton btTurn = new JButton("TURN");
 		this.add(btTurn);
-		JComboBox cbDirections = new JComboBox(Directions.values()); //Saca todos los valores del enumerado
+		initTurnButton(btTurn, robotPanel, cityPanel);
+		//btTurn.setActionCommand("Turn");
+		cbDirections = new JComboBox<Rotation>(Rotation.values()); //Saca todos los valores del enumerado
 		this.setBorder(BorderFactory.createTitledBorder("Instructions"));
 		this.add(cbDirections);	
 		JButton btPick = new JButton("PICK");
@@ -82,12 +88,49 @@ public class InstructionPanel extends JPanel {
 						
 	}
 	
-	private void initDropButton(JButton btDrop, RobotPanel robotPanel,
+
+	
+	private void initDropButton(JButton btDrop, final RobotPanel robotPanel,
 			NavigationPanel navPanel) {
 		btDrop.setToolTipText("Drops the selected item from the inventory");
-		btDrop.addActionListener(new ListenDrop(robotPanel, city,
-				navPanel, this));
+		btDrop.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+								
+				Item dropItem = robotPanel.getSelectedItem();
+				Instruction dropInstruction = new DropInstruction();
+				
+				
+			}
+		});
 	}
+	
+	private void initTurnButton(JButton btTurn, RobotPanel robotPanel, NavigationPanel navPanel){
+		btTurn.setToolTipText("Turn robot direction");
+		btTurn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Instruction turnInstruction = new TurnInstruction(cbDirections.getItemAt(cbDirections.getSelectedIndex()));
+				robot.communicateRobot(turnInstruction);
+			}
+		});
+	}
+	
+	private void initMoveButton(JButton btMove, NavigationPanel navPanel ){
+		btMove.setToolTipText("Move robot");
+		btMove.addActionListener(new ListenMove(navPanel, city,this));
+		
+	}
+	
+	private void initOperateButton(JButton btOperate, RobotPanel robotPanel){
+		btOperate.setToolTipText("Use item from robot inventory");
+		btOperate.addActionListener(new ListenOperate(robotPanel,this));
+	}
+	
+	/** private void initTurnButton(JButton btTurn, NavigationPanel navPanel, ){
+		
+	}**/
 	
 	
 	public ArrayList<Instruction> getLastInstructions() {

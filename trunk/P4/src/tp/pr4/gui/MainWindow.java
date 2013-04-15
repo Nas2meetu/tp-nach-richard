@@ -46,7 +46,7 @@ public class MainWindow extends JFrame {
 		initializeMenu(mDialogs, mLoad);
 		JPanel robotPanel = new RobotPanel();
 
-		JPanel instructionsPanel = new InstructionPanel();
+		JPanel instructionsPanel = new InstructionPanel(robot);
 		JSplitPane SuperiorPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 				instructionsPanel, robotPanel);
 		mainPanel.add(SuperiorPanel, BorderLayout.NORTH);
@@ -56,6 +56,11 @@ public class MainWindow extends JFrame {
 		mainPanel.add(inferiorPanel, BorderLayout.CENTER);
 		
 		this.add(mainPanel);
+		
+		pack(); // compacta la ventana 
+		setLocationRelativeTo(null);
+		setVisible(true);
+
 	}
 
 	private void initializeMenu(JMenu mDialogs, JMenuItem mLoad) {

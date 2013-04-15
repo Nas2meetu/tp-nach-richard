@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -129,8 +130,19 @@ public class RobotPanel extends JPanel {
 		return container1;
 	}
 
-	public ArrayList<Item> getContainer2() {
-		return container2;
+	//public ArrayList<Item> getContainer2() {
+	//	return container2;
+	//}
+	
+	Item getSelectedItem()
+	{
+		int row = this.getTable().getSelectedRow();
+		String itemSelected = null;
+		if (row == -1)
+			JOptionPane.showMessageDialog(this, "El item no ha sido seleccionado");
+		else
+			Item itemSelected = tableInventory.getValueAt(row, 0);
+		return itemSelected;
 	}
 
 	private void setInventory(ArrayList<Item> container12) {

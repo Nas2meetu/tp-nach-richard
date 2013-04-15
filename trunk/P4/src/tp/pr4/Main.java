@@ -44,13 +44,7 @@ public class Main {
 				RobotEngine robot = new RobotEngine(city,
 						fileLoader.getInitialPlace(), Direction.NORTH);
 				final MainWindow gameWindow = new MainWindow(robot);
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						gameWindow.pack(); // compacta la ventana 
-						gameWindow.setLocationRelativeTo(null);
-						gameWindow.setVisible(true);
-					}
-				});
+				robot.startEngine();
 			} catch (FileNotFoundException e) {
 				System.err
 						.println(FILE_READ_ERROR + args[0] + FILE_READ_ERROR2);
