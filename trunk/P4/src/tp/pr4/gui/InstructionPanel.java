@@ -98,7 +98,7 @@ public class InstructionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 								
-				Item dropItem = robotPanel.getSelectedItem();
+				//Item dropItem = robotPanel.getSelectedItem();
 				Instruction dropInstruction = new DropInstruction();
 				
 				

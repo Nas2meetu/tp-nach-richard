@@ -1,6 +1,7 @@
 package tp.pr4;
 
 import static tp.pr4.Constants.*;
+import tp.pr4.gui.NavigationPanel;
 import tp.pr4.instructions.exceptions.*;
 import tp.pr4.items.Item;
 
@@ -18,6 +19,7 @@ public class NavigationModule {
 	private Direction lookingDirection;
 	private City cityMap;
 	private RobotEngine robot;
+	private NavigationPanel navPanel;
 
 	/**
 	 * 
@@ -31,6 +33,7 @@ public class NavigationModule {
 
 		this.cityMap = city;
 		this.actualPlace = currentPlace;
+		this.lookingDirection = Direction.NORTH;
 
 	}
 	
@@ -67,8 +70,13 @@ public class NavigationModule {
 
 		if (rotation.equals(Rotation.LEFT))
 			lookingDirection = lookingDirection.turnLeft();
-		else
+		else if (rotation.equals(Rotation.RIGHT))
 			lookingDirection = lookingDirection.turnRight();
+		else
+			System.out.println("giro desconocido");
+		
+			navPanel.update(lookingDirection);
+		
 	}
 	
 	/**
