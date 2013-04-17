@@ -134,7 +134,7 @@ public class RobotPanel extends JPanel {
 	//	return container2;
 	//}
 	
-	Item getSelectedItem()
+	/*Item getSelectedItem()
 	{
 		int row = this.getTable().getSelectedRow();
 		String itemSelected = null;
@@ -144,7 +144,7 @@ public class RobotPanel extends JPanel {
 			Item itemSelected = tableInventory.getValueAt(row, 0);
 		return itemSelected;
 	}
-
+*/
 	private void setInventory(ArrayList<Item> container12) {
 		container2.clear();
 		container2.addAll(container1);
