@@ -6,12 +6,12 @@ import tp.pr4.instructions.exceptions.*;
 import tp.pr4.items.Item;
 
 /**
-* 
-* @author Ignacio Cerda Sanchez
-* @author Ricardo Eugui Fernandez
-* @version 4
-* 
-*/
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 4
+ * 
+ */
 
 public class NavigationModule {
 
@@ -25,10 +25,12 @@ public class NavigationModule {
 	 * 
 	 * Constructor of two parameter to create a NavigationModule
 	 * 
-	 * @param city is the map where the robot lives
-	 * @param currentPlace place where robot is
+	 * @param city
+	 *            is the map where the robot lives
+	 * @param currentPlace
+	 *            place where robot is
 	 */
-	
+
 	public NavigationModule(City city, Place currentPlace) {
 
 		this.cityMap = city;
@@ -36,14 +38,15 @@ public class NavigationModule {
 		this.lookingDirection = Direction.NORTH;
 
 	}
-	
+
 	/**
 	 * 
 	 * Show direction of robot is looking at initial place.
 	 * 
-	 * @param heading where robot is looking.
+	 * @param heading
+	 *            where robot is looking.
 	 */
-	
+
 	public void initHeading(Direction heading) {
 		this.lookingDirection = heading;
 	}
@@ -54,60 +57,62 @@ public class NavigationModule {
 	 * 
 	 * @return isSpaceship if Spaceship is in actual place or not
 	 */
-	
+
 	public boolean atSpaceship() {
 		return actualPlace.isSpaceship();
 	}
-	
+
 	/**
 	 * 
 	 * Show if robot can turn or not depends of direction.
 	 * 
-	 * @param rotation is rotation of Robot left or right
+	 * @param rotation
+	 *            is rotation of Robot left or right
 	 */
-	
+
 	public void rotate(Rotation rotation) {
 
-		if (rotation.equals(Rotation.LEFT))
+		if (rotation.equals(Rotation.LEFT)) {
 			lookingDirection = lookingDirection.turnLeft();
-		else if (rotation.equals(Rotation.RIGHT))
-			lookingDirection = lookingDirection.turnRight();
-		else
-			System.out.println("giro desconocido");
-		
 			navPanel.update(lookingDirection);
-		
+		} else if (rotation.equals(Rotation.RIGHT)) {
+			lookingDirection = lookingDirection.turnRight();
+			navPanel.update(lookingDirection);
+		} else
+			System.out.println("giro desconocido");
+
 	}
-	
+
 	/**
 	 * 
 	 * Return a public method (cityMap) of a private attribute CityMap.
 	 * 
 	 * @return cityMap is the map where the robot lives.
 	 */
-	
+
 	public City getCityMap() {
 		return cityMap;
 	}
-	
+
 	/**
 	 * 
-	 * Return a public method (lookingDirection) of a private attribute CurrentPlace.
+	 * Return a public method (lookingDirection) of a private attribute
+	 * CurrentPlace.
 	 * 
 	 * @return lookingDirection is direction that robot is looking.
 	 */
-	
+
 	public Direction getCurrentHeading() {
 		return lookingDirection;
 	}
-	
+
 	/**
 	 * 
 	 * Return a public method (actualPlace) of a private attribute CurrentPlace.
 	 * 
 	 * @return actualPlace place where robot is.
 	 */
-	
+
 	public Place getCurrentPlace() {
 		return actualPlace;
 	}
@@ -117,35 +122,38 @@ public class NavigationModule {
 	 * Return a public method (actualPlace and lookingDirection) of a private
 	 * attribute HeadingStreet.
 	 * 
-	 * @return actualPlace place where robot is
-	 * 			lookingDirection is direction that robot is looking
+	 * @return actualPlace place where robot is lookingDirection is direction
+	 *         that robot is looking
 	 */
-	
+
 	public Street getHeadingStreet() {
 		return cityMap.lookForStreet(actualPlace, lookingDirection);
 
 	}
-	
+
 	/**
-	 *  Show id of an item.
+	 * Show id of an item.
 	 * 
-	 * @param it is an item
+	 * @param it
+	 *            is an item
 	 */
-	
+
 	public void dropItemAtCurrentPlace(Item it) {
-		
+
 		robot.getContainer().pickItem(it.getId());
 	}
-	
+
 	/**
 	 * 
-	 * Return a public method (actualPlace.existItem(id)) of a private
-	 * attribute id of ItemAtCurrentPlace.
+	 * Return a public method (actualPlace.existItem(id)) of a private attribute
+	 * id of ItemAtCurrentPlace.
 	 * 
-	 * @param id is a reference to identify an item.
-	 * @return actualPlace.existItem(id) if this item exist at this place or not.
+	 * @param id
+	 *            is a reference to identify an item.
+	 * @return actualPlace.existItem(id) if this item exist at this place or
+	 *         not.
 	 */
-	
+
 	public boolean findItemAtCurrentPlace(String id) {
 		return actualPlace.existItem(id);
 	}
@@ -154,11 +162,12 @@ public class NavigationModule {
 	 * 
 	 * @throws InstructionExecutionException
 	 */
-	
+
 	public void move() throws InstructionExecutionException {
 
 		if (getHeadingStreet() == null) {
-			throw new InstructionExecutionException(NO_STREET + lookingDirection);
+			throw new InstructionExecutionException(NO_STREET
+					+ lookingDirection);
 		} else if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
 		} else
@@ -168,10 +177,11 @@ public class NavigationModule {
 
 	/**
 	 * Show if you can pick and item from current place.
-	 *
-	 * @param it is an item
+	 * 
+	 * @param it
+	 *            is an item
 	 */
-	
+
 	public void pickItemAtCurrentPlace(Item it) {
 		Item item = actualPlace.getItem(it.getId());
 		if (item != null) {
@@ -179,4 +189,7 @@ public class NavigationModule {
 		}
 	}
 
+	public void setNavigationPanel(NavigationPanel navPanel) {
+		this.navPanel = navPanel;
+	}
 }

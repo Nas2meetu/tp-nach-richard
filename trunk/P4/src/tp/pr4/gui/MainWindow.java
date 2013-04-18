@@ -15,8 +15,11 @@ public class MainWindow extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private RobotEngine robot;
-	public RobotPanel robotPanel;
-	public NavigationPanel navigationPanel;
+	private RobotPanel robotPanel;
+	private NavigationPanel navigationPanel;
+	
+	
+	
 
 	/**
 	 * Creates the window and the panels using Swing Components. It stores a
@@ -29,6 +32,7 @@ public class MainWindow extends JFrame {
 	 */
 	public MainWindow(RobotEngine robot) {
 		super("WALL·E the garbage collector");
+		this.robot=robot;
 		
 		
 		this.setPreferredSize(new Dimension(720, 600));
@@ -45,8 +49,10 @@ public class MainWindow extends JFrame {
 
 		initializeMenu(mDialogs, mLoad);
 		JPanel robotPanel = new RobotPanel();
-
-		JPanel instructionsPanel = new InstructionPanel(robot);
+		
+		
+		
+		InstructionPanel instructionsPanel = new InstructionPanel(robot);
 		JSplitPane SuperiorPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 				instructionsPanel, robotPanel);
 		mainPanel.add(SuperiorPanel, BorderLayout.NORTH);
@@ -60,6 +66,10 @@ public class MainWindow extends JFrame {
 		pack(); // compacta la ventana 
 		setLocationRelativeTo(null);
 		setVisible(true);
+		this.navigationPanel = instructionsPanel.getCityPanel();
+		
+		robot.setNavigationPanel(navigationPanel);
+		//robot.setRobotPanel(robotPanel);
 
 	}
 

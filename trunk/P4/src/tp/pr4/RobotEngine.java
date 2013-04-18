@@ -2,6 +2,9 @@ package tp.pr4;
 
 import java.util.Scanner;
 
+import tp.pr4.gui.MainWindow;
+import tp.pr4.gui.NavigationPanel;
+import tp.pr4.gui.RobotPanel;
 import tp.pr4.instructions.Instruction;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
@@ -24,6 +27,10 @@ public class RobotEngine {
 	private NavigationModule navigation;
 	private boolean endGame;
 	private Instruction instruction;
+	private MainWindow mainWindow;
+	private RobotPanel robotPanel;
+	private NavigationPanel navPanel;
+
 
 	/**
 	 * 
@@ -204,5 +211,20 @@ public class RobotEngine {
 	public void requestHelp() {
 		System.out.println(Interpreter.interpreterHelp());
 
+	}
+	
+	
+	
+	public void setNavigationPanel(NavigationPanel navPanel){
+		navigation.setNavigationPanel(navPanel);
+	}
+
+	public void setGUIWindow(MainWindow mainWindow){ 
+		this.mainWindow= mainWindow;
+	}
+
+	public void setRobotPanel(RobotPanel robotPanel){ 
+		this.robotPanel = robotPanel;
+		this.container.setRobotPanel(robotPanel);
 	}
 }
