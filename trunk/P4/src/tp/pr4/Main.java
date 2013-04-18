@@ -136,13 +136,6 @@ public class Main {
 								fileLoader.getInitialPlace(), Direction.NORTH);
 						final MainWindow gameWindow = new MainWindow(robot);
 						robot.startEngine();
-						EventQueue.invokeLater(new Runnable() {
-							public void run() {
-								gameWindow.pack();
-								gameWindow.setLocationRelativeTo(null);
-								gameWindow.setVisible(true);
-							}
-						});
 					} else if (interfaces.equalsIgnoreCase("console")) {
 						RobotEngine robot = new RobotEngine(city,
 								fileLoader.getInitialPlace(), Direction.NORTH);
