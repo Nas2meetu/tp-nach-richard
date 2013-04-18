@@ -42,6 +42,7 @@ public class NavigationPanel extends JPanel {
 
 		this.setLayout(new BorderLayout());
 		pRobotImage = new JPanel();
+		pRobotImage.setLayout(new BoxLayout(pRobotImage,BoxLayout.Y_AXIS));
 
 		// EnumMap<Direction, ImageIcon> icons = null;
 		URL urlImage = MainWindow.class.getResource("images/walleNorth.png");
@@ -58,6 +59,12 @@ public class NavigationPanel extends JPanel {
 		pRobotImage.add(Box.createVerticalGlue());
 		pRobotImage.add(lbRobotIcon);
 		pRobotImage.add(Box.createVerticalGlue());
+		
+	
+		//boxImage = Box.createVerticalBox();
+		//boxImage.add(Box.createVerticalGlue());
+		//boxImage.add(pRobotImage.add(lbRobotIcon));
+		//boxImage.add(Box.createVerticalGlue());
 		
 		
 		
@@ -91,25 +98,27 @@ public class NavigationPanel extends JPanel {
 			urlImage = MainWindow.class.getResource("images/walleNorth.png");
 			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			pRobotImage.add(lbRobotIcon);
+			//pRobotImage.seti(lbRobotIcon);
+			//lbRobotIcon.setIcon(robotImage);
+			//boxImage.add(pRobotImage.add(lbRobotIcon));
 			break;
 		case EAST:
 			urlImage = MainWindow.class.getResource("images/walleEast.png");
 			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			pRobotImage.add(lbRobotIcon);
+			//pRobotImage.add(lbRobotIcon);
 			break;
 		case SOUTH:
 			urlImage = MainWindow.class.getResource("images/walleSouth.png");
 			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			pRobotImage.add(lbRobotIcon);
+			//pRobotImage.add(lbRobotIcon);
 			break;
 		case WEST:
 			urlImage = MainWindow.class.getResource("images/walleWest.png");
 			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			pRobotImage.add(lbRobotIcon);
+			//pRobotImage.add(lbRobotIcon);
 			break;
 
 		default:

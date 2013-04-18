@@ -363,25 +363,20 @@ public class CityLoaderFromTxtFile {
 
 	private void loadItem(String[] line, int num)
 			throws WrongCityFormatException {
-		switch (line[0]) {
-		case "fuel": {
+		if (line[0].equals("fuel")) {
 			loadFuelItem(line, num++);
-			break;
 		}
-		case "codecard": {
+		else if (line[0].equals("codecard")) {
 			loadCodeCardItem(line, num++);
-			break;
 		}
-		case "garbage": {
+		else if (line[0].equals("garbage")) {
 			loadGarbageItem(line, num++);
-			break;
 		}
-		default:
+		else
 			throw new WrongCityFormatException();
 
 		}
 
-	}
 
 	/**
 	 * 

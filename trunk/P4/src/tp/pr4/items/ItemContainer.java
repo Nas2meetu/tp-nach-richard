@@ -211,6 +211,10 @@ public class ItemContainer {
 			container[pos] = item;
 			added = true;
 		}
+		
+		if(added)
+			robotPanel.updateTable(new );
+		
 		return added;
 
 	}

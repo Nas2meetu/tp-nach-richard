@@ -1,9 +1,9 @@
 package tp.pr4.gui;
 
 import java.awt.BorderLayout;
-
 import java.awt.Dimension;
 import java.util.ArrayList;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -12,7 +12,6 @@ import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
-import tp.pr4.RobotEngine;
 import tp.pr4.items.Item;
 
 
@@ -32,13 +31,9 @@ public class RobotPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFuel, lbRecycledMaterial;
 	private JTable tbInventory;
-	private RobotEngine robot;
-	private Inventory tableInventory;
 	private String fuel;
 	
-	//ItemContainer containerAux = new ItemContainer();
-	private ArrayList<Item> container1 = new ArrayList<>();
-	private ArrayList<Item> container2 = new ArrayList<>();
+	private InventoryTableModel tbInventoryModel;
 
 	public RobotPanel() {
 		super();
@@ -53,7 +48,8 @@ public class RobotPanel extends JPanel {
 
 		String[][] inventory = { {"" , ""}};
 
-		tbInventory = new JTable(new Inventory(inventory));
+		tbInventoryModel = new InventoryTableModel();
+		tbInventory = new JTable(tbInventoryModel);
 		JPanel pContInfo = new JPanel();
 
 		pContInfo.add(fuelLabel);
@@ -74,26 +70,24 @@ public class RobotPanel extends JPanel {
 		lbRecycledMaterial.setText(Integer.toString(garbage));
 	}
 	
-	
 
-	public RobotEngine getRobot() {
-		return robot;
-	}
-
-
-
-	class Inventory extends AbstractTableModel {
+	class InventoryTableModel extends AbstractTableModel {
 
 		private static final long serialVersionUID = 1L;
 
 		public String[] cols = { "Id", "Description" };
 
-		public String[][] data;
+		public ArrayList<Item> data;
+		
 
-		public Inventory(String[][] data) {
+		protected void setData(ArrayList<Item> data) {
 			this.data = data;
 		}
 
+		public InventoryTableModel(){
+			data = new ArrayList<Item>();
+		}
+		
 		@Override
 		public String getColumnName(int col) {
 			return cols[col];
@@ -101,7 +95,7 @@ public class RobotPanel extends JPanel {
 
 		@Override
 		public int getRowCount() {
-			return data.length;
+			return data.size();
 		}
 
 		@Override
@@ -111,23 +105,18 @@ public class RobotPanel extends JPanel {
 
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
-			return data[rowIndex][columnIndex];
+			Item i = data.get(rowIndex);
+			if(columnIndex==0) return i.getId();
+			else return i.getDescription();
 		}
 
 	}
-	
-	public JTable getTable() {
-		return tbInventory;
-	}
-	
-	
-	public void addItem(Item item) {
-		container1.add(item);
-		this.setInventory(container1);
-	}
 
-	public ArrayList<Item> getContainer1() {
-		return container1;
+	
+	public void updateTable(ArrayList<Item> lista)
+	{
+		tbInventoryModel.setData(lista);
+		tbInventoryModel.fireTableDataChanged();
 	}
 
 	//public ArrayList<Item> getContainer2() {
@@ -136,20 +125,16 @@ public class RobotPanel extends JPanel {
 	
 	String getSelectedItem()
 	{
-		int row = this.getTable().getSelectedRow();
+		int row = this.tbInventory.getSelectedRow();
 		String itemSelected = null;
 		if (row == -1)
 			JOptionPane.showMessageDialog(this, "El item no ha sido seleccionado");
 		else
-			itemSelected = (String) tableInventory.getValueAt(row, 0);
+			itemSelected = tbInventory.getValueAt(row, 0).toString();
 		return itemSelected;
 	}
 
-	private void setInventory(ArrayList<Item> container12) {
-		container2.clear();
-		container2.addAll(container1);
-		tableInventory.fireTableDataChanged();
-	}
+
 
 	
 

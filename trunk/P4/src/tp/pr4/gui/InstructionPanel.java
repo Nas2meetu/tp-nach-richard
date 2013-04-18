@@ -29,7 +29,6 @@ import tp.pr4.items.Item;
 
 public class InstructionPanel extends JPanel {
 
-	private NavigationPanel navPanel;
 	private City city;
 	private ArrayList<Instruction> lastInstructions;
 	private JComboBox<Rotation> cbDirections;
@@ -40,7 +39,6 @@ public class InstructionPanel extends JPanel {
 
 		super();
 		this.robot = robot;
-		this.navPanel = new NavigationPanel();
 		this.setBorder(new TitledBorder("Instructions"));
 		this.setLayout(new GridLayout(4, 2, 3, 3));
 		RobotPanel robotPanel = new RobotPanel();
@@ -91,9 +89,6 @@ public class InstructionPanel extends JPanel {
 		return txtBox.getText();
 	}
 
-	public NavigationPanel getCityPanel() {
-		return navPanel;
-	}
 
 	private void initDropButton(JButton btDrop, final RobotPanel robotPanel,
 			NavigationPanel navPanel) {

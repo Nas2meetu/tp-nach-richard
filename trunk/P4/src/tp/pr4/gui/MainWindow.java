@@ -57,8 +57,8 @@ public class MainWindow extends JFrame {
 				instructionsPanel, robotPanel);
 		mainPanel.add(SuperiorPanel, BorderLayout.NORTH);
 		
-		JPanel cityPanel = new NavigationPanel();
-		JSplitPane inferiorPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, SuperiorPanel, cityPanel);
+		this.navigationPanel = new NavigationPanel();
+		JSplitPane inferiorPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, SuperiorPanel, this.navigationPanel);
 		mainPanel.add(inferiorPanel, BorderLayout.CENTER);
 		
 		this.add(mainPanel);
@@ -66,7 +66,6 @@ public class MainWindow extends JFrame {
 		pack(); // compacta la ventana 
 		setLocationRelativeTo(null);
 		setVisible(true);
-		this.navigationPanel = instructionsPanel.getCityPanel();
 		
 		robot.setNavigationPanel(navigationPanel);
 		//robot.setRobotPanel(robotPanel);
