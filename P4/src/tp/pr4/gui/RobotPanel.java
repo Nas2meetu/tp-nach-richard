@@ -51,7 +51,7 @@ public class RobotPanel extends JPanel {
 		this.lbFuel = new JLabel(fuel);
 		this.lbRecycledMaterial = new JLabel("0");
 
-		String[][] inventory = { { "Newspapers", "News on sport"}};
+		String[][] inventory = { {"" , ""}};
 
 		tbInventory = new JTable(new Inventory(inventory));
 		JPanel pContInfo = new JPanel();
@@ -134,17 +134,17 @@ public class RobotPanel extends JPanel {
 	//	return container2;
 	//}
 	
-	/*Item getSelectedItem()
+	String getSelectedItem()
 	{
 		int row = this.getTable().getSelectedRow();
 		String itemSelected = null;
 		if (row == -1)
 			JOptionPane.showMessageDialog(this, "El item no ha sido seleccionado");
 		else
-			Item itemSelected = tableInventory.getValueAt(row, 0);
+			itemSelected = (String) tableInventory.getValueAt(row, 0);
 		return itemSelected;
 	}
-*/
+
 	private void setInventory(ArrayList<Item> container12) {
 		container2.clear();
 		container2.addAll(container1);

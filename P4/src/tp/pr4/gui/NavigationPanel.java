@@ -7,6 +7,7 @@ import tp.pr4.Direction;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +29,7 @@ public class NavigationPanel extends JPanel {
 	// private int column, row;
 	JLabel lbRobotIcon;
 	private ImageIcon robotImage;
-	private Box boxImage;
+	//private Box boxImage;
 	private JPanel pRobotImage;
 	private URL urlImage;
 
@@ -53,11 +54,13 @@ public class NavigationPanel extends JPanel {
 		 */
 		robotImage = new ImageIcon(urlImage);
 		lbRobotIcon = new JLabel(robotImage);
-		boxImage = Box.createVerticalBox();
-		boxImage.add(Box.createVerticalGlue());
-		boxImage.add(pRobotImage.add(lbRobotIcon));
-		boxImage.add(Box.createVerticalGlue());
-
+		
+		pRobotImage.add(Box.createVerticalGlue());
+		pRobotImage.add(lbRobotIcon);
+		pRobotImage.add(Box.createVerticalGlue());
+		
+		
+		
 		JPanel pCity = new JPanel();
 		pCity.setBorder(new TitledBorder("City Map"));
 		pCity.setLayout(new GridLayout(11, 11));
@@ -76,7 +79,7 @@ public class NavigationPanel extends JPanel {
 		pLog.add(new JScrollPane(txtLog), BorderLayout.CENTER);
 
 		this.add(pCity, BorderLayout.CENTER);
-		this.add(boxImage, BorderLayout.WEST);
+		this.add(pRobotImage, BorderLayout.WEST);
 		this.add(pLog, BorderLayout.SOUTH);
 
 	}
@@ -86,23 +89,27 @@ public class NavigationPanel extends JPanel {
 		switch (lookingDirection) {
 		case NORTH:
 			urlImage = MainWindow.class.getResource("images/walleNorth.png");
+			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			boxImage.add(pRobotImage.add(lbRobotIcon));
+			pRobotImage.add(lbRobotIcon);
 			break;
 		case EAST:
 			urlImage = MainWindow.class.getResource("images/walleEast.png");
+			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			boxImage.add(pRobotImage.add(lbRobotIcon));
+			pRobotImage.add(lbRobotIcon);
 			break;
 		case SOUTH:
 			urlImage = MainWindow.class.getResource("images/walleSouth.png");
+			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			boxImage.add(pRobotImage.add(lbRobotIcon));
+			pRobotImage.add(lbRobotIcon);
 			break;
 		case WEST:
 			urlImage = MainWindow.class.getResource("images/walleWest.png");
+			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			boxImage.add(pRobotImage.add(lbRobotIcon));
+			pRobotImage.add(lbRobotIcon);
 			break;
 
 		default:

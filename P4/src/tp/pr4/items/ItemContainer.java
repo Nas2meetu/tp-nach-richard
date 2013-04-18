@@ -1,6 +1,7 @@
 package tp.pr4.items;
 
 import static tp.pr4.Constants.*;
+import tp.pr4.gui.RobotPanel;
 
 /**
  * 
@@ -14,6 +15,7 @@ public class ItemContainer {
 
 	private int numberOfItems;
 	private Item[] container;
+	private RobotPanel robotPanel;
 
 	/**
 	 * Constructor of two parameters to define robot´s Container
@@ -250,4 +252,8 @@ public class ItemContainer {
 		}
 	}
 
+	public void setRobotPanel(RobotPanel robotPanel){
+		this.robotPanel = robotPanel;
+		
+	}
 }
