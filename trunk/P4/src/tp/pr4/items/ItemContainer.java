@@ -267,4 +267,25 @@ public class ItemContainer {
 		this.robotPanel = robotPanel;
 		
 	}
+	
+	public void updateInventory(){
+		robotPanel.updateTable(inventoryToTable());
+	}
+	
+	private String[][] inventoryToTable(){
+		String[][] data = new String[numberOfItems][2];
+		for (int i = 0; i < numberOfItems; i++) {
+			data[i][0]=container[i].getId();
+			data[i][1]=container[i].getDescription();
+		}
+		return data;
+	}
+	
+	private ArrayList<Item> inventoryToArrayListTable(){
+		for (int i = 0; i < numberOfItems; i++) {
+			containerTable.add(container[i]);
+		}
+		return containerTable;
+		
+	}
 }
