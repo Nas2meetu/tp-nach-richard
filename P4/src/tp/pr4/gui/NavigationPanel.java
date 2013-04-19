@@ -6,6 +6,7 @@ import javax.swing.border.TitledBorder;
 import tp.pr4.Direction;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -26,12 +27,13 @@ import java.util.EnumMap;
 public class NavigationPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	// private int column, row;
+	private int col, row;
 	JLabel lbRobotIcon;
 	private ImageIcon robotImage;
 	//private Box boxImage;
 	private JPanel pRobotImage;
 	private URL urlImage;
+	private PlaceCell[][] placeCell;
 
 	// public enum Directions {
 	// LEFT, RIGHT;
@@ -72,11 +74,21 @@ public class NavigationPanel extends JPanel {
 		pCity.setBorder(new TitledBorder("City Map"));
 		pCity.setLayout(new GridLayout(11, 11));
 
+		
+		this.row=5; this.col = 5;
+				
 		for (int i = 0; i < 11; i++) {
 			for (int j = 0; j < 11; j++) {
 				pCity.add(new PlaceCell());
 			}
 		}
+		
+		//pCity.getComponentAt(5, 5).setBackground(Color.GREEN);
+		//this.placeCell = new PlaceCell[11][11];
+		//this.placeCell[row][col].setVisited();
+		//this.placeCell[row][col].setBackground(Color.GREEN);
+		
+		//pCity.add(placeCell[row][col]);
 
 		JPanel pLog = new JPanel();
 		pLog.setBorder(new TitledBorder("Log"));
@@ -128,4 +140,5 @@ public class NavigationPanel extends JPanel {
 
 	}
 
+		
 }

@@ -16,7 +16,7 @@ public class Constants {
 	 * 
 	 */
 
-	public static final int INITIAL_POWER = 100;
+	public static final int INITIAL_POWER = 50;
 
 	public static final int INITIAL_GARBAGE = 0;
 

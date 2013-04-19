@@ -100,11 +100,13 @@ public class TurnInstruction implements Instruction {
 	@Override
 	public void execute() throws InstructionExecutionException {
 		navigation.rotate(rotation);
-		robot.addFuel(-5);
-		System.out.println(LOOKING_DIRECTION + navigation.getCurrentHeading()
+		if(rotation!=rotation.UNKNONW)
+		{
+			robot.addFuel(-5);
+			System.out.println(LOOKING_DIRECTION + navigation.getCurrentHeading()
 				+ LINE_SEPARATOR + POWER2 + robot.getFuel() + LINE_SEPARATOR
 				+ RECYCLED_MATERIAL + robot.getRecycledMaterial());
-
+		}
 	}
 
 }

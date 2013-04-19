@@ -220,7 +220,7 @@ public class ItemContainer {
 		}
 		
 		if(added){
-			robotPanel.updateTable(containerTable);
+			//robotPanel.updateTable(containerTable);
 		}
 		return added;
 

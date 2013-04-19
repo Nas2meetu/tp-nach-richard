@@ -1,6 +1,12 @@
 package tp.pr4;
 
 import static tp.pr4.Constants.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+
 import tp.pr4.gui.NavigationPanel;
 import tp.pr4.instructions.exceptions.*;
 import tp.pr4.items.Item;
@@ -36,6 +42,7 @@ public class NavigationModule {
 		this.cityMap = city;
 		this.actualPlace = currentPlace;
 		this.lookingDirection = Direction.NORTH;
+		//this.navPanel=new NavigationPanel();
 
 	}
 
@@ -78,9 +85,9 @@ public class NavigationModule {
 		} else if (rotation.equals(Rotation.RIGHT)) {
 			lookingDirection = lookingDirection.turnRight();
 			navPanel.update(lookingDirection);
-		} else
-			System.out.println("giro desconocido");
-
+		} else 
+			JOptionPane.showMessageDialog(navPanel, "WALL·E says: I can't turn to UNKNOW direction");
+			
 	}
 
 	/**
