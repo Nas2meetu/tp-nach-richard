@@ -1,7 +1,6 @@
 package tp.pr4;
 
 import java.util.Scanner;
-
 import tp.pr4.gui.MainWindow;
 import tp.pr4.gui.NavigationPanel;
 import tp.pr4.gui.RobotPanel;
@@ -49,6 +48,7 @@ public class RobotEngine {
 		this.contRecycledMaterial = INITIAL_GARBAGE;
 		this.navigation = new NavigationModule(city, initialPlace);
 		this.navigation.initHeading(direction);
+		this.robotPanel= new RobotPanel();
 
 	}
 
@@ -151,7 +151,11 @@ public class RobotEngine {
 		this.contFuel += newFuel;
 		if (contFuel < 0) {
 			contFuel = 0;
+			System.out.println(LOOKING_DIRECTION + navigation.getCurrentHeading()
+				+ LINE_SEPARATOR + POWER2 + this.contFuel + LINE_SEPARATOR
+				+ RECYCLED_MATERIAL + contRecycledMaterial + LINE_SEPARATOR);
 		}
+		robotPanel.setFuel(contFuel);
 	}
 
 	/**

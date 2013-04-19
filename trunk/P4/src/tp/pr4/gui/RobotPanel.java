@@ -1,9 +1,11 @@
 package tp.pr4.gui;
 
+import static tp.pr4.Constants.END_FUEL;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
-
+import static tp.pr4.Constants.*;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -31,9 +33,11 @@ public class RobotPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFuel, lbRecycledMaterial;
 	private JTable tbInventory;
-	private String fuel;
+	
 	
 	private InventoryTableModel tbInventoryModel;
+	private int fuel = INITIAL_POWER;
+	private int garbage= INITIAL_GARBAGE;
 
 	public RobotPanel() {
 		super();
@@ -43,8 +47,8 @@ public class RobotPanel extends JPanel {
 		JLabel fuelLabel = new JLabel("Fuel");
 		JLabel gargabeLabel = new JLabel("Recycled");
 
-		this.lbFuel = new JLabel(fuel);
-		this.lbRecycledMaterial = new JLabel("0");
+		this.lbFuel = new JLabel();
+		this.lbRecycledMaterial = new JLabel(Integer.toString(garbage));
 
 		String[][] inventory = { {"" , ""}};
 
@@ -64,6 +68,10 @@ public class RobotPanel extends JPanel {
 	
 	public void setFuel(int fuel) {
 		lbFuel.setText(Integer.toString(fuel));
+		if (fuel==0){
+			JOptionPane.showMessageDialog(this, END_FUEL);
+			System.exit(0);
+		}
 	}
 	
 	public void setGarbage(int garbage) {
