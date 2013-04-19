@@ -48,7 +48,7 @@ public class MainWindow extends JFrame {
 		JMenuItem mLoad = new JMenuItem("Load");
 
 		initializeMenu(mDialogs, mLoad);
-		JPanel robotPanel = new RobotPanel();
+		RobotPanel robotPanel = new RobotPanel();
 		
 		
 		
@@ -68,7 +68,7 @@ public class MainWindow extends JFrame {
 		setVisible(true);
 		
 		robot.setNavigationPanel(navigationPanel);
-		//robot.setRobotPanel(robotPanel);
+		robot.setRobotPanel(robotPanel);
 
 	}
 

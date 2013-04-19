@@ -16,7 +16,6 @@ import javax.swing.table.AbstractTableModel;
 
 import tp.pr4.items.Item;
 
-
 /**
  * 
  * @author Ignacio Cerda Sanchez
@@ -33,11 +32,9 @@ public class RobotPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFuel, lbRecycledMaterial;
 	private JTable tbInventory;
-	
-	
 	private InventoryTableModel tbInventoryModel;
 	private int fuel = INITIAL_POWER;
-	private int garbage= INITIAL_GARBAGE;
+	private int garbage = INITIAL_GARBAGE;
 
 	public RobotPanel() {
 		super();
@@ -50,7 +47,7 @@ public class RobotPanel extends JPanel {
 		this.lbFuel = new JLabel();
 		this.lbRecycledMaterial = new JLabel(Integer.toString(garbage));
 
-		String[][] inventory = { {"" , ""}};
+		// String[][] inventory = { {"" , ""}};
 
 		tbInventoryModel = new InventoryTableModel();
 		tbInventory = new JTable(tbInventoryModel);
@@ -65,19 +62,18 @@ public class RobotPanel extends JPanel {
 		this.add(new JScrollPane(this.tbInventory), BorderLayout.CENTER);
 		this.setPreferredSize(new Dimension(280, 115));
 	}
-	
+
 	public void setFuel(int fuel) {
 		lbFuel.setText(Integer.toString(fuel));
-		if (fuel==0){
+		if (fuel == 0) {
 			JOptionPane.showMessageDialog(this, END_FUEL);
 			System.exit(0);
 		}
 	}
-	
+
 	public void setGarbage(int garbage) {
 		lbRecycledMaterial.setText(Integer.toString(garbage));
 	}
-	
 
 	class InventoryTableModel extends AbstractTableModel {
 
@@ -85,17 +81,16 @@ public class RobotPanel extends JPanel {
 
 		public String[] cols = { "Id", "Description" };
 
-		public ArrayList<Item> data;
-		
+		public String[][] data;
 
-		protected void setData(ArrayList<Item> data) {
+		protected void setData(String[][] data) {
 			this.data = data;
 		}
 
-		public InventoryTableModel(){
-			data = new ArrayList<Item>();
+		public InventoryTableModel() {
+			data = new String[0][0];
 		}
-		
+
 		@Override
 		public String getColumnName(int col) {
 			return cols[col];
@@ -103,7 +98,7 @@ public class RobotPanel extends JPanel {
 
 		@Override
 		public int getRowCount() {
-			return data.size();
+			return data.length;
 		}
 
 		@Override
@@ -112,45 +107,50 @@ public class RobotPanel extends JPanel {
 		}
 
 		@Override
-		public Object getValueAt(int rowIndex, int columnIndex) {
-			Item i = data.get(rowIndex);
-			if(columnIndex==0) return i.getId();
-			else return i.getDescription();
+		public String getValueAt(int rowIndex, int columnIndex) {
+			// Item i = data.get(rowIndex);
+			// if(columnIndex==0) return i.getId();
+			// else return i.getDescription();
+			return data[rowIndex][columnIndex];
+		}
+		
+		
+
+		public void updateData(String[][] items) {
+			if (items == null)
+				data = new String[0][0];
+			else
+				data = items;
+			this.fireTableDataChanged();
 		}
 
 	}
 
-	
-	/*public void updateTable(ArrayList<Item> containerTable)
-	{
-		tbInventoryModel.setData(containerTable);
-		tbInventoryModel.fireTableDataChanged();
-	}
-*/
-	//public ArrayList<Item> getContainer2() {
-	//	return container2;
-	//}
-	
-	String getSelectedItem()
-	{
+	/*
+	 * public void updateTable(ArrayList<Item> containerTable) {
+	 * tbInventoryModel.setData(containerTable);
+	 * tbInventoryModel.fireTableDataChanged(); }
+	 */
+	// public ArrayList<Item> getContainer2() {
+	// return container2;
+	// }
+
+	String getSelectedItem() {
 		int row = this.tbInventory.getSelectedRow();
 		String itemSelected = null;
 		if (row == -1)
-			JOptionPane.showMessageDialog(this, "El item no ha sido seleccionado");
+			JOptionPane.showMessageDialog(this,
+					"El item no ha sido seleccionado");
 		else
 			itemSelected = tbInventory.getValueAt(row, 0).toString();
 		return itemSelected;
 	}
 
-	public void updateTable(ArrayList<Item> containerTable) {
-		
-		tbInventoryModel.setData(containerTable);
-		tbInventoryModel.fireTableDataChanged();
-		
+	public void updateTable(String[][] items) {
+		tbInventoryModel.updateData(items);
+		//tbInventoryModel.setData(items);
+		//tbInventoryModel.fireTableDataChanged();
+
 	}
-
-
-
-	
 
 }
