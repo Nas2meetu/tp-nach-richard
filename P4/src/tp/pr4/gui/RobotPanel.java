@@ -113,12 +113,12 @@ public class RobotPanel extends JPanel {
 	}
 
 	
-	public void updateTable(ArrayList<Item> lista)
+	/*public void updateTable(ArrayList<Item> containerTable)
 	{
-		tbInventoryModel.setData(lista);
+		tbInventoryModel.setData(containerTable);
 		tbInventoryModel.fireTableDataChanged();
 	}
-
+*/
 	//public ArrayList<Item> getContainer2() {
 	//	return container2;
 	//}
@@ -132,6 +132,13 @@ public class RobotPanel extends JPanel {
 		else
 			itemSelected = tbInventory.getValueAt(row, 0).toString();
 		return itemSelected;
+	}
+
+	public void updateTable(ArrayList<Item> containerTable) {
+		
+		tbInventoryModel.setData(containerTable);
+		tbInventoryModel.fireTableDataChanged();
+		
 	}
 
 
