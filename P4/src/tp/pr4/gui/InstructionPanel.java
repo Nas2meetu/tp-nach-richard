@@ -23,6 +23,7 @@ import tp.pr4.Rotation;
 import tp.pr4.instructions.DropInstruction;
 import tp.pr4.instructions.Instruction;
 import tp.pr4.instructions.MoveInstruction;
+import tp.pr4.instructions.OperateInstruction;
 import tp.pr4.instructions.PickInstruction;
 import tp.pr4.instructions.TurnInstruction;
 import tp.pr4.items.Item;
@@ -89,8 +90,7 @@ public class InstructionPanel extends JPanel {
 		return txtBox.getText();
 	}
 
-
-	private void initDropButton(JButton btDrop, final RobotPanel robotPanel,
+	private void initDropButton(JButton btDrop,  final RobotPanel robotPanel,
 			NavigationPanel navPanel) {
 		btDrop.setToolTipText("Drops the selected item from the inventory");
 		btDrop.addActionListener(new ActionListener() {
@@ -99,7 +99,7 @@ public class InstructionPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String id = robotPanel.getSelectedItem();
 				Instruction dropInstruction = new DropInstruction(id);
-
+				robot.communicateRobot(dropInstruction);
 			}
 		});
 	}
@@ -138,21 +138,23 @@ public class InstructionPanel extends JPanel {
 				String id = txtBox.getText();
 				Instruction pickInstruction = new PickInstruction(id);
 				robot.communicateRobot(pickInstruction);
-
 			}
 		});
 
 	}
 
-	private void initOperateButton(JButton btOperate, RobotPanel robotPanel) {
+	private void initOperateButton(JButton btOperate,
+			final RobotPanel robotPanel) {
 		btOperate.setToolTipText("Use item from robot inventory");
 		btOperate.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				String id = robotPanel.getSelectedItem();
+				Instruction operateInstruction = new OperateInstruction(id);
+				robot.communicateRobot(operateInstruction);
 			}
+
 		});
 
 	}

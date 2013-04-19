@@ -6,14 +6,13 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import tp.pr4.Place;
 
-
 /**
-*
-* @author Ignacio Cerda Sanchez
-* @author Ricardo Eugui Fernandez
-* @version 4
-*
-*/
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 4
+ * 
+ */
 
 public class PlaceCell extends JButton {
 
@@ -21,12 +20,12 @@ public class PlaceCell extends JButton {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private JTextArea textArea;
 	private boolean visited;
 	private Place place;
+	private NavigationPanel navPanel;
 
-	
 	public PlaceCell(Place place, JTextArea textArea) {
 
 		super();
@@ -36,12 +35,18 @@ public class PlaceCell extends JButton {
 		this.textArea = textArea;
 		this.visited = false;
 		this.initialize();
+
+	}
+
+	public PlaceCell(NavigationPanel navigation) {
+		this.navPanel = navigation;
+		initialize();
 	}
 
 	/**
 	 * PlaceCell default constructor
 	 */
-	
+
 	public PlaceCell() {
 		super();
 		setOpaque(true);
@@ -59,7 +64,6 @@ public class PlaceCell extends JButton {
 
 	}
 
-	
 	public Place getPlace() {
 		if (place != null) {
 			return place;
@@ -67,8 +71,6 @@ public class PlaceCell extends JButton {
 			return null;
 	}
 
-	
-	
 	public void setVisited() {
 		if (place != null) {
 			this.setText(place.getPlaceName());
@@ -94,10 +96,10 @@ public class PlaceCell extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (visited)
-					textArea.setText(place.getDescription());
+					// textArea.setText(place.getDescription());
+					navPanel.showCurrentPlaceLog();
 			}
 		});
 	}
-	
 
 }

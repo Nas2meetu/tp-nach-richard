@@ -13,7 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
-
 import tp.pr4.items.Item;
 
 /**
@@ -33,38 +32,37 @@ public class RobotPanel extends JPanel {
 	private JLabel lbFuel, lbRecycledMaterial;
 	private JTable tbInventory;
 	private InventoryTableModel tbInventoryModel;
-	private int fuel = INITIAL_POWER;
-	private int garbage = INITIAL_GARBAGE;
+	// private int fuel = INITIAL_POWER;
+	// private int garbage = INITIAL_GARBAGE;
+	private JLabel fuelLabel;
 
 	public RobotPanel() {
 		super();
 		this.setBorder(new TitledBorder("Robot Info"));
 		this.setLayout(new BorderLayout());
 
-		JLabel fuelLabel = new JLabel("Fuel");
-		JLabel gargabeLabel = new JLabel("Recycled");
+		JPanel pContInfo = new JPanel();
 
-		this.lbFuel = new JLabel();
-		this.lbRecycledMaterial = new JLabel(Integer.toString(garbage));
+		fuelLabel = new JLabel("Fuel: ");
+		this.lbFuel = new JLabel(INITIAL_POWER.toString());
+		pContInfo.add(fuelLabel);
+		pContInfo.add(lbFuel);
 
-		// String[][] inventory = { {"" , ""}};
+		JLabel gargabeLabel = new JLabel("Recycled: ");
+		this.lbRecycledMaterial = new JLabel(INITIAL_GARBAGE.toString());
+		pContInfo.add(gargabeLabel);
+		pContInfo.add(lbRecycledMaterial);
 
 		tbInventoryModel = new InventoryTableModel();
 		tbInventory = new JTable(tbInventoryModel);
-		JPanel pContInfo = new JPanel();
-
-		pContInfo.add(fuelLabel);
-		pContInfo.add(lbFuel);
-		pContInfo.add(gargabeLabel);
-		pContInfo.add(lbRecycledMaterial);
 
 		this.add(pContInfo, BorderLayout.NORTH);
 		this.add(new JScrollPane(this.tbInventory), BorderLayout.CENTER);
 		this.setPreferredSize(new Dimension(280, 115));
 	}
 
-	public void setFuel(int fuel) {
-		lbFuel.setText(Integer.toString(fuel));
+	public void setFuel(Integer fuel) {
+		lbFuel.setText(fuel.toString());
 		if (fuel == 0) {
 			JOptionPane.showMessageDialog(this, END_FUEL);
 			System.exit(0);
@@ -113,8 +111,6 @@ public class RobotPanel extends JPanel {
 			// else return i.getDescription();
 			return data[rowIndex][columnIndex];
 		}
-		
-		
 
 		public void updateData(String[][] items) {
 			if (items == null)
@@ -135,21 +131,24 @@ public class RobotPanel extends JPanel {
 	// return container2;
 	// }
 
-	String getSelectedItem() {
-		int row = this.tbInventory.getSelectedRow();
+	public String getSelectedItem() {
+
+		int row = tbInventory.getSelectedRow();
 		String itemSelected = null;
 		if (row == -1)
 			JOptionPane.showMessageDialog(this,
-					"El item no ha sido seleccionado");
+					"El item no ha sido seleccionado", "Error",
+					JOptionPane.ERROR_MESSAGE);
 		else
 			itemSelected = tbInventory.getValueAt(row, 0).toString();
 		return itemSelected;
+
 	}
 
 	public void updateTable(String[][] items) {
 		tbInventoryModel.updateData(items);
-		//tbInventoryModel.setData(items);
-		//tbInventoryModel.fireTableDataChanged();
+		// tbInventoryModel.setData(items);
+		// tbInventoryModel.fireTableDataChanged();
 
 	}
 

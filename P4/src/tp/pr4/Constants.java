@@ -16,9 +16,9 @@ public class Constants {
 	 * 
 	 */
 
-	public static final int INITIAL_POWER = 50;
+	public static final Integer INITIAL_POWER = 50;
 
-	public static final int INITIAL_GARBAGE = 0;
+	public static final Integer INITIAL_GARBAGE = 0;
 
 	public static final int DEFAULT_TIMES = 1;
 

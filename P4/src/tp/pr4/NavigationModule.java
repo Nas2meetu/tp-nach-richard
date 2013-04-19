@@ -177,6 +177,7 @@ public class NavigationModule {
 					+ lookingDirection);
 		} else if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
+			navPanel.showCurrentPlaceLog();
 		} else
 			throw new InstructionExecutionException(STREET_CLOSE);
 

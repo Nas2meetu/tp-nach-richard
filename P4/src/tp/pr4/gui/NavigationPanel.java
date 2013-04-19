@@ -4,12 +4,14 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 import tp.pr4.Direction;
+import tp.pr4.Place;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -27,13 +29,17 @@ import java.util.EnumMap;
 public class NavigationPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private int col, row;
-	JLabel lbRobotIcon;
+	
+	private int col = 5;
+	private int row = 5;
+	
+	private JLabel lbRobotIcon;
 	private ImageIcon robotImage;
-	//private Box boxImage;
 	private JPanel pRobotImage;
+	private JTextArea txtLog = new JTextArea();
 	private URL urlImage;
 	private PlaceCell[][] placeCell;
+	private PlaceCell currentPlace;
 
 	// public enum Directions {
 	// LEFT, RIGHT;
@@ -75,26 +81,31 @@ public class NavigationPanel extends JPanel {
 		pCity.setLayout(new GridLayout(11, 11));
 
 		
-		this.row=5; this.col = 5;
+		this.placeCell = new PlaceCell[11][11];
+		
+		for (int i = 0; i < 11; i++)
+			for (int j = 0; j < 11; j++)
+				placeCell[i][j] = new PlaceCell(this);
 				
 		for (int i = 0; i < 11; i++) {
 			for (int j = 0; j < 11; j++) {
-				pCity.add(new PlaceCell());
+				pCity.add(placeCell[i][j]);
 			}
 		}
 		
 		//pCity.getComponentAt(5, 5).setBackground(Color.GREEN);
-		//this.placeCell = new PlaceCell[11][11];
+	
 		//this.placeCell[row][col].setVisited();
 		//this.placeCell[row][col].setBackground(Color.GREEN);
 		
 		//pCity.add(placeCell[row][col]);
 
-		JPanel pLog = new JPanel();
+		JPanel pLog = new JPanel(new GridLayout(1, 1));
 		pLog.setBorder(new TitledBorder("Log"));
 		pLog.setLayout(new BorderLayout());
-		JTextArea txtLog = new JTextArea(8, 100);
+		txtLog.setPreferredSize(new Dimension(8,100));
 		txtLog.setEditable(false);
+		txtLog.setText("");
 		pLog.add(new JScrollPane(txtLog), BorderLayout.CENTER);
 
 		this.add(pCity, BorderLayout.CENTER);
@@ -139,6 +150,23 @@ public class NavigationPanel extends JPanel {
 		}
 
 	}
+	
+	public void setInitialPlace(Place place) {
+		this.placeCell[row][col].setPlace(place);
+		this.currentPlace = this.placeCell[row][col];
+		updateLog();
+	}
+	
+	public void showCurrentPlaceLog() {
+		txtLog.setText(currentPlace.toString());
+	}
+	
+	public void setLog(PlaceCell placeCell){
+		txtLog.setText(placeCell.toString());
+	}
 
+	public void updateLog(){
+		txtLog.setText(currentPlace.toString());
+	}
 		
 }
