@@ -93,16 +93,5 @@ public class MainWindow extends JFrame {
 		});
 	}
 
-	/*public static void main(String[] args) {
-
-		final MainWindow window = new MainWindow(robot);
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				window.pack(); /* compacta la ventana /*
-				window.setLocationRelativeTo(null);
-				window.setVisible(true);
-			}
-		});
-
-	}*/
+	
 }

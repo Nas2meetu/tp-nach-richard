@@ -21,8 +21,7 @@ public class PlaceCell extends JButton {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private boolean visited;
-	private Place place;
+	private Place place = null;
 	private NavigationPanel navPanel;
 
 	public PlaceCell(NavigationPanel navigation) {
@@ -57,12 +56,12 @@ public class PlaceCell extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (place != null)
-					navPanel.showCurrentPlaceLog();
+					navPanel.showCurrentPlaceLog(place);
 			}
 		});
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return place.toString();
 	}
 

@@ -15,6 +15,7 @@ import org.apache.commons.cli.Options;
 
 import tp.pr4.cityLoader.CityLoaderFromTxtFile;
 import tp.pr4.gui.MainWindow;
+import tp.pr4.instructions.exceptions.InstructionExecutionException;
 
 /**
  * 
@@ -89,11 +90,21 @@ public class Main {
 						RobotEngine robot = new RobotEngine(city,
 								fileLoader.getInitialPlace(), Direction.NORTH);
 						final MainWindow gameWindow = new MainWindow(robot);
-						robot.startEngine();
+						try {
+							robot.startEngine();
+						} catch (InstructionExecutionException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					} else if (interfaces.equalsIgnoreCase("console")) {
 						RobotEngine robot = new RobotEngine(city,
 								fileLoader.getInitialPlace(), Direction.NORTH);
-						robot.startEngine();
+						try {
+							robot.startEngine();
+						} catch (InstructionExecutionException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					} else {
 						System.out.println("Console or Swing?");
 					}

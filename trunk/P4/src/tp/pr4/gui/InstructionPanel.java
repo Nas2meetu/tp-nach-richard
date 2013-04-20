@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import sun.misc.MessageUtils;
 import tp.pr4.City;
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
@@ -31,11 +32,14 @@ import tp.pr4.items.Item;
 
 public class InstructionPanel extends JPanel {
 
-	private City city;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Instruction> lastInstructions;
 	private JComboBox<Rotation> cbDirections;
 	private RobotEngine robot;
-	private JTextField txtBox = new JTextField(10);
+	private JTextField txtBox;
 	private RobotPanel robotPanel;
 
 	public InstructionPanel(RobotEngine robot, RobotPanel robotPanel) {
@@ -56,6 +60,7 @@ public class InstructionPanel extends JPanel {
 
 		cbDirections = new JComboBox<Rotation>(Rotation.values());
 		this.setBorder(BorderFactory.createTitledBorder("Instructions"));
+		txtBox = new JTextField(10);
 
 		this.add(btMove);
 		this.add(btQuit);
@@ -94,7 +99,8 @@ public class InstructionPanel extends JPanel {
 		return txtBox.getText();
 	}
 
-	private void initDropButton(JButton btDrop, final RobotPanel robotPanel, NavigationPanel navPanel) {
+	private void initDropButton(JButton btDrop, final RobotPanel robotPanel,
+			NavigationPanel navPanel) {
 		btDrop.setToolTipText("Drops the selected item from the inventory");
 		btDrop.addActionListener(new ActionListener() {
 
@@ -104,8 +110,11 @@ public class InstructionPanel extends JPanel {
 				String id = robotPanel.getSelectedItem();
 				if (id != null) {
 					Instruction dropInstruction = new DropInstruction(id);
-					robot.communicateRobot(dropInstruction);
-					
+					try {
+						robot.communicateRobot(dropInstruction);
+					} catch (InstructionExecutionException e1) {
+						e1.printStackTrace();
+					}
 				}
 
 			}
@@ -120,7 +129,11 @@ public class InstructionPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Instruction turnInstruction = new TurnInstruction(cbDirections
 						.getItemAt(cbDirections.getSelectedIndex()));
-				robot.communicateRobot(turnInstruction);
+				try {
+					robot.communicateRobot(turnInstruction);
+				} catch (InstructionExecutionException e1) {
+					JOptionPane.showConfirmDialog(getRootPane(), e1.toString());
+				}
 			}
 		});
 	}
@@ -131,7 +144,12 @@ public class InstructionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Instruction moveInstruction = new MoveInstruction();
-				robot.communicateRobot(moveInstruction);
+				try {
+					robot.communicateRobot(moveInstruction);
+				} catch (InstructionExecutionException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showConfirmDialog(getRootPane(), e1.toString());
+				}
 			}
 		});
 
@@ -144,8 +162,18 @@ public class InstructionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String id = txtBox.getText();
-				Instruction pickInstruction = new PickInstruction(id);
-				robot.communicateRobot(pickInstruction);
+				if (!id.equals("")) {
+					Instruction pickInstruction = new PickInstruction(id);
+					try {
+						robot.communicateRobot(pickInstruction);
+					} catch (InstructionExecutionException e1) {
+						JOptionPane.showMessageDialog(getRootPane(),
+								e1.getMessage(), "Error",
+								JOptionPane.ERROR_MESSAGE);
+					}
+				} else
+					JOptionPane
+							.showMessageDialog(getRootPane(), NO_WRITTE_ITEM);
 			}
 		});
 
@@ -160,8 +188,11 @@ public class InstructionPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String id = robotPanel.getSelectedItem();
 				Instruction operateInstruction = new OperateInstruction(id);
-				robot.communicateRobot(operateInstruction);
-				
+				try {
+					robot.communicateRobot(operateInstruction);
+				} catch (InstructionExecutionException e1) {
+					JOptionPane.showConfirmDialog(getRootPane(), e1.toString());
+				}
 			}
 
 		});

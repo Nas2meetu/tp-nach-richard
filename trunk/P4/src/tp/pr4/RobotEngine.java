@@ -63,7 +63,7 @@ public class RobotEngine {
 		return container;
 	}
 
-	public void startEngine() {
+	public void startEngine() throws InstructionExecutionException {
 
 		Scanner reader = new Scanner(System.in);
 		printRobotState();
@@ -102,14 +102,15 @@ public class RobotEngine {
 	/**
 	 * 
 	 * @param c
+	 * @throws InstructionExecutionException 
 	 */
 	
-	public void communicateRobot(Instruction c) {
+	public void communicateRobot(Instruction c) throws InstructionExecutionException {
 		c.configureContext(this, navigation, container);
 		try {
 			c.execute();
 		} catch (InstructionExecutionException e) {
-			System.out.println(e.getMessage());
+			throw new InstructionExecutionException(e);
 		}
 	}
 
