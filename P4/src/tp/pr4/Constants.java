@@ -16,7 +16,7 @@ public class Constants {
 	 * 
 	 */
 
-	public static final Integer INITIAL_POWER = 50;
+	public static final Integer INITIAL_POWER = 100;
 
 	public static final Integer INITIAL_GARBAGE = 0;
 
@@ -118,6 +118,8 @@ public class Constants {
 	
 	public static final String MAPFILE = "<mapfile> : file with the description of the city.";
 	
-	public static final String NO_ITEM_CHOSE = "You forgot to pick the item";
+	public static final String NO_ITEM_CHOSE = "You forgot Select the item";
+	
+	public static final String NO_WRITTE_ITEM = "You should first write the name of an item";
 	
 }

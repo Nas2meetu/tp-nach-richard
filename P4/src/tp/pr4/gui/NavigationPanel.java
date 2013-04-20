@@ -79,6 +79,7 @@ public class NavigationPanel extends JPanel {
 				placeCell[i][j] = new PlaceCell(this);
 				pCity.add(placeCell[i][j]);
 			}
+		currentPlace= new PlaceCell();
 		
 		
 		txtLog = new JTextArea();
@@ -87,6 +88,7 @@ public class NavigationPanel extends JPanel {
 		pLog.setLayout(new BorderLayout());
 		txtLog.setPreferredSize(new Dimension(8,100));
 		txtLog.setEditable(false);
+		
 		txtLog.setText("");
 		pLog.add(new JScrollPane(txtLog), BorderLayout.CENTER);
 
@@ -130,14 +132,14 @@ public class NavigationPanel extends JPanel {
 
 	}
 	
-	public void setInitialPlace(Place place) {
-		this.placeCell[row][col].setPlace(place);
+	public void setInitialPlace(Place actualPlace) {
+		this.placeCell[row][col].setPlace(actualPlace);
 		this.currentPlace = this.placeCell[row][col];
 		updateLog();
 	}
 	
-	public void showCurrentPlaceLog() {
-		txtLog.setText(currentPlace.toString());
+	public void showCurrentPlaceLog(Place actualPlace) {
+		txtLog.setText(actualPlace.toString());
 	}
 	
 	public void setLog(PlaceCell placeCell){
@@ -147,5 +149,20 @@ public class NavigationPanel extends JPanel {
 	public void updateLog(){
 		txtLog.setText(currentPlace.toString());
 	}
+	
+	public void updateCity(Place actualPlace, Direction lookingDirection) {
+		if (actualPlace.equals(Direction.NORTH))
+			row--;
+		if (actualPlace.equals(Direction.EAST))
+			col++;
+		if (actualPlace.equals(Direction.SOUTH))
+			row++;	
+		if (actualPlace.equals(Direction.WEST))
+			col--;
+		if (this.placeCell[row][col] != null)
+			this.placeCell[row][col].setPlace(actualPlace);
+		currentPlace = this.placeCell[row][col];
+	}
+
 		
 }

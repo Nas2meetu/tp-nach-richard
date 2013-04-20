@@ -106,7 +106,8 @@ public class TurnInstruction implements Instruction {
 			System.out.println(LOOKING_DIRECTION + navigation.getCurrentHeading()
 				+ LINE_SEPARATOR + POWER2 + robot.getFuel() + LINE_SEPARATOR
 				+ RECYCLED_MATERIAL + robot.getRecycledMaterial());
-		}
+		}else
+			new InstructionExecutionException();
 	}
 
 }

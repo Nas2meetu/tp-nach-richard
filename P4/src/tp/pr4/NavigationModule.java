@@ -42,7 +42,6 @@ public class NavigationModule {
 		this.cityMap = city;
 		this.actualPlace = currentPlace;
 		this.lookingDirection = Direction.NORTH;
-		//this.navPanel=new NavigationPanel();
 
 	}
 
@@ -82,12 +81,17 @@ public class NavigationModule {
 		if (rotation.equals(Rotation.LEFT)) {
 			lookingDirection = lookingDirection.turnLeft();
 			navPanel.updateIcon(lookingDirection);
+			navPanel.updateCity(actualPlace, lookingDirection);
+			navPanel.updateLog();
 		} else if (rotation.equals(Rotation.RIGHT)) {
 			lookingDirection = lookingDirection.turnRight();
 			navPanel.updateIcon(lookingDirection);
-		} else 
-			JOptionPane.showMessageDialog(navPanel, "WALL·E says: I can't turn to UNKNOW direction");
-			
+			navPanel.updateCity(actualPlace, lookingDirection);
+			navPanel.updateLog();
+		} else
+			JOptionPane.showMessageDialog(navPanel,
+					"WALL·E says: I can't turn to UNKNOW direction");
+
 	}
 
 	/**
@@ -148,6 +152,7 @@ public class NavigationModule {
 	public void dropItemAtCurrentPlace(Item it) {
 
 		robot.getContainer().pickItem(it.getId());
+		
 	}
 
 	/**
@@ -177,10 +182,11 @@ public class NavigationModule {
 					+ lookingDirection);
 		} else if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
-		//	navPanel.showCurrentPlaceLog();
+			navPanel.showCurrentPlaceLog(actualPlace);
 		} else
 			throw new InstructionExecutionException(STREET_CLOSE);
-
+		navPanel.updateCity(actualPlace, lookingDirection);
+		
 	}
 
 	/**
@@ -194,7 +200,9 @@ public class NavigationModule {
 		Item item = actualPlace.getItem(it.getId());
 		if (item != null) {
 			actualPlace.pickItem(it.getId());
+			navPanel.showCurrentPlaceLog(actualPlace);
 		}
+		
 	}
 
 	public void setNavigationPanel(NavigationPanel navPanel) {
