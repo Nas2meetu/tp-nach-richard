@@ -81,10 +81,10 @@ public class NavigationModule {
 
 		if (rotation.equals(Rotation.LEFT)) {
 			lookingDirection = lookingDirection.turnLeft();
-			navPanel.update(lookingDirection);
+			navPanel.updateIcon(lookingDirection);
 		} else if (rotation.equals(Rotation.RIGHT)) {
 			lookingDirection = lookingDirection.turnRight();
-			navPanel.update(lookingDirection);
+			navPanel.updateIcon(lookingDirection);
 		} else 
 			JOptionPane.showMessageDialog(navPanel, "WALL·E says: I can't turn to UNKNOW direction");
 			
@@ -177,7 +177,7 @@ public class NavigationModule {
 					+ lookingDirection);
 		} else if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
-			navPanel.showCurrentPlaceLog();
+		//	navPanel.showCurrentPlaceLog();
 		} else
 			throw new InstructionExecutionException(STREET_CLOSE);
 

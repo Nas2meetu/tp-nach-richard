@@ -21,22 +21,9 @@ public class PlaceCell extends JButton {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private JTextArea textArea;
 	private boolean visited;
 	private Place place;
 	private NavigationPanel navPanel;
-
-	public PlaceCell(Place place, JTextArea textArea) {
-
-		super();
-		setOpaque(true);
-		setBorderPainted(true);
-		this.place = place;
-		this.textArea = textArea;
-		this.visited = false;
-		this.initialize();
-
-	}
 
 	public PlaceCell(NavigationPanel navigation) {
 		this.navPanel = navigation;
@@ -64,42 +51,19 @@ public class PlaceCell extends JButton {
 
 	}
 
-	public Place getPlace() {
-		if (place != null) {
-			return place;
-		} else
-			return null;
-	}
-
-	public void setVisited() {
-		if (place != null) {
-			this.setText(place.getPlaceName());
-			textArea.setText(place.getDescription());
-
-		}
-		visited = true;
-	}
-
-	public void setNotVisited() {
-
-		this.setText(null);
-		visited = false;
-	}
-
-	public boolean isVisited() {
-		return visited;
-	}
-
 	private void initialize() {
 
 		this.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (visited)
-					// textArea.setText(place.getDescription());
+				if (place != null)
 					navPanel.showCurrentPlaceLog();
 			}
 		});
+	}
+	
+	public String toString(){
+		return place.toString();
 	}
 
 }

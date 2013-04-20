@@ -36,15 +36,12 @@ public class NavigationPanel extends JPanel {
 	private JLabel lbRobotIcon;
 	private ImageIcon robotImage;
 	private JPanel pRobotImage;
-	private JTextArea txtLog = new JTextArea();
+	private JTextArea txtLog; 
 	private URL urlImage;
 	private PlaceCell[][] placeCell;
 	private PlaceCell currentPlace;
 
-	// public enum Directions {
-	// LEFT, RIGHT;
-	// }
-
+	
 	public NavigationPanel() {
 		super();
 
@@ -52,7 +49,7 @@ public class NavigationPanel extends JPanel {
 		pRobotImage = new JPanel();
 		pRobotImage.setLayout(new BoxLayout(pRobotImage,BoxLayout.Y_AXIS));
 
-		// EnumMap<Direction, ImageIcon> icons = null;
+		
 		URL urlImage = MainWindow.class.getResource("images/walleNorth.png");
 		if(urlImage==null)
 			System.out.println("no carga imagen alguna");
@@ -69,12 +66,6 @@ public class NavigationPanel extends JPanel {
 		pRobotImage.add(Box.createVerticalGlue());
 		
 	
-		//boxImage = Box.createVerticalBox();
-		//boxImage.add(Box.createVerticalGlue());
-		//boxImage.add(pRobotImage.add(lbRobotIcon));
-		//boxImage.add(Box.createVerticalGlue());
-		
-		
 		
 		JPanel pCity = new JPanel();
 		pCity.setBorder(new TitledBorder("City Map"));
@@ -84,22 +75,13 @@ public class NavigationPanel extends JPanel {
 		this.placeCell = new PlaceCell[11][11];
 		
 		for (int i = 0; i < 11; i++)
-			for (int j = 0; j < 11; j++)
+			for (int j = 0; j < 11; j++){
 				placeCell[i][j] = new PlaceCell(this);
-				
-		for (int i = 0; i < 11; i++) {
-			for (int j = 0; j < 11; j++) {
 				pCity.add(placeCell[i][j]);
 			}
-		}
 		
-		//pCity.getComponentAt(5, 5).setBackground(Color.GREEN);
-	
-		//this.placeCell[row][col].setVisited();
-		//this.placeCell[row][col].setBackground(Color.GREEN);
 		
-		//pCity.add(placeCell[row][col]);
-
+		txtLog = new JTextArea();
 		JPanel pLog = new JPanel(new GridLayout(1, 1));
 		pLog.setBorder(new TitledBorder("Log"));
 		pLog.setLayout(new BorderLayout());
@@ -114,34 +96,31 @@ public class NavigationPanel extends JPanel {
 
 	}
 
-	public void update(Direction lookingDirection) {
+	public void updateIcon(Direction lookingDirection) {
 		
 		switch (lookingDirection) {
 		case NORTH:
 			urlImage = MainWindow.class.getResource("images/walleNorth.png");
 			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			//pRobotImage.seti(lbRobotIcon);
-			//lbRobotIcon.setIcon(robotImage);
-			//boxImage.add(pRobotImage.add(lbRobotIcon));
 			break;
 		case EAST:
 			urlImage = MainWindow.class.getResource("images/walleEast.png");
 			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			//pRobotImage.add(lbRobotIcon);
+			
 			break;
 		case SOUTH:
 			urlImage = MainWindow.class.getResource("images/walleSouth.png");
 			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			//pRobotImage.add(lbRobotIcon);
+		
 			break;
 		case WEST:
 			urlImage = MainWindow.class.getResource("images/walleWest.png");
 			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			//pRobotImage.add(lbRobotIcon);
+			
 			break;
 
 		default:
