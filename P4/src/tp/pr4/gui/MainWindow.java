@@ -52,7 +52,7 @@ public class MainWindow extends JFrame {
 		
 		
 		
-		InstructionPanel instructionsPanel = new InstructionPanel(robot);
+		InstructionPanel instructionsPanel = new InstructionPanel(robot, robotPanel);
 		JSplitPane SuperiorPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 				instructionsPanel, robotPanel);
 		mainPanel.add(SuperiorPanel, BorderLayout.NORTH);

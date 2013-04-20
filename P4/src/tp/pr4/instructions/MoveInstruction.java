@@ -4,6 +4,7 @@ import java.util.StringTokenizer;
 
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
+import tp.pr4.gui.RobotPanel;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr4.items.ItemContainer;

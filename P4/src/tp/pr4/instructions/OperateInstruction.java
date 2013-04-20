@@ -102,9 +102,11 @@ public class OperateInstruction implements Instruction {
 		}
 		if (item != null && !item.canBeUsed()) {
 			robotContainer.pickItem(id);
+			robotContainer.updateInventory();
 			System.out.println(ITEM_CANT_USED + id + IN_MY_INVENTORY);
 		} else if (item==null)
 			throw new InstructionExecutionException(ITEM_PROBLEMS + id);
+		
 	}
 
 }

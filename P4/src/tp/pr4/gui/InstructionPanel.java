@@ -19,13 +19,14 @@ import javax.swing.border.TitledBorder;
 import tp.pr4.City;
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
-
+import static tp.pr4.Constants.*;
 import tp.pr4.instructions.DropInstruction;
 import tp.pr4.instructions.Instruction;
 import tp.pr4.instructions.MoveInstruction;
 import tp.pr4.instructions.OperateInstruction;
 import tp.pr4.instructions.PickInstruction;
 import tp.pr4.instructions.TurnInstruction;
+import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.items.Item;
 
 public class InstructionPanel extends JPanel {
@@ -35,14 +36,15 @@ public class InstructionPanel extends JPanel {
 	private JComboBox<Rotation> cbDirections;
 	private RobotEngine robot;
 	private JTextField txtBox = new JTextField(10);
+	private RobotPanel robotPanel;
 
-	public InstructionPanel(RobotEngine robot) {
+	public InstructionPanel(RobotEngine robot, RobotPanel robotPanel) {
 
 		super();
 		this.robot = robot;
+		this.robotPanel = robotPanel;
 		this.setBorder(new TitledBorder("Instructions"));
 		this.setLayout(new GridLayout(4, 2, 3, 3));
-		RobotPanel robotPanel = new RobotPanel();
 		NavigationPanel navPanel = new NavigationPanel();
 
 		JButton btDrop = new JButton("DROP");
@@ -68,11 +70,13 @@ public class InstructionPanel extends JPanel {
 		initMoveButton(btMove, navPanel);
 		initTurnButton(btTurn, robotPanel, navPanel);
 		initPickButton(btPick, navPanel, robotPanel, txtBox);
+		initOperateButton(btOperate, robotPanel, navPanel);
 
 		btQuit.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+
 				int result = JOptionPane.showConfirmDialog(
 						(Component) arg0.getSource(), "Finish game?");
 				if (result == JOptionPane.YES_OPTION) {
@@ -90,16 +94,20 @@ public class InstructionPanel extends JPanel {
 		return txtBox.getText();
 	}
 
-	private void initDropButton(JButton btDrop,  final RobotPanel robotPanel,
-			NavigationPanel navPanel) {
+	private void initDropButton(JButton btDrop, final RobotPanel robotPanel, NavigationPanel navPanel) {
 		btDrop.setToolTipText("Drops the selected item from the inventory");
 		btDrop.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				String id = robotPanel.getSelectedItem();
-				Instruction dropInstruction = new DropInstruction(id);
-				robot.communicateRobot(dropInstruction);
+				if (id != null) {
+					Instruction dropInstruction = new DropInstruction(id);
+					robot.communicateRobot(dropInstruction);
+					
+				}
+
 			}
 		});
 	}
@@ -144,7 +152,7 @@ public class InstructionPanel extends JPanel {
 	}
 
 	private void initOperateButton(JButton btOperate,
-			final RobotPanel robotPanel) {
+			final RobotPanel robotPanel, NavigationPanel navPanel) {
 		btOperate.setToolTipText("Use item from robot inventory");
 		btOperate.addActionListener(new ActionListener() {
 
@@ -153,6 +161,7 @@ public class InstructionPanel extends JPanel {
 				String id = robotPanel.getSelectedItem();
 				Instruction operateInstruction = new OperateInstruction(id);
 				robot.communicateRobot(operateInstruction);
+				
 			}
 
 		});

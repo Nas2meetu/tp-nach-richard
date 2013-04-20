@@ -118,4 +118,6 @@ public class Constants {
 	
 	public static final String MAPFILE = "<mapfile> : file with the description of the city.";
 	
+	public static final String NO_ITEM_CHOSE = "You forgot to pick the item";
+	
 }

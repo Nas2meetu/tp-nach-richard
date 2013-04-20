@@ -32,8 +32,6 @@ public class RobotPanel extends JPanel {
 	private JLabel lbFuel, lbRecycledMaterial;
 	private JTable tbInventory;
 	private InventoryTableModel tbInventoryModel;
-	// private int fuel = INITIAL_POWER;
-	// private int garbage = INITIAL_GARBAGE;
 	private JLabel fuelLabel;
 
 	public RobotPanel() {
@@ -137,7 +135,7 @@ public class RobotPanel extends JPanel {
 		String itemSelected = null;
 		if (row == -1)
 			JOptionPane.showMessageDialog(this,
-					"El item no ha sido seleccionado", "Error",
+					NO_ITEM_CHOSE, "Error",
 					JOptionPane.ERROR_MESSAGE);
 		else
 			itemSelected = tbInventory.getValueAt(row, 0).toString();

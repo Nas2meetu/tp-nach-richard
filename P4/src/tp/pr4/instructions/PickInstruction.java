@@ -100,6 +100,8 @@ public class PickInstruction implements Instruction {
 	         System.out.println(CONTAINER_ITEM + id);
 	     }else
 	         throw new InstructionExecutionException(CONTAINER_REPEAT_ITEM + id);
+	     
 	}
+	
 
 }
