@@ -1,6 +1,9 @@
 package tp.pr4;
 
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
 import tp.pr4.gui.MainWindow;
 import tp.pr4.gui.NavigationPanel;
 import tp.pr4.gui.RobotPanel;
@@ -30,14 +33,16 @@ public class RobotEngine {
 	private RobotPanel robotPanel;
 	private NavigationPanel navPanel;
 
-
 	/**
 	 * 
 	 * Constructor of three parameters to create a new Robot Engine
 	 * 
-	 * @param initialPlace is the initial place of the robot
-	 * @param direction is the default direction
-	 * @param city is the map where the robot lives
+	 * @param initialPlace
+	 *            is the initial place of the robot
+	 * @param direction
+	 *            is the default direction
+	 * @param city
+	 *            is the map where the robot lives
 	 * 
 	 **/
 
@@ -48,7 +53,7 @@ public class RobotEngine {
 		this.contRecycledMaterial = INITIAL_GARBAGE;
 		this.navigation = new NavigationModule(city, initialPlace);
 		this.navigation.initHeading(direction);
-		this.robotPanel= new RobotPanel();
+		this.robotPanel = new RobotPanel();
 
 	}
 
@@ -91,24 +96,29 @@ public class RobotEngine {
 	/**
 	 * 
 	 * Requests the game to quit
-	 *
+	 * 
 	 */
-	
+
 	public void requestQuit() {
 		System.out.println(QUIT);
 		System.exit(0);
 	}
-	
+
 	/**
 	 * 
 	 * @param c
-	 * @throws InstructionExecutionException 
+	 * @throws InstructionExecutionException
 	 */
-	
-	public void communicateRobot(Instruction c) throws InstructionExecutionException {
+
+	public void communicateRobot(Instruction c)
+			throws InstructionExecutionException {
 		c.configureContext(this, navigation, container);
 		try {
 			c.execute();
+			if (navigation.atSpaceship()) {
+				JOptionPane.showMessageDialog(navPanel, END_GAME);
+				System.exit(0);
+			}
 		} catch (InstructionExecutionException e) {
 			throw new InstructionExecutionException(e.getMessage());
 		}
@@ -152,9 +162,10 @@ public class RobotEngine {
 		this.contFuel += newFuel;
 		if (contFuel < 0) {
 			contFuel = 0;
-			System.out.println(LOOKING_DIRECTION + navigation.getCurrentHeading()
-				+ LINE_SEPARATOR + POWER2 + this.contFuel + LINE_SEPARATOR
-				+ RECYCLED_MATERIAL + contRecycledMaterial + LINE_SEPARATOR);
+			System.out.println(LOOKING_DIRECTION
+					+ navigation.getCurrentHeading() + LINE_SEPARATOR + POWER2
+					+ this.contFuel + LINE_SEPARATOR + RECYCLED_MATERIAL
+					+ contRecycledMaterial + LINE_SEPARATOR);
 		}
 		robotPanel.setFuel(contFuel);
 	}
@@ -217,18 +228,16 @@ public class RobotEngine {
 		System.out.println(Interpreter.interpreterHelp());
 
 	}
-	
-	
-	
-	public void setNavigationPanel(NavigationPanel navPanel){
+
+	public void setNavigationPanel(NavigationPanel navPanel) {
 		navigation.setNavigationPanel(navPanel);
 	}
 
-	public void setGUIWindow(MainWindow mainWindow){ 
-		this.mainWindow= mainWindow;
+	public void setGUIWindow(MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
 	}
 
-	public void setRobotPanel(RobotPanel robotPanel){ 
+	public void setRobotPanel(RobotPanel robotPanel) {
 		this.robotPanel = robotPanel;
 		this.container.setRobotPanel(robotPanel);
 	}

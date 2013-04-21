@@ -81,17 +81,14 @@ public class NavigationModule {
 		if (rotation.equals(Rotation.LEFT)) {
 			lookingDirection = lookingDirection.turnLeft();
 			navPanel.updateIcon(lookingDirection);
-			navPanel.updateCity(actualPlace, lookingDirection);
-			navPanel.updateLog();
 		} else if (rotation.equals(Rotation.RIGHT)) {
 			lookingDirection = lookingDirection.turnRight();
 			navPanel.updateIcon(lookingDirection);
-			navPanel.updateCity(actualPlace, lookingDirection);
-			navPanel.updateLog();
+			
 		} else
 			JOptionPane.showMessageDialog(navPanel,
 					"WALL·E says: I can't turn to UNKNOW direction");
-
+		
 	}
 
 	/**
