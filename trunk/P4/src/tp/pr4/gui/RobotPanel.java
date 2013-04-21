@@ -13,6 +13,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
+
+import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.items.Item;
 
 /**
@@ -134,9 +136,8 @@ public class RobotPanel extends JPanel {
 		int row = tbInventory.getSelectedRow();
 		String itemSelected = null;
 		if (row == -1)
-			JOptionPane.showMessageDialog(this,
-					NO_ITEM_CHOSE, "Error",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(getRootPane(),
+					NO_ITEM_CHOOSE);
 		else
 			itemSelected = tbInventory.getValueAt(row, 0).toString();
 		return itemSelected;

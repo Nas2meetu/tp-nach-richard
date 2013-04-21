@@ -63,6 +63,7 @@ public class MainWindow extends JFrame {
 		
 		this.add(mainPanel);
 		
+		
 		pack(); // compacta la ventana 
 		setLocationRelativeTo(null);
 		setVisible(true);

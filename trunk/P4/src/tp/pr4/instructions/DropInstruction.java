@@ -95,6 +95,7 @@ public class DropInstruction implements Instruction {
 			if (!navigation.findItemAtCurrentPlace(id)) {
 				navigation.getCurrentPlace().addItem(
 						robotContainer.pickItem(id));
+				navigation.updatePlace();
 				System.out.println(PLACE_ITEM + id);
 			} else
 				throw new InstructionExecutionException(PLACE_REPEAT_ITEM + id);

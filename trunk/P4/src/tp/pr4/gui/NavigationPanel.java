@@ -41,6 +41,8 @@ public class NavigationPanel extends JPanel {
 	private PlaceCell[][] placeCell;
 	private PlaceCell currentPlace;
 
+	private PlaceCell actualPlace;
+
 	
 	public NavigationPanel() {
 		super();

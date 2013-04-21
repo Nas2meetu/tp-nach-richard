@@ -204,8 +204,15 @@ public class NavigationModule {
 		}
 		
 	}
+	
+	public void updatePlace(){
+		navPanel.updateLog();
+	}
 
 	public void setNavigationPanel(NavigationPanel navPanel) {
 		this.navPanel = navPanel;
+		this.navPanel.setInitialPlace(actualPlace);
 	}
+
+	
 }
