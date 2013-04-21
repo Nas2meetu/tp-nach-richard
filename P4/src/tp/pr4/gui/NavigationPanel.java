@@ -41,8 +41,6 @@ public class NavigationPanel extends JPanel {
 	private PlaceCell[][] placeCell;
 	private PlaceCell currentPlace;
 
-	private PlaceCell actualPlace;
-
 	
 	public NavigationPanel() {
 		super();
@@ -55,11 +53,7 @@ public class NavigationPanel extends JPanel {
 		URL urlImage = MainWindow.class.getResource("images/walleNorth.png");
 		if(urlImage==null)
 			System.out.println("no carga imagen alguna");
-		/*
-		 * if (urlImage==null) JOptionPane.showMessageDialog(getRootPane(),
-		 * "The Folders image cannot found"); else{ URL urlImage2 =
-		 * MainWindow.class.getResource("images/walleEast.png"); }
-		 */
+		
 		robotImage = new ImageIcon(urlImage);
 		lbRobotIcon = new JLabel(robotImage);
 		
@@ -82,13 +76,12 @@ public class NavigationPanel extends JPanel {
 				pCity.add(placeCell[i][j]);
 			}
 		currentPlace= new PlaceCell();
-		
-		
+				
 		txtLog = new JTextArea();
 		JPanel pLog = new JPanel(new GridLayout(1, 1));
 		pLog.setBorder(new TitledBorder("Log"));
 		pLog.setLayout(new BorderLayout());
-		txtLog.setPreferredSize(new Dimension(8,100));
+		txtLog.setPreferredSize(new Dimension(10,110));
 		txtLog.setEditable(false);
 		
 		txtLog.setText("");
@@ -134,9 +127,11 @@ public class NavigationPanel extends JPanel {
 
 	}
 	
+	
 	public void setInitialPlace(Place actualPlace) {
 		this.placeCell[row][col].setPlace(actualPlace);
 		this.currentPlace = this.placeCell[row][col];
+		this.currentPlace.enterPlace();
 		updateLog();
 	}
 	
@@ -153,18 +148,22 @@ public class NavigationPanel extends JPanel {
 	}
 	
 	public void updateCity(Place actualPlace, Direction lookingDirection) {
-		if (actualPlace.equals(Direction.NORTH))
+		currentPlace.leavePlace();
+		if (lookingDirection.equals(Direction.NORTH))
 			row--;
-		if (actualPlace.equals(Direction.EAST))
+		if (lookingDirection.equals(Direction.EAST))
 			col++;
-		if (actualPlace.equals(Direction.SOUTH))
+		if (lookingDirection.equals(Direction.SOUTH))
 			row++;	
-		if (actualPlace.equals(Direction.WEST))
+		if (lookingDirection.equals(Direction.WEST))
 			col--;
 		if (this.placeCell[row][col] != null)
 			this.placeCell[row][col].setPlace(actualPlace);
 		currentPlace = this.placeCell[row][col];
+		currentPlace.enterPlace();
 	}
+
+	
 
 		
 }
