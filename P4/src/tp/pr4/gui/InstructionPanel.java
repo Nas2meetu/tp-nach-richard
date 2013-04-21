@@ -18,6 +18,7 @@ import javax.swing.border.TitledBorder;
 
 import sun.misc.MessageUtils;
 import tp.pr4.City;
+import tp.pr4.Place;
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
 import static tp.pr4.Constants.*;
@@ -106,8 +107,8 @@ public class InstructionPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				String id = robotPanel.getSelectedItem();
+				String id;
+				id = robotPanel.getSelectedItem();
 				if (id != null) {
 					Instruction dropInstruction = new DropInstruction(id);
 					try {
@@ -116,8 +117,8 @@ public class InstructionPanel extends JPanel {
 						e1.printStackTrace();
 					}
 				}
-
 			}
+
 		});
 	}
 
@@ -147,8 +148,8 @@ public class InstructionPanel extends JPanel {
 				try {
 					robot.communicateRobot(moveInstruction);
 				} catch (InstructionExecutionException e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showConfirmDialog(getRootPane(), e1.toString());
+					JOptionPane.showMessageDialog(getRootPane(),
+							e1.getMessage());
 				}
 			}
 		});
@@ -168,8 +169,7 @@ public class InstructionPanel extends JPanel {
 						robot.communicateRobot(pickInstruction);
 					} catch (InstructionExecutionException e1) {
 						JOptionPane.showMessageDialog(getRootPane(),
-								e1.getMessage(), "Error",
-								JOptionPane.ERROR_MESSAGE);
+								e1.getMessage());
 					}
 				} else
 					JOptionPane
@@ -186,12 +186,16 @@ public class InstructionPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String id = robotPanel.getSelectedItem();
-				Instruction operateInstruction = new OperateInstruction(id);
-				try {
-					robot.communicateRobot(operateInstruction);
-				} catch (InstructionExecutionException e1) {
-					JOptionPane.showConfirmDialog(getRootPane(), e1.toString());
+				String id;
+				id = robotPanel.getSelectedItem();
+				if (id != null) {
+					Instruction operateInstruction = new OperateInstruction(id);
+					try {
+						robot.communicateRobot(operateInstruction);
+					} catch (InstructionExecutionException e1) {
+						JOptionPane.showMessageDialog(getRootPane(),
+								e1.getMessage());
+					}
 				}
 			}
 

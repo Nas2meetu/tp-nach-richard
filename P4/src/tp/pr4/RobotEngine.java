@@ -110,7 +110,7 @@ public class RobotEngine {
 		try {
 			c.execute();
 		} catch (InstructionExecutionException e) {
-			throw new InstructionExecutionException(e);
+			throw new InstructionExecutionException(e.getMessage());
 		}
 	}
 

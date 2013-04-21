@@ -118,7 +118,7 @@ public class Constants {
 	
 	public static final String MAPFILE = "<mapfile> : file with the description of the city.";
 	
-	public static final String NO_ITEM_CHOSE = "You forgot Select the item";
+	public static final String NO_ITEM_CHOOSE = "You forgot Select the item";
 	
 	public static final String NO_WRITTE_ITEM = "You should first write the name of an item";
 	
