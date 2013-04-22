@@ -18,12 +18,25 @@ public class Place {
 	private boolean isSpaceship;
 	private String placeDescription;
 	private ItemContainer itemsInPlace;
-	
 
+	/**
+	 * 
+	 * Return a public method (placeName) of a private attribute (PlaceName).
+	 * 
+	 * @return placeName is name of place
+	 */
+	
 	public String getPlaceName() {
 		return placeName;
 	}
 
+	/**
+	 * 
+	 * Return a public method (placeDescription) of a private attribute (Description).
+	 * 
+	 * @return placeDescription is description of place
+	 */
+	
 	public String getDescription(){
 		return placeDescription;
 	}
@@ -59,8 +72,10 @@ public class Place {
 	
 	/**
 	 * 
-	 * @param it
-	 * @return
+	 * Return if you can drop an item in a place
+	 * 
+	 * @param it is an item
+	 * @return if you can drop an item in a place or not
 	 */
 
 	public boolean dropItem(Item it) {
@@ -82,7 +97,7 @@ public class Place {
 	 * 
 	 * @param id is a reference to identify an item.
 	 * 
-	 * @return getItem
+	 * @return getItem(id) is the id of an item
 	 * 
 	 */
 
@@ -108,7 +123,7 @@ public class Place {
 	 * 
 	 * @param id is a reference to identify an item.
 	 * 
-	 * @return pickItem
+	 * @return pickItem(id) is the id of an item
 	 * 
 	 */
 
@@ -122,7 +137,7 @@ public class Place {
 	 * 
 	 * @param item is an item
 	 * 
-	 * @return addItem 
+	 * @return addItem if you can add an item in a place
 	 * 
 	 */
 

@@ -33,15 +33,20 @@ import tp.pr4.items.Item;
 
 public class InstructionPanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Instruction> lastInstructions;
 	private JComboBox<Rotation> cbDirections;
 	private RobotEngine robot;
 	private JTextField txtBox;
 	private RobotPanel robotPanel;
+	
+	/**
+	 * 
+	 * Panel with instruction buttons
+	 * 
+	 * @param robot
+	 * @param robotPanel displays information about the robot and its inventory
+	 */
 
 	public InstructionPanel(RobotEngine robot, RobotPanel robotPanel) {
 
@@ -51,7 +56,9 @@ public class InstructionPanel extends JPanel {
 		this.setBorder(new TitledBorder("Instructions"));
 		this.setLayout(new GridLayout(4, 2, 3, 3));
 		NavigationPanel navPanel = new NavigationPanel();
-
+		
+		//Create buttons
+		
 		JButton btDrop = new JButton("DROP");
 		JButton btMove = new JButton("MOVE");
 		JButton btOperate = new JButton("OPERATE");
@@ -62,7 +69,9 @@ public class InstructionPanel extends JPanel {
 		cbDirections = new JComboBox<Rotation>(Rotation.values());
 		this.setBorder(BorderFactory.createTitledBorder("Instructions"));
 		txtBox = new JTextField(10);
-
+		
+		// Add buttons to instructionPanel
+		
 		this.add(btMove);
 		this.add(btQuit);
 		this.add(btTurn);
@@ -71,35 +80,27 @@ public class InstructionPanel extends JPanel {
 		this.add(txtBox);
 		this.add(btDrop);
 		this.add(btOperate);
+		
+		// Initialize buttons
 
 		initDropButton(btDrop, robotPanel, navPanel);
 		initMoveButton(btMove, navPanel);
 		initTurnButton(btTurn, robotPanel, navPanel);
 		initPickButton(btPick, navPanel, robotPanel, txtBox);
 		initOperateButton(btOperate, robotPanel, navPanel);
-
-		btQuit.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				int result = JOptionPane.showConfirmDialog(
-						(Component) arg0.getSource(), "Finish game?");
-				if (result == JOptionPane.YES_OPTION) {
-					System.exit(0);
-				} else if (result == JOptionPane.NO_OPTION) {
-					System.out.println("Do nothing");
-				}
-
-			}
-		});
+		initQuitButton(btQuit);
 
 	}
 
-	public String getText() {
-		return txtBox.getText();
-	}
-
+	/**
+	 * 
+	 * Creates an actionListener, receive an actionEvent to drop instruction and execute drop instruction
+	 * 
+	 * @param btDrop button to drop instruction
+	 * @param robotPanel displays information about the robot and its inventory
+	 * @param navPanel displays the information about the robot heading and the city that is traversing
+	 */
+	
 	private void initDropButton(JButton btDrop, final RobotPanel robotPanel,
 			NavigationPanel navPanel) {
 		btDrop.setToolTipText("Drops the selected item from the inventory");
@@ -122,23 +123,14 @@ public class InstructionPanel extends JPanel {
 		});
 	}
 
-	private void initTurnButton(JButton btTurn, RobotPanel robotPanel,
-			NavigationPanel navPanel) {
-		btTurn.setToolTipText("Turn robot direction");
-		btTurn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Instruction turnInstruction = new TurnInstruction(cbDirections
-						.getItemAt(cbDirections.getSelectedIndex()));
-				try {
-					robot.communicateRobot(turnInstruction);
-				} catch (InstructionExecutionException e1) {
-					JOptionPane.showConfirmDialog(getRootPane(), e1.toString());
-				}
-			}
-		});
-	}
-
+	/**
+	 * 
+	 * Creates an actionListener, receive an actionEvent to move instruction and execute move instruction
+	 * 
+	 * @param btMove button to move instruction
+	 * @param navPanel displays the information about the robot heading and the city that is traversing
+	 */
+	
 	private void initMoveButton(JButton btMove, NavigationPanel navPanel) {
 		btMove.setToolTipText("Move robot");
 		btMove.addActionListener(new ActionListener() {
@@ -155,30 +147,16 @@ public class InstructionPanel extends JPanel {
 		});
 
 	}
-
-	private void initPickButton(JButton btPick, NavigationPanel navPanel,
-			RobotPanel robotPanel, final JTextField txtBox) {
-
-		btPick.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String id = txtBox.getText();
-				if (!id.equals("")) {
-					Instruction pickInstruction = new PickInstruction(id);
-					try {
-						robot.communicateRobot(pickInstruction);
-					} catch (InstructionExecutionException e1) {
-						JOptionPane.showMessageDialog(getRootPane(),
-								e1.getMessage());
-					}
-				} else
-					JOptionPane
-							.showMessageDialog(getRootPane(), NO_WRITTE_ITEM);
-			}
-		});
-
-	}
-
+	
+	/**
+	 * 
+	 * Creates an actionListener, receive an actionEvent to operate instruction and execute operate instruction
+	 * 
+	 * @param btOperate button to operate instruction
+	 * @param robotPanel displays information about the robot and its inventory
+	 * @param navPanel displays the information about the robot heading and the city that is traversing
+	 */
+	
 	private void initOperateButton(JButton btOperate,
 			final RobotPanel robotPanel, NavigationPanel navPanel) {
 		btOperate.setToolTipText("Use item from robot inventory");
@@ -202,13 +180,97 @@ public class InstructionPanel extends JPanel {
 		});
 
 	}
+	
+	/**
+	 * 
+	 * Creates an actionListener, receive an actionEvent to pick instruction and execute pick instruction
+	 * 
+	 * @param btPick button to pick instruction
+	 * @param navPanel displays the information about the robot heading and the city that is traversing
+	 * @param robotPanel displays information about the robot and its inventory
+	 * @param txtBox box with item name
+	 */
+	
+	private void initPickButton(JButton btPick, NavigationPanel navPanel,
+			RobotPanel robotPanel, final JTextField txtBox) {
+
+		btPick.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String id = txtBox.getText();
+				if (!id.equals("")) {
+					Instruction pickInstruction = new PickInstruction(id);
+					try {
+						robot.communicateRobot(pickInstruction);
+					} catch (InstructionExecutionException e1) {
+						JOptionPane.showMessageDialog(getRootPane(),
+								e1.getMessage());
+					}
+				} else
+					JOptionPane
+							.showMessageDialog(getRootPane(), NO_WRITTE_ITEM);
+			}
+		});
+
+	}
+	
+	/**
+	 * 
+	 * Creates an actionListener, receive an actionEvent to quit instruction and execute quit instruction
+	 * 
+	 * @param btQuit button to quit instruction
+	 */
+	
+	private void initQuitButton(JButton btQuit) {
+		btQuit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				int result = JOptionPane.showConfirmDialog(
+						(Component) arg0.getSource(), "Finish game?");
+				if (result == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				} else if (result == JOptionPane.NO_OPTION) {
+				}
+			}
+		});
+	}
+	
+	/**
+	 * Creates an actionListener, receive an actionEvent to turn instruction and execute turn instruction
+	 * 
+	 * @param btTurn button to turn instruction
+	 * @param robotPanel displays information about the robot and its inventory
+	 * @param navPanel displays the information about the robot heading and the city that is traversing
+	 */
+	
+	private void initTurnButton(JButton btTurn, RobotPanel robotPanel,
+			NavigationPanel navPanel) {
+		btTurn.setToolTipText("Turn robot direction");
+		btTurn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Instruction turnInstruction = new TurnInstruction(cbDirections
+						.getItemAt(cbDirections.getSelectedIndex()));
+				try {
+					robot.communicateRobot(turnInstruction);
+				} catch (InstructionExecutionException e1) {
+					JOptionPane.showConfirmDialog(getRootPane(), e1.toString());
+				}
+			}
+		});
+	}
+
+	/**
+	 * 
+	 * Last instruction use in game
+	 * 
+	 * @return lastInstructions
+	 */
 
 	public ArrayList<Instruction> getLastInstructions() {
 		return lastInstructions;
-	}
-
-	public enum Directions {
-		LEFT, RIGHT;
 	}
 
 }

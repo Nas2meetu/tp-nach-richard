@@ -25,9 +25,9 @@ public class RobotEngine {
 
 	private int contFuel;
 	private int contRecycledMaterial;
+	private boolean endGame;
 	private ItemContainer container;
 	private NavigationModule navigation;
-	private boolean endGame;
 	private Instruction instruction;
 	private MainWindow mainWindow;
 	private RobotPanel robotPanel;
@@ -57,17 +57,14 @@ public class RobotEngine {
 
 	}
 
+
 	/**
 	 * 
 	 * Is the Start of game, show initial information, finish information and if
 	 * player win or lost game.
 	 * 
 	 */
-
-	public ItemContainer getContainer() {
-		return container;
-	}
-
+	
 	public void startEngine() throws InstructionExecutionException {
 
 		Scanner reader = new Scanner(System.in);
@@ -99,7 +96,7 @@ public class RobotEngine {
 
 	/**
 	 * 
-	 * Requests the game to quit
+	 * Requests the end of the simulation
 	 * 
 	 */
 
@@ -109,8 +106,11 @@ public class RobotEngine {
 	}
 
 	/**
+	 * It executes an instruction. The instruction must be configured with the context before executing it.
+	 * It controls the end of the simulation. If the execution of the instruction throws an exception,
+	 *  then the corresponding message is printed
 	 * 
-	 * @param c
+	 * @param c The instruction to be executed
 	 * @throws InstructionExecutionException
 	 */
 
@@ -127,19 +127,9 @@ public class RobotEngine {
 			throw new InstructionExecutionException(e.getMessage());
 		}
 	}
-
+	
 	/**
-	 * 
-	 * Execute EXIT action to finish game.
-	 * 
-	 * @throws
-	 * 
-	 */
-
-	/*
-	 * public void requestQuit() { quit = true; System.out.println(QUIT);
-	 * 
-	 * }
+	 * Prints the state of the robot
 	 */
 
 	public void printRobotState() {
@@ -150,16 +140,23 @@ public class RobotEngine {
 				+ RECYCLED_MATERIAL + contRecycledMaterial + LINE_SEPARATOR);
 	}
 
+	/**
+	 * 
+	 * If robot has not got fuel puts contFuel count to zero
+	 * 
+	 * @return contFuel robot's count fuel
+	 */
+	
 	public boolean noFuel() {
 		return this.contFuel <= 0;
 	}
 
 	/**
 	 * 
-	 * Robot increase his fuel counter.
+	 * Adds an amount of fuel to the robot (it can be negative)
 	 * 
-	 * @param newFuel
-	 *            is one unit of energy.
+	 * @param newFuel is one unit of energy.
+	 *            
 	 */
 
 	public void addFuel(int newFuel) {
@@ -177,10 +174,10 @@ public class RobotEngine {
 
 	/**
 	 * 
-	 * Robot increase his recycled material counter.
+	 * Increases the amount of recycled material of the robot
 	 * 
-	 * @param newMaterial
-	 *            is one unit of recycled material.
+	 * @param newMaterial is one unit of recycled material.
+	 *            
 	 */
 
 	public void addRecycledMaterial(int newMaterial) {
@@ -191,9 +188,20 @@ public class RobotEngine {
 
 	/**
 	 * 
-	 * Return a public method (contFuel) of a private attribute (Fuel).
+	 * Prints the information about all possible instructions
 	 * 
-	 * @return contFuel is a counter of energy.
+	 */
+	
+	public void requestHelp() {
+		System.out.println(Interpreter.interpreterHelp());
+
+	}
+	
+	/**
+	 * 
+	 * Returns the current fuel level of the robot.
+	 * 
+	 * @return contFuel The current fuel level of the robot
 	 * 
 	 */
 
@@ -203,10 +211,9 @@ public class RobotEngine {
 
 	/**
 	 * 
-	 * Return a public method (contRecyledMaterial) of a private attribute
-	 * (RecycledMaterial).
+	 * Returns the current weight of recycled material that the robot carries
 	 * 
-	 * @return ContRecycledMaterial is counter of recycled material.
+	 * @return contRecycledMaterial The current recycled material of the robot
 	 * 
 	 */
 
@@ -229,20 +236,47 @@ public class RobotEngine {
 				navigation.getCurrentPlace(), navigation.getCurrentHeading());
 
 	}
+	
+	/**
+	 * 
+	 * Return a public method (container) of a private attribute (getContaine).
+	 * 
+	 * @return container is a container of items
+	 */
 
-	public void requestHelp() {
-		System.out.println(Interpreter.interpreterHelp());
-
+	public ItemContainer getContainer() {
+		return container;
 	}
 
+	/**
+	 * 
+	 * Sets a panel to the navigation module in order to show its information in a GUI
+	 * 
+	 * @param navPanel The panel where the navigation module will show its information
+	 */
+	
 	public void setNavigationPanel(NavigationPanel navPanel) {
 		navigation.setNavigationPanel(navPanel);
 	}
 
+	/**
+	 * 
+	 * Sets the main window of the GUI in order to inform about some robot events
+	 * 
+	 * @param mainWindow a GUI Window
+	 */
+	
 	public void setGUIWindow(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
 	}
 
+	/**
+	 * 
+	 * Sets a panel in order to show the robot information and the container in a GUI
+	 * 
+	 * @param robotPanel The panel where the robot and the container will show its information
+	 */
+	
 	public void setRobotPanel(RobotPanel robotPanel) {
 		this.robotPanel = robotPanel;
 		this.container.setRobotPanel(robotPanel);
