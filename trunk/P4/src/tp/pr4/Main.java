@@ -26,7 +26,9 @@ public class Main {
 
 	/**
 	 * 
-	 * Load file with places, streets and items, create city and start game
+	 * Commons-Cli
+	 * Load file with places, streets and items, create city and start
+	 * game's interface and console
 	 * 
 	 * @param args
 	 */
@@ -75,6 +77,9 @@ public class Main {
 
 				}
 			}
+			
+			// Load map
+			
 			if (cmdLine.hasOption("m")) {
 				String map = cmdLine.getOptionValue("m");
 				if (map != null) {
@@ -95,6 +100,8 @@ public class Main {
 					System.err.println("Map file not specified");
 					System.exit(1);
 				}
+				
+				// Load interface
 
 				interfaces = cmdLine.getOptionValue("i");
 				if (interfaces != null) {

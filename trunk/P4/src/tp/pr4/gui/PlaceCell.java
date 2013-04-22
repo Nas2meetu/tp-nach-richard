@@ -38,20 +38,24 @@ public class PlaceCell extends JButton {
 		super();
 		setOpaque(true);
 		setBorderPainted(true);
-		
+
 	}
 
 	/**
 	 * Setter for room
 	 * 
-	 * @param room
-	 *            the room to set
+	 * @param room the room to set
+	 *            
 	 */
 	public void setPlace(Place place) {
 		this.place = place;
 		this.setText(place.getPlaceName());
 
 	}
+	
+	/**
+	 * 
+	 */
 
 	private void initialize() {
 
@@ -63,29 +67,45 @@ public class PlaceCell extends JButton {
 			}
 		});
 	}
+	
+	/**
+	 * 
+	 */
 
 	public String toString() {
 		return place.toString();
 	}
+	
+	/**
+	 * Update state of cell if robot is in it
+	 */
 
 	public void enterPlace() {
-		active=true;
-		updateCellLook();
-	}
-
-	public void leavePlace() {
-		active=false;
+		active = true;
 		updateCellLook();
 	}
 	
-	  public void updateCellLook() {
-         
+	/**
+	 * Update state of cell if robot leaves it
+	 */
+
+	public void leavePlace() {
+		active = false;
+		updateCellLook();
+	}
+
+	/**
+	 * Change color of cell depends of the state (unknown, active, visited, exit)
+	 */
+	
+	public void updateCellLook() {
+
 		if (place.isSpaceship()) {
-                  setBackground(Color.red);
-          } else if (active) {
-                  setBackground(Color.green);
-          } else
-                  setBackground((Color.gray));
-	  }
+			setBackground(Color.red);
+		} else if (active) {
+			setBackground(Color.green);
+		} else
+			setBackground((Color.gray));
+	}
 
 }

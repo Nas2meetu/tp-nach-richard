@@ -30,26 +30,19 @@ public class MainWindow extends JFrame {
 	 *            The RobotEngine that receives the instructions performed by
 	 *            the action panel
 	 */
+	
 	public MainWindow(RobotEngine robot) {
+		
 		super("WALL·E the garbage collector");
 		this.robot=robot;
-		
-		
 		this.setPreferredSize(new Dimension(900, 700));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
 
-		JMenuBar mbMenu = new JMenuBar();
-		this.setJMenuBar(mbMenu);
-
-		JMenu mDialogs = new JMenu("File");
-		mbMenu.add(mDialogs);
+		createMenu();
 		
-		initializeMenu(mDialogs);
 		RobotPanel robotPanel = new RobotPanel();
-		
-		
 		
 		InstructionPanel instructionsPanel = new InstructionPanel(robot, robotPanel);
 		JSplitPane SuperiorPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
@@ -71,13 +64,44 @@ public class MainWindow extends JFrame {
 		robot.setRobotPanel(robotPanel);
 
 	}
+	
+	/**
+	 * 
+	 */
+
+	private void createMenu() {
+		JMenuBar mbMenu = new JMenuBar();
+		this.setJMenuBar(mbMenu);
+		JMenu mDialogs = new JMenu("File");
+		mbMenu.add(mDialogs);
+		initializeMenu(mDialogs);
+	}
+	
+	/**
+	 * 
+	 * Quit from menu of window
+	 * 
+	 * @param mDialogs menu for window
+	 */
 
 	private void initializeMenu(JMenu mDialogs) {
 	
+		JMenuItem mUndo = new JMenuItem("Undo");
+		mDialogs.add(mUndo);
+		mUndo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		
+		
 		JMenuItem mQuit = new JMenuItem("Quit");
 		mDialogs.add(mQuit);
-		mQuit.addActionListener(new ActionListener() {
-
+			mQuit.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Game Over");

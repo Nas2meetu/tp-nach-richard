@@ -42,6 +42,12 @@ public class NavigationPanel extends JPanel {
 	private PlaceCell currentPlace;
 
 	
+	/**
+	 * 
+	 * Displays the information about the robot heading and the city that is traversing
+	 * 
+	 */
+	
 	public NavigationPanel() {
 		super();
 

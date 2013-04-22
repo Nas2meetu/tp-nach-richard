@@ -31,10 +31,10 @@ public class NavigationModule {
 	 * 
 	 * Constructor of two parameter to create a NavigationModule
 	 * 
-	 * @param city
-	 *            is the map where the robot lives
-	 * @param currentPlace
-	 *            place where robot is
+	 * @param city is the map where the robot lives
+	 *            
+	 * @param currentPlace place where robot is
+	 *         
 	 */
 
 	public NavigationModule(City city, Place currentPlace) {
@@ -49,8 +49,8 @@ public class NavigationModule {
 	 * 
 	 * Show direction of robot is looking at initial place.
 	 * 
-	 * @param heading
-	 *            where robot is looking.
+	 * @param heading where robot is looking.
+	 *          
 	 */
 
 	public void initHeading(Direction heading) {
@@ -72,8 +72,8 @@ public class NavigationModule {
 	 * 
 	 * Show if robot can turn or not depends of direction.
 	 * 
-	 * @param rotation
-	 *            is rotation of Robot left or right
+	 * @param rotation is rotation of Robot left or right
+	 *           
 	 */
 
 	public void rotate(Rotation rotation) {
@@ -145,8 +145,8 @@ public class NavigationModule {
 	/**
 	 * Show id of an item.
 	 * 
-	 * @param it
-	 *            is an item
+	 * @param it is an item
+	 *            
 	 */
 
 	public void dropItemAtCurrentPlace(Item it) {
@@ -160,8 +160,8 @@ public class NavigationModule {
 	 * Return a public method (actualPlace.existItem(id)) of a private attribute
 	 * id of ItemAtCurrentPlace.
 	 * 
-	 * @param id
-	 *            is a reference to identify an item.
+	 * @param id is a reference to identify an item.
+	 *           
 	 * @return actualPlace.existItem(id) if this item exist at this place or
 	 *         not.
 	 */
@@ -194,8 +194,8 @@ public class NavigationModule {
 	/**
 	 * Show if you can pick and item from current place.
 	 * 
-	 * @param it
-	 *            is an item
+	 * @param it is an item
+	 *            
 	 */
 
 	public void pickItemAtCurrentPlace(Item it) {
@@ -207,11 +207,22 @@ public class NavigationModule {
 		}
 
 	}
+	
+	/**
+	 * Introduce update messages into log panel 
+	 */
 
 	public void updatePlace() {
 		if (navPanel != null)
 			navPanel.updateLog();
 	}
+	
+	/**
+	 * 
+	 * Introduce initial place message into log panel
+	 * 
+	 * @param navPanel contain navigation panel
+	 */
 
 	public void setNavigationPanel(NavigationPanel navPanel) {
 		this.navPanel = navPanel;

@@ -84,6 +84,8 @@ public class Street {
    
     /**
      *
+     * Checks if the street comes out from a place in a given direction. Remember that streets are two-way.
+     *
      * @param place is place where Robot is  --o esta o la del nextplace--
      * @param fromDirection is direction where Robot comes
      * @return ComeOutFrom is correct place that Robot moves
