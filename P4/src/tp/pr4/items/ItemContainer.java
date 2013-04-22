@@ -25,7 +25,7 @@ public class ItemContainer {
 	/**
 	 * Constructor of two parameters to define robot´s Container
 	 */
-	
+
 	public ItemContainer() {
 		container = new Item[100];
 		numberOfItems = 0;
@@ -64,9 +64,9 @@ public class ItemContainer {
 		return contains;
 
 	}
-	
-	public String getId(Item it){
-		return it.getId() ;
+
+	public String getId(Item it) {
+		return it.getId();
 	}
 
 	/**
@@ -102,20 +102,22 @@ public class ItemContainer {
 	 * @return picked item has been pick or not.
 	 */
 
+
+	
 	public Item pickItem(String id) {
-		Item picked;
-		int pos = posItem(id);
-		if (pos == -1)
-			picked = null;
-		else {
-			Item item = container[pos];
-			
-			getItem(item.getId());
-			this.moveItemLeft(pos);
-			picked = item;
-		}
-		return picked;
-	}
+        Item picked;
+        int pos = posItem(id);
+        if (pos == -1)
+                picked = null;
+        else {
+                Item item = container[pos];
+                getItem(item.getId());
+                this.moveItemLeft(pos);
+                picked = item;
+        }
+        return picked;
+}
+
 
 	/**
 	 * 
@@ -215,12 +217,8 @@ public class ItemContainer {
 			pos = whereInsert(item.getId());
 			this.moveItemRight(pos);
 			container[pos] = item;
-			//containerTable.add(container[pos]);
+
 			added = true;
-		}
-		
-		if(added){
-			//robotPanel.updateTable(containerTable);
 		}
 		return added;
 
@@ -263,29 +261,30 @@ public class ItemContainer {
 		}
 	}
 
-	public void setRobotPanel(RobotPanel robotPanel){
+	public void setRobotPanel(RobotPanel robotPanel) {
 		this.robotPanel = robotPanel;
-		
+
 	}
-	
-	public void updateInventory(){
-		robotPanel.updateTable(inventoryToTable());
+
+	public void updateInventory() {
+		if (robotPanel != null)
+			robotPanel.updateTable(inventoryToTable());
 	}
-	
-	private String[][] inventoryToTable(){
+
+	private String[][] inventoryToTable() {
 		String[][] data = new String[numberOfItems][2];
 		for (int i = 0; i < numberOfItems; i++) {
-			data[i][0]=container[i].getId();
-			data[i][1]=container[i].getDescription();
+			data[i][0] = container[i].getId();
+			data[i][1] = container[i].getDescription();
 		}
 		return data;
 	}
-	
-	private ArrayList<Item> inventoryToArrayListTable(){
+
+	private ArrayList<Item> inventoryToArrayListTable() {
 		for (int i = 0; i < numberOfItems; i++) {
 			containerTable.add(container[i]);
 		}
 		return containerTable;
-		
+
 	}
 }

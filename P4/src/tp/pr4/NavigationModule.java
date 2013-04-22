@@ -80,15 +80,18 @@ public class NavigationModule {
 
 		if (rotation.equals(Rotation.LEFT)) {
 			lookingDirection = lookingDirection.turnLeft();
-			navPanel.updateIcon(lookingDirection);
+			if (navPanel != null)
+				navPanel.updateIcon(lookingDirection);
+
 		} else if (rotation.equals(Rotation.RIGHT)) {
 			lookingDirection = lookingDirection.turnRight();
-			navPanel.updateIcon(lookingDirection);
-			
+			if (navPanel != null)
+				navPanel.updateIcon(lookingDirection);
+
 		} else
 			JOptionPane.showMessageDialog(navPanel,
 					"WALL·E says: I can't turn to UNKNOW direction");
-		
+
 	}
 
 	/**
@@ -149,7 +152,7 @@ public class NavigationModule {
 	public void dropItemAtCurrentPlace(Item it) {
 
 		robot.getContainer().pickItem(it.getId());
-		
+
 	}
 
 	/**
@@ -179,11 +182,13 @@ public class NavigationModule {
 					+ lookingDirection);
 		} else if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
-			navPanel.showCurrentPlaceLog(actualPlace);
+			if (navPanel != null)
+				navPanel.showCurrentPlaceLog(actualPlace);
 		} else
 			throw new InstructionExecutionException(STREET_CLOSE);
-		navPanel.updateCity(actualPlace, lookingDirection);
-		
+		if (navPanel != null)
+			navPanel.updateCity(actualPlace, lookingDirection);
+
 	}
 
 	/**
@@ -197,13 +202,15 @@ public class NavigationModule {
 		Item item = actualPlace.getItem(it.getId());
 		if (item != null) {
 			actualPlace.pickItem(it.getId());
-			navPanel.showCurrentPlaceLog(actualPlace);
+			if (navPanel != null)
+				navPanel.showCurrentPlaceLog(actualPlace);
 		}
-		
+
 	}
-	
-	public void updatePlace(){
-		navPanel.updateLog();
+
+	public void updatePlace() {
+		if (navPanel != null)
+			navPanel.updateLog();
 	}
 
 	public void setNavigationPanel(NavigationPanel navPanel) {
@@ -211,5 +218,4 @@ public class NavigationModule {
 		this.navPanel.setInitialPlace(actualPlace);
 	}
 
-	
 }

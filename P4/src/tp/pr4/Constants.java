@@ -89,7 +89,7 @@ public class Constants {
 	public static final String END_FUEL = WALLE_SAYS
 			+ "I run out of fuel. I cannot move. Shutting down...";
 
-	public static final String PROMPT = "WALL·E > ";
+	public static final String PROMPT = "WALL·E> ";
 
 	public static final String BAD_INSTRUCTION = WALLE_SAYS
 			+ "I do not understand. Please repeat";
