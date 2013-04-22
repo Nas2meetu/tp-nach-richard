@@ -1,6 +1,5 @@
 package tp.pr4;
 
-import java.awt.EventQueue;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,15 +30,14 @@ public class Main {
 	 * 
 	 * @param args
 	 */
-	
-		
-	
+
 	public static void main(String[] args) {
 
 		CityLoaderFromTxtFile fileLoader = null;
 		City city = null;
 		CommandLineParser cmdParser = null;
 		CommandLine cmdLine = null;
+		String interfaces = null;
 
 		// Options parser
 
@@ -61,31 +59,45 @@ public class Main {
 			cmdLine = cmdParser.parse(options, args);
 
 			if (cmdLine.hasOption("h")) {
-				new HelpFormatter().printHelp(Main.class.getCanonicalName(),
-						options);
+				System.out
+						.println("Execute this assignment with these parameters:");
+				new HelpFormatter().printHelp(Main.class.getCanonicalName()
+						+ " [-h] [-i <type>] [-m <mapfile>]", options);
+				return;
 			}
 
-			else {
+			if (cmdLine.hasOption("i")) {
+				interfaces = cmdLine.getOptionValue("i");
+				if (!interfaces.equalsIgnoreCase("swing")
+						&& !interfaces.equalsIgnoreCase("console")) {
+					System.err.println("Wrong type of interface");
+					System.exit(1);
+
+				}
+			}
+			if (cmdLine.hasOption("m")) {
 				String map = cmdLine.getOptionValue("m");
 				if (map != null) {
 					try {
 						InputStream file = new FileInputStream(map);
 						fileLoader = new CityLoaderFromTxtFile();
-						city = fileLoader.loadCity(file); //madrid.txt
+						city = fileLoader.loadCity(file);
 					} catch (FileNotFoundException e) {
-						System.err.println(args[0]);
-						System.exit(2);
+						System.err
+								.println("Error reading the map file: noExiste.txt (No existe el fichero o el directorio)");
+						System.exit(1);
 					} catch (IOException e) {
-						System.err.println();
+						System.err.println("Format error: ");
+						System.err.println(e.getMessage());
 						System.exit(2);
 					}
 				} else {
-					System.out.println("Introduce a map please.");
+					System.err.println("Map file not specified");
+					System.exit(1);
 				}
 
-				String interfaces = cmdLine.getOptionValue("i");
+				interfaces = cmdLine.getOptionValue("i");
 				if (interfaces != null) {
-
 					if (interfaces.equalsIgnoreCase("swing")) {
 						RobotEngine robot = new RobotEngine(city,
 								fileLoader.getInitialPlace(), Direction.NORTH);
@@ -93,8 +105,7 @@ public class Main {
 						try {
 							robot.startEngine();
 						} catch (InstructionExecutionException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							System.out.println(e.getMessage());
 						}
 					} else if (interfaces.equalsIgnoreCase("console")) {
 						RobotEngine robot = new RobotEngine(city,
@@ -102,18 +113,21 @@ public class Main {
 						try {
 							robot.startEngine();
 						} catch (InstructionExecutionException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							System.out.println(e.getMessage());
 						}
 					} else {
-						System.out.println("Console or Swing?");
+						System.err.println("Wrong type of interface");
+						System.exit(1);
 					}
 
 				} else {
-					System.out.println("Introduce an interface please.");
+					System.err.println("Interface not specified");
+					System.exit(1);
 				}
+			} else {
+				System.err.println("Map file not specified");
+				System.exit(1);
 			}
-
 		} catch (org.apache.commons.cli.ParseException e) {
 			System.out.println(e.getMessage());
 		}

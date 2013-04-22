@@ -35,7 +35,7 @@ public class MainWindow extends JFrame {
 		this.robot=robot;
 		
 		
-		this.setPreferredSize(new Dimension(720, 600));
+		this.setPreferredSize(new Dimension(900, 700));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
@@ -45,9 +45,8 @@ public class MainWindow extends JFrame {
 
 		JMenu mDialogs = new JMenu("File");
 		mbMenu.add(mDialogs);
-		JMenuItem mLoad = new JMenuItem("Load");
-
-		initializeMenu(mDialogs, mLoad);
+		
+		initializeMenu(mDialogs);
 		RobotPanel robotPanel = new RobotPanel();
 		
 		
@@ -73,14 +72,8 @@ public class MainWindow extends JFrame {
 
 	}
 
-	private void initializeMenu(JMenu mDialogs, JMenuItem mLoad) {
-		mDialogs.add(mLoad);
-		mLoad.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(rootPane, "A message");
-			}
-		});
+	private void initializeMenu(JMenu mDialogs) {
+	
 		JMenuItem mQuit = new JMenuItem("Quit");
 		mDialogs.add(mQuit);
 		mQuit.addActionListener(new ActionListener() {

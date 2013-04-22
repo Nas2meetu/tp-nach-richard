@@ -80,7 +80,11 @@ public class RobotEngine {
 
 			try {
 				instruction = Interpreter.generateInstruction(input);
-				this.communicateRobot(instruction);
+				try {
+					this.communicateRobot(instruction);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
 				if (navigation.atSpaceship()) {
 					System.out.print(END_GAME + LINE_SEPARATOR);
 					endGame = true;
@@ -167,7 +171,8 @@ public class RobotEngine {
 					+ this.contFuel + LINE_SEPARATOR + RECYCLED_MATERIAL
 					+ contRecycledMaterial + LINE_SEPARATOR);
 		}
-		robotPanel.setFuel(contFuel);
+		if (robotPanel != null)
+			robotPanel.setFuel(contFuel);
 	}
 
 	/**
@@ -180,7 +185,8 @@ public class RobotEngine {
 
 	public void addRecycledMaterial(int newMaterial) {
 		this.contRecycledMaterial += newMaterial;
-
+		if (robotPanel != null)
+			robotPanel.setGarbage(newMaterial);
 	}
 
 	/**
