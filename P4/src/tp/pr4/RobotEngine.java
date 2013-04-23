@@ -75,6 +75,7 @@ public class RobotEngine {
 
 			try {
 				instruction = Interpreter.generateInstruction(input);
+				
 				try {
 					this.communicateRobot(instruction);
 				} catch (Exception e) {

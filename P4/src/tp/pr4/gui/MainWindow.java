@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 import javax.swing.*;
+
 import com.sun.org.apache.bcel.internal.generic.Instruction;
 import tp.pr4.RobotEngine;
 
@@ -96,8 +97,14 @@ public class MainWindow extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try {
+					
 				
+			getLastInstruction();
 				
+				} catch (NullPointerException e2) {
+					JOptionPane.showMessageDialog(null, "No more undo's available");
+				}
 			}
 		});
 		
@@ -115,7 +122,9 @@ public class MainWindow extends JFrame {
 		});
 	}
 
-	
+	public Vector<Instruction> getLastInstructions() {
+		return lastInstructions;
+	}
 
 
 	/**

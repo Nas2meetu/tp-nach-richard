@@ -1,5 +1,7 @@
 package tp.pr4.instructions;
 
+import javax.swing.undo.CannotUndoException;
+
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -27,6 +29,16 @@ public interface Instruction {
 	public void configureContext(RobotEngine engine, NavigationModule navigation, ItemContainer robotContainer);
 	
 	public void execute() throws InstructionExecutionException;
+	
+	/**
+	 * @throws CannotUndoException
+	 */
+	public void undo() throws CannotUndoException;
+
+	/**
+	 * @return
+	 */
+	public boolean canUndo();
 
 }
 

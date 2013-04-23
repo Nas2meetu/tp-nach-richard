@@ -216,6 +216,7 @@ public class InstructionPanel extends JPanel {
 	private void initPickButton(JButton btPick, NavigationPanel navPanel,
 			RobotPanel robotPanel, final JTextField txtBox) {
 
+		btPick.setToolTipText("Pick an item from place");
 		btPick.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -246,6 +247,7 @@ public class InstructionPanel extends JPanel {
 	 */
 
 	private void initQuitButton(JButton btQuit) {
+		btQuit.setToolTipText("Quits the actual game");
 		btQuit.addActionListener(new ActionListener() {
 
 			@Override
