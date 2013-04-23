@@ -45,9 +45,10 @@ public class Main {
 
 		Options options = new Options();
 		Option helpOption = new Option("h", "help", false,
-				"Show this help message");
+				"Shows this help message");
 		Option interfacesOption = new Option("i", "interface", true,
 				"The type of interface: console or swing");
+		interfacesOption.setArgName("type");
 		Option mapsOption = new Option("m", "map", true,
 				"File with the description of the city");
 		mapsOption.setArgName("mapfile");
@@ -90,7 +91,7 @@ public class Main {
 					} catch (FileNotFoundException e) {
 						System.err
 								.println("Error reading the map file: noExiste.txt (No existe el fichero o el directorio)");
-						System.exit(1);
+						System.exit(2);
 					} catch (IOException e) {
 						System.err.println("Format error: ");
 						System.err.println(e.getMessage());
