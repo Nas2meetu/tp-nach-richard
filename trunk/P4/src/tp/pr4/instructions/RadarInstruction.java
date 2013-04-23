@@ -4,6 +4,8 @@ import static tp.pr4.Constants.*;
 
 import java.util.StringTokenizer;
 
+import javax.swing.undo.CannotUndoException;
+
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -77,6 +79,18 @@ public class RadarInstruction implements Instruction {
 			System.out.println(navigation.getCurrentPlace().toString());
 		else
 			throw new InstructionExecutionException();
+	}
+
+	@Override
+	public void undo() throws CannotUndoException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean canUndo() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
