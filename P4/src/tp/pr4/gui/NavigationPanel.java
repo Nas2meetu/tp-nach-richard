@@ -5,7 +5,7 @@ import javax.swing.border.TitledBorder;
 
 import tp.pr4.Direction;
 import tp.pr4.Place;
-
+import static tp.pr4.Constants.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -58,7 +58,7 @@ public class NavigationPanel extends JPanel {
 		
 		URL urlImage = MainWindow.class.getResource("images/walleNorth.png");
 		if(urlImage==null)
-			System.out.println("no carga imagen alguna");
+			JOptionPane.showMessageDialog(this, IMAGES_DONT_LOAD);
 		
 		robotImage = new ImageIcon(urlImage);
 		lbRobotIcon = new JLabel(robotImage);
@@ -167,9 +167,17 @@ public class NavigationPanel extends JPanel {
 			this.placeCell[row][col].setPlace(actualPlace);
 		currentPlace = this.placeCell[row][col];
 		currentPlace.enterPlace();
+		if (currentPlace.updateCellStyle())
+			this.isSpaceShip(actualPlace);
+		}
+	
+	public void isSpaceShip(Place actualPlace){
+	if (actualPlace.isSpaceship()){
+		JOptionPane.showMessageDialog(this, END_GAME);
+		System.exit(0);
 	}
 
 	
-
+	}
 		
 }

@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -34,18 +35,19 @@ import tp.pr4.items.Item;
 public class InstructionPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Instruction> lastInstructions;
+	private Vector<Instruction> lastInstructions;
 	private JComboBox<Rotation> cbDirections;
 	private RobotEngine robot;
 	private JTextField txtBox;
 	private RobotPanel robotPanel;
-	
+
 	/**
 	 * 
 	 * Panel with instruction buttons
 	 * 
 	 * @param robot
-	 * @param robotPanel displays information about the robot and its inventory
+	 * @param robotPanel
+	 *            displays information about the robot and its inventory
 	 */
 
 	public InstructionPanel(RobotEngine robot, RobotPanel robotPanel) {
@@ -56,9 +58,9 @@ public class InstructionPanel extends JPanel {
 		this.setBorder(new TitledBorder("Instructions"));
 		this.setLayout(new GridLayout(4, 2, 3, 3));
 		NavigationPanel navPanel = new NavigationPanel();
-		
-		//Create buttons
-		
+
+		// Create buttons
+
 		JButton btDrop = new JButton("DROP");
 		JButton btMove = new JButton("MOVE");
 		JButton btOperate = new JButton("OPERATE");
@@ -69,9 +71,9 @@ public class InstructionPanel extends JPanel {
 		cbDirections = new JComboBox<Rotation>(Rotation.values());
 		this.setBorder(BorderFactory.createTitledBorder("Instructions"));
 		txtBox = new JTextField(10);
-		
+
 		// Add buttons to instructionPanel
-		
+
 		this.add(btMove);
 		this.add(btQuit);
 		this.add(btTurn);
@@ -80,7 +82,7 @@ public class InstructionPanel extends JPanel {
 		this.add(txtBox);
 		this.add(btDrop);
 		this.add(btOperate);
-		
+
 		// Initialize buttons
 
 		initDropButton(btDrop, robotPanel, navPanel);
@@ -94,13 +96,18 @@ public class InstructionPanel extends JPanel {
 
 	/**
 	 * 
-	 * Creates an actionListener, receive an actionEvent to drop instruction and execute drop instruction
+	 * Creates an actionListener, receive an actionEvent to drop instruction and
+	 * execute drop instruction
 	 * 
-	 * @param btDrop button to drop instruction
-	 * @param robotPanel displays information about the robot and its inventory
-	 * @param navPanel displays the information about the robot heading and the city that is traversing
+	 * @param btDrop
+	 *            button to drop instruction
+	 * @param robotPanel
+	 *            displays information about the robot and its inventory
+	 * @param navPanel
+	 *            displays the information about the robot heading and the city
+	 *            that is traversing
 	 */
-	
+
 	private void initDropButton(JButton btDrop, final RobotPanel robotPanel,
 			NavigationPanel navPanel) {
 		btDrop.setToolTipText("Drops the selected item from the inventory");
@@ -125,12 +132,16 @@ public class InstructionPanel extends JPanel {
 
 	/**
 	 * 
-	 * Creates an actionListener, receive an actionEvent to move instruction and execute move instruction
+	 * Creates an actionListener, receive an actionEvent to move instruction and
+	 * execute move instruction
 	 * 
-	 * @param btMove button to move instruction
-	 * @param navPanel displays the information about the robot heading and the city that is traversing
+	 * @param btMove
+	 *            button to move instruction
+	 * @param navPanel
+	 *            displays the information about the robot heading and the city
+	 *            that is traversing
 	 */
-	
+
 	private void initMoveButton(JButton btMove, NavigationPanel navPanel) {
 		btMove.setToolTipText("Move robot");
 		btMove.addActionListener(new ActionListener() {
@@ -147,16 +158,21 @@ public class InstructionPanel extends JPanel {
 		});
 
 	}
-	
+
 	/**
 	 * 
-	 * Creates an actionListener, receive an actionEvent to operate instruction and execute operate instruction
+	 * Creates an actionListener, receive an actionEvent to operate instruction
+	 * and execute operate instruction
 	 * 
-	 * @param btOperate button to operate instruction
-	 * @param robotPanel displays information about the robot and its inventory
-	 * @param navPanel displays the information about the robot heading and the city that is traversing
+	 * @param btOperate
+	 *            button to operate instruction
+	 * @param robotPanel
+	 *            displays information about the robot and its inventory
+	 * @param navPanel
+	 *            displays the information about the robot heading and the city
+	 *            that is traversing
 	 */
-	
+
 	private void initOperateButton(JButton btOperate,
 			final RobotPanel robotPanel, NavigationPanel navPanel) {
 		btOperate.setToolTipText("Use item from robot inventory");
@@ -180,17 +196,23 @@ public class InstructionPanel extends JPanel {
 		});
 
 	}
-	
+
 	/**
 	 * 
-	 * Creates an actionListener, receive an actionEvent to pick instruction and execute pick instruction
+	 * Creates an actionListener, receive an actionEvent to pick instruction and
+	 * execute pick instruction
 	 * 
-	 * @param btPick button to pick instruction
-	 * @param navPanel displays the information about the robot heading and the city that is traversing
-	 * @param robotPanel displays information about the robot and its inventory
-	 * @param txtBox box with item name
+	 * @param btPick
+	 *            button to pick instruction
+	 * @param navPanel
+	 *            displays the information about the robot heading and the city
+	 *            that is traversing
+	 * @param robotPanel
+	 *            displays information about the robot and its inventory
+	 * @param txtBox
+	 *            box with item name
 	 */
-	
+
 	private void initPickButton(JButton btPick, NavigationPanel navPanel,
 			RobotPanel robotPanel, final JTextField txtBox) {
 
@@ -213,14 +235,16 @@ public class InstructionPanel extends JPanel {
 		});
 
 	}
-	
+
 	/**
 	 * 
-	 * Creates an actionListener, receive an actionEvent to quit instruction and execute quit instruction
+	 * Creates an actionListener, receive an actionEvent to quit instruction and
+	 * execute quit instruction
 	 * 
-	 * @param btQuit button to quit instruction
+	 * @param btQuit
+	 *            button to quit instruction
 	 */
-	
+
 	private void initQuitButton(JButton btQuit) {
 		btQuit.addActionListener(new ActionListener() {
 
@@ -236,15 +260,20 @@ public class InstructionPanel extends JPanel {
 			}
 		});
 	}
-	
+
 	/**
-	 * Creates an actionListener, receive an actionEvent to turn instruction and execute turn instruction
+	 * Creates an actionListener, receive an actionEvent to turn instruction and
+	 * execute turn instruction
 	 * 
-	 * @param btTurn button to turn instruction
-	 * @param robotPanel displays information about the robot and its inventory
-	 * @param navPanel displays the information about the robot heading and the city that is traversing
+	 * @param btTurn
+	 *            button to turn instruction
+	 * @param robotPanel
+	 *            displays information about the robot and its inventory
+	 * @param navPanel
+	 *            displays the information about the robot heading and the city
+	 *            that is traversing
 	 */
-	
+
 	private void initTurnButton(JButton btTurn, RobotPanel robotPanel,
 			NavigationPanel navPanel) {
 		btTurn.setToolTipText("Turn robot direction");
@@ -269,7 +298,7 @@ public class InstructionPanel extends JPanel {
 	 * @return lastInstructions
 	 */
 
-	public ArrayList<Instruction> getLastInstructions() {
+	public Vector<Instruction> getLastInstructions() {
 		return lastInstructions;
 	}
 

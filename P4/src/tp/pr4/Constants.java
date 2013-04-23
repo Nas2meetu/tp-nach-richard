@@ -49,7 +49,7 @@ public class Constants {
 	public static final int DEFAULT_TIMES = 1;
 
 	public static final String END_GAME = WALLE_SAYS
-			+ "I am at my space ship. Bye Bye";
+			+ "I am at my spaceship. Bye Bye";
 	
 	public static final String END_FUEL = WALLE_SAYS
 			+ "I run out of fuel. I cannot move. Shutting down...";
@@ -62,6 +62,8 @@ public class Constants {
 	
 	public static final String HEAD_HELP = "The valid instructions for WALL-E are:"
 			+ LINE_SEPARATOR;
+	
+	public static final String IMAGES_DONT_LOAD = "Error to load images";
 	
 	public static final Integer INITIAL_POWER = 100;
 
