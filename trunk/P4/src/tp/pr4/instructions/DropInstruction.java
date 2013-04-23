@@ -1,9 +1,8 @@
 package tp.pr4.instructions;
 
 import static tp.pr4.Constants.*;
-
 import java.util.StringTokenizer;
-
+import javax.swing.undo.CannotUndoException;
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.*;
@@ -66,12 +65,11 @@ public class DropInstruction implements Instruction {
 
 	/**
 	 * 
-	 * Method receives complete engine and use part of configureContext 
-	 * depends of the instruction needs.
+	 * Method receives complete engine and use part of configureContext depends
+	 * of the instruction needs.
 	 * 
-	 * engine robot engine
-     * navigation information about map (actualPlace, currentHeading, rotation...)
-     * robotContainer inventory of robot 
+	 * engine robot engine navigation information about map (actualPlace,
+	 * currentHeading, rotation...) robotContainer inventory of robot
 	 * 
 	 */
 
@@ -85,8 +83,8 @@ public class DropInstruction implements Instruction {
 
 	/**
 	 * 
-	 * Execute DROP instruction Verify if item isn't null, Place hasn't got
-	 * this item and put into Place.
+	 * Execute DROP instruction Verify if item isn't null, Place hasn't got this
+	 * item and put into Place.
 	 */
 
 	@Override
@@ -103,5 +101,20 @@ public class DropInstruction implements Instruction {
 			throw new InstructionExecutionException(CONTAINER_NO_ITEM + id
 					+ ".");
 		robotContainer.updateInventory();
+	}
+	
+	public void undo() throws CannotUndoException {
+		Instruction pickInstruction = new PickInstruction();
+		try {
+			pickInstruction.execute();
+		} catch (InstructionExecutionException e) {
+			System.err.println("Instruction could not be executed");
+		
+		}
+	
+	}
+
+	public boolean canUndo() {
+		return true;
 	}
 }

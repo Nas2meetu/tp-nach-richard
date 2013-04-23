@@ -82,7 +82,7 @@ public class PlaceCell extends JButton {
 
 	public void enterPlace() {
 		active = true;
-		updateCellLook();
+		updateCellStyle();
 	}
 	
 	/**
@@ -91,21 +91,23 @@ public class PlaceCell extends JButton {
 
 	public void leavePlace() {
 		active = false;
-		updateCellLook();
+		updateCellStyle();
 	}
 
 	/**
 	 * Change color of cell depends of the state (unknown, active, visited, exit)
 	 */
 	
-	public void updateCellLook() {
-
+	public boolean updateCellStyle() {
+		boolean ship = false;
 		if (place.isSpaceship()) {
 			setBackground(Color.red);
+			ship=true;
 		} else if (active) {
 			setBackground(Color.green);
 		} else
 			setBackground((Color.gray));
+		return ship;
 	}
 
 }

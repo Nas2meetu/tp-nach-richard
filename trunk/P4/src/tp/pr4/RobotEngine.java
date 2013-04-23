@@ -29,9 +29,8 @@ public class RobotEngine {
 	private ItemContainer container;
 	private NavigationModule navigation;
 	private Instruction instruction;
-	private MainWindow mainWindow;
 	private RobotPanel robotPanel;
-	private NavigationPanel navPanel;
+	
 
 	/**
 	 * 
@@ -53,7 +52,6 @@ public class RobotEngine {
 		this.contRecycledMaterial = INITIAL_GARBAGE;
 		this.navigation = new NavigationModule(city, initialPlace);
 		this.navigation.initHeading(direction);
-		this.robotPanel = new RobotPanel();
 
 	}
 
@@ -119,10 +117,7 @@ public class RobotEngine {
 		c.configureContext(this, navigation, container);
 		try {
 			c.execute();
-			if (navigation.atSpaceship()) {
-				JOptionPane.showMessageDialog(navPanel, END_GAME);
-				System.exit(0);
-			}
+			
 		} catch (InstructionExecutionException e) {
 			throw new InstructionExecutionException(e.getMessage());
 		}
@@ -259,16 +254,7 @@ public class RobotEngine {
 		navigation.setNavigationPanel(navPanel);
 	}
 
-	/**
-	 * 
-	 * Sets the main window of the GUI in order to inform about some robot events
-	 * 
-	 * @param mainWindow a GUI Window
-	 */
 	
-	public void setGUIWindow(MainWindow mainWindow) {
-		this.mainWindow = mainWindow;
-	}
 
 	/**
 	 * 

@@ -3,10 +3,11 @@ package tp.pr4.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.Vector;
 import javax.swing.*;
-
+import com.sun.org.apache.bcel.internal.generic.Instruction;
 import tp.pr4.RobotEngine;
+
 
 public class MainWindow extends JFrame {
 
@@ -17,6 +18,7 @@ public class MainWindow extends JFrame {
 	private RobotEngine robot;
 	private RobotPanel robotPanel;
 	private NavigationPanel navigationPanel;
+	private Vector<Instruction> lastInstructions;
 	
 	
 	
@@ -39,6 +41,8 @@ public class MainWindow extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
+		
+		lastInstructions = new Vector<Instruction>();
 
 		createMenu();
 		
@@ -111,5 +115,18 @@ public class MainWindow extends JFrame {
 		});
 	}
 
+	
+
+
+	/**
+	 * @return the lastCommand
+	 */
+	public Instruction getLastInstruction() {
+		if (lastInstructions.size() > 0)
+			return lastInstructions.elementAt(lastInstructions.size() - 1);
+		else
+			return null;
+
+	}
 	
 }
