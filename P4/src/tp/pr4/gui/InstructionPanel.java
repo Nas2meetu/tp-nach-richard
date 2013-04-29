@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -42,6 +41,7 @@ public class InstructionPanel extends JPanel {
 	 * @param robot
 	 * @param robotPanel
 	 *            displays information about the robot and its inventory
+	 * 
 	 */
 
 	public InstructionPanel(RobotEngine robot, RobotPanel robotPanel,

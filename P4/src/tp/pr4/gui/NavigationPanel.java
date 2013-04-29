@@ -35,7 +35,7 @@ public class NavigationPanel extends JPanel {
 
 	/**
 	 * 
-	 * Displays the information about the robot heading and the city that is
+	 * Displays information about the robot heading and the city that is
 	 * traversing
 	 * 
 	 */
@@ -87,6 +87,14 @@ public class NavigationPanel extends JPanel {
 
 	}
 
+	/**
+	 * 
+	 * Update Walle image depends of robot's direction
+	 * 
+	 * @param lookingDirection
+	 * 			is direction that robot is looking
+	 */
+
 	public void updateIcon(Direction lookingDirection) {
 
 		switch (lookingDirection) {
@@ -121,6 +129,14 @@ public class NavigationPanel extends JPanel {
 
 	}
 
+	/**
+	 * 
+	 * Create initial place of robot at navigation panel at swing mode
+	 * 
+	 * @param actualPlace
+	 * 			place where robot is
+	 */
+	
 	public void setInitialPlace(Place actualPlace) {
 		this.placeCell[row][col].setPlace(actualPlace);
 		this.actualPlaceCell = this.placeCell[row][col];
@@ -128,17 +144,37 @@ public class NavigationPanel extends JPanel {
 		updateLog();
 	}
 
+	/**
+	 * Update log panel with information about this place
+	 * 
+	 * @param actualPlace
+	 * 			place where robot is
+	 */
+
 	public void showActualPlaceLog(Place actualPlace) {
 		txtLog.setText(actualPlace.toString());
 	}
 
-	public void setLog(PlaceCell placeCell) {
-		txtLog.setText(placeCell.toString());
-	}
+
+	/**
+	 * 
+	 * Update log panel when you it have more information 
+	 * 
+	 */
 
 	public void updateLog() {
 		txtLog.setText(actualPlaceCell.toString());
 	}
+
+	/**
+	 * 
+	 * Update city map and verify if robot enter or exit from cell
+	 * 
+	 * @param actualPlace
+	 *            place where robot is
+	 * @param lookingDirection
+	 *            is direction that robot is looking
+	 */
 
 	public void updateCity(Place actualPlace, Direction lookingDirection) {
 		actualPlaceCell.leavePlace();

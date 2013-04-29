@@ -1,7 +1,5 @@
 package tp.pr4.gui;
 
-import static tp.pr4.Constants.END_FUEL;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import static tp.pr4.Constants.*;
@@ -22,7 +20,7 @@ import javax.swing.table.AbstractTableModel;
  */
 
 public class RobotPanel extends JPanel {
-	
+
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFuel, lbRecycledMaterial;
 	private JTable tbInventory;
@@ -30,32 +28,32 @@ public class RobotPanel extends JPanel {
 	private JLabel fuelLabel;
 
 	/**
-	 *  Displays information about the robot and its inventory
+	 * Displays information about the robot and its inventory
 	 */
-	
+
 	public RobotPanel() {
 		super();
 		this.setBorder(new TitledBorder("Robot Info"));
 		this.setLayout(new BorderLayout());
 
 		JPanel pContInfo = new JPanel();
-		
+
 		// Fuel information
-		
+
 		fuelLabel = new JLabel("Fuel: ");
 		this.lbFuel = new JLabel(INITIAL_POWER.toString());
 		pContInfo.add(fuelLabel);
 		pContInfo.add(lbFuel);
 
 		// RecycledMaterial information
-		
+
 		JLabel gargabeLabel = new JLabel("Recycled: ");
 		this.lbRecycledMaterial = new JLabel(INITIAL_GARBAGE.toString());
 		pContInfo.add(gargabeLabel);
 		pContInfo.add(lbRecycledMaterial);
-		
+
 		// Table with invetory items
-		
+
 		tbInventoryModel = new InventoryTableModel();
 		tbInventory = new JTable(tbInventoryModel);
 
@@ -63,40 +61,43 @@ public class RobotPanel extends JPanel {
 		this.add(new JScrollPane(this.tbInventory), BorderLayout.CENTER);
 		this.setPreferredSize(new Dimension(280, 115));
 	}
-	
+
 	/**
 	 * 
 	 * Update count of Fuel in RobotPanel
 	 * 
-	 * @param fuel an item that represents fue
+	 * @param fuel
+	 *            an item that represents fue
 	 */
 
 	public void setFuel(Integer fuel) {
 		lbFuel.setText(fuel.toString());
-		//if (fuel == 0) {
-			//JOptionPane.showMessageDialog(this, END_FUEL);
-			//System.exit(0);
-		//}
+		// if (fuel == 0) {
+		// JOptionPane.showMessageDialog(this, END_FUEL);
+		// System.exit(0);
+		// }
 	}
 
 	/**
 	 * 
 	 * Update count of Recycled Material in RobotPanel
 	 * 
-	 * @param garbage is a type of item that generates recycled material after using it
+	 * @param garbage
+	 *            is a type of item that generates recycled material after using
+	 *            it
 	 */
-	
+
 	public void setGarbage(int garbage) {
 		lbRecycledMaterial.setText(Integer.toString(garbage));
 	}
 
-	
 	/**
 	 * 
-	 * Is an abstract table to RobotPanel, that implements robot's inventory and his methods.
-	 *
+	 * Is an abstract table to RobotPanel, that implements robot's inventory and
+	 * his methods.
+	 * 
 	 */
-	
+
 	class InventoryTableModel extends AbstractTableModel {
 
 		private static final long serialVersionUID = 1L;
@@ -107,13 +108,14 @@ public class RobotPanel extends JPanel {
 
 		/**
 		 * Modify table content
-		 * @param data 
+		 * 
+		 * @param data
 		 */
-		
+
 		protected void setData(String[][] data) {
 			this.data = data;
 		}
-		
+
 		/**
 		 * Initialize table inventory
 		 */
@@ -125,7 +127,7 @@ public class RobotPanel extends JPanel {
 		/**
 		 * Return column of selected item
 		 */
-		
+
 		@Override
 		public String getColumnName(int col) {
 			return cols[col];
@@ -134,7 +136,7 @@ public class RobotPanel extends JPanel {
 		/**
 		 * Return length of rows
 		 */
-		
+
 		@Override
 		public int getRowCount() {
 			return data.length;
@@ -143,7 +145,7 @@ public class RobotPanel extends JPanel {
 		/**
 		 * Return length of columns
 		 */
-		
+
 		@Override
 		public int getColumnCount() {
 			return cols.length;
@@ -152,12 +154,12 @@ public class RobotPanel extends JPanel {
 		/**
 		 * Return value of an specific row and column
 		 */
-		
+
 		@Override
 		public String getValueAt(int rowIndex, int columnIndex) {
 			return data[rowIndex][columnIndex];
 		}
-		
+
 		/**
 		 * 
 		 * Update data table
@@ -181,20 +183,19 @@ public class RobotPanel extends JPanel {
 	 * 
 	 * @return itemSelected an item of table
 	 */
-	
+
 	public String getSelectedItem() {
 
 		int row = tbInventory.getSelectedRow();
 		String itemSelected = null;
 		if (row == -1)
-			JOptionPane.showMessageDialog(getRootPane(),
-					NO_ITEM_CHOOSE);
+			JOptionPane.showMessageDialog(getRootPane(), NO_ITEM_CHOOSE);
 		else
 			itemSelected = tbInventory.getValueAt(row, 0).toString();
 		return itemSelected;
 
 	}
-	
+
 	/**
 	 * 
 	 * Update table of robotPanel and insert new items picked
@@ -204,7 +205,6 @@ public class RobotPanel extends JPanel {
 
 	public void updateTable(String[][] items) {
 		tbInventoryModel.updateData(items);
-
 
 	}
 
