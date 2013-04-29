@@ -42,6 +42,13 @@ public class NavigationModule {
 
 	}
 
+	public NavigationModule(City city, Place currentPlace, RobotEngine robot) {
+
+		this(city, currentPlace);
+		this.robot = robot;
+
+	}
+
 	/**
 	 * 
 	 * Show direction of robot is looking at initial place.
@@ -180,6 +187,8 @@ public class NavigationModule {
 					+ lookingDirection);
 		} else if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
+			if (actualPlace.isSpaceship() && (navPanel != null))
+				robot.engineOff(true);
 			if (navPanel != null)
 				navPanel.showActualPlaceLog(actualPlace);
 		} else

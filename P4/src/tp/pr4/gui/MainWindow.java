@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import tp.pr4.RobotEngine;
+import static tp.pr4.Constants.*;
 
 public class MainWindow extends JFrame {
 
@@ -15,6 +16,8 @@ public class MainWindow extends JFrame {
 	private RobotEngine robot;
 	private NavigationPanel navigationPanel;
 	private JPanel mainPanel;
+	private InstructionPanel instructionsPanel;
+	private boolean end = false;
 
 	public void setMainPanel(JPanel mainPanel) {
 		this.mainPanel = mainPanel;
@@ -39,13 +42,11 @@ public class MainWindow extends JFrame {
 
 		mainPanel = new JPanel(new BorderLayout());
 
-
 		createMenu();
 
 		RobotPanel robotPanel = new RobotPanel();
 
-		InstructionPanel instructionsPanel = new InstructionPanel(robot,
-				robotPanel);
+		instructionsPanel = new InstructionPanel(robot, robotPanel, this);
 		JSplitPane SuperiorPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 				instructionsPanel, robotPanel);
 		mainPanel.add(SuperiorPanel, BorderLayout.NORTH);
@@ -57,13 +58,13 @@ public class MainWindow extends JFrame {
 
 		this.add(mainPanel);
 
-		pack(); 
+		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
 
 		robot.setNavigationPanel(navigationPanel);
 		robot.setRobotPanel(robotPanel);
-		
+		robot.setGUi(this);
 
 	}
 
@@ -99,6 +100,22 @@ public class MainWindow extends JFrame {
 
 			}
 		});
+	}
+
+
+	public boolean isEnd() {
+		return end;
+	}
+
+	public void engineOff(boolean ship) {
+		if (ship) {
+			JOptionPane.showMessageDialog(rootPane, END_GAME);
+			end = true;
+		} else {
+			JOptionPane.showMessageDialog(rootPane, END_FUEL);
+			end = true;
+
+		}
 	}
 
 }

@@ -154,10 +154,6 @@ public class NavigationPanel extends JPanel {
 			this.placeCell[row][col].setPlace(actualPlace);
 		actualPlaceCell = this.placeCell[row][col];
 		actualPlaceCell.enterPlace();
-		if (actualPlace.isSpaceship()) {
-			JOptionPane.showMessageDialog(this, END_GAME);
-			System.exit(0);
-		}
 	}
 
 }
