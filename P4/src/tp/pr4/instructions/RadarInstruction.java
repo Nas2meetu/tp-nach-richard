@@ -4,8 +4,6 @@ import static tp.pr4.Constants.*;
 
 import java.util.StringTokenizer;
 
-import javax.swing.undo.CannotUndoException;
-
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -23,6 +21,7 @@ import tp.pr4.items.ItemContainer;
 public class RadarInstruction implements Instruction {
 	
 	private NavigationModule navigation;
+	private RobotEngine robot;
 	
 	/**
 	 * Read a string with an action, compare if this action is correct 
@@ -67,6 +66,7 @@ public class RadarInstruction implements Instruction {
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
 		this.navigation=navigation;
+		this.robot= engine;
 
 	}
 	/**
@@ -76,21 +76,9 @@ public class RadarInstruction implements Instruction {
 	@Override
 	public void execute() throws InstructionExecutionException {
 		if (navigation.getCurrentPlace()!=null)
-			System.out.println(navigation.getCurrentPlace().toString());
+			robot.printCurrentPlace();
 		else
 			throw new InstructionExecutionException();
-	}
-
-	@Override
-	public void undo() throws CannotUndoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean canUndo() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

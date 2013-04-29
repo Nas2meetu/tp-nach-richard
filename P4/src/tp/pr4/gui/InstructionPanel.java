@@ -2,24 +2,15 @@ package tp.pr4.gui;
 
 import java.awt.Component;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Vector;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-
-import sun.misc.MessageUtils;
-import tp.pr4.City;
-import tp.pr4.Place;
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
 import static tp.pr4.Constants.*;
@@ -30,12 +21,10 @@ import tp.pr4.instructions.OperateInstruction;
 import tp.pr4.instructions.PickInstruction;
 import tp.pr4.instructions.TurnInstruction;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
-import tp.pr4.items.Item;
 
 public class InstructionPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private Vector<Instruction> lastInstructions;
 	private JComboBox<Rotation> cbDirections;
 	private RobotEngine robot;
 	private JTextField txtBox;
@@ -215,7 +204,6 @@ public class InstructionPanel extends JPanel {
 
 	private void initPickButton(JButton btPick, NavigationPanel navPanel,
 			RobotPanel robotPanel, final JTextField txtBox) {
-
 		btPick.setToolTipText("Pick an item from place");
 		btPick.addActionListener(new ActionListener() {
 			@Override
@@ -293,15 +281,5 @@ public class InstructionPanel extends JPanel {
 		});
 	}
 
-	/**
-	 * 
-	 * Last instruction use in game
-	 * 
-	 * @return lastInstructions
-	 */
-
-	public Vector<Instruction> getLastInstructions() {
-		return lastInstructions;
-	}
-
+	
 }

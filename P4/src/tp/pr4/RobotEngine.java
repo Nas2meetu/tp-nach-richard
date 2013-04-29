@@ -1,10 +1,6 @@
 package tp.pr4;
 
 import java.util.Scanner;
-
-import javax.swing.JOptionPane;
-
-import tp.pr4.gui.MainWindow;
 import tp.pr4.gui.NavigationPanel;
 import tp.pr4.gui.RobotPanel;
 import tp.pr4.instructions.Instruction;
@@ -66,6 +62,7 @@ public class RobotEngine {
 	public void startEngine() throws InstructionExecutionException {
 
 		Scanner reader = new Scanner(System.in);
+		printCurrentPlace();
 		printRobotState();
 		endGame = false;
 
@@ -75,7 +72,6 @@ public class RobotEngine {
 
 			try {
 				instruction = Interpreter.generateInstruction(input);
-				
 				try {
 					this.communicateRobot(instruction);
 				} catch (Exception e) {
@@ -128,12 +124,19 @@ public class RobotEngine {
 	 * Prints the state of the robot
 	 */
 
+	public void printCurrentPlace(){
+		System.out.println(navigation.getCurrentPlace().toString());
+	}
+	
+	public void printRobotExecuteState(){
+		System.out.println(POWER2 + this.getFuel() + LINE_SEPARATOR
+				+ RECYCLED_MATERIAL + this.getRecycledMaterial()
+				+ LINE_SEPARATOR);
+	}
 	public void printRobotState() {
-
-		System.out.println(navigation.getCurrentPlace().toString()
-				+ LOOKING_DIRECTION + navigation.getCurrentHeading()
+		System.out.println(LOOKING_DIRECTION + navigation.getCurrentHeading()
 				+ LINE_SEPARATOR + POWER2 + this.contFuel + LINE_SEPARATOR
-				+ RECYCLED_MATERIAL + contRecycledMaterial + LINE_SEPARATOR);
+				+ RECYCLED_MATERIAL + this.contRecycledMaterial + LINE_SEPARATOR);
 	}
 
 	/**
@@ -159,10 +162,7 @@ public class RobotEngine {
 		this.contFuel += newFuel;
 		if (contFuel < 0) {
 			contFuel = 0;
-			System.out.println(LOOKING_DIRECTION
-					+ navigation.getCurrentHeading() + LINE_SEPARATOR + POWER2
-					+ this.contFuel + LINE_SEPARATOR + RECYCLED_MATERIAL
-					+ contRecycledMaterial + LINE_SEPARATOR);
+			printRobotState();
 		}
 		if (robotPanel != null)
 			robotPanel.setFuel(contFuel);

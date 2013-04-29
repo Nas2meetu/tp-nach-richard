@@ -4,7 +4,6 @@ import static tp.pr4.Constants.END_FUEL;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import static tp.pr4.Constants.*;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,9 +12,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
-
-import tp.pr4.instructions.exceptions.InstructionExecutionException;
-import tp.pr4.items.Item;
 
 /**
  * 
