@@ -73,10 +73,10 @@ public class RobotPanel extends JPanel {
 
 	public void setFuel(Integer fuel) {
 		lbFuel.setText(fuel.toString());
-		if (fuel == 0) {
-			JOptionPane.showMessageDialog(this, END_FUEL);
-			System.exit(0);
-		}
+		//if (fuel == 0) {
+			//JOptionPane.showMessageDialog(this, END_FUEL);
+			//System.exit(0);
+		//}
 	}
 
 	/**

@@ -1,6 +1,8 @@
 package tp.pr4;
 
 import java.util.Scanner;
+
+import tp.pr4.gui.MainWindow;
 import tp.pr4.gui.NavigationPanel;
 import tp.pr4.gui.RobotPanel;
 import tp.pr4.instructions.Instruction;
@@ -26,6 +28,7 @@ public class RobotEngine {
 	private NavigationModule navigation;
 	private Instruction instruction;
 	private RobotPanel robotPanel;
+	private MainWindow mainWindow;
 	
 
 	/**
@@ -46,7 +49,7 @@ public class RobotEngine {
 		this.container = new ItemContainer();
 		this.contFuel = INITIAL_POWER;
 		this.contRecycledMaterial = INITIAL_GARBAGE;
-		this.navigation = new NavigationModule(city, initialPlace);
+		this.navigation = new NavigationModule(city, initialPlace, this);
 		this.navigation.initHeading(direction);
 
 	}
@@ -78,7 +81,7 @@ public class RobotEngine {
 					System.out.println(e.getMessage());
 				}
 				if (navigation.atSpaceship()) {
-					System.out.print(END_GAME + LINE_SEPARATOR);
+					this.engineOff(true);
 					endGame = true;
 				}
 			} catch (WrongInstructionFormatException e) {
@@ -160,9 +163,10 @@ public class RobotEngine {
 
 	public void addFuel(int newFuel) {
 		this.contFuel += newFuel;
-		if (contFuel < 0) {
+		if (contFuel <= 0) {
 			contFuel = 0;
 			printRobotState();
+			this.engineOff(false);
 		}
 		if (robotPanel != null)
 			robotPanel.setFuel(contFuel);
@@ -267,5 +271,20 @@ public class RobotEngine {
 	public void setRobotPanel(RobotPanel robotPanel) {
 		this.robotPanel = robotPanel;
 		this.container.setRobotPanel(robotPanel);
+	}
+	
+	public void setGUi(MainWindow mainWindow){
+		this.mainWindow=mainWindow;
+	}
+
+
+	public void engineOff(boolean ship) {
+		if(mainWindow!=null)
+			mainWindow.engineOff(ship);
+		if(ship)
+			System.out.print(END_GAME + LINE_SEPARATOR);
+		else
+			System.out.println(END_FUEL);
+		
 	}
 }

@@ -99,6 +99,7 @@ public class TurnInstruction implements Instruction {
 		{
 			robot.addFuel(-5);
 			robot.printRobotState();
+			
 		}else
 			new InstructionExecutionException();
 	}
