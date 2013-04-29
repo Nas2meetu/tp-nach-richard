@@ -171,7 +171,7 @@ public class Place {
 	 */
 	
 	public boolean existItem(String id) {
-		return itemsInPlace.getItem(id) != null; // mirar
+		return itemsInPlace.getItem(id) != null;
 	}
 
 }

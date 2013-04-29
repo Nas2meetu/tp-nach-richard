@@ -1,7 +1,6 @@
 package tp.pr4.items;
 
 import static tp.pr4.Constants.*;
-import java.util.ArrayList;
 import tp.pr4.gui.RobotPanel;
 
 /**
@@ -17,7 +16,6 @@ public class ItemContainer {
 	private int numberOfItems;
 	private Item[] container;
 	private RobotPanel robotPanel;
-	private ArrayList<Item> containerTable;
 
 	/**
 	 * Constructor of two parameters to define robot´s Container
@@ -99,22 +97,19 @@ public class ItemContainer {
 	 * @return picked item has been pick or not.
 	 */
 
-
-	
 	public Item pickItem(String id) {
-        Item picked;
-        int pos = posItem(id);
-        if (pos == -1)
-                picked = null;
-        else {
-                Item item = container[pos];
-                getItem(item.getId());
-                this.moveItemLeft(pos);
-                picked = item;
-        }
-        return picked;
-}
-
+		Item picked;
+		int pos = posItem(id);
+		if (pos == -1)
+			picked = null;
+		else {
+			Item item = container[pos];
+			getItem(item.getId());
+			this.moveItemLeft(pos);
+			picked = item;
+		}
+		return picked;
+	}
 
 	/**
 	 * 
@@ -277,11 +272,6 @@ public class ItemContainer {
 		return data;
 	}
 
-	private ArrayList<Item> inventoryToArrayListTable() {
-		for (int i = 0; i < numberOfItems; i++) {
-			containerTable.add(container[i]);
-		}
-		return containerTable;
 
-	}
+
 }
