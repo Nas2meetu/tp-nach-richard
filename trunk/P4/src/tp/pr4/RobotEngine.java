@@ -278,6 +278,14 @@ public class RobotEngine {
 	}
 
 
+	/**
+	 * 
+	 * Show different message in console mode if robot 
+	 * is at space ship or hasn't got fuel
+	 * 
+	 * @param ship
+	 */
+	
 	public void engineOff(boolean ship) {
 		if(mainWindow!=null)
 			mainWindow.engineOff(ship);

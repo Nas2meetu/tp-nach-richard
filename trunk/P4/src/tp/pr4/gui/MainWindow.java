@@ -69,7 +69,7 @@ public class MainWindow extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Create dialog menu for window
 	 */
 
 	private void createMenu() {
@@ -86,6 +86,7 @@ public class MainWindow extends JFrame {
 	 * 
 	 * @param mDialogs
 	 *            menu for window
+	 * 
 	 */
 
 	private void initializeMenu(JMenu mDialogs) {
@@ -102,10 +103,27 @@ public class MainWindow extends JFrame {
 		});
 	}
 
+	/**
+	 * 
+	 * Return a public method (end) of a private attribute (isEnd).
+	 * 
+	 * @return isEnd if game finish or not.
+	 * 
+	 */
 
 	public boolean isEnd() {
 		return end;
 	}
+
+	/**
+	 * 
+	 * Show different message dialog at interface mode if robot is at space ship
+	 * or robot hasn't got fuel
+	 * 
+	 * @param ship
+	 *            boolean game finish if robot is at space ship or hasn't got
+	 *            fuel
+	 */
 
 	public void engineOff(boolean ship) {
 		if (ship) {

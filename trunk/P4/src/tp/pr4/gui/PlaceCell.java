@@ -17,8 +17,9 @@ import tp.pr4.Place;
 public class PlaceCell extends JButton {
 
 	/**
-         * 
-         */
+	 * 
+	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	private Place place = null;
@@ -55,7 +56,7 @@ public class PlaceCell extends JButton {
 	}
 
 	/**
-	 * 
+	 * Initialize cell of place
 	 */
 
 	private void initialize() {

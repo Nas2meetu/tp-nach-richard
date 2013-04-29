@@ -42,6 +42,19 @@ public class NavigationModule {
 
 	}
 
+	/**
+	 * 
+	 * Constructor of three parameter to create a NavigationModule
+	 * 
+	 * @param city
+	 *            is the map where the robot lives
+	 * @param robot
+	 * @param currentPlace
+	 *            place where robot is
+	 * 
+	 * 
+	 */
+
 	public NavigationModule(City city, Place currentPlace, RobotEngine robot) {
 
 		this(city, currentPlace);
@@ -112,7 +125,8 @@ public class NavigationModule {
 	 * Return a public method (lookingDirection) of a private attribute
 	 * CurrentPlace.
 	 * 
-	 * @return lookingDirection is direction that robot is looking.
+	 * @return lookingDirection
+	 * 			is direction that robot is looking
 	 */
 
 	public Direction getCurrentHeading() {
@@ -123,7 +137,7 @@ public class NavigationModule {
 	 * 
 	 * Return a public method (actualPlace) of a private attribute CurrentPlace.
 	 * 
-	 * @return actualPlace place where robot is.
+	 * @return actualPlace place where robot is
 	 */
 
 	public Place getCurrentPlace() {
@@ -152,10 +166,10 @@ public class NavigationModule {
 	 * 
 	 */
 
-	public void dropItemAtCurrentPlace(Item it) {
+	public void dropItemAtCurrentPlace(String id) {
 		if (navPanel != null) {
-			robot.getContainer().pickItem(it.getId());
-			JOptionPane.showMessageDialog(navPanel, PLACE_ITEM + it.getId());
+			this.getCurrentPlace().addItem(robot.getContainer().pickItem(id));
+			JOptionPane.showMessageDialog(navPanel, PLACE_ITEM + id);
 		}
 	}
 
@@ -234,6 +248,7 @@ public class NavigationModule {
 	 * 
 	 * @param navPanel
 	 *            contain navigation panel
+	 * 
 	 */
 
 	public void setNavigationPanel(NavigationPanel navPanel) {

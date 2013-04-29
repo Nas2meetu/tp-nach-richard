@@ -1,6 +1,7 @@
 package tp.pr4.instructions;
 
 import static tp.pr4.Constants.*;
+
 import java.util.StringTokenizer;
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
@@ -90,8 +91,7 @@ public class DropInstruction implements Instruction {
 	public void execute() throws InstructionExecutionException {
 		if (id != null && robotContainer.containsItem(id))
 			if (!navigation.findItemAtCurrentPlace(id)) {
-				navigation.getCurrentPlace().addItem(
-						robotContainer.pickItem(id));
+				navigation.dropItemAtCurrentPlace(id);
 				navigation.updatePlace();
 				System.out.println(PLACE_ITEM + id);
 			} else
