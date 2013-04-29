@@ -4,8 +4,6 @@ import static tp.pr4.Constants.*;
 
 import java.util.StringTokenizer;
 
-import javax.swing.undo.CannotUndoException;
-
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -35,10 +33,10 @@ public class PickInstruction implements Instruction {
 	public PickInstruction() {
 
 	}
-	
+
 	/**
-	 * Read a string with an action, compare if this action is correct 
-	 * and generate PickInstruction, else throw an exception.
+	 * Read a string with an action, compare if this action is correct and
+	 * generate PickInstruction, else throw an exception.
 	 */
 
 	@Override
@@ -62,20 +60,19 @@ public class PickInstruction implements Instruction {
 	/**
 	 * Show information about PICK instruction syntax.
 	 */
-	
+
 	@Override
 	public String getHelp() {
 		return "PICK | COGER <id>";
 	}
-	
+
 	/**
 	 * 
-	 * Method receives complete engine and use part of configureContext 
-	 * depends of the instruction needs.
+	 * Method receives complete engine and use part of configureContext depends
+	 * of the instruction needs.
 	 * 
-	 * engine robot engine
-     * navigation information about map (actualPlace, currentHeading, rotation...)
-     * robotContainer inventory of robot 
+	 * engine robot engine navigation information about map (actualPlace,
+	 * currentHeading, rotation...) robotContainer inventory of robot
 	 * 
 	 */
 
@@ -87,35 +84,22 @@ public class PickInstruction implements Instruction {
 	}
 
 	/**
-	 * Execute PICK instruction
-	 * Verify if item isn't null and if place has got thi item.
+	 * Execute PICK instruction Verify if item isn't null and if place has got
+	 * thi item.
 	 */
-	
+
 	@Override
 	public void execute() throws InstructionExecutionException {
 		Item item = navigation.getCurrentPlace().getItem(id);
-	     if(item == null)
-	         throw new InstructionExecutionException(PLACE_NO_ITEM + id);
-	     else if(robotContainer.addItem(item)){
-	             navigation.pickItemAtCurrentPlace(item);
-	             robotContainer.updateInventory();
-	         System.out.println(CONTAINER_ITEM + id);
-	     }else
-	         throw new InstructionExecutionException(CONTAINER_REPEAT_ITEM + id);
-	     
-	}
+		if (item == null)
+			throw new InstructionExecutionException(PLACE_NO_ITEM + id);
+		else if (robotContainer.addItem(item)) {
+			navigation.pickItemAtCurrentPlace(item);
+			robotContainer.updateInventory();
+			System.out.println(CONTAINER_ITEM + id);
+		} else
+			throw new InstructionExecutionException(CONTAINER_REPEAT_ITEM + id);
 
-	@Override
-	public void undo() throws CannotUndoException {
-		// TODO Auto-generated method stub
-		
 	}
-
-	@Override
-	public boolean canUndo() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	
 
 }

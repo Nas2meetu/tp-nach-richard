@@ -1,19 +1,10 @@
 package tp.pr4.instructions;
 
-import static tp.pr4.Constants.LINE_SEPARATOR;
-import static tp.pr4.Constants.LOOKING_DIRECTION;
-import static tp.pr4.Constants.POWER2;
-import static tp.pr4.Constants.RECYCLED_MATERIAL;
 
 import java.util.StringTokenizer;
-import java.util.Vector;
-
-import javax.swing.undo.CannotUndoException;
-
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
-import tp.pr4.commands.GoCommand;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr4.items.ItemContainer;
@@ -31,15 +22,13 @@ public class TurnInstruction implements Instruction {
 	private Rotation rotation;
 	private RobotEngine robot;
 	private NavigationModule navigation;
-	private Vector<Instruction> previouslyTurn;
 
 	public TurnInstruction(Rotation token2) {
 		this.rotation = token2;
 	}
 
-	public TurnInstruction(Rotation rotation, Vector<Instruction> previouslyTurn) {
-		this.rotation = rotation;
-		this.previouslyTurn = new Vector<Instruction>();
+	public TurnInstruction() {
+
 	}
 
 	/**
@@ -106,39 +95,12 @@ public class TurnInstruction implements Instruction {
 	@Override
 	public void execute() throws InstructionExecutionException {
 		navigation.rotate(rotation);
-		if(rotation!=rotation.UNKNONW)
+		if(rotation!=Rotation.UNKNONW)
 		{
 			robot.addFuel(-5);
-			System.out.println(LOOKING_DIRECTION + navigation.getCurrentHeading()
-				+ LINE_SEPARATOR + POWER2 + robot.getFuel() + LINE_SEPARATOR
-				+ RECYCLED_MATERIAL + robot.getRecycledMaterial());
+			robot.printRobotState();
 		}else
 			new InstructionExecutionException();
 	}
 
-	@Override
-	public void undo() throws CannotUndoException {
-		TurnInstruction turnInstruction = new TurnInstruction(rotation, previouslyTurn);
-		executeUndoTurnSwing(turnInstruction);
-	}
-
-	@Override
-	public boolean canUndo() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	
-	public void executeUndoTurnSwing(TurnInstruction turnInstruction){
-		
-		if (previouslyTurn.equals(turnInstruction.rotation.RIGHT));
-			rotation = new turnInstruction.rotation.LEFT;
-			else
-				turnInstruction = new turnInstruction.rotation.RIGHT;
-		robot.addFuel(+5);
-		System.out.println(LOOKING_DIRECTION + navigation.getCurrentHeading()
-				+ LINE_SEPARATOR + POWER2 + robot.getFuel() + LINE_SEPARATOR
-				+ RECYCLED_MATERIAL + robot.getRecycledMaterial());
-		
-	}
-	
 }

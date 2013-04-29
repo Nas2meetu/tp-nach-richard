@@ -2,7 +2,6 @@ package tp.pr4.instructions;
 
 import static tp.pr4.Constants.*;
 import java.util.StringTokenizer;
-import javax.swing.undo.CannotUndoException;
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.*;
@@ -103,18 +102,5 @@ public class DropInstruction implements Instruction {
 		robotContainer.updateInventory();
 	}
 	
-	public void undo() throws CannotUndoException {
-		Instruction pickInstruction = new PickInstruction();
-		try {
-			pickInstruction.execute();
-		} catch (InstructionExecutionException e) {
-			System.err.println("Instruction could not be executed");
-		
-		}
-	
-	}
 
-	public boolean canUndo() {
-		return true;
-	}
 }

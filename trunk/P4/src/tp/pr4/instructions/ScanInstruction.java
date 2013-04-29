@@ -4,8 +4,6 @@ import static tp.pr4.Constants.*;
 
 import java.util.StringTokenizer;
 
-import javax.swing.undo.CannotUndoException;
-
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -100,17 +98,5 @@ public class ScanInstruction implements Instruction {
 			else
 				throw new InstructionExecutionException(SCAN_NO_ITEM + id);
 		}
-	}
-
-	@Override
-	public void undo() throws CannotUndoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean canUndo() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

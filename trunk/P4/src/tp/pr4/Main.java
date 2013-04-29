@@ -4,14 +4,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
-
+import static tp.pr4.Constants.*;
 import tp.pr4.cityLoader.CityLoaderFromTxtFile;
 import tp.pr4.gui.MainWindow;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -45,12 +44,12 @@ public class Main {
 
 		Options options = new Options();
 		Option helpOption = new Option("h", "help", false,
-				"Shows this help message");
+				SHOW_HELP_MESSAGE);
 		Option interfacesOption = new Option("i", "interface", true,
-				"The type of interface: console or swing");
+				TYPE_INTERFACE);
 		interfacesOption.setArgName("type");
 		Option mapsOption = new Option("m", "map", true,
-				"File with the description of the city");
+				FILE_DESCRIPTION_CITY);
 		mapsOption.setArgName("mapfile");
 
 		options.addOption(helpOption);
@@ -63,9 +62,9 @@ public class Main {
 
 			if (cmdLine.hasOption("h")) {
 				System.out
-						.println("Execute this assignment with these parameters:");
+						.println(EXECUTE_WITH_PAREMETERS);
 				new HelpFormatter().printHelp(Main.class.getCanonicalName()
-						+ " [-h] [-i <type>] [-m <mapfile>]", options);
+						+ EXECUTE_PAREMETERS, options);
 				return;
 			}
 
@@ -73,7 +72,7 @@ public class Main {
 				interfaces = cmdLine.getOptionValue("i");
 				if (!interfaces.equalsIgnoreCase("swing")
 						&& !interfaces.equalsIgnoreCase("console")) {
-					System.err.println("Wrong type of interface");
+					System.err.println(WRONG_INTERFACE);
 					System.exit(1);
 
 				}
@@ -90,7 +89,7 @@ public class Main {
 						city = fileLoader.loadCity(file);
 					} catch (FileNotFoundException e) {
 						System.err
-								.println("Error reading the map file: noExiste.txt (No existe el fichero o el directorio)");
+								.println(ERROR_READING_MAP);
 						System.exit(2);
 					} catch (IOException e) {
 						System.err.println("Format error: ");
@@ -98,7 +97,7 @@ public class Main {
 						System.exit(2);
 					}
 				} else {
-					System.err.println("Map file not specified");
+					System.err.println(MAP_NOT_SPECIFIED);
 					System.exit(1);
 				}
 				
@@ -124,16 +123,16 @@ public class Main {
 							System.out.println(e.getMessage());
 						}
 					} else {
-						System.err.println("Wrong type of interface");
+						System.err.println(WRONG_INTERFACE);
 						System.exit(1);
 					}
 
 				} else {
-					System.err.println("Interface not specified");
+					System.err.println(INTERFACE_NOT_SPECIFIED);
 					System.exit(1);
 				}
 			} else {
-				System.err.println("Map file not specified");
+				System.err.println(MAP_NOT_SPECIFIED);
 				System.exit(1);
 			}
 		} catch (org.apache.commons.cli.ParseException e) {
