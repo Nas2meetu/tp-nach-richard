@@ -1,6 +1,7 @@
 package tp.pr4;
 
 import static tp.pr4.Constants.*;
+
 import javax.swing.JOptionPane;
 import tp.pr4.gui.NavigationPanel;
 import tp.pr4.instructions.exceptions.*;
@@ -125,8 +126,7 @@ public class NavigationModule {
 	 * Return a public method (lookingDirection) of a private attribute
 	 * CurrentPlace.
 	 * 
-	 * @return lookingDirection
-	 * 			is direction that robot is looking
+	 * @return lookingDirection is direction that robot is looking
 	 */
 
 	public Direction getCurrentHeading() {
@@ -163,13 +163,17 @@ public class NavigationModule {
 	 * 
 	 * @param it
 	 *            is an item
+	 * @throws InstructionExecutionException
 	 * 
 	 */
 
-	public void dropItemAtCurrentPlace(String id) {
+	public void dropItemAtCurrentPlace(Item item) {
+		actualPlace.dropItem(item);
 		if (navPanel != null) {
-			this.getCurrentPlace().addItem(robot.getContainer().pickItem(id));
-			JOptionPane.showMessageDialog(navPanel, PLACE_ITEM + id);
+			JOptionPane.showMessageDialog(navPanel, PLACE_ITEM + item.getId());
+			robot.getContainer().updateInventory();
+			
+
 		}
 	}
 
