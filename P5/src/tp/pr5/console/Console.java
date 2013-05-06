@@ -107,8 +107,8 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void placeHasChanged(PlaceInfo placeDescription) {
-		// TODO Auto-generated method stub
-
+		System.out.println(placeDescription.getName()
+				+ placeDescription.getDescription());
 	}
 
 	/**
@@ -117,8 +117,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void placeScanned(PlaceInfo placeDescription) {
-		// TODO Auto-generated method stub
-
+		System.out.println(placeDescription.getDescription());
 	}
 
 	/**
@@ -127,8 +126,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void raiseError(String msg) {
-		// TODO Auto-generated method stub
-
+		System.out.println(msg);
 	}
 
 	/**
@@ -137,8 +135,8 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
-		// TODO Auto-generated method stub
-
+		System.out.println(place.getName() + place.getDescription()
+				+ LOOKING_DIRECTION + heading);
 	}
 
 	/**
@@ -147,8 +145,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void robotSays(String message) {
-		// TODO Auto-generated method stub
-
+		System.out.println(message);
 	}
 
 	/**
@@ -158,7 +155,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
-		// TODO Auto-generated method stub
+		System.out.println(POWER + fuel + RECYCLED_MATERIAL + recycledMaterial);
 
 	}
 

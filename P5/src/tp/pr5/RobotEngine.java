@@ -1,6 +1,7 @@
 package tp.pr5;
 
 import java.util.Iterator;
+import java.util.Scanner;
 
 import tp.pr5.console.Console;
 import tp.pr5.gui.MainWindow;
@@ -8,6 +9,7 @@ import tp.pr5.gui.NavigationPanel;
 import tp.pr5.gui.RobotPanel;
 import tp.pr5.instructions.Instruction;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
+import tp.pr5.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.ItemContainer;
 import static tp.pr5.Constants.*;
@@ -30,6 +32,8 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	private MainWindow mainWindow;
 	private boolean ship;
 	private Console robotObserver;
+	private boolean endGame;
+	private Instruction instruction;
 
 	/**
 	 * 
@@ -45,7 +49,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 **/
 
 	public RobotEngine(City city, Place initialPlace, Direction direction) {
-
+		super();
 		this.container = new ItemContainer();
 		this.contFuel = INITIAL_POWER;
 		this.contRecycledMaterial = INITIAL_GARBAGE;
@@ -74,10 +78,12 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 	public void addFuel(int newFuel) {
 		this.contFuel += newFuel;
+		for (RobotEngineObserver robotObserver : observers) {
+			robotObserver.robotUpdate(contFuel, contRecycledMaterial);
+		}
 		if (contFuel <= 0) {
 			contFuel = 0;
-			// printRobotState();
-			this.engineOff(false);
+			robotObserver.engineOff(false);
 		}
 		if (robotPanel != null)
 			robotPanel.setFuel(contFuel);
@@ -112,6 +118,9 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 	public void addRecycledMaterial(int newMaterial) {
 		this.contRecycledMaterial += newMaterial;
+		for (RobotEngineObserver robotObserver : observers) {
+			robotObserver.robotUpdate(contFuel, contRecycledMaterial);
+		}
 		if (robotPanel != null)
 			robotPanel.setGarbage(newMaterial);
 	}
@@ -132,6 +141,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		c.configureContext(this, navigation, container);
 		try {
 			c.execute();
+			robotObserver.robotUpdate(fuel, recycledMaterial);
 			robotObserver.communicationCompleted();
 		} catch (InstructionExecutionException e) {
 			throw new InstructionExecutionException(e.getMessage());
@@ -146,26 +156,17 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * @param ship
 	 */
 
-	private boolean engineOff(boolean ship) {
-		if (mainWindow != null)
-			mainWindow.engineOff(ship);
-		if (ship) {
-			//System.out.print(END_GAME + LINE_SEPARATOR);
-			ship=true;
-		} else {
-			//System.out.println(END_FUEL);
-			ship=true;
-		}
-		return ship;
-
+	private void engineOff(boolean ship) {
+		for (RobotEngineObserver robotObserver : this.observers)
+			robotObserver.engineOff(ship);
 	}
 
 	/**
 	 * 
 	 * @return
 	 */
-	public boolean isOver() {
-		return this.engineOff(ship);
+	public void isOver() {
+		this.engineOff(ship);
 	}
 
 	/**
@@ -313,8 +314,43 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	}
 
 	public void requestComunicationEnd() {
-		for (RobotEngineObserver robEngineObserver : getObservers()) {
+		for (RobotEngineObserver robEngineObserver : observers) {
 			robEngineObserver.communicationCompleted();
 		}
 	}
+
+	/**
+	 * 
+	 * Is the Start of game, show initial information, finish information and if
+	 * player win or lost game.
+	 * 
+	 */
+
+	public void startEngine() throws InstructionExecutionException {
+
+		Scanner reader = new Scanner(System.in);
+		endGame = false;
+
+		while (!this.noFuel() && !endGame) {
+			System.out.print(PROMPT);
+			String input = reader.nextLine();
+			try {
+				instruction = Interpreter.generateInstruction(input);
+				try {
+					this.communicateRobot(instruction);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+				if (navigation.atSpaceship()) {
+					this.engineOff(true);
+					endGame = true;
+				}
+			} catch (WrongInstructionFormatException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		reader.close();
+
+	}
+
 }

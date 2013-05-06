@@ -41,11 +41,10 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	 */
 
 	public NavigationModule(City city, Place currentPlace) {
-
+		super();
 		this.cityMap = city;
 		this.actualPlace = currentPlace;
 		this.lookingDirection = Direction.NORTH;
-
 	}
 
 	/**
