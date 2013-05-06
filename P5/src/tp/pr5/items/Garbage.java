@@ -69,7 +69,7 @@ public class Garbage extends Item {
 		if (canBeUsed()) {
 			robot.addRecycledMaterial(garbage);
 			canBeUse = false;
-			System.out.println(POWER2 + robot.getFuel() + LINE_SEPARATOR
+			System.out.println(POWER + robot.getFuel() + LINE_SEPARATOR
 					+ RECYCLED_MATERIAL + robot.getRecycledMaterial());
 			return true;
 		} else {

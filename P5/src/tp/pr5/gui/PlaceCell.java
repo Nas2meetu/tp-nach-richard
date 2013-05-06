@@ -52,7 +52,7 @@ public class PlaceCell extends JButton {
 	 */
 	public void setPlace(Place place) {
 		this.place = place;
-		this.setText(place.getPlaceName());
+		this.setText(place.getName());
 
 	}
 

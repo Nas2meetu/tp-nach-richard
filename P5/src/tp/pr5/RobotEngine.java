@@ -1,5 +1,8 @@
 package tp.pr5;
 
+import java.util.Iterator;
+
+import tp.pr5.console.Console;
 import tp.pr5.gui.MainWindow;
 import tp.pr5.gui.NavigationPanel;
 import tp.pr5.gui.RobotPanel;
@@ -26,6 +29,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	private RobotPanel robotPanel;
 	private MainWindow mainWindow;
 	private boolean ship;
+	private Console robotObserver;
 
 	/**
 	 * 
@@ -128,7 +132,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		c.configureContext(this, navigation, container);
 		try {
 			c.execute();
-
+			robotObserver.communicationCompleted();
 		} catch (InstructionExecutionException e) {
 			throw new InstructionExecutionException(e.getMessage());
 		}
@@ -146,12 +150,13 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		if (mainWindow != null)
 			mainWindow.engineOff(ship);
 		if (ship) {
-			System.out.print(END_GAME + LINE_SEPARATOR);
-			return true;
+			//System.out.print(END_GAME + LINE_SEPARATOR);
+			ship=true;
 		} else {
-			System.out.println(END_FUEL);
-			return true;
+			//System.out.println(END_FUEL);
+			ship=true;
 		}
+		return ship;
 
 	}
 
@@ -219,7 +224,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * 
 	 * @param message
 	 */
-	public void saySomething(java.lang.String message) {
+	public void saySomething(String message) {
 
 	}
 
@@ -307,4 +312,9 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		this.mainWindow = mainWindow;
 	}
 
+	public void requestComunicationEnd() {
+		for (RobotEngineObserver robEngineObserver : getObservers()) {
+			robEngineObserver.communicationCompleted();
+		}
+	}
 }

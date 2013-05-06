@@ -56,7 +56,7 @@ public class Fuel extends Item {
 			robot.addFuel(this.power);
 			this.times--;
 			used = true;
-			System.out.println(POWER2 + robot.getFuel() + LINE_SEPARATOR
+			System.out.println(POWER + robot.getFuel() + LINE_SEPARATOR
                     + RECYCLED_MATERIAL + robot.getRecycledMaterial());
 
 
