@@ -2,8 +2,11 @@ package tp.pr5;
 
 import static tp.pr5.Constants.*;
 
+import java.util.Observer;
+
 import javax.swing.JOptionPane;
 
+import tp.pr5.console.Console;
 import tp.pr5.gui.NavigationPanel;
 import tp.pr5.instructions.exceptions.*;
 import tp.pr5.items.Item;
@@ -23,6 +26,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	private City cityMap;
 	private RobotEngine robot;
 	private NavigationPanel navPanel;
+	private Console navigationObserver;
 
 	/**
 	 * 
@@ -210,14 +214,12 @@ public class NavigationModule extends Observable<NavigationObserver> {
 
 		if (rotation.equals(Rotation.LEFT)) {
 			lookingDirection = lookingDirection.turnLeft();
-			if (navPanel != null)
-				navPanel.updateIcon(lookingDirection);
 		} else if (rotation.equals(Rotation.RIGHT)) {
 			lookingDirection = lookingDirection.turnRight();
-			if (navPanel != null)
-				navPanel.updateIcon(lookingDirection);
 		}
-
+		if (navPanel != null)
+			navPanel.updateIcon(lookingDirection);
+		navigationObserver.headingChanged(lookingDirection);
 	}
 
 	/**

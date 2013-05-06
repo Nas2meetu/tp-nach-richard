@@ -1,13 +1,13 @@
 package tp.pr5.console;
 
 import java.util.List;
-
 import tp.pr5.Direction;
 import tp.pr5.NavigationObserver;
 import tp.pr5.PlaceInfo;
 import tp.pr5.RobotEngineObserver;
 import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
+import static tp.pr5.Constants.*;
 
 public class Console extends Object implements NavigationObserver,
 		RobotEngineObserver, InventoryObserver {
@@ -18,8 +18,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void communicationCompleted() {
-		// TODO Auto-generated method stub
-
+		System.out.println(QUIT);
 	}
 
 	/**
@@ -28,8 +27,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void communicationHelp(String help) {
-		// TODO Auto-generated method stub
-
+		System.out.println(help);
 	}
 
 	/**
@@ -38,7 +36,10 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void engineOff(boolean atShip) {
-		// TODO Auto-generated method stub
+		if (atShip)
+			System.out.println(END_GAME);
+		else
+			System.out.println(END_FUEL);
 
 	}
 
@@ -48,8 +49,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void headingChanged(Direction newHeading) {
-		// TODO Auto-generated method stub
-
+		System.out.println(LOOKING_DIRECTION + newHeading);
 	}
 
 	/**
@@ -58,8 +58,8 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
-		// TODO Auto-generated method stub
-
+		System.out.println(initialPlace.toString() + LINE_SEPARATOR
+				+ LOOKING_DIRECTION + heading);
 	}
 
 	/**
@@ -68,7 +68,6 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void inventoryChange(List<Item> inventory) {
-		// TODO Auto-generated method stub
 
 	}
 

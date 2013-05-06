@@ -12,7 +12,7 @@ import tp.pr5.items.ItemContainer;
  * 
  */
 
-public class Place {
+public class Place implements PlaceInfo {
 
 	private String placeName;
 	private boolean isSpaceship;
@@ -26,7 +26,7 @@ public class Place {
 	 * @return placeName is name of place
 	 */
 	
-	public String getPlaceName() {
+	public String getName() {
 		return placeName;
 	}
 
@@ -173,5 +173,8 @@ public class Place {
 	public boolean existItem(String id) {
 		return itemsInPlace.getItem(id) != null;
 	}
+
+
+
 
 }

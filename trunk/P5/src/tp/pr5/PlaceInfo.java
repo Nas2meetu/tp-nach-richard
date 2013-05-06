@@ -6,18 +6,18 @@ public interface PlaceInfo {
 	 * Return the place description
 	 * 
 	 */
-	public void getDescription();
+	public String getDescription();
 
 	/**
 	 * Return the place name
 	 * 
 	 */
-	public void getName();
+	public String getName();
 
 	/**
 	 * Is this place the space ship?
 	 * 
 	 */
-	public void isSpaceship();
+	public boolean isSpaceship();
 
 }
