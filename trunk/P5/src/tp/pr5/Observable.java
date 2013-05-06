@@ -1,18 +1,15 @@
 package tp.pr5;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class Observable<T> {
 
-	private List<T> observers = new ArrayList<T>();
-
-	public List<T> getObservers() {
-		return observers;
-	}
-
-	public void setObservers(List<T> observers) {
-		this.observers = observers;
+	protected List<T> observers;
+	
+	public Observable()
+	{
+		this.observers = new Vector<T>();
 	}
 
 	public void addObserver(T observer) {

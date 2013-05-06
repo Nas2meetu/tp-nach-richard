@@ -7,7 +7,9 @@ import java.io.InputStream;
 import org.apache.commons.cli.*;
 import static tp.pr5.Constants.*;
 import tp.pr5.cityLoader.CityLoaderFromTxtFile;
+import tp.pr5.console.Console;
 import tp.pr5.gui.MainWindow;
+import tp.pr5.instructions.exceptions.InstructionExecutionException;
 
 /**
  * 
@@ -99,17 +101,24 @@ public class Main {
 						RobotEngine robot = new RobotEngine(city,
 								fileLoader.getInitialPlace(), Direction.NORTH);
 						final MainWindow gameWindow = new MainWindow(robot);
-						
+
 					} else if (interfaces.equalsIgnoreCase("console")) {
+						Console c = new Console();
 						RobotEngine robot = new RobotEngine(city,
 								fileLoader.getInitialPlace(), Direction.NORTH);
-						//falta ejecutar console
-					}else if (interfaces.equalsIgnoreCase("both")){
+						robot.addEngineObserver(c);
+						robot.addNavigationObserver(c);
+						robot.addItemContainerObserver(c);
+						try {
+							robot.startEngine();
+						} catch (InstructionExecutionException e) {
+							System.out.println(e.getMessage());
+						}
+					} else if (interfaces.equalsIgnoreCase("both")) {
 						RobotEngine robot = new RobotEngine(city,
 								fileLoader.getInitialPlace(), Direction.NORTH);
 						final MainWindow gameWindow = new MainWindow(robot);
-					}
-					else {
+					} else {
 						System.err.println(WRONG_INTERFACE);
 						System.exit(1);
 					}
