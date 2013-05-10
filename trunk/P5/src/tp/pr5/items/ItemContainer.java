@@ -1,6 +1,7 @@
 package tp.pr5.items;
 
 import static tp.pr5.Constants.*;
+import tp.pr5.Observable;
 import tp.pr5.gui.RobotPanel;
 
 /**
@@ -11,7 +12,7 @@ import tp.pr5.gui.RobotPanel;
  * 
  */
 
-public class ItemContainer {
+public class ItemContainer extends Observable<InventoryObserver> {
 
 	private int numberOfItems;
 	private Item[] container;
@@ -109,6 +110,24 @@ public class ItemContainer {
 			picked = item;
 		}
 		return picked;
+	}
+
+	public void requestScanCollection() {
+
+		for (InventoryObserver inventoryObserver : observers) {
+			inventoryObserver.inventoryScanned(this.showItems());
+		}
+
+	}
+
+	public void requestScanItem(String id) {
+		for (InventoryObserver inventoryObserver : observers) {
+			if (this.getItem(id) != null)
+				inventoryObserver
+						.itemScanned(this.getItem(id).getDescription());
+			else
+				inventoryObserver.itemEmpty(id);
+		}
 	}
 
 	/**
@@ -248,7 +267,7 @@ public class ItemContainer {
 			for (int i = 0; i < numberOfItems(); i++) {
 				showItems += "   " + container[i].getId() + LINE_SEPARATOR;
 			}
-			System.out.println(CONTAINER);
+			// System.out.println(CONTAINER);
 			return showItems;
 		}
 	}
@@ -272,6 +291,16 @@ public class ItemContainer {
 		return data;
 	}
 
-
+	/**
+	 * Method called by the OperateInstruction when an item stored in the
+	 * collection is successfully used.
+	 * 
+	 * @param item
+	 *            to be used
+	 */
+	public void useItem(Item item) {
+		
+		
+	}
 
 }

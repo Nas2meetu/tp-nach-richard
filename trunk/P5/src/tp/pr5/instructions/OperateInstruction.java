@@ -32,10 +32,10 @@ public class OperateInstruction implements Instruction {
 	public OperateInstruction() {
 
 	}
-	
+
 	/**
-	 * Read a string with an action, compare if this action is correct 
-	 * and generate OperateInstruction, else throw an exception.
+	 * Read a string with an action, compare if this action is correct and
+	 * generate OperateInstruction, else throw an exception.
 	 */
 
 	@Override
@@ -56,7 +56,7 @@ public class OperateInstruction implements Instruction {
 		} else
 			throw new WrongInstructionFormatException();
 	}
-	
+
 	/**
 	 * Show information about OPERATE instruction syntax.
 	 */
@@ -68,15 +68,14 @@ public class OperateInstruction implements Instruction {
 
 	/**
 	 * 
-	 * Method receives complete engine and use part of configureContext 
-	 * depends of the instruction needs.
+	 * Method receives complete engine and use part of configureContext depends
+	 * of the instruction needs.
 	 * 
-	 * engine robot engine
-     * navigation information about map (actualPlace, currentHeading, rotation...)
-     * robotContainer inventory of robot 
+	 * engine robot engine navigation information about map (actualPlace,
+	 * currentHeading, rotation...) robotContainer inventory of robot
 	 * 
 	 */
-	
+
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
@@ -84,28 +83,30 @@ public class OperateInstruction implements Instruction {
 		this.robot = engine;
 		this.robotContainer = robotContainer;
 	}
-	
+
 	/**
-	 * Execute OPERATE instruction
-	 * Verify if item isn't null and can be used.
+	 * Execute OPERATE instruction Verify if item isn't null and can be used.
 	 */
-	
+
 	@Override
 	public void execute() throws InstructionExecutionException {
-		
+
 		Item item = robotContainer.getItem(id);
 		if (item != null && item.canBeUsed()
 				&& robotContainer.getId(item).equalsIgnoreCase(id)) {
-			if (!item.use(robot, navigation))
+			if (item.use(robot, navigation))
+				System.out.println(POWER + robot.getFuel() + LINE_SEPARATOR
+						+ RECYCLED_MATERIAL + robot.getRecycledMaterial());
+			else
 				throw new InstructionExecutionException(ITEM_PROBLEMS + id);
 		}
 		if (item != null && !item.canBeUsed()) {
 			robotContainer.pickItem(id);
 			robotContainer.updateInventory();
 			System.out.println(ITEM_CANT_USED + id + IN_MY_INVENTORY);
-		} else if (item==null)
+		} else if (item == null)
 			throw new InstructionExecutionException(ITEM_PROBLEMS + id);
-		
+
 	}
 
 }

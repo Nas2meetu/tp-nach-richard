@@ -81,7 +81,7 @@ public class Place implements PlaceInfo {
 	public boolean dropItem(Item it) {
 		
 		if (itemsInPlace.containsItem(it.getId()))
-			System.out.println(CONTAINER_NO_ITEM + it.getId());
+			System.out.println(ITEM_NOT_EXIST + it.getId());
 		else if(itemsInPlace.addItem(it)){
 		    System.out.println(PLACE_ITEM + it.getId());
 		    return true;

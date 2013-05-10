@@ -93,10 +93,10 @@ public class ScanInstruction implements Instruction {
 			System.out.println(robotContainer.showItems());
 		} else {
 			Item item = robotContainer.getItem(id);
-			if (item != null)
-				System.out.println(WALLE_SAYS + item.toString());
-			else
-				throw new InstructionExecutionException(SCAN_NO_ITEM + id);
+//			if (item != null)
+//				System.out.println(WALLE_SAYS + item.toString());
+			//else
+			//	throw new InstructionExecutionException(SCAN_NO_ITEM + id);
 		}
 	}
 }
