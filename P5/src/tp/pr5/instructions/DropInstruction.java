@@ -96,7 +96,7 @@ public class DropInstruction implements Instruction {
 			} else
 				throw new InstructionExecutionException(PLACE_REPEAT_ITEM + id);
 		else
-			throw new InstructionExecutionException(CONTAINER_NO_ITEM + id
+			throw new InstructionExecutionException(ITEM_NOT_EXIST + id
 					+ ".");
 				
 

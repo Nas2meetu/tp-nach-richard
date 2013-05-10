@@ -41,7 +41,7 @@ public class Constants {
 	public static final String CONTAINER_ITEM = WALLE_SAYS
 			+ "I am happy! Now I have ";
 
-	public static final String CONTAINER_NO_ITEM = "You do not have any ";
+	public static final String ITEM_NOT_EXIST = "You do not have any ";
 
 	public static final String CONTAINER_REPEAT_ITEM = WALLE_SAYS
 			+ "I am stupid! I had already the object ";

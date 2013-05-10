@@ -31,7 +31,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	private RobotPanel robotPanel;
 	private MainWindow mainWindow;
 	private boolean ship;
-	private Console robotObserver;
 	private boolean endGame;
 	private Instruction instruction;
 
@@ -66,6 +65,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 *            The observer that wants to be registered
 	 */
 	public void addEngineObserver(RobotEngineObserver observer) {
+		this.addObserver(observer);
 
 	}
 
@@ -78,12 +78,13 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 	public void addFuel(int newFuel) {
 		this.contFuel += newFuel;
-		for (RobotEngineObserver robotObserver : observers) {
-			robotObserver.robotUpdate(contFuel, contRecycledMaterial);
-		}
+		
 		if (contFuel <= 0) {
 			contFuel = 0;
-			robotObserver.engineOff(false);
+		}
+		
+		for (RobotEngineObserver robotObserver : observers) {
+			robotObserver.robotUpdate(contFuel, contRecycledMaterial);
 		}
 		if (robotPanel != null)
 			robotPanel.setFuel(contFuel);
@@ -96,7 +97,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 *            The observer that wants to be registered
 	 */
 	public void addItemContainerObserver(InventoryObserver ContainerObserver) {
-
+	
 	}
 
 	/**
@@ -106,7 +107,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 *            The observer that wants to be registered
 	 */
 	public void addNavigationObserver(NavigationObserver robotObserver) {
-
+		navigation.addObserver(robotObserver);
 	}
 
 	/**
@@ -141,10 +142,10 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		c.configureContext(this, navigation, container);
 		try {
 			c.execute();
-			robotObserver.robotUpdate(fuel, recycledMaterial);
-			robotObserver.communicationCompleted();
 		} catch (InstructionExecutionException e) {
-			throw new InstructionExecutionException(e.getMessage());
+			for (RobotEngineObserver robotEngineObserver : observers) {
+				robotEngineObserver.raiseError(e.getMessage());
+			}
 		}
 	}
 
@@ -157,7 +158,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 */
 
 	private void engineOff(boolean ship) {
-		for (RobotEngineObserver robotObserver : this.observers)
+		for (RobotEngineObserver robotObserver : observers)
 			robotObserver.engineOff(ship);
 	}
 
@@ -187,7 +188,10 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * @param msg
 	 */
 	public void requestError(String msg) {
-
+		for (RobotEngineObserver robotObserver : observers) {
+			robotObserver.raiseError(msg);
+		}
+		
 	}
 
 	/**
@@ -197,7 +201,9 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 */
 
 	public void requestHelp() {
-		System.out.println(Interpreter.interpreterHelp());
+		for (RobotEngineObserver robotObserver : observers) {
+			robotObserver.communicationHelp(Interpreter.interpreterHelp());
+		}
 
 	}
 
@@ -208,8 +214,8 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 */
 
 	public void requestQuit() {
-		System.out.println(QUIT);
-		System.exit(0);
+		for (RobotEngineObserver robotObserver : observers)
+			robotObserver.communicationCompleted();
 	}
 
 	/**
@@ -217,6 +223,8 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * 
 	 */
 	public void requestStart() {
+
+	
 
 	}
 
@@ -226,6 +234,9 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * @param message
 	 */
 	public void saySomething(String message) {
+		for (RobotEngineObserver robotObserver : observers) {
+			robotObserver.robotSays(message);
+		}
 
 	}
 
@@ -266,7 +277,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	public Street getHeadingStreet() {
 		return navigation.getCityMap().lookForStreet(
 				navigation.getCurrentPlace(), navigation.getCurrentHeading());
-
 	}
 
 	/**

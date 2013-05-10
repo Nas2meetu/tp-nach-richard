@@ -1,12 +1,7 @@
 package tp.pr5;
 
 import static tp.pr5.Constants.*;
-
-import java.util.Observer;
-
 import javax.swing.JOptionPane;
-
-import tp.pr5.console.Console;
 import tp.pr5.gui.NavigationPanel;
 import tp.pr5.instructions.exceptions.*;
 import tp.pr5.items.Item;
@@ -26,7 +21,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	private City cityMap;
 	private RobotEngine robot;
 	private NavigationPanel navPanel;
-	private Console navigationObserver;
 
 	/**
 	 * 
@@ -218,7 +212,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		}
 		if (navPanel != null)
 			navPanel.updateIcon(lookingDirection);
-		navigationObserver.headingChanged(lookingDirection);
+		//navigationObserver.headingChanged(lookingDirection);
 	}
 
 	/**
@@ -227,7 +221,9 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	 * 
 	 */
 	public void scanCurrentPlace() {
-
+		for (NavigationObserver navObserver : observers) {
+			navObserver.placeScanned(actualPlace);
+		}
 	}
 
 	/**

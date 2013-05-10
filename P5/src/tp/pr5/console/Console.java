@@ -68,7 +68,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void inventoryChange(List<Item> inventory) {
-
+		System.out.println(inventory.toString());
 	}
 
 	/**
@@ -77,8 +77,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
-		// TODO Auto-generated method stub
-
+		System.out.println(CONTAINER + inventoryDescription + LINE_SEPARATOR);
 	}
 
 	/**
@@ -87,7 +86,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void itemEmpty(String itemName) {
-		// TODO Auto-generated method stub
+		System.out.println(ITEM_NOT_EXIST + itemName);
 
 	}
 
@@ -97,7 +96,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void itemScanned(String description) {
-		// TODO Auto-generated method stub
+		System.out.println(WALLE_SAYS + description);
 	}
 
 	/**
