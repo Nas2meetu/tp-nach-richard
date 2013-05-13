@@ -110,7 +110,7 @@ public class Main {
 						robot.addNavigationObserver(c);
 						robot.addItemContainerObserver(c);
 						try {
-							robot.startEngine();
+							//TODO comienzo del juego por redactar
 						} catch (InstructionExecutionException e) {
 							System.out.println(e.getMessage());
 						}

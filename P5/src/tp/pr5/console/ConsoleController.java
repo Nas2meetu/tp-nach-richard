@@ -36,7 +36,7 @@ public class ConsoleController extends Controller {
 		boolean ship = false;
 		Instruction instruction = null;
 		
-		while (!robot.isOver(ship)) {// TODO mirar esto con detenimiento
+		while (!robot.isOver()) {// TODO mirar esto con detenimiento
 			System.out.print(PROMPT);
 			String input = reader.nextLine();
 			try {
