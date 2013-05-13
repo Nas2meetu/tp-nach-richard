@@ -73,7 +73,7 @@ public class Constants {
 
 	public static final String IMAGES_DONT_LOAD = "Error to load images";
 
-	public static final Integer INITIAL_POWER = 50;
+	public static final Integer INITIAL_POWER = 100;
 
 	public static final Integer INITIAL_GARBAGE = 0;
 
