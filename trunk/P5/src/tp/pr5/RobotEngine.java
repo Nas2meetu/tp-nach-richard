@@ -26,6 +26,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	private NavigationModule navigation;
 	private RobotPanel robotPanel;
 	private MainWindow mainWindow;
+	private boolean isOver;
 
 	/**
 	 * 
@@ -45,8 +46,9 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		this.container = new ItemContainer();
 		this.contFuel = INITIAL_POWER;
 		this.contRecycledMaterial = INITIAL_GARBAGE;
-		this.navigation = new NavigationModule(city, initialPlace, this);
+		this.navigation = new NavigationModule(city, initialPlace);
 		this.navigation.initHeading(direction);
+		this.isOver=false;
 
 	}
 
@@ -70,11 +72,9 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 	public void addFuel(int newFuel) {
 		this.contFuel += newFuel;
-
 		if (contFuel <= 0) {
 			contFuel = 0;
 		}
-
 		notifyRobotUpdate();
 		if (robotPanel != null)
 			robotPanel.setFuel(contFuel);
@@ -144,7 +144,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * @param ship
 	 */
 
-	private void requestEngineOff(boolean ship) {
+	private void notifyEngineOff(boolean ship) {
 		for (RobotEngineObserver robotObserver : observers)
 			robotObserver.engineOff(ship);
 	}
@@ -153,21 +153,21 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * 
 	 * @return
 	 */
-	public boolean isOver(boolean ship) {
-		return this.engineOff(ship);
-
+	public boolean isOver() {
+		return isOver;
 	}
 
-	public boolean engineOff(boolean ship) {
+	public void engineOff(boolean ship) {
 		if (mainWindow != null)
 			mainWindow.engineOff(ship);
 		if (ship) {
-			System.out.print(END_GAME + LINE_SEPARATOR);
-			return true;
+			this.notifyEngineOff(true);
+			isOver=true;
 		} else {
-			System.out.println(END_FUEL);
-			return false;
+			this.notifyEngineOff(false);
+			isOver=false;
 		}
+		
 
 	}
 

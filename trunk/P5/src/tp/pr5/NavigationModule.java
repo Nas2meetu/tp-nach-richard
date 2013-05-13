@@ -1,6 +1,7 @@
 package tp.pr5;
 
 import static tp.pr5.Constants.*;
+
 import javax.swing.JOptionPane;
 import tp.pr5.gui.NavigationPanel;
 import tp.pr5.instructions.exceptions.*;
@@ -19,7 +20,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	private Place actualPlace;
 	private Direction lookingDirection;
 	private City cityMap;
-	private RobotEngine robot;
 	private NavigationPanel navPanel;
 
 	/**
@@ -41,23 +41,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		this.lookingDirection = Direction.NORTH;
 	}
 
-	/**
-	 * Constructor of three parameter to create a NavigationModule
-	 * 
-	 * @param city
-	 *            is the map where the robot lives
-	 * @param robot
-	 * @param currentPlace
-	 *            place where robot is
-	 * 
-	 */
-
-	public NavigationModule(City city, Place currentPlace, RobotEngine robot) {
-
-		this(city, currentPlace);
-		this.robot = robot;
-
-	}
+	
 
 	/**
 	 * Checks if the robot has arrived at a spaceship
@@ -80,11 +64,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 
 	public void dropItemAtCurrentPlace(Item item) {
 		actualPlace.dropItem(item);
-		if (navPanel != null) {
-			JOptionPane.showMessageDialog(navPanel, DROP_ITEM + item.getId());
-			robot.getContainer().updateInventory();
-
-		}
+			// TODO robot.saySomething(DROP_ITEM + item.getId());
 	}
 
 	/**
@@ -146,12 +126,12 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		this.lookingDirection = heading;
 	}
 
-	
-	public void requestInitNavigationModule(){
+	public void requestInitNavigationModule() {
 		for (NavigationObserver navObserver : observers) {
 			navObserver.initNavigationModule(actualPlace, lookingDirection);
 		}
 	}
+
 	/**
 	 * The method tries to move the robot following the current direction. If
 	 * the movement is not possible because there is no street, or there is a
@@ -167,10 +147,12 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		if (getHeadingStreet() == null) {
 			throw new InstructionExecutionException(NO_STREET
 					+ lookingDirection);
-		} else if (getHeadingStreet().isOpen()) {
+		} 
+		if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
+		
 			if (actualPlace.isSpaceship() && (navPanel != null))
-				robot.isOver(true);
+				//TODO aqui antes se acababa el juego, ahora vete a saber
 			if (navPanel != null)
 				navPanel.showActualPlaceLog(actualPlace);
 		} else
@@ -218,7 +200,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		}
 		if (navPanel != null)
 			navPanel.updateIcon(lookingDirection);
-		//navigationObserver.headingChanged(lookingDirection);
+		// navigationObserver.headingChanged(lookingDirection);
 	}
 
 	/**
