@@ -77,7 +77,9 @@ public class MoveInstruction implements Instruction {
 		try {
 			navigation.move();
 			robot.addFuel(-5);
-			System.out.println(MOVE + navigation.getCurrentHeading());
+			robot.saySomething(MOVE + navigation.getCurrentHeading());
+			
+			//System.out.println();
 			//robot.printCurrentPlace();
 			//robot.printRobotExecuteState();
 

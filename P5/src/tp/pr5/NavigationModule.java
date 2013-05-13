@@ -146,6 +146,12 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		this.lookingDirection = heading;
 	}
 
+	
+	public void requestInitNavigationModule(){
+		for (NavigationObserver navObserver : observers) {
+			navObserver.initNavigationModule(actualPlace, lookingDirection);
+		}
+	}
 	/**
 	 * The method tries to move the robot following the current direction. If
 	 * the movement is not possible because there is no street, or there is a

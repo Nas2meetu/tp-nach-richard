@@ -1,14 +1,11 @@
 package tp.pr5.instructions;
 
 import static tp.pr5.Constants.*;
-
 import java.util.StringTokenizer;
-
 import tp.pr5.NavigationModule;
 import tp.pr5.RobotEngine;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 import tp.pr5.instructions.exceptions.WrongInstructionFormatException;
-import tp.pr5.items.Item;
 import tp.pr5.items.ItemContainer;
 
 /**
@@ -92,11 +89,11 @@ public class ScanInstruction implements Instruction {
 		if (id == null) {
 			System.out.println(robotContainer.showItems());
 		} else {
-			Item item = robotContainer.getItem(id);
-//			if (item != null)
-//				System.out.println(WALLE_SAYS + item.toString());
+			//Item item = robotContainer.getItem(id);
+			//if (item != null)
+			//	System.out.println(WALLE_SAYS + item.toString());
 			//else
-			//	throw new InstructionExecutionException(SCAN_NO_ITEM + id);
+				throw new InstructionExecutionException(SCAN_NO_ITEM + id);
 		}
 	}
 }

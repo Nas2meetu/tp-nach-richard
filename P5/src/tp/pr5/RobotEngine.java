@@ -30,9 +30,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	private NavigationModule navigation;
 	private RobotPanel robotPanel;
 	private MainWindow mainWindow;
-	private boolean ship;
-	private boolean endGame;
-	private Instruction instruction;
 
 	/**
 	 * 
@@ -54,7 +51,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		this.contRecycledMaterial = INITIAL_GARBAGE;
 		this.navigation = new NavigationModule(city, initialPlace, this);
 		this.navigation.initHeading(direction);
-		this.ship = false;
 
 	}
 
@@ -78,14 +74,12 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 	public void addFuel(int newFuel) {
 		this.contFuel += newFuel;
-		
+
 		if (contFuel <= 0) {
 			contFuel = 0;
 		}
-		
-		for (RobotEngineObserver robotObserver : observers) {
-			robotObserver.robotUpdate(contFuel, contRecycledMaterial);
-		}
+
+		notifyRobotUpdate();
 		if (robotPanel != null)
 			robotPanel.setFuel(contFuel);
 	}
@@ -97,7 +91,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 *            The observer that wants to be registered
 	 */
 	public void addItemContainerObserver(InventoryObserver ContainerObserver) {
-	
+
 	}
 
 	/**
@@ -119,9 +113,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 	public void addRecycledMaterial(int newMaterial) {
 		this.contRecycledMaterial += newMaterial;
-		for (RobotEngineObserver robotObserver : observers) {
-			robotObserver.robotUpdate(contFuel, contRecycledMaterial);
-		}
+		notifyRobotUpdate();
 		if (robotPanel != null)
 			robotPanel.setGarbage(newMaterial);
 	}
@@ -137,8 +129,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * @throws InstructionExecutionException
 	 */
 
-	public void communicateRobot(Instruction c)
-			throws InstructionExecutionException {
+	public void communicateRobot(Instruction c) {
 		c.configureContext(this, navigation, container);
 		try {
 			c.execute();
@@ -157,7 +148,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * @param ship
 	 */
 
-	private void engineOff(boolean ship) {
+	private void requestEngineOff(boolean ship) {
 		for (RobotEngineObserver robotObserver : observers)
 			robotObserver.engineOff(ship);
 	}
@@ -166,8 +157,22 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * 
 	 * @return
 	 */
-	public void isOver() {
-		this.engineOff(ship);
+	public boolean isOver(boolean ship) {
+		return this.engineOff(ship);
+
+	}
+
+	public boolean engineOff(boolean ship) {
+		if (mainWindow != null)
+			mainWindow.engineOff(ship);
+		if (ship) {
+			System.out.print(END_GAME + LINE_SEPARATOR);
+			return true;
+		} else {
+			System.out.println(END_FUEL);
+			return false;
+		}
+
 	}
 
 	/**
@@ -191,7 +196,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		for (RobotEngineObserver robotObserver : observers) {
 			robotObserver.raiseError(msg);
 		}
-		
+
 	}
 
 	/**
@@ -223,9 +228,14 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * 
 	 */
 	public void requestStart() {
+		navigation.requestInitNavigationModule();
+		notifyRobotUpdate();
+	}
 
-	
-
+	private void notifyRobotUpdate() {
+		for (RobotEngineObserver robotObserver : observers) {
+			robotObserver.robotUpdate(contFuel, contRecycledMaterial);
+		}
 	}
 
 	/**
@@ -335,32 +345,5 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * player win or lost game.
 	 * 
 	 */
-
-	public void startEngine() throws InstructionExecutionException {
-
-		Scanner reader = new Scanner(System.in);
-		endGame = false;
-
-		while (!this.noFuel() && !endGame) {
-			System.out.print(PROMPT);
-			String input = reader.nextLine();
-			try {
-				instruction = Interpreter.generateInstruction(input);
-				try {
-					this.communicateRobot(instruction);
-				} catch (Exception e) {
-					System.out.println(e.getMessage());
-				}
-				if (navigation.atSpaceship()) {
-					this.engineOff(true);
-					endGame = true;
-				}
-			} catch (WrongInstructionFormatException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-		reader.close();
-
-	}
 
 }
