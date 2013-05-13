@@ -24,15 +24,18 @@ public class PickInstruction implements Instruction {
 	private NavigationModule navigation;
 	private String id;
 	private ItemContainer robotContainer;
+	private RobotEngine robot;
 
 	public PickInstruction(String token2) {
 		this.id = token2;
 
 	}
 
-	public PickInstruction() {
 
+	public PickInstruction() {
+		// TODO Auto-generated constructor stub
 	}
+
 
 	/**
 	 * Read a string with an action, compare if this action is correct and
@@ -68,19 +71,27 @@ public class PickInstruction implements Instruction {
 
 	/**
 	 * 
-	 * Method receives complete engine and use part of configureContext depends
-	 * of the instruction needs.
+	 * Set the execution context. The method receives the entire engine 
+	 * (engine, navigation and the robot container) even though the actual implementation
+	 *  of execute() may not require it.
 	 * 
-	 * engine robot engine navigation information about map (actualPlace,
-	 * currentHeading, rotation...) robotContainer inventory of robot
+	 * engine 
+	 * 		The robot engine
+     * navigation 
+     * 		The information about the game, i.e., the places, current direction and 
+     * 		current heading to navigate
+     * robotContainer  
+     * 		The inventory of the robot 
 	 * 
 	 */
 
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
+		this.robot= engine;
 		this.navigation = navigation;
 		this.robotContainer = robotContainer;
+		
 	}
 
 	/**
@@ -96,7 +107,7 @@ public class PickInstruction implements Instruction {
 		else if (robotContainer.addItem(item)) {
 			navigation.pickItemFromCurrentPlace(item);
 			robotContainer.updateInventory();
-			System.out.println(CONTAINER_ITEM + id);
+			robot.saySomething(CONTAINER_ITEM + id);
 		} else
 			throw new InstructionExecutionException(CONTAINER_REPEAT_ITEM + id);
 

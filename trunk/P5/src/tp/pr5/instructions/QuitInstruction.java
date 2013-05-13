@@ -22,10 +22,10 @@ public class QuitInstruction implements Instruction {
 	private RobotEngine robot;
 
 	/**
-	 * Read a string with an action, compare if this action is correct 
-	 * and generate QuitInstruction, else throw an exception.
+	 * Read a string with an action, compare if this action is correct and
+	 * generate QuitInstruction, else throw an exception.
 	 */
-	
+
 	@Override
 	public Instruction parse(String cad) throws WrongInstructionFormatException {
 
@@ -39,7 +39,7 @@ public class QuitInstruction implements Instruction {
 		} else
 			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
-	
+
 	/**
 	 * Show information about QUIT instruction syntax.
 	 */
@@ -51,15 +51,20 @@ public class QuitInstruction implements Instruction {
 
 	/**
 	 * 
-	 * Method receives complete engine and use part of configureContext 
-	 * depends of the instruction needs.
+	 * Set the execution context. The method receives the entire engine 
+	 * (engine, navigation and the robot container) even though the actual implementation
+	 *  of execute() may not require it.
 	 * 
-	 * engine robot engine
-     * navigation information about map (actualPlace, currentHeading, rotation...)
-     * robotContainer inventory of robot 
+	 * engine 
+	 * 		The robot engine
+     * navigation 
+     * 		The information about the game, i.e., the places, current direction and 
+     * 		current heading to navigate
+     * robotContainer  
+     * 		The inventory of the robot 
 	 * 
 	 */
-	
+
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
@@ -68,12 +73,11 @@ public class QuitInstruction implements Instruction {
 	}
 
 	/**
-	 * Execute QUIT intruction
+	 * Execute QUIT instruction
 	 */
-	
+
 	@Override
 	public void execute() throws InstructionExecutionException {
-
 		robot.requestQuit();
 
 	}

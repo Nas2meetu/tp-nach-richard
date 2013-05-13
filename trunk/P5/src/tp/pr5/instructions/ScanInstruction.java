@@ -6,6 +6,7 @@ import tp.pr5.NavigationModule;
 import tp.pr5.RobotEngine;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 import tp.pr5.instructions.exceptions.WrongInstructionFormatException;
+import tp.pr5.items.Item;
 import tp.pr5.items.ItemContainer;
 
 /**
@@ -20,6 +21,7 @@ public class ScanInstruction implements Instruction {
 
 	private String id;
 	private ItemContainer robotContainer;
+	private RobotEngine robot;
 
 	public ScanInstruction(String token2) {
 		this.id = token2;
@@ -61,21 +63,27 @@ public class ScanInstruction implements Instruction {
 	public String getHelp() {
 		return "SCAN | ESCANEAR <id>";
 	}
-	
+
 	/**
 	 * 
-	 * Method receives complete engine and use part of configureContext 
-	 * depends of the instruction needs.
+	 * Set the execution context. The method receives the entire engine 
+	 * (engine, navigation and the robot container) even though the actual implementation
+	 *  of execute() may not require it.
 	 * 
-	 * engine robot engine
-     * navigation information about map (actualPlace, currentHeading, rotation...)
-     * robotContainer inventory of robot 
+	 * engine 
+	 * 		The robot engine
+     * navigation 
+     * 		The information about the game, i.e., the places, current direction and 
+     * 		current heading to navigate
+     * robotContainer  
+     * 		The inventory of the robot 
 	 * 
 	 */
-	
+
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
+		this.robot = engine;
 		this.robotContainer = robotContainer;
 
 	}
@@ -87,12 +95,17 @@ public class ScanInstruction implements Instruction {
 	@Override
 	public void execute() throws InstructionExecutionException {
 		if (id == null) {
-			System.out.println(robotContainer.showItems());
+			if (robotContainer.numberOfItems() == 0) {
+				robot.saySomething(CONTAINER_EMPTY);
+			} else {
+				robot.saySomething(CONTAINER);
+				robot.saySomething(robotContainer.toString());
+			}
 		} else {
-			//Item item = robotContainer.getItem(id);
-			//if (item != null)
-			//	System.out.println(WALLE_SAYS + item.toString());
-			//else
+			Item item = robotContainer.getItem(id);
+			if (item != null)
+				System.out.println(WALLE_SAYS + item.toString());
+			else
 				throw new InstructionExecutionException(SCAN_NO_ITEM + id);
 		}
 	}

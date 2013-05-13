@@ -107,7 +107,7 @@ public class Constants {
 	public static final String PLACE_EMPTY = "The place is empty. There are no objects to pick"
 			+ LINE_SEPARATOR;
 
-	public static final String PLACE_ITEM = "Great! I have dropped ";
+	public static final String DROP_ITEM = "Great! I have dropped ";
 
 	public static final String PLACE_NO_ITEM = WALLE_SAYS
 			+ "Ooops, this place has not the object ";

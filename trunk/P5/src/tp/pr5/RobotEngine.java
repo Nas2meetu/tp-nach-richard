@@ -1,15 +1,11 @@
 package tp.pr5;
 
-import java.util.Iterator;
-import java.util.Scanner;
 
-import tp.pr5.console.Console;
 import tp.pr5.gui.MainWindow;
 import tp.pr5.gui.NavigationPanel;
 import tp.pr5.gui.RobotPanel;
 import tp.pr5.instructions.Instruction;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
-import tp.pr5.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.ItemContainer;
 import static tp.pr5.Constants.*;
@@ -90,8 +86,8 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * @param ContainerObserver
 	 *            The observer that wants to be registered
 	 */
-	public void addItemContainerObserver(InventoryObserver ContainerObserver) {
-
+	public void addItemContainerObserver(InventoryObserver observer) {
+		container.addObserver(observer);
 	}
 
 	/**
@@ -100,8 +96,8 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * @param robotObserver
 	 *            The observer that wants to be registered
 	 */
-	public void addNavigationObserver(NavigationObserver robotObserver) {
-		navigation.addObserver(robotObserver);
+	public void addNavigationObserver(NavigationObserver observer) {
+		navigation.addObserver(observer);
 	}
 
 	/**
@@ -232,7 +228,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		notifyRobotUpdate();
 	}
 
-	private void notifyRobotUpdate() {
+	public void notifyRobotUpdate() {
 		for (RobotEngineObserver robotObserver : observers) {
 			robotObserver.robotUpdate(contFuel, contRecycledMaterial);
 		}

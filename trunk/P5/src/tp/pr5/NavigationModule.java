@@ -81,7 +81,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	public void dropItemAtCurrentPlace(Item item) {
 		actualPlace.dropItem(item);
 		if (navPanel != null) {
-			JOptionPane.showMessageDialog(navPanel, PLACE_ITEM + item.getId());
+			JOptionPane.showMessageDialog(navPanel, DROP_ITEM + item.getId());
 			robot.getContainer().updateInventory();
 
 		}
@@ -170,7 +170,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		} else if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
 			if (actualPlace.isSpaceship() && (navPanel != null))
-				robot.isOver();
+				robot.isOver(true);
 			if (navPanel != null)
 				navPanel.showActualPlaceLog(actualPlace);
 		} else

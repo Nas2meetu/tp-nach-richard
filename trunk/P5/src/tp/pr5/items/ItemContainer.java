@@ -115,7 +115,7 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	public void requestScanCollection() {
 
 		for (InventoryObserver inventoryObserver : observers) {
-			inventoryObserver.inventoryScanned(this.showItems());
+			inventoryObserver.inventoryScanned(this.toString());
 		}
 
 	}
@@ -251,27 +251,6 @@ public class ItemContainer extends Observable<InventoryObserver> {
 		return showItems;
 	}
 
-	/**
-	 * 
-	 * Show items of container.
-	 * 
-	 * @return showItems items of container of robot´s container.
-	 */
-
-	public String showItems() {
-
-		String showItems = "";
-		if (numberOfItems() == 0) {
-			return CONTAINER_EMPTY;
-		} else {
-			for (int i = 0; i < numberOfItems(); i++) {
-				showItems += "   " + container[i].getId() + LINE_SEPARATOR;
-			}
-			// System.out.println(CONTAINER);
-			return showItems;
-		}
-	}
-
 	public void setRobotPanel(RobotPanel robotPanel) {
 		this.robotPanel = robotPanel;
 
@@ -299,8 +278,7 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	 *            to be used
 	 */
 	public void useItem(Item item) {
-		
-		
+
 	}
 
 }
