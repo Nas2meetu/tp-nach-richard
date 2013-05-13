@@ -21,6 +21,7 @@ public class DropInstruction implements Instruction {
 	private NavigationModule navigation;
 	private String id;
 	private ItemContainer robotContainer;
+	private RobotEngine robot;
 
 	public DropInstruction(String id) {
 		this.id = id;
@@ -65,17 +66,20 @@ public class DropInstruction implements Instruction {
 
 	/**
 	 * 
-	 * Method receives complete engine and use part of configureContext depends
-	 * of the instruction needs.
+	 * Set the execution context. The method receives the entire engine (engine,
+	 * navigation and the robot container) even though the actual implementation
+	 * of execute() may not require it.
 	 * 
-	 * engine robot engine navigation information about map (actualPlace,
-	 * currentHeading, rotation...) robotContainer inventory of robot
+	 * engine The robot engine navigation The information about the game, i.e.,
+	 * the places, current direction and current heading to navigate
+	 * robotContainer The inventory of the robot
 	 * 
 	 */
 
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
+		this.robot = engine;
 		this.navigation = navigation;
 		this.robotContainer = robotContainer;
 
@@ -92,13 +96,12 @@ public class DropInstruction implements Instruction {
 		if (id != null && robotContainer.containsItem(id))
 			if (!navigation.findItemAtCurrentPlace(id)) {
 				navigation.dropItemAtCurrentPlace(robotContainer.pickItem(id));
+				robot.saySomething(DROP_ITEM + id);
 				navigation.updatePlace();
 			} else
 				throw new InstructionExecutionException(PLACE_REPEAT_ITEM + id);
 		else
-			throw new InstructionExecutionException(ITEM_NOT_EXIST + id
-					+ ".");
-				
+			throw new InstructionExecutionException(ITEM_NOT_EXIST + id + ".");
 
 	}
 

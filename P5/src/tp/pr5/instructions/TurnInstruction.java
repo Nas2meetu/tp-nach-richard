@@ -71,12 +71,17 @@ public class TurnInstruction implements Instruction {
 
 	/**
 	 * 
-	 * Method receives complete engine and use part of configureContext 
-	 * depends of the instruction needs.
+	 * Set the execution context. The method receives the entire engine 
+	 * (engine, navigation and the robot container) even though the actual implementation
+	 *  of execute() may not require it.
 	 * 
-	 * engine robot engine
-     * navigation information about map (actualPlace, currentHeading, rotation...)
-     * robotContainer inventory of robot 
+	 * engine 
+	 * 		The robot engine
+     * navigation 
+     * 		The information about the game, i.e., the places, current direction and 
+     * 		current heading to navigate
+     * robotContainer  
+     * 		The inventory of the robot 
 	 * 
 	 */
 
@@ -98,7 +103,7 @@ public class TurnInstruction implements Instruction {
 		if(rotation!=Rotation.UNKNONW)
 		{
 			robot.addFuel(-5);
-			
+			robot.notifyRobotUpdate();
 		}else
 			new InstructionExecutionException();
 	}

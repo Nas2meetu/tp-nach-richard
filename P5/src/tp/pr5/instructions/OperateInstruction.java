@@ -68,11 +68,13 @@ public class OperateInstruction implements Instruction {
 
 	/**
 	 * 
-	 * Method receives complete engine and use part of configureContext depends
-	 * of the instruction needs.
+	 * Set the execution context. The method receives the entire engine (engine,
+	 * navigation and the robot container) even though the actual implementation
+	 * of execute() may not require it.
 	 * 
-	 * engine robot engine navigation information about map (actualPlace,
-	 * currentHeading, rotation...) robotContainer inventory of robot
+	 * engine The robot engine navigation The information about the game, i.e.,
+	 * the places, current direction and current heading to navigate
+	 * robotContainer The inventory of the robot
 	 * 
 	 */
 
@@ -94,16 +96,13 @@ public class OperateInstruction implements Instruction {
 		Item item = robotContainer.getItem(id);
 		if (item != null && item.canBeUsed()
 				&& robotContainer.getId(item).equalsIgnoreCase(id)) {
-			if (item.use(robot, navigation))
-				System.out.println(POWER + robot.getFuel() + LINE_SEPARATOR
-						+ RECYCLED_MATERIAL + robot.getRecycledMaterial());
-			else
+			if (!item.use(robot, navigation))
 				throw new InstructionExecutionException(ITEM_PROBLEMS + id);
 		}
 		if (item != null && !item.canBeUsed()) {
 			robotContainer.pickItem(id);
 			robotContainer.updateInventory();
-			System.out.println(ITEM_CANT_USED + id + IN_MY_INVENTORY);
+			robot.saySomething(ITEM_CANT_USED + id + IN_MY_INVENTORY);
 		} else if (item == null)
 			throw new InstructionExecutionException(ITEM_PROBLEMS + id);
 

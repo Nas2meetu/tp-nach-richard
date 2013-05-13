@@ -18,6 +18,26 @@ public class Place implements PlaceInfo {
 	private boolean isSpaceship;
 	private String placeDescription;
 	private ItemContainer itemsInPlace;
+	
+	
+	/**
+	 * 
+	 * Constructor of three parameters with name and description place and if
+	 * this place has a Robot Space Ship
+	 * 
+	 * @param placeName is place name
+	 * @param isSpaceship is place where Spaceship is it
+	 * @param placeDescription is information about place
+	 * 
+	 */
+
+	public Place(String placeName, boolean isSpaceship, String placeDescription) {
+		this.placeName = placeName;
+		this.isSpaceship = isSpaceship;
+		this.placeDescription = placeDescription;
+		this.itemsInPlace = new ItemContainer();
+
+	}
 
 	/**
 	 * 
@@ -41,24 +61,7 @@ public class Place implements PlaceInfo {
 		return placeDescription;
 	}
 	
-	/**
-	 * 
-	 * Constructor of three parameters with name and description place and if
-	 * this place has a Robot Space Ship
-	 * 
-	 * @param placeName is place name
-	 * @param isSpaceship is place where Spaceship is it
-	 * @param placeDescription is information about place
-	 * 
-	 */
-
-	public Place(String placeName, boolean isSpaceship, String placeDescription) {
-		this.placeName = placeName;
-		this.isSpaceship = isSpaceship;
-		this.placeDescription = placeDescription;
-		this.itemsInPlace = new ItemContainer();
-
-	}
+	
 
 	/**
 	 * Constructor without parameters
@@ -79,15 +82,7 @@ public class Place implements PlaceInfo {
 	 */
 
 	public boolean dropItem(Item it) {
-		
-		if (itemsInPlace.containsItem(it.getId()))
-			System.out.println(ITEM_NOT_EXIST + it.getId());
-		else if(itemsInPlace.addItem(it)){
-		    System.out.println(PLACE_ITEM + it.getId());
-		    return true;
-		}else
-			 System.out.println(PLACE_REPEAT_ITEM + it.getId());
-		return false;	       
+		return (it!=null && itemsInPlace.addItem(it));	       
 
 	}
 
