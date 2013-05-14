@@ -1,6 +1,5 @@
 package tp.pr5;
 
-
 import tp.pr5.gui.MainWindow;
 import tp.pr5.gui.NavigationPanel;
 import tp.pr5.gui.RobotPanel;
@@ -26,7 +25,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	private NavigationModule navigation;
 	private RobotPanel robotPanel;
 	private MainWindow mainWindow;
-	private boolean isOver;
+	private boolean quit;
 
 	/**
 	 * 
@@ -48,7 +47,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		this.contRecycledMaterial = INITIAL_GARBAGE;
 		this.navigation = new NavigationModule(city, initialPlace);
 		this.navigation.initHeading(direction);
-		this.isOver=false;
+		this.quit = false;
 
 	}
 
@@ -125,28 +124,14 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * @throws InstructionExecutionException
 	 */
 
-	public void communicateRobot(Instruction c) {
+	public void communicateRobot(Instruction c)
+			throws InstructionExecutionException {
 		c.configureContext(this, navigation, container);
 		try {
 			c.execute();
 		} catch (InstructionExecutionException e) {
-			for (RobotEngineObserver robotEngineObserver : observers) {
-				robotEngineObserver.raiseError(e.getMessage());
-			}
+			throw new InstructionExecutionException(e.getMessage());
 		}
-	}
-
-	/**
-	 * 
-	 * Show different message in console mode if robot is at space ship or
-	 * hasn't got fuel
-	 * 
-	 * @param ship
-	 */
-
-	private void notifyEngineOff(boolean ship) {
-		for (RobotEngineObserver robotObserver : observers)
-			robotObserver.engineOff(ship);
 	}
 
 	/**
@@ -154,21 +139,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * @return
 	 */
 	public boolean isOver() {
-		return isOver;
-	}
-
-	public void engineOff(boolean ship) {
-		if (mainWindow != null)
-			mainWindow.engineOff(ship);
-		if (ship) {
-			this.notifyEngineOff(true);
-			isOver=true;
-		} else {
-			this.notifyEngineOff(false);
-			isOver=false;
-		}
-		
-
+		return (noFuel() || navigation.atSpaceship() || quit);
 	}
 
 	/**
@@ -208,15 +179,30 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 	}
 
+	public void requestQuit() {
+		notifyCommunicationCompleted();
+		quit = true;
+	}
+
+	private void notifyCommunicationCompleted() {
+		for (RobotEngineObserver robotObserver : observers) {
+			robotObserver.communicationCompleted();
+		}
+	}
+
 	/**
 	 * 
 	 * Requests the end of the simulation
 	 * 
 	 */
 
-	public void requestQuit() {
+	public void requestEnd() {
+		notifyEngineOff();
+	}
+
+	private void notifyEngineOff() {
 		for (RobotEngineObserver robotObserver : observers)
-			robotObserver.communicationCompleted();
+			robotObserver.engineOff(navigation.atSpaceship());
 	}
 
 	/**
@@ -329,17 +315,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		this.mainWindow = mainWindow;
 	}
 
-	public void requestComunicationEnd() {
-		for (RobotEngineObserver robEngineObserver : observers) {
-			robEngineObserver.communicationCompleted();
-		}
-	}
 
-	/**
-	 * 
-	 * Is the Start of game, show initial information, finish information and if
-	 * player win or lost game.
-	 * 
-	 */
-
+	
 }

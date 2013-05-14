@@ -103,7 +103,7 @@ public class TurnInstruction implements Instruction {
 		if(rotation!=Rotation.UNKNONW)
 		{
 			robot.addFuel(-5);
-			robot.notifyRobotUpdate();
+			//robot.notifyRobotUpdate();
 		}else
 			new InstructionExecutionException();
 	}

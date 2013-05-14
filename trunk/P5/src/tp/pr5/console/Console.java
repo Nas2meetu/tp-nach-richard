@@ -134,8 +134,8 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
-		System.out.println(place.getName() + place.getDescription()
-				+ LOOKING_DIRECTION + heading);
+		System.out.println(LOOKING_DIRECTION + heading + LINE_SEPARATOR
+				+ place.getName() + LINE_SEPARATOR + place.getDescription());
 	}
 
 	/**
@@ -154,7 +154,8 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
-		System.out.println(POWER + fuel + RECYCLED_MATERIAL + recycledMaterial);
+		System.out.println(POWER + fuel + LINE_SEPARATOR + RECYCLED_MATERIAL
+				+ recycledMaterial);
 
 	}
 

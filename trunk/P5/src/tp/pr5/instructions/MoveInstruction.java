@@ -84,7 +84,7 @@ public class MoveInstruction implements Instruction {
 			robot.addFuel(-5);
 			robot.saySomething(MOVE + navigation.getCurrentHeading());
 		} catch (InstructionExecutionException e) {
-			throw new InstructionExecutionException(e);
+			throw new InstructionExecutionException(e.getMessage());
 		}
 
 	}
