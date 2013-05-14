@@ -150,7 +150,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		} 
 		if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
-		
+			notifyRobotArrivesAtPlace();
 			if (actualPlace.isSpaceship() && (navPanel != null))
 				//TODO aqui antes se acababa el juego, ahora vete a saber
 			if (navPanel != null)
@@ -160,6 +160,14 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		if (navPanel != null)
 			navPanel.updateCity(actualPlace, lookingDirection);
 
+	}
+
+
+
+	private void notifyRobotArrivesAtPlace() {
+		for (NavigationObserver navObserver : observers	) {
+			navObserver.robotArrivesAtPlace(lookingDirection, actualPlace);
+		}
 	}
 
 	/**

@@ -79,6 +79,7 @@ public class QuitInstruction implements Instruction {
 	@Override
 	public void execute() throws InstructionExecutionException {
 		robot.requestQuit();
+		System.exit(0);
 
 	}
 

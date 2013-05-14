@@ -4,7 +4,7 @@ import tp.pr5.items.InventoryObserver;
 
 public class Controller {
 
-	RobotEngine robot;
+	protected RobotEngine robot;
 
 	public Controller(RobotEngine robot) {
 		this.robot = robot;
