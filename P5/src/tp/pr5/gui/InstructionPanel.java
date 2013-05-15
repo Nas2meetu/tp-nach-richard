@@ -30,7 +30,7 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 
 	private static final long serialVersionUID = 1L;
 	private JComboBox<Rotation> cbDirections;
-	private RobotEngine robot;
+	private GUIController guiController;
 	private JTextField txtBox;
 	private RobotPanel robotPanel;
 	private MainWindow mainWindow;
@@ -39,17 +39,17 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 	 * 
 	 * Panel with instruction buttons
 	 * 
-	 * @param robot
+	 * @param guiController
 	 * @param robotPanel
 	 *            displays information about the robot and its inventory
 	 * 
 	 */
 
-	public InstructionPanel(RobotEngine robot, RobotPanel robotPanel,
+	public InstructionPanel(GUIController guiController, RobotPanel robotPanel,
 			MainWindow mainWindow) {
 
 		super();
-		this.robot = robot;
+		this.guiController = guiController;
 		this.robotPanel = robotPanel;
 		this.mainWindow = mainWindow;
 		this.setBorder(new TitledBorder("Instructions"));
@@ -117,11 +117,11 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 					id = robotPanel.getSelectedItem();
 					if (id != null) {
 						Instruction dropInstruction = new DropInstruction(id);
-						try {
-							robot.communicateRobot(dropInstruction);
-						} catch (InstructionExecutionException e1) {
-							e1.printStackTrace();
-						}
+//			TODO			try {
+//							guiController.communicateRobot(dropInstruction);
+//						} catch (InstructionExecutionException e1) {
+//							e1.printStackTrace();
+//						}
 					}
 				}
 			}
@@ -148,12 +148,12 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 			public void actionPerformed(ActionEvent e) {
 				if (!mainWindow.isEnd()) {
 					Instruction moveInstruction = new MoveInstruction();
-					try {
-						robot.communicateRobot(moveInstruction);
-					} catch (InstructionExecutionException e1) {
-						JOptionPane.showMessageDialog(getRootPane(),
-								e1.getMessage());
-					}
+//		TODO			try {
+//						guiController.communicateRobot(moveInstruction);
+//					} catch (InstructionExecutionException e1) {
+//						JOptionPane.showMessageDialog(getRootPane(),
+//								e1.getMessage());
+//					}
 				}
 			}
 		});
@@ -187,12 +187,12 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 					if (id != null) {
 						Instruction operateInstruction = new OperateInstruction(
 								id);
-						try {
-							robot.communicateRobot(operateInstruction);
-						} catch (InstructionExecutionException e1) {
-							JOptionPane.showMessageDialog(getRootPane(),
-									e1.getMessage());
-						}
+//		TODO				try {
+//							guiController.communicateRobot(operateInstruction);
+//						} catch (InstructionExecutionException e1) {
+//							JOptionPane.showMessageDialog(getRootPane(),
+//									e1.getMessage());
+//						}
 					}
 				}
 			}
@@ -227,12 +227,12 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 					String id = txtBox.getText();
 					if (!id.equals("")) {
 						Instruction pickInstruction = new PickInstruction(id);
-						try {
-							robot.communicateRobot(pickInstruction);
-						} catch (InstructionExecutionException e1) {
-							JOptionPane.showMessageDialog(getRootPane(),
-									e1.getMessage());
-						}
+//		TODO				try {
+//							guiController.communicateRobot(pickInstruction);
+//						} catch (InstructionExecutionException e1) {
+//							JOptionPane.showMessageDialog(getRootPane(),
+//									e1.getMessage());
+//						}
 					} else
 						JOptionPane.showMessageDialog(getRootPane(),
 								NO_WRITTE_ITEM);
@@ -292,12 +292,12 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 					Instruction turnInstruction = new TurnInstruction(
 							cbDirections.getItemAt(cbDirections
 									.getSelectedIndex()));
-					try {
-						robot.communicateRobot(turnInstruction);
-					} catch (InstructionExecutionException e1) {
-						JOptionPane.showConfirmDialog(getRootPane(),
-								e1.toString());
-					}
+//		TODO			try {
+//						guiController.communicateRobot(turnInstruction);
+//					} catch (InstructionExecutionException e1) {
+//						JOptionPane.showConfirmDialog(getRootPane(),
+//								e1.toString());
+//					}
 
 				}
 			}

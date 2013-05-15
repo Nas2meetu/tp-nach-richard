@@ -15,10 +15,11 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private RobotEngine robot;
 	private NavigationPanel navigationPanel;
-	private JPanel mainPanel;
 	private InstructionPanel instructionsPanel;
+	private InfoPanel infoPanel;
+	private GUIController guiController;
+	private JPanel mainPanel;
 	private boolean end = false;
 
 	public void setMainPanel(JPanel mainPanel) {
@@ -30,15 +31,15 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 	 * reference to the RobotEngine object and provides the panels to the robot
 	 * engine in order to communicate the simulation events.
 	 * 
-	 * @param robot
+	 * @param guiController
 	 *            The RobotEngine that receives the instructions performed by
 	 *            the action panel
 	 */
 
-	public MainWindow(RobotEngine robot) {
+	public MainWindow(GUIController	guiController) {
 
 		super("WALL·E the garbage collector");
-		this.robot = robot;
+		guiController = guiController;
 		this.setPreferredSize(new Dimension(900, 700));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -48,7 +49,7 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 
 		RobotPanel robotPanel = new RobotPanel();
 
-		instructionsPanel = new InstructionPanel(robot, robotPanel, this);
+		instructionsPanel = new InstructionPanel(guiController, robotPanel, this);
 		JSplitPane SuperiorPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 				instructionsPanel, robotPanel);
 		mainPanel.add(SuperiorPanel, BorderLayout.NORTH);
@@ -57,17 +58,17 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 		JSplitPane inferiorPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
 				SuperiorPanel, this.navigationPanel);
 		mainPanel.add(inferiorPanel, BorderLayout.CENTER);
+		mainPanel.add(infoPanel, BorderLayout.SOUTH);
+		
+		this.infoPanel = new InfoPanel();
 
 		this.add(mainPanel);
 
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
-
-		robot.setNavigationPanel(navigationPanel);
-		robot.setRobotPanel(robotPanel);
-		robot.setGUi(this);
-
+		
+	
 	}
 
 	/**

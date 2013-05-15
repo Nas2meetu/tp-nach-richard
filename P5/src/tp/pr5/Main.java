@@ -9,6 +9,7 @@ import static tp.pr5.Constants.*;
 import tp.pr5.cityLoader.CityLoaderFromTxtFile;
 import tp.pr5.console.Console;
 import tp.pr5.console.ConsoleController;
+import tp.pr5.gui.GUIController;
 import tp.pr5.gui.MainWindow;
 
 /**
@@ -97,14 +98,14 @@ public class Main {
 
 				interfaces = cmdLine.getOptionValue("i");
 				if (interfaces != null) {
+					RobotEngine robot = new RobotEngine(city,
+							fileLoader.getInitialPlace(), Direction.NORTH);
 					if (interfaces.equalsIgnoreCase("swing")) {
-						RobotEngine robot = new RobotEngine(city,
-								fileLoader.getInitialPlace(), Direction.NORTH);
-						final MainWindow gameWindow = new MainWindow(robot);
+						GUIController gc = new GUIController(robot);
+						final MainWindow mainWindow = new MainWindow(gc);
+						gc.startGuiController();
 
 					} else if (interfaces.equalsIgnoreCase("console")) {
-						RobotEngine robot = new RobotEngine(city,
-								fileLoader.getInitialPlace(), Direction.NORTH);
 						ConsoleController cc = new ConsoleController(robot);
 						Console c = new Console();
 						robot.addEngineObserver(c);
@@ -113,9 +114,16 @@ public class Main {
 						cc.startController();
 						
 					} else if (interfaces.equalsIgnoreCase("both")) {
-						RobotEngine robot = new RobotEngine(city,
-								fileLoader.getInitialPlace(), Direction.NORTH);
-						final MainWindow gameWindow = new MainWindow(robot);
+						GUIController gc = new GUIController(robot);
+						ConsoleController cc = new ConsoleController(robot);
+						Console c = new Console();
+						
+						robot.addEngineObserver(c);
+						robot.addNavigationObserver(c);
+						robot.addItemContainerObserver(c);
+						cc.startController();
+						final MainWindow mainWindow = new MainWindow(gc);
+						
 					} else {
 						System.err.println(WRONG_INTERFACE);
 						System.exit(1);
