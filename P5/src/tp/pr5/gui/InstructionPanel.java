@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import tp.pr5.RobotEngine;
+import tp.pr5.RobotEngineObserver;
 import tp.pr5.Rotation;
 import tp.pr5.instructions.DropInstruction;
 import tp.pr5.instructions.Instruction;
@@ -25,7 +26,7 @@ import tp.pr5.instructions.PickInstruction;
 import tp.pr5.instructions.TurnInstruction;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 
-public class InstructionPanel extends JPanel {
+public class InstructionPanel extends JPanel implements RobotEngineObserver{
 
 	private static final long serialVersionUID = 1L;
 	private JComboBox<Rotation> cbDirections;
@@ -302,6 +303,42 @@ public class InstructionPanel extends JPanel {
 			}
 		});
 
+	}
+
+	@Override
+	public void communicationCompleted() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void communicationHelp(String help) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void engineOff(boolean atShip) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void raiseError(String msg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void robotSays(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void robotUpdate(int fuel, int recycledMaterial) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

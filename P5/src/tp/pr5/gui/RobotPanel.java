@@ -2,6 +2,7 @@ package tp.pr5.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.List;
 
 import static tp.pr5.Constants.*;
 
@@ -13,6 +14,10 @@ import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
+import tp.pr5.RobotEngineObserver;
+import tp.pr5.items.InventoryObserver;
+import tp.pr5.items.Item;
+
 /**
  * 
  * @author Ignacio Cerda Sanchez
@@ -21,7 +26,7 @@ import javax.swing.table.AbstractTableModel;
  * 
  */
 
-public class RobotPanel extends JPanel {
+public class RobotPanel extends JPanel implements RobotEngineObserver, InventoryObserver{
 
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFuel, lbRecycledMaterial;
@@ -54,7 +59,7 @@ public class RobotPanel extends JPanel {
 		pContInfo.add(gargabeLabel);
 		pContInfo.add(lbRecycledMaterial);
 
-		// Table with invetory items
+		// Table with inventory items
 
 		tbInventoryModel = new InventoryTableModel();
 		tbInventory = new JTable(tbInventoryModel);
@@ -74,10 +79,6 @@ public class RobotPanel extends JPanel {
 
 	public void setFuel(Integer fuel) {
 		lbFuel.setText(fuel.toString());
-		// if (fuel == 0) {
-		// JOptionPane.showMessageDialog(this, END_FUEL);
-		// System.exit(0);
-		// }
 	}
 
 	/**
@@ -208,6 +209,66 @@ public class RobotPanel extends JPanel {
 	public void updateTable(String[][] items) {
 		tbInventoryModel.updateData(items);
 
+	}
+
+	@Override
+	public void inventoryChange(List<Item> inventory) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void inventoryScanned(String inventoryDescription) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void itemEmpty(String itemName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void itemScanned(String description) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void communicationCompleted() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void communicationHelp(String help) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void engineOff(boolean atShip) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void raiseError(String msg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void robotSays(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void robotUpdate(int fuel, int recycledMaterial) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

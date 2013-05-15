@@ -1,0 +1,19 @@
+package tp.pr5.gui;
+
+import tp.pr5.Controller;
+import tp.pr5.RobotEngine;
+
+public class GUIController extends Controller{
+
+	public GUIController(RobotEngine robot) {
+		super(robot);
+	}
+
+	public void startGuiController(){
+		starGui();
+	}
+
+	private void starGui() {
+		
+	}
+}
