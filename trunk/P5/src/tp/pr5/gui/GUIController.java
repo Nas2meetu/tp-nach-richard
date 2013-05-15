@@ -10,10 +10,6 @@ public class GUIController extends Controller{
 	}
 
 	public void startGuiController(){
-		starGui();
-	}
-
-	private void starGui() {
-		
+		robot.requestStart();
 	}
 }
