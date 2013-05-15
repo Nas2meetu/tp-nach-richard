@@ -10,7 +10,6 @@ import tp.pr5.cityLoader.CityLoaderFromTxtFile;
 import tp.pr5.console.Console;
 import tp.pr5.console.ConsoleController;
 import tp.pr5.gui.MainWindow;
-import tp.pr5.instructions.exceptions.InstructionExecutionException;
 
 /**
  * 
@@ -22,7 +21,7 @@ public class Main {
 
 	/**
 	 * 
-	 * Commons-Cli Load file with places, streets and items, create city and
+	 * Commons-Cli Load file with places, streets and , create city and
 	 * start game's interface and console
 	 * 
 	 * @param args

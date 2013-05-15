@@ -25,7 +25,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	private NavigationModule navigation;
 	private RobotPanel robotPanel;
 	private MainWindow mainWindow;
-	private boolean quit;
 
 	/**
 	 * 
@@ -47,8 +46,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		this.contRecycledMaterial = INITIAL_GARBAGE;
 		this.navigation = new NavigationModule(city, initialPlace);
 		this.navigation.initHeading(direction);
-		this.quit = false;
-
 	}
 
 	/**
@@ -139,7 +136,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 * @return
 	 */
 	public boolean isOver() {
-		return (noFuel() || navigation.atSpaceship() || quit);
+		return (noFuel() || navigation.atSpaceship());
 	}
 
 	/**
@@ -181,7 +178,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 	public void requestQuit() {
 		notifyCommunicationCompleted();
-		quit = true;
+		System.exit(0);
 	}
 
 	private void notifyCommunicationCompleted() {

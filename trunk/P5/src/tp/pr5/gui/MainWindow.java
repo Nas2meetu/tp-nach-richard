@@ -6,9 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import tp.pr5.RobotEngine;
+import tp.pr5.RobotEngineObserver;
 import static tp.pr5.Constants.*;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements RobotEngineObserver{
 
 	/**
 	 * 
@@ -135,6 +136,36 @@ public class MainWindow extends JFrame {
 			end = true;
 
 		}
+	}
+
+	@Override
+	public void communicationCompleted() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void communicationHelp(String help) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void raiseError(String msg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void robotSays(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void robotUpdate(int fuel, int recycledMaterial) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
