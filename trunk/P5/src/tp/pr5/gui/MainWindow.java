@@ -38,7 +38,7 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 
 	public MainWindow(GUIController	guiController) {
 
-		super("WALL·E the garbage collector");
+		super(TITLE_GAME);
 		guiController = guiController;
 		this.setPreferredSize(new Dimension(900, 700));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

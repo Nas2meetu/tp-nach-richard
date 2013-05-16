@@ -2,13 +2,10 @@ package tp.pr5.gui;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-
 import tp.pr5.Direction;
 import tp.pr5.NavigationObserver;
-import tp.pr5.Place;
 import tp.pr5.PlaceInfo;
 import static tp.pr5.Constants.*;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -51,13 +48,15 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 		pRobotImage = new JPanel();
 		pRobotImage.setLayout(new BoxLayout(pRobotImage, BoxLayout.Y_AXIS));
 
-		URL urlImage = MainWindow.class.getResource("images/walleNorth.png");
-		if (urlImage == null)
-			JOptionPane.showMessageDialog(this, IMAGES_DONT_LOAD);
+		//urlImage = MainWindow.class.getResource("images/walleNorth.png");
+	//	if (urlImage == null)
+		//	JOptionPane.showMessageDialog(this, IMAGES_DONT_LOAD);
 
 		robotImage = new ImageIcon(urlImage);
 		lbRobotIcon = new JLabel(robotImage);
 
+		// Add panel robot image to panel
+		
 		pRobotImage.add(Box.createVerticalGlue());
 		pRobotImage.add(lbRobotIcon);
 		pRobotImage.add(Box.createVerticalGlue());
@@ -141,7 +140,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 	 * 			place where robot is
 	 */
 	
-	public void setInitialPlace(Place actualPlace) {
+	public void setCurrentPlace(PlaceInfo actualPlace) {
 		this.placeCell[row][col].setPlace(actualPlace);
 		this.actualPlaceCell = this.placeCell[row][col];
 		this.actualPlaceCell.enterPlace();
@@ -155,7 +154,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 	 * 			place where robot is
 	 */
 
-	public void showActualPlaceLog(Place actualPlace) {
+	public void showActualPlaceLog(PlaceInfo actualPlace) {
 		txtLog.setText(actualPlace.toString());
 	}
 
@@ -180,7 +179,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 	 *            is direction that robot is looking
 	 */
 
-	public void updateCity(Place actualPlace, Direction lookingDirection) {
+	public void updateCity(PlaceInfo actualPlace, Direction lookingDirection) {
 		actualPlaceCell.leavePlace();
 		if (lookingDirection.equals(Direction.NORTH))
 			row--;
@@ -196,34 +195,55 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 		actualPlaceCell.enterPlace();
 	}
 
+	/**
+	 * Notifies that the robot heading has changed
+	 */
+	
 	@Override
 	public void headingChanged(Direction newHeading) {
-		// TODO Auto-generated method stub
-		
+		if (urlImage == null)
+			JOptionPane.showMessageDialog(this, IMAGES_DONT_LOAD);
+		else
+			updateIcon(newHeading);
 	}
 
+	/**
+	 * Notifies that the navigation module has been initialized 
+	 */
+	
 	@Override
 	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
-		// TODO Auto-generated method stub
-		
+		setCurrentPlace(initialPlace);
+		urlImage = MainWindow.class.getResource("images/walleNorth.png");
+		updateCity(initialPlace, heading);
 	}
 
+	/**
+	 * Notifies that the place where the robot stays has changed 
+	 * (because the robot picked or dropped an item)
+	 */
+	
 	@Override
 	public void placeHasChanged(PlaceInfo placeDescription) {
-		// TODO Auto-generated method stub
-		
+		txtLog.setText(placeDescription.toString());
 	}
-
+	
+	/**
+	 * Notifies that the user requested a RADAR instruction
+	 */
+	
 	@Override
 	public void placeScanned(PlaceInfo placeDescription) {
-		// TODO Auto-generated method stub
+		// Not use
 		
 	}
-
+	/**
+	 * Notifies that the robot has arrived at a place
+	 */
+	
 	@Override
 	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
-		// TODO Auto-generated method stub
-		
+		updateCity(place, heading);
 	}
 
 }

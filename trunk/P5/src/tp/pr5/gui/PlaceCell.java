@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import tp.pr5.Place;
+import tp.pr5.PlaceInfo;
 
 /**
  * 
@@ -23,7 +24,7 @@ public class PlaceCell extends JButton {
 	
 	private static final long serialVersionUID = 1L;
 
-	private Place place = null;
+	private PlaceInfo place = null;
 	private NavigationPanel navPanel;
 	boolean active = false;
 
@@ -50,7 +51,7 @@ public class PlaceCell extends JButton {
 	 *            the room to set
 	 * 
 	 */
-	public void setPlace(Place place) {
+	public void setPlace(PlaceInfo place) {
 		this.place = place;
 		this.setText(place.getName());
 

@@ -19,6 +19,7 @@ public class Console extends Object implements NavigationObserver,
 	@Override
 	public void communicationCompleted() {
 		System.out.println(QUIT);
+		System.exit(0);
 	}
 
 	/**
@@ -144,7 +145,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void robotSays(String message) {
-		System.out.println(message);
+		System.out.print(message);
 	}
 
 	/**

@@ -253,7 +253,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 
 	public void setNavigationPanel(NavigationPanel navPanel) {
 		this.navPanel = navPanel;
-		this.navPanel.setInitialPlace(actualPlace);
+		this.navPanel.setCurrentPlace(actualPlace);
 	}
 
 }

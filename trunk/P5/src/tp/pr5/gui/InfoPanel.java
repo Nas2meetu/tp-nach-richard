@@ -20,7 +20,7 @@ public class InfoPanel extends JPanel implements RobotEngineObserver,
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private JLabel lbInfo = new JLabel();
+	private JLabel lbInfo = new JLabel("Start Game");
 
 	public InfoPanel() {
 		add(lbInfo);

@@ -2,14 +2,39 @@ package tp.pr5.gui;
 
 import tp.pr5.Controller;
 import tp.pr5.RobotEngine;
+import tp.pr5.instructions.Instruction;
+import tp.pr5.instructions.exceptions.InstructionExecutionException;
 
-public class GUIController extends Controller{
+public class GUIController extends Controller {
 
 	public GUIController(RobotEngine robot) {
 		super(robot);
 	}
 
-	public void startGuiController(){
+	public void startGuiController() {
 		robot.requestStart();
 	}
+
+	public void executeDropInstruction(Instruction dropInstruction) {
+		try {
+			robot.communicateRobot(dropInstruction);
+		} catch (InstructionExecutionException e) {
+			robot.requestError(e.getMessage());
+		}
+
+	}
+
+	public void executeMoveInstruction(Instruction moveInstruction)
+			throws InstructionExecutionException {
+		try {
+			robot.communicateRobot(moveInstruction);
+		} catch (InstructionExecutionException e) {
+			robot.requestError(e.getMessage());// TODO mirar si se puede
+												// requestError y ademas lanzar
+												// excepcion
+			throw new InstructionExecutionException(e);
+		}
+
+	}
+
 }
