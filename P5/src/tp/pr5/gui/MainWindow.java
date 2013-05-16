@@ -48,19 +48,21 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 		createMenu();
 
 		RobotPanel robotPanel = new RobotPanel();
-
+		this.navigationPanel = new NavigationPanel();
+		this.infoPanel = new InfoPanel();
 		instructionsPanel = new InstructionPanel(guiController, robotPanel, this);
 		JSplitPane SuperiorPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 				instructionsPanel, robotPanel);
+		
 		mainPanel.add(SuperiorPanel, BorderLayout.NORTH);
 
-		this.navigationPanel = new NavigationPanel();
+		
 		JSplitPane inferiorPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
 				SuperiorPanel, this.navigationPanel);
 		mainPanel.add(inferiorPanel, BorderLayout.CENTER);
 		mainPanel.add(infoPanel, BorderLayout.SOUTH);
 		
-		this.infoPanel = new InfoPanel();
+		
 
 		this.add(mainPanel);
 

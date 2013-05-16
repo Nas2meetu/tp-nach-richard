@@ -26,7 +26,8 @@ import tp.pr5.items.Item;
  * 
  */
 
-public class RobotPanel extends JPanel implements RobotEngineObserver, InventoryObserver{
+public class RobotPanel extends JPanel implements RobotEngineObserver,
+		InventoryObserver {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFuel, lbRecycledMaterial;
@@ -213,62 +214,74 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 
 	@Override
 	public void inventoryChange(List<Item> inventory) {
-		// TODO Auto-generated method stub
-		
+		// TODO si no funciona asi, mirar si inventory es null
+		//if (inventory.size() == 0)
+			//this.updateTable(null);
+		//else {
+			String items[][] = new String[inventory.size()][2];
+			int pos = 0;
+			for (Item i : inventory) {
+				items[pos][0] = i.getId();
+				items[pos][1] = i.getId();
+				pos++;
+			}
+			this.updateTable(items);
+		//}
+
 	}
 
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void itemEmpty(String itemName) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void itemScanned(String description) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void communicationCompleted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void communicationHelp(String help) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void engineOff(boolean atShip) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void raiseError(String msg) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void robotSays(String message) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
-		// TODO Auto-generated method stub
-		
+		this.setFuel(fuel);
+		this.setGarbage(recycledMaterial);
 	}
 
 }
