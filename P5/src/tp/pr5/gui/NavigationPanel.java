@@ -48,13 +48,13 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 		pRobotImage = new JPanel();
 		pRobotImage.setLayout(new BoxLayout(pRobotImage, BoxLayout.Y_AXIS));
 
-		//urlImage = MainWindow.class.getResource("images/walleNorth.png");
+		urlImage = MainWindow.class.getResource("images/walleNorth.png");
 	//	if (urlImage == null)
 		//	JOptionPane.showMessageDialog(this, IMAGES_DONT_LOAD);
-
+		
 		robotImage = new ImageIcon(urlImage);
 		lbRobotIcon = new JLabel(robotImage);
-
+		
 		// Add panel robot image to panel
 		
 		pRobotImage.add(Box.createVerticalGlue());
@@ -105,6 +105,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 			urlImage = MainWindow.class.getResource("images/walleNorth.png");
 			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
+			headingChanged(lookingDirection);
 			break;
 
 		case EAST:
@@ -180,6 +181,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 	 */
 
 	public void updateCity(PlaceInfo actualPlace, Direction lookingDirection) {
+		
 		actualPlaceCell.leavePlace();
 		if (lookingDirection.equals(Direction.NORTH))
 			row--;
@@ -191,6 +193,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 			col--;
 		if (this.placeCell[row][col] != null)
 			this.placeCell[row][col].setPlace(actualPlace);
+		
 		actualPlaceCell = this.placeCell[row][col];
 		actualPlaceCell.enterPlace();
 	}
@@ -215,7 +218,6 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
 		setCurrentPlace(initialPlace);
 		urlImage = MainWindow.class.getResource("images/walleNorth.png");
-		updateCity(initialPlace, heading);
 	}
 
 	/**

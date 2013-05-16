@@ -39,7 +39,7 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 	public MainWindow(GUIController	guiController) {
 
 		super(TITLE_GAME);
-		guiController = guiController;
+		this.guiController = guiController;
 		this.setPreferredSize(new Dimension(900, 700));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -69,6 +69,13 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
+		
+		guiController.registerRobotObserver(infoPanel);
+		guiController.registerRobotObserver(robotPanel);
+		guiController.registerInventoryObserver(infoPanel);
+		guiController.registerInventoryObserver(robotPanel);
+		guiController.registerNavObserver(infoPanel);
+		guiController.registerNavObserver(navigationPanel);
 		
 	
 	}
@@ -143,32 +150,30 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 
 	@Override
 	public void communicationCompleted() {
-		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(rootPane, QUIT);
 		
 	}
 
 	@Override
 	public void communicationHelp(String help) {
-		// TODO Auto-generated method stub
+		// Not use
 		
 	}
 
 	@Override
 	public void raiseError(String msg) {
-		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(rootPane, msg);
 		
 	}
 
 	@Override
 	public void robotSays(String message) {
-		// TODO Auto-generated method stub
-		
+		infoPanel.robotSays(message);
 	}
 
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
-		// TODO Auto-generated method stub
-		
+		// Not use		
 	}
 
 }
