@@ -158,7 +158,8 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		} else
 			throw new InstructionExecutionException(STREET_CLOSE);
 		if (navPanel != null)
-			navPanel.updateCity(actualPlace, lookingDirection);
+			//navPanel.updateCity(actualPlace, lookingDirection);
+			navPanel.robotArrivesAtPlace(lookingDirection, actualPlace);
 
 	}
 

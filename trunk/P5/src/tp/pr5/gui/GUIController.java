@@ -32,9 +32,28 @@ public class GUIController extends Controller {
 			robot.requestError(e.getMessage());// TODO mirar si se puede
 												// requestError y ademas lanzar
 												// excepcion
-			throw new InstructionExecutionException(e);
+			throw new InstructionExecutionException(e.getMessage());
 		}
 
+	}
+
+	public void executeOperateInstruction(Instruction operateInstruction) throws InstructionExecutionException {
+		try {
+			robot.communicateRobot(operateInstruction);
+		} catch (InstructionExecutionException e) {
+			robot.requestError(e.getMessage());
+			throw new InstructionExecutionException(e.getMessage());
+		}
+		
+	}
+
+	public void executePickInstruction(Instruction pickInstruction) throws InstructionExecutionException {
+		robot.communicateRobot(pickInstruction);
+	}
+
+	public void executeTurnInstruction(Instruction turnInstruction) throws InstructionExecutionException {
+		robot.communicateRobot(turnInstruction);
+		
 	}
 
 }
