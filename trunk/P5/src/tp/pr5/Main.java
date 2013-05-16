@@ -115,13 +115,13 @@ public class Main {
 						
 					} else if (interfaces.equalsIgnoreCase("both")) {
 						GUIController gc = new GUIController(robot);
-						ConsoleController cc = new ConsoleController(robot);
+						//ConsoleController cc = new ConsoleController();
 						Console c = new Console();
 						
 						robot.addEngineObserver(c);
 						robot.addNavigationObserver(c);
 						robot.addItemContainerObserver(c);
-						cc.startController();
+						//cc.startController();
 						final MainWindow mainWindow = new MainWindow(gc);
 						
 					} else {

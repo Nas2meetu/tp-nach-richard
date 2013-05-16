@@ -81,6 +81,8 @@ public class Constants {
 
 	public static final String IN_MY_INVENTORY = " in my inventory";
 
+	public static final String INVENTORY_UPDATED = "Inventory has been updated";
+
 	public static final String ITEM_PROBLEMS = WALLE_SAYS
 			+ "I have problems using the object ";
 
@@ -123,6 +125,8 @@ public class Constants {
 			+ "I have communication problems. Bye bye";
 
 	public static final String RECYCLED_MATERIAL = "      * My reclycled material is ";
+
+	public static final String ROBOT_UPDATE = "Robot attributes have been updated: (";
 
 	public static final String STREET_CLOSE = WALLE_SAYS
 			+ "Arrggg, there is a street but it is closed!";
