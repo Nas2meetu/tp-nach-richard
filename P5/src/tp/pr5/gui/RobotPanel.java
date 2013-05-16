@@ -222,7 +222,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 			int pos = 0;
 			for (Item i : inventory) {
 				items[pos][0] = i.getId();
-				items[pos][1] = i.getId();
+				items[pos][1] = i.getDescription();
 				pos++;
 			}
 			this.updateTable(items);

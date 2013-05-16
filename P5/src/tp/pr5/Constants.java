@@ -102,7 +102,7 @@ public class Constants {
 	public static final String NO_STREET = WALLE_SAYS
 			+ "There is no street in direction ";
 
-	public static final String NO_ITEM_CHOOSE = "You forgot Select the item";
+	public static final String NO_ITEM_CHOOSE = "You forgot to select the item";
 
 	public static final String NO_WRITTE_ITEM = "You should first write the name of an item";
 
@@ -137,6 +137,8 @@ public class Constants {
 
 	public static final String SCAN_NO_ITEM = WALLE_SAYS
 			+ "I have not such object";
+	
+	public static final String TITLE_GAME = "WALL·E the garbage collector";
 
 	public static final String TYPE_INTERFACE = "The type of interface: console or swing";
 

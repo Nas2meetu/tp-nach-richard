@@ -1,6 +1,6 @@
 package tp.pr5.gui;
 
-import static tp.pr5.Constants.NO_WRITTE_ITEM;
+import static tp.pr5.Constants.*;
 
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -26,7 +26,7 @@ import tp.pr5.instructions.PickInstruction;
 import tp.pr5.instructions.TurnInstruction;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 
-public class InstructionPanel extends JPanel implements RobotEngineObserver{
+public class InstructionPanel extends JPanel implements RobotEngineObserver {
 
 	private static final long serialVersionUID = 1L;
 	private JComboBox<Rotation> cbDirections;
@@ -117,12 +117,10 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 					id = robotPanel.getSelectedItem();
 					if (id != null) {
 						Instruction dropInstruction = new DropInstruction(id);
-//			TODO			try {
-//							guiController.communicateRobot(dropInstruction);
-//						} catch (InstructionExecutionException e1) {
-//							e1.printStackTrace();
-//						}
-					}
+						guiController.executeDropInstruction(dropInstruction);
+					}else
+						JOptionPane.showMessageDialog(mainWindow, NO_ITEM_CHOOSE);
+						
 				}
 			}
 
@@ -148,13 +146,14 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 			public void actionPerformed(ActionEvent e) {
 				if (!mainWindow.isEnd()) {
 					Instruction moveInstruction = new MoveInstruction();
-//		TODO			try {
-//						guiController.communicateRobot(moveInstruction);
-//					} catch (InstructionExecutionException e1) {
-//						JOptionPane.showMessageDialog(getRootPane(),
-//								e1.getMessage());
-//					}
+					try {
+						guiController.executeMoveInstruction(moveInstruction);
+					} catch (InstructionExecutionException e1) {
+						JOptionPane.showMessageDialog(mainWindow,
+								e1.getMessage());
+					}
 				}
+				
 			}
 		});
 
@@ -187,12 +186,12 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 					if (id != null) {
 						Instruction operateInstruction = new OperateInstruction(
 								id);
-//		TODO				try {
-//							guiController.communicateRobot(operateInstruction);
-//						} catch (InstructionExecutionException e1) {
-//							JOptionPane.showMessageDialog(getRootPane(),
-//									e1.getMessage());
-//						}
+						// TODO try {
+						// guiController.communicateRobot(operateInstruction);
+						// } catch (InstructionExecutionException e1) {
+						// JOptionPane.showMessageDialog(getRootPane(),
+						// e1.getMessage());
+						// }
 					}
 				}
 			}
@@ -227,12 +226,12 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 					String id = txtBox.getText();
 					if (!id.equals("")) {
 						Instruction pickInstruction = new PickInstruction(id);
-//		TODO				try {
-//							guiController.communicateRobot(pickInstruction);
-//						} catch (InstructionExecutionException e1) {
-//							JOptionPane.showMessageDialog(getRootPane(),
-//									e1.getMessage());
-//						}
+						// TODO try {
+						// guiController.communicateRobot(pickInstruction);
+						// } catch (InstructionExecutionException e1) {
+						// JOptionPane.showMessageDialog(getRootPane(),
+						// e1.getMessage());
+						// }
 					} else
 						JOptionPane.showMessageDialog(getRootPane(),
 								NO_WRITTE_ITEM);
@@ -258,8 +257,8 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				int result = JOptionPane.showConfirmDialog(
-						(Component) arg0.getSource(), "Finish game?");
+				int result = JOptionPane.showConfirmDialog(mainWindow,
+						"Finish game?", TITLE_GAME, JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				} else if (result == JOptionPane.NO_OPTION) {
@@ -292,12 +291,12 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 					Instruction turnInstruction = new TurnInstruction(
 							cbDirections.getItemAt(cbDirections
 									.getSelectedIndex()));
-//		TODO			try {
-//						guiController.communicateRobot(turnInstruction);
-//					} catch (InstructionExecutionException e1) {
-//						JOptionPane.showConfirmDialog(getRootPane(),
-//								e1.toString());
-//					}
+					// TODO try {
+					// guiController.communicateRobot(turnInstruction);
+					// } catch (InstructionExecutionException e1) {
+					// JOptionPane.showConfirmDialog(getRootPane(),
+					// e1.toString());
+					// }
 
 				}
 			}
@@ -308,37 +307,37 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver{
 	@Override
 	public void communicationCompleted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void communicationHelp(String help) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void engineOff(boolean atShip) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void raiseError(String msg) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void robotSays(String message) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

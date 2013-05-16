@@ -178,7 +178,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 	public void requestQuit() {
 		notifyCommunicationCompleted();
-		System.exit(0);
 	}
 
 	private void notifyCommunicationCompleted() {
