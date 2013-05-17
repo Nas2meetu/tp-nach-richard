@@ -15,7 +15,7 @@ import java.net.URL;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
  * 
  */
 
@@ -47,11 +47,8 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 		this.setLayout(new BorderLayout());
 		pRobotImage = new JPanel();
 		pRobotImage.setLayout(new BoxLayout(pRobotImage, BoxLayout.Y_AXIS));
-
+	
 		urlImage = MainWindow.class.getResource("images/walleNorth.png");
-	//	if (urlImage == null)
-		//	JOptionPane.showMessageDialog(this, IMAGES_DONT_LOAD);
-		
 		robotImage = new ImageIcon(urlImage);
 		lbRobotIcon = new JLabel(robotImage);
 		
@@ -105,7 +102,6 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 			urlImage = MainWindow.class.getResource("images/walleNorth.png");
 			robotImage = new ImageIcon(urlImage);
 			lbRobotIcon.setIcon(robotImage);
-			headingChanged(lookingDirection);
 			break;
 
 		case EAST:
@@ -196,6 +192,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 		
 		actualPlaceCell = this.placeCell[row][col];
 		actualPlaceCell.enterPlace();
+		updateLog();
 	}
 
 	/**
@@ -217,7 +214,6 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 	@Override
 	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
 		setCurrentPlace(initialPlace);
-		urlImage = MainWindow.class.getResource("images/walleNorth.png");
 	}
 
 	/**

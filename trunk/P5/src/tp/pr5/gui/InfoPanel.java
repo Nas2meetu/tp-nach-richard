@@ -12,6 +12,14 @@ import tp.pr5.RobotEngineObserver;
 import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
 
+/**
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 5
+ * 
+ */
+
 public class InfoPanel extends JPanel implements RobotEngineObserver,
 		NavigationObserver, InventoryObserver {
 

@@ -35,7 +35,7 @@ public class ConsoleController extends Controller {
 		Scanner reader = new Scanner(System.in);
 		Instruction instruction = null;
 
-		while (!robot.isOver()) {// TODO mirar esto con detenimiento
+		while (!robot.isOver()) {
 			robot.saySomething(PROMPT);
 			String input = reader.nextLine();
 			try {

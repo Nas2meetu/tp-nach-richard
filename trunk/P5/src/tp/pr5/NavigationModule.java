@@ -1,9 +1,6 @@
 package tp.pr5;
 
 import static tp.pr5.Constants.*;
-
-import javax.swing.JOptionPane;
-import tp.pr5.gui.NavigationPanel;
 import tp.pr5.instructions.exceptions.*;
 import tp.pr5.items.Item;
 
@@ -11,7 +8,7 @@ import tp.pr5.items.Item;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
  * 
  */
 
@@ -20,7 +17,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	private Place actualPlace;
 	private Direction lookingDirection;
 	private City cityMap;
-	private NavigationPanel navPanel;
 
 	/**
 	 * 
@@ -40,8 +36,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		this.actualPlace = currentPlace;
 		this.lookingDirection = Direction.NORTH;
 	}
-
-	
 
 	/**
 	 * Checks if the robot has arrived at a spaceship
@@ -64,7 +58,14 @@ public class NavigationModule extends Observable<NavigationObserver> {
 
 	public void dropItemAtCurrentPlace(Item item) {
 		actualPlace.dropItem(item);
-			// TODO robot.saySomething(DROP_ITEM + item.getId());
+		notifyPlaceHasChanged();
+		
+	}
+
+	private void notifyPlaceHasChanged() {
+		for (NavigationObserver navObserver : observers) {
+			navObserver.placeHasChanged(actualPlace);
+		}
 	}
 
 	/**
@@ -147,26 +148,17 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		if (getHeadingStreet() == null) {
 			throw new InstructionExecutionException(NO_STREET
 					+ lookingDirection);
-		} 
+		}
 		if (getHeadingStreet().isOpen()) {
 			actualPlace = getHeadingStreet().nextPlace(actualPlace);
 			notifyRobotArrivesAtPlace();
-			if (actualPlace.isSpaceship() && (navPanel != null))
-				//TODO aqui antes se acababa el juego, ahora vete a saber
-			if (navPanel != null)
-				navPanel.showActualPlaceLog(actualPlace);
 		} else
 			throw new InstructionExecutionException(STREET_CLOSE);
-		if (navPanel != null)
-			//navPanel.updateCity(actualPlace, lookingDirection);
-			navPanel.robotArrivesAtPlace(lookingDirection, actualPlace);
 
 	}
 
-
-
 	private void notifyRobotArrivesAtPlace() {
-		for (NavigationObserver navObserver : observers	) {
+		for (NavigationObserver navObserver : observers) {
 			navObserver.robotArrivesAtPlace(lookingDirection, actualPlace);
 		}
 	}
@@ -183,13 +175,8 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		Item item = actualPlace.getItem(it.getId());
 		if (item != null) {
 			actualPlace.pickItem(it.getId());
-			if (navPanel != null) {
-				navPanel.showActualPlaceLog(actualPlace);
-				JOptionPane.showMessageDialog(navPanel,
-						CONTAINER_ITEM + it.getId());
-			}
+			notifyPlaceHasChanged();
 		}
-
 	}
 
 	/**
@@ -207,9 +194,14 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		} else if (rotation.equals(Rotation.RIGHT)) {
 			lookingDirection = lookingDirection.turnRight();
 		}
-		if (navPanel != null)
-			navPanel.updateIcon(lookingDirection);
-		// navigationObserver.headingChanged(lookingDirection);
+		notifyHeadingChanged();
+	}
+
+	private void notifyHeadingChanged() {
+		for (NavigationObserver navObserver : observers) {
+			navObserver.headingChanged(lookingDirection);
+		}
+		
 	}
 
 	/**
@@ -234,27 +226,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		return cityMap;
 	}
 
-	/**
-	 * Introduce update messages into log panel
-	 */
 
-	public void updatePlace() {
-		if (navPanel != null)
-			navPanel.updateLog();
-	}
-
-	/**
-	 * 
-	 * Introduce initial place message into log panel
-	 * 
-	 * @param navPanel
-	 *            contain navigation panel
-	 * 
-	 */
-
-	public void setNavigationPanel(NavigationPanel navPanel) {
-		this.navPanel = navPanel;
-		this.navPanel.setCurrentPlace(actualPlace);
-	}
 
 }

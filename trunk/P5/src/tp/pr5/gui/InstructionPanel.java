@@ -26,6 +26,14 @@ import tp.pr5.instructions.PickInstruction;
 import tp.pr5.instructions.TurnInstruction;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 
+/**
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 5
+ * 
+ */
+
 public class InstructionPanel extends JPanel implements RobotEngineObserver {
 
 	private static final long serialVersionUID = 1L;
@@ -305,37 +313,50 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 		});
 
 	}
-
+	/**
+	 * The robot engine informs that the help has been requested
+	 */
 	@Override
 	public void communicationCompleted() {
 		// Not use
 
 	}
-
+	/**
+	 * The robot engine informs that the help has been requested 
+	 */
 	@Override
 	public void communicationHelp(String help) {
 		//Not use
 
 	}
-
+	/**
+	 * The robot engine informs that the robot has shut down
+	 * (because it has arrived at the spaceship or it has run out of fuel)
+	 */
 	@Override
 	public void engineOff(boolean atShip) {
-		// TODO Auto-generated method stub
+		mainWindow.engineOff(atShip);
 
 	}
-
+	/**
+	 * The robot engine informs that it has raised an error
+	 */
 	@Override
 	public void raiseError(String msg) {
 		// TODO Auto-generated method stub
 
 	}
-
+	/**
+	 * The robot engine informs that the robot wants to say something
+	 */
 	@Override
 	public void robotSays(String message) {
 		// TODO Auto-generated method stub
 
 	}
-
+	/**
+	 * The robot engine informs that the fuel and/or the amount of recycled material has changed
+	 */
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
 		// TODO Auto-generated method stub
