@@ -1,7 +1,5 @@
 package tp.pr5;
 
-import tp.pr5.gui.MainWindow;
-import tp.pr5.gui.NavigationPanel;
 import tp.pr5.gui.RobotPanel;
 import tp.pr5.instructions.Instruction;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
@@ -24,7 +22,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	private ItemContainer container;
 	private NavigationModule navigation;
 	private RobotPanel robotPanel;
-	private MainWindow mainWindow;
 
 	/**
 	 * 
@@ -70,10 +67,9 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		this.contFuel += newFuel;
 		if (contFuel <= 0) {
 			contFuel = 0;
+			requestEnd();
 		}
 		notifyRobotUpdate();
-		if (robotPanel != null)
-			robotPanel.setFuel(contFuel);
 	}
 
 	/**
@@ -160,7 +156,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		for (RobotEngineObserver robotObserver : observers) {
 			robotObserver.raiseError(msg);
 		}
-
 	}
 
 	/**
@@ -278,39 +273,4 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		return container;
 	}
 
-	/**
-	 * 
-	 * Sets a panel to the navigation module in order to show its information in
-	 * a GUI
-	 * 
-	 * @param navPanel
-	 *            The panel where the navigation module will show its
-	 *            information
-	 */
-
-	public void setNavigationPanel(NavigationPanel navPanel) {
-		navigation.setNavigationPanel(navPanel);
-	}
-
-	/**
-	 * 
-	 * Sets a panel in order to show the robot information and the container in
-	 * a GUI
-	 * 
-	 * @param robotPanel
-	 *            The panel where the robot and the container will show its
-	 *            information
-	 */
-
-	public void setRobotPanel(RobotPanel robotPanel) {
-		this.robotPanel = robotPanel;
-		this.container.setRobotPanel(robotPanel);
-	}
-
-	public void setGUi(MainWindow mainWindow) {
-		this.mainWindow = mainWindow;
-	}
-
-
-	
 }

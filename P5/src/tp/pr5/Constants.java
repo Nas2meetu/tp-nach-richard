@@ -36,7 +36,7 @@ public class Constants {
 			+ "I am carrying the following items";
 
 	public static final String CONTAINER_EMPTY = WALLE_SAYS
-			+ "My inventory is empty";
+			+ "My inventory is empty" + LINE_SEPARATOR;
 
 	public static final String CONTAINER_ITEM = WALLE_SAYS
 			+ "I am happy! Now I have ";
@@ -136,7 +136,7 @@ public class Constants {
 	public static final String SHOW_PLACE = "The place contains these objects:";
 
 	public static final String SCAN_NO_ITEM = WALLE_SAYS
-			+ "I have not such object";
+			+ "I have not such object ";
 	
 	public static final String TITLE_GAME = "WALL·E the garbage collector";
 

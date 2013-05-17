@@ -1,6 +1,10 @@
 package tp.pr5.items;
 
 import static tp.pr5.Constants.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import tp.pr5.Observable;
 import tp.pr5.gui.RobotPanel;
 
@@ -8,7 +12,7 @@ import tp.pr5.gui.RobotPanel;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 3
+ * @version 5
  * 
  */
 
@@ -23,8 +27,10 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	 */
 
 	public ItemContainer() {
-		container = new Item[100];
+		container = new Item[10];
 		numberOfItems = 0;
+		
+		
 	}
 
 	/**
@@ -109,17 +115,39 @@ public class ItemContainer extends Observable<InventoryObserver> {
 			this.moveItemLeft(pos);
 			picked = item;
 		}
+		notifyInventoryChanged();
 		return picked;
 	}
 
 	public void requestScanCollection() {
+		notifyInventoryScanned();
+	}
+	
+	private void notifyInventoryChanged(){
+		for (InventoryObserver inventoryObserver : observers) {
+			inventoryObserver.inventoryChange(containerToList());
+		}
+	}
 
+	private List<Item> containerToList() {
+		List<Item> containerList = new ArrayList<Item>();
+		for (int i = 0; i < numberOfItems; i++) {
+			containerList.add(container[i]);
+		}
+		return containerList;
+	}
+
+	private void notifyInventoryScanned() {
 		for (InventoryObserver inventoryObserver : observers) {
 			inventoryObserver.inventoryScanned(this.toString());
 		}
-
 	}
-
+	
+	/**
+	 * PRECOND: The item exists
+	 * 
+	 * @param id
+	 */
 	public void requestScanItem(String id) {
 		for (InventoryObserver inventoryObserver : observers) {
 			if (this.getItem(id) != null)
@@ -228,17 +256,15 @@ public class ItemContainer extends Observable<InventoryObserver> {
 			pos = whereInsert(item.getId());
 			this.moveItemRight(pos);
 			container[pos] = item;
-
 			added = true;
 		}
+		notifyInventoryChanged();
 		return added;
 
 	}
 
 	/**
-	 * 
 	 * Show content of ItemContainer of place.
-	 * 
 	 */
 
 	public String toString() {
@@ -280,5 +306,7 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	public void useItem(Item item) {
 
 	}
+	
+
 
 }

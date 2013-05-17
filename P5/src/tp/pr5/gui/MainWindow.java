@@ -4,8 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
-import tp.pr5.RobotEngine;
 import tp.pr5.RobotEngineObserver;
 import static tp.pr5.Constants.*;
 
@@ -144,33 +142,52 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 		} else {
 			JOptionPane.showMessageDialog(rootPane, END_FUEL);
 			end = true;
-
 		}
 	}
 
+	/**
+	 * The robot engine informs that the help has been requested
+	 */
+	
 	@Override
 	public void communicationCompleted() {
 		JOptionPane.showMessageDialog(rootPane, QUIT);
 		
 	}
 
+	/**
+	 * The robot engine informs that the help has been requested 
+	 */
+	
 	@Override
 	public void communicationHelp(String help) {
 		// Not use
 		
 	}
 
+	/**
+	 * The robot engine informs that it has raised an error
+	 */
+	
 	@Override
 	public void raiseError(String msg) {
 		JOptionPane.showMessageDialog(rootPane, msg);
 		
 	}
 
+	/**
+	 * The robot engine informs that the robot wants to say something
+	 */
+	
 	@Override
 	public void robotSays(String message) {
 		infoPanel.robotSays(message);
 	}
 
+	/**
+	 * The robot engine informs that the fuel and/or the amount of recycled material has changed
+	 */
+	
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
 		// Not use		

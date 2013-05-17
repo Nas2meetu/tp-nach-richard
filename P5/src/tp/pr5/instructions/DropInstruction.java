@@ -21,6 +21,7 @@ public class DropInstruction implements Instruction {
 	private NavigationModule navigation;
 	private String id;
 	private ItemContainer robotContainer;
+	private RobotEngine robot;
 
 
 	public DropInstruction(String id) {
@@ -79,6 +80,7 @@ public class DropInstruction implements Instruction {
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
+		this.robot= engine;
 		this.navigation = navigation;
 		this.robotContainer = robotContainer;
 
@@ -95,8 +97,8 @@ public class DropInstruction implements Instruction {
 		if (id != null && robotContainer.containsItem(id))
 			if (!navigation.findItemAtCurrentPlace(id)) {
 				navigation.dropItemAtCurrentPlace(robotContainer.pickItem(id));
+				robot.saySomething(DROP_ITEM + id);
 				robotContainer.updateInventory();
-				navigation.updatePlace();
 			} else
 				throw new InstructionExecutionException(PLACE_REPEAT_ITEM + id);
 		else

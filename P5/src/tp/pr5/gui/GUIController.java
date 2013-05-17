@@ -5,6 +5,14 @@ import tp.pr5.RobotEngine;
 import tp.pr5.instructions.Instruction;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 
+/**
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 5
+ * 
+ */
+
 public class GUIController extends Controller {
 
 	public GUIController(RobotEngine robot) {
@@ -43,7 +51,7 @@ public class GUIController extends Controller {
 		} catch (InstructionExecutionException e) {
 			robot.requestError(e.getMessage());
 			throw new InstructionExecutionException(e.getMessage());
-		}
+		}//TODO preguntar cual es mejor para usar, try and cacth y lanzar excepcion o lanzar directamente excepcion
 		
 	}
 

@@ -52,20 +52,16 @@ public class MoveInstruction implements Instruction {
 
 	/**
 	 * 
-	 * Set the execution context. The method receives the entire engine 
-	 * (engine, navigation and the robot container) even though the actual implementation
-	 *  of execute() may not require it.
+	 * Set the execution context. The method receives the entire engine (engine,
+	 * navigation and the robot container) even though the actual implementation
+	 * of execute() may not require it.
 	 * 
-	 * engine 
-	 * 		The robot engine
-     * navigation 
-     * 		The information about the game, i.e., the places, current direction and 
-     * 		current heading to navigate
-     * robotContainer  
-     * 		The inventory of the robot 
+	 * engine The robot engine navigation The information about the game, i.e.,
+	 * the places, current direction and current heading to navigate
+	 * robotContainer The inventory of the robot
 	 * 
 	 */
-	
+
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
@@ -82,7 +78,8 @@ public class MoveInstruction implements Instruction {
 		try {
 			navigation.move();
 			robot.addFuel(-5);
-			robot.saySomething(MOVE + navigation.getCurrentHeading());
+			//robot.saySomething(MOVE + navigation.getCurrentHeading()
+				//	+ LINE_SEPARATOR);
 		} catch (InstructionExecutionException e) {
 			throw new InstructionExecutionException(e.getMessage());
 		}

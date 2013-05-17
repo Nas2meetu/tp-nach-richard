@@ -101,10 +101,8 @@ public class TurnInstruction implements Instruction {
 	public void execute() throws InstructionExecutionException {
 		navigation.rotate(rotation);
 		if(rotation!=Rotation.UNKNONW)
-		{
 			robot.addFuel(-5);
-			//robot.notifyRobotUpdate();
-		}else
+		else
 			new InstructionExecutionException();
 	}
 

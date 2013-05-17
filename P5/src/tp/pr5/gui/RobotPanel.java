@@ -17,6 +17,7 @@ import javax.swing.table.AbstractTableModel;
 import tp.pr5.RobotEngineObserver;
 import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
+import tp.pr5.items.ItemContainer;
 
 /**
  * 
@@ -192,9 +193,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 
 		int row = tbInventory.getSelectedRow();
 		String itemSelected = null;
-		if (row == -1)
-			JOptionPane.showMessageDialog(getRootPane(), NO_ITEM_CHOOSE);
-		else
+		if(row!=-1)
 			itemSelected = tbInventory.getValueAt(row, 0).toString();
 		return itemSelected;
 
@@ -214,10 +213,9 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 
 	@Override
 	public void inventoryChange(List<Item> inventory) {
-		// TODO si no funciona asi, mirar si inventory es null
-		//if (inventory.size() == 0)
-			//this.updateTable(null);
-		//else {
+		if (inventory.size() == 0)
+			this.updateTable(null);
+		else {
 			String items[][] = new String[inventory.size()][2];
 			int pos = 0;
 			for (Item i : inventory) {
@@ -226,7 +224,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 				pos++;
 			}
 			this.updateTable(items);
-		//}
+		}
 
 	}
 
@@ -277,6 +275,10 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 		// TODO Auto-generated method stub
 
 	}
+
+	/**
+	 * 
+	 */
 
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
