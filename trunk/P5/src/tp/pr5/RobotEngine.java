@@ -11,7 +11,7 @@ import static tp.pr5.Constants.*;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
  * 
  */
 
@@ -102,8 +102,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	public void addRecycledMaterial(int newMaterial) {
 		this.contRecycledMaterial += newMaterial;
 		notifyRobotUpdate();
-		if (robotPanel != null)
-			robotPanel.setGarbage(newMaterial);
 	}
 
 	/**

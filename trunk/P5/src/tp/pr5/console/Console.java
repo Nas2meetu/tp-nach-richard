@@ -38,7 +38,7 @@ public class Console extends Object implements NavigationObserver,
 	@Override
 	public void engineOff(boolean atShip) {
 		if (atShip)
-			System.out.println(END_GAME);
+			System.out.println(END_SPACESHIP);
 		else
 			System.out.println(END_FUEL);
 
@@ -69,7 +69,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void inventoryChange(List<Item> inventory) {
-		System.out.println(inventory.toString());
+		// Not use
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void itemEmpty(String itemName) {
-		System.out.println(ITEM_NOT_EXIST + itemName);
+		System.out.println(ITEM_NOT_EXIST + itemName + IN_MY_INVENTORY);
 
 	}
 
@@ -107,8 +107,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void placeHasChanged(PlaceInfo placeDescription) {
-		System.out.println(placeDescription.getName()
-				+ placeDescription.getDescription());
+		// Not use
 	}
 
 	/**
@@ -117,7 +116,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void placeScanned(PlaceInfo placeDescription) {
-		System.out.println(placeDescription.getDescription());
+		System.out.println(placeDescription.toString());
 	}
 
 	/**
@@ -135,8 +134,8 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
-		System.out.println(LOOKING_DIRECTION + heading + LINE_SEPARATOR
-				+ place.getName() + LINE_SEPARATOR + place.getDescription());
+		System.out.println(MOVE + heading + LINE_SEPARATOR + place.toString()
+				+ LOOKING_DIRECTION + heading);
 	}
 
 	/**
@@ -156,7 +155,7 @@ public class Console extends Object implements NavigationObserver,
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
 		System.out.println(POWER + fuel + LINE_SEPARATOR + RECYCLED_MATERIAL
-				+ recycledMaterial);
+				+ recycledMaterial + LINE_SEPARATOR);
 
 	}
 

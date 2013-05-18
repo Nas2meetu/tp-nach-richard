@@ -137,7 +137,7 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 
 	public void engineOff(boolean ship) {
 		if (ship) {
-			JOptionPane.showMessageDialog(rootPane, END_GAME);
+			JOptionPane.showMessageDialog(rootPane, END_SPACESHIP);
 			end = true;
 		} else {
 			JOptionPane.showMessageDialog(rootPane, END_FUEL);
