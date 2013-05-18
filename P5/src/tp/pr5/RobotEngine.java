@@ -1,6 +1,5 @@
 package tp.pr5;
 
-import tp.pr5.gui.RobotPanel;
 import tp.pr5.instructions.Instruction;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 import tp.pr5.items.InventoryObserver;
@@ -21,7 +20,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	private int contRecycledMaterial;
 	private ItemContainer container;
 	private NavigationModule navigation;
-	private RobotPanel robotPanel;
+	
 
 	/**
 	 * 

@@ -7,7 +7,6 @@ import tp.pr5.RobotEngine;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 import tp.pr5.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr5.items.ItemContainer;
-import static tp.pr5.Constants.*;
 
 /**
  * 

@@ -19,5 +19,8 @@ public interface PlaceInfo {
 	 * 
 	 */
 	public boolean isSpaceship();
+	
+	public String toString();
+
 
 }

@@ -1,6 +1,5 @@
 package tp.pr5.items;
 
-import static tp.pr5.Constants.*;
 import tp.pr5.NavigationModule;
 import tp.pr5.RobotEngine;
 

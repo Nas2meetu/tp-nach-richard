@@ -21,7 +21,6 @@ import tp.pr5.items.ItemContainer;
 public class RadarInstruction implements Instruction {
 
 	private NavigationModule navigation;
-	private RobotEngine robot;
 
 	/**
 	 * Read a string with an action, compare if this action is correct and
@@ -70,7 +69,6 @@ public class RadarInstruction implements Instruction {
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
 		this.navigation = navigation;
-		this.robot = engine;
 
 	}
 
