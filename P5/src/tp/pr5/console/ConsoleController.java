@@ -13,7 +13,6 @@ import tp.pr5.instructions.exceptions.WrongInstructionFormatException;
 
 public class ConsoleController extends Controller {
 
-
 	public ConsoleController(RobotEngine robot) {
 		super(robot);
 	}
@@ -38,14 +37,15 @@ public class ConsoleController extends Controller {
 		while (!robot.isOver()) {
 			robot.saySomething(PROMPT);
 			String input = reader.nextLine();
+
 			try {
 				instruction = Interpreter.generateInstruction(input);
+				try {
+					robot.communicateRobot(instruction);
+				} catch (Exception e) {
+					robot.requestError(e.getMessage());
+				}
 			} catch (WrongInstructionFormatException e) {
-				robot.requestError(e.getMessage());
-			}
-			try {
-				robot.communicateRobot(instruction);
-			} catch (InstructionExecutionException e) {
 				robot.requestError(e.getMessage());
 			}
 		}

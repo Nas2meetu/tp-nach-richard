@@ -4,7 +4,7 @@ package tp.pr5;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
  * 
  */
 
@@ -33,7 +33,7 @@ public class Constants {
 	public static final String BEGIN_ITEMS_NOT_FOUND = "BeginItems not found in file";
 
 	public static final String CONTAINER = WALLE_SAYS
-			+ "I am carrying the following items";
+			+ "I am carrying the following items" + LINE_SEPARATOR;
 
 	public static final String CONTAINER_EMPTY = WALLE_SAYS
 			+ "My inventory is empty" + LINE_SEPARATOR;
@@ -48,7 +48,7 @@ public class Constants {
 
 	public static final int DEFAULT_TIMES = 1;
 
-	public static final String END_GAME = WALLE_SAYS
+	public static final String END_SPACESHIP = WALLE_SAYS
 			+ "I am at my spaceship. Bye bye";
 
 	public static final String END_FUEL = WALLE_SAYS
@@ -79,7 +79,8 @@ public class Constants {
 
 	public static final String INTERFACE_NOT_SPECIFIED = "Interface not specified";
 
-	public static final String IN_MY_INVENTORY = " in my inventory";
+	public static final String IN_MY_INVENTORY = " in my inventory"
+			+ LINE_SEPARATOR;
 
 	public static final String INVENTORY_UPDATED = "Inventory has been updated";
 
@@ -137,7 +138,7 @@ public class Constants {
 
 	public static final String SCAN_NO_ITEM = WALLE_SAYS
 			+ "I have not such object ";
-	
+
 	public static final String TITLE_GAME = "WALL·E the garbage collector";
 
 	public static final String TYPE_INTERFACE = "The type of interface: console or swing";

@@ -78,8 +78,6 @@ public class MoveInstruction implements Instruction {
 		try {
 			navigation.move();
 			robot.addFuel(-5);
-			//robot.saySomething(MOVE + navigation.getCurrentHeading()
-				//	+ LINE_SEPARATOR);
 		} catch (InstructionExecutionException e) {
 			throw new InstructionExecutionException(e.getMessage());
 		}
