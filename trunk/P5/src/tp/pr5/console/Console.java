@@ -107,7 +107,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void placeHasChanged(PlaceInfo placeDescription) {
-		// Not use
+		//Not use
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class Console extends Object implements NavigationObserver,
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
 		System.out.println(POWER + fuel + LINE_SEPARATOR + RECYCLED_MATERIAL
-				+ recycledMaterial + LINE_SEPARATOR);
+				+ recycledMaterial);
 
 	}
 

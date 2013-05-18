@@ -2,11 +2,9 @@ package tp.pr5.gui;
 
 import static tp.pr5.Constants.*;
 
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,8 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-
-import tp.pr5.RobotEngine;
 import tp.pr5.RobotEngineObserver;
 import tp.pr5.Rotation;
 import tp.pr5.instructions.DropInstruction;
@@ -40,7 +36,6 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 	private JComboBox<Rotation> cbDirections;
 	private GUIController guiController;
 	private JTextField txtBox;
-	private RobotPanel robotPanel;
 	private MainWindow mainWindow;
 
 	/**
@@ -58,7 +53,6 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 
 		super();
 		this.guiController = guiController;
-		this.robotPanel = robotPanel;
 		this.mainWindow = mainWindow;
 		this.setBorder(new TitledBorder("Instructions"));
 		this.setLayout(new GridLayout(4, 2, 3, 3));

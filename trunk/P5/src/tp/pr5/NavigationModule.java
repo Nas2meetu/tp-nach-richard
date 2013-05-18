@@ -210,6 +210,10 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	 * 
 	 */
 	public void scanCurrentPlace() {
+		notifyPlaceScanned();
+	}
+
+	private void notifyPlaceScanned() {
 		for (NavigationObserver navObserver : observers) {
 			navObserver.placeScanned(actualPlace);
 		}

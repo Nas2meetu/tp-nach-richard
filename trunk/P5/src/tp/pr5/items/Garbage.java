@@ -1,6 +1,5 @@
 package tp.pr5.items;
 
-import static tp.pr5.Constants.*;
 import tp.pr5.NavigationModule;
 import tp.pr5.RobotEngine;
 
@@ -8,7 +7,7 @@ import tp.pr5.RobotEngine;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 3
+ * @version 5
  * 
  */
 

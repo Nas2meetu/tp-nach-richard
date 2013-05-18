@@ -5,9 +5,7 @@ import java.awt.Dimension;
 import java.util.List;
 
 import static tp.pr5.Constants.*;
-
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,13 +15,12 @@ import javax.swing.table.AbstractTableModel;
 import tp.pr5.RobotEngineObserver;
 import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
-import tp.pr5.items.ItemContainer;
 
 /**
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
  * 
  */
 
