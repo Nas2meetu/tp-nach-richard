@@ -134,8 +134,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
-		System.out.println(MOVE + heading + LINE_SEPARATOR + place.toString()
-				+ LOOKING_DIRECTION + heading);
+		System.out.println(MOVE + heading + LINE_SEPARATOR + place.toString());
 	}
 
 	/**

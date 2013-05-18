@@ -125,7 +125,7 @@ public class Constants {
 	public static final String QUIT = WALLE_SAYS
 			+ "I have communication problems. Bye bye";
 
-	public static final String RECYCLED_MATERIAL = "      * My reclycled material is ";
+	public static final String RECYCLED_MATERIAL = "      * My recycled material is ";
 
 	public static final String ROBOT_UPDATE = "Robot attributes have been updated: (";
 
@@ -141,7 +141,7 @@ public class Constants {
 
 	public static final String TITLE_GAME = "WALL·E the garbage collector";
 
-	public static final String TYPE_INTERFACE = "The type of interface: console or swing";
+	public static final String TYPE_INTERFACE = "The type of interface: console, swing or both";
 
 	public static final String USAGE_MAPFILE = "Usage: java tp.pr4.Main <mapfile>";
 

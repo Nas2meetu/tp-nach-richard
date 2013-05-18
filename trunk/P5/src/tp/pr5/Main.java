@@ -67,7 +67,7 @@ public class Main {
 						&& !interfaces.equalsIgnoreCase("console")
 						&& !interfaces.equalsIgnoreCase("both")) {
 					System.err.println(WRONG_INTERFACE);
-					System.exit(1);
+					System.exit(3);
 
 				}
 			}
@@ -115,14 +115,12 @@ public class Main {
 						
 					} else if (interfaces.equalsIgnoreCase("both")) {
 						GUIController gc = new GUIController(robot);
-						//ConsoleController cc = new ConsoleController();
 						Console c = new Console();
-						
 						robot.addEngineObserver(c);
 						robot.addNavigationObserver(c);
 						robot.addItemContainerObserver(c);
-						//cc.startController();
 						final MainWindow mainWindow = new MainWindow(gc);
+						gc.startGuiController();
 						
 					} else {
 						System.err.println(WRONG_INTERFACE);

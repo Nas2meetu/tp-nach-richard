@@ -1,14 +1,11 @@
 package tp.pr5.console;
 
 import static tp.pr5.Constants.PROMPT;
-
 import java.util.Scanner;
-
 import tp.pr5.Controller;
 import tp.pr5.Interpreter;
 import tp.pr5.RobotEngine;
 import tp.pr5.instructions.Instruction;
-import tp.pr5.instructions.exceptions.InstructionExecutionException;
 import tp.pr5.instructions.exceptions.WrongInstructionFormatException;
 
 public class ConsoleController extends Controller {
