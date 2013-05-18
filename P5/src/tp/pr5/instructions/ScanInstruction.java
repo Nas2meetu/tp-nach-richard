@@ -99,7 +99,7 @@ public class ScanInstruction implements Instruction {
 				robot.saySomething(CONTAINER_EMPTY);
 			} else {
 				robot.saySomething(CONTAINER);
-				robot.saySomething(robotContainer.toString());
+				robot.saySomething(robotContainer.toString()+LINE_SEPARATOR);
 			}
 		} else {
 			Item item = robotContainer.getItem(id);

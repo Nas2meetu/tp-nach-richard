@@ -80,10 +80,7 @@ public class RadarInstruction implements Instruction {
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		if (navigation.getCurrentPlace() != null)
-			robot.saySomething(navigation.getCurrentPlace().toString());
-		else
-			throw new InstructionExecutionException();
+		navigation.scanCurrentPlace();
 	}
 
 }
