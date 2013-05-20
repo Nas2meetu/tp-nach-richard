@@ -46,7 +46,6 @@ public class ConsoleController extends Controller {
 				robot.requestError(e.getMessage());
 			}
 		}
-		robot.requestEnd();
 		reader.close();
 
 	}
