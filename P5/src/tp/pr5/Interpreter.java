@@ -8,8 +8,14 @@ import tp.pr5.instructions.exceptions.*;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
  * 
+ *          The interpreter is in charge of converting the user input in an
+ *          instruction for the robot. Up to now, the valid instructions are:
+ * 
+ *          MOVE | MOVER TURN | GIRAR { LEFT | RIGHT } PICK | COGER <ITEM> DROP
+ *          | SOLTAR <ITEM> SCAN | ESCANEAR [ <ITEM> ] RADAR OPERATE | OPERAR
+ *          <ITEM> HELP | AYUDA QUIT | SALIR
  */
 
 public class Interpreter {
@@ -20,7 +26,6 @@ public class Interpreter {
 	 * 
 	 */
 
-
 	private static Instruction[] allInstructions = new Instruction[] {
 
 	new DropInstruction(), new HelpInstruction(), new MoveInstruction(),
@@ -29,16 +34,19 @@ public class Interpreter {
 			new ScanInstruction(), new TurnInstruction()
 
 	};
-	
+
 	/**
 	 * 
-	 * Generate parse to instruction
+	 * Generates a new instruction according to the user input
 	 * 
-	 * @param line is a line receive from robotEngine (from keyboard)
-	 * @return line is instruction
+	 * @param line
+	 *            is a line receive from robotEngine (from keyboard)
+	 * @return line The instruction read from the given line. If the instruction
+	 *         is not correct, then it throws an exception
 	 * @throws WrongInstructionFormatException
+	 * 
 	 */
-	
+
 	public static Instruction generateInstruction(String line)
 			throws WrongInstructionFormatException {
 
@@ -54,10 +62,11 @@ public class Interpreter {
 
 	/**
 	 * 
-	 * Show information about permitted instructions
+	 * It returns information about all the instructions that the robot
+	 * understands
 	 * 
-	 * @return String override with help message
-	 * 
+	 * @return String A string with the information about all the available
+	 *         instructions
 	 */
 
 	public static String interpreterHelp() {

@@ -7,8 +7,12 @@ import tp.pr5.RobotEngine;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 3
+ * @version 5
  * 
+ *          An item that represents fuel. This item can be used at least once
+ *          and it provides power energy to the robot. When the item is used the
+ *          configured number of times, then it must be removed from the robot
+ *          inventory
  */
 
 public class Fuel extends Item {
@@ -20,11 +24,15 @@ public class Fuel extends Item {
 	 * 
 	 * Constructor of four parameters to define energy of Robot.
 	 * 
-	 * @param id is a reference to identify an item.       
-	 * @param description is description of item.         
-	 * @param power unit of energy.       
-	 * @param times number of uses for this item.
-	 *            
+	 * @param id
+	 *            is a reference to identify an item.
+	 * @param description
+	 *            is description of item.
+	 * @param power
+	 *            unit of energy.
+	 * @param times
+	 *            number of uses for this item.
+	 * 
 	 */
 
 	public Fuel(String id, String description, int power, int times) {
@@ -35,8 +43,10 @@ public class Fuel extends Item {
 
 	/**
 	 * 
-	 * If item can be used or not.
+	 * Fuel can be used as many times as it was configured If item can be used
+	 * or not.
 	 * 
+	 * return true if the item still can be used
 	 */
 
 	public boolean canBeUsed() {
@@ -46,6 +56,11 @@ public class Fuel extends Item {
 	/**
 	 * 
 	 * Verify if item can be used and if it return true use the item.
+	 * 
+	 * robot - The robot that is going to use the fuel navigation. - The place
+	 * where the fuel is going to be used.
+	 * 
+	 * return true if the fuel has been used.
 	 * 
 	 */
 
@@ -84,7 +99,8 @@ public class Fuel extends Item {
 
 	/**
 	 * 
-	 * Show power and times of Robot.
+	 * Generates a String with the Item description Show power and times of
+	 * Robot.
 	 * 
 	 * @return power + times.
 	 */

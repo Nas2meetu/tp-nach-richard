@@ -14,6 +14,12 @@ import tp.pr5.gui.RobotPanel;
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
+ *          A container of items. It can be employed by any class that stores
+ *          items. A container cannot store two items with the same identifier
+ * 
+ *          It provides methods to add new items, access them and remove them
+ *          from the container.
+ * 
  */
 
 public class ItemContainer extends Observable<InventoryObserver> {
@@ -29,8 +35,7 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	public ItemContainer() {
 		container = new Item[10];
 		numberOfItems = 0;
-		
-		
+
 	}
 
 	/**
@@ -77,7 +82,8 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	 * @param id
 	 *            is a reference to identify an item.
 	 * 
-	 * @return item if item´s id and container´s id are the same
+	 * @return Item with that name or null if the container does not store an
+	 *         item with that name.
 	 */
 	public Item getItem(String id) {
 
@@ -122,8 +128,8 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	public void requestScanCollection() {
 		notifyInventoryScanned();
 	}
-	
-	private void notifyInventoryChanged(){
+
+	private void notifyInventoryChanged() {
 		for (InventoryObserver inventoryObserver : observers) {
 			inventoryObserver.inventoryChange(containerToList());
 		}
@@ -142,7 +148,7 @@ public class ItemContainer extends Observable<InventoryObserver> {
 			inventoryObserver.inventoryScanned(this.toString());
 		}
 	}
-	
+
 	/**
 	 * PRECOND: The item exists
 	 * 
@@ -243,8 +249,10 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	 * addItem insert an item in itemContainer's container.
 	 * 
 	 * @param item
+	 *            The name of the item to be added.
 	 * 
-	 * @return added
+	 * @return added true if and only if the item is added, i.e., an item with
+	 *         the same identifier does not exists in the container
 	 */
 
 	public boolean addItem(Item item) {
@@ -306,7 +314,5 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	public void useItem(Item item) {
 
 	}
-	
-
 
 }

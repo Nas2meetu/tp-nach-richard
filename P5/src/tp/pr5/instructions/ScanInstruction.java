@@ -13,7 +13,7 @@ import tp.pr5.items.ItemContainer;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
  * 
  */
 
@@ -65,19 +65,21 @@ public class ScanInstruction implements Instruction {
 	}
 
 	/**
+	 * Set the execution context. The method receives the entire engine (engine,
+	 * navigation and the robot container) even though the actual implementation
+	 * of execute() may not require it.
 	 * 
-	 * Set the execution context. The method receives the entire engine 
-	 * (engine, navigation and the robot container) even though the actual implementation
-	 *  of execute() may not require it.
+	 * engine The robot engine navigation The information about the game, i.e.,
+	 * the places, current direction and current heading to navigate
+	 * robotContainer The inventory of the robot
 	 * 
-	 * engine 
-	 * 		The robot engine
-     * navigation 
-     * 		The information about the game, i.e., the places, current direction and 
-     * 		current heading to navigate
-     * robotContainer  
-     * 		The inventory of the robot 
-	 * 
+	 * @param engine
+	 *            The robot engine
+	 * @param navigation
+	 *            The information about the game, i.e., the places, current
+	 *            direction and current heading to navigate
+	 * @param robotContainer
+	 *            The inventory of the robot
 	 */
 
 	@Override

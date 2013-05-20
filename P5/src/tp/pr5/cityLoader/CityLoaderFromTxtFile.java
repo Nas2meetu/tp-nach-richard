@@ -19,7 +19,7 @@ import tp.pr5.items.Garbage;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
  */
 
 public class CityLoaderFromTxtFile {

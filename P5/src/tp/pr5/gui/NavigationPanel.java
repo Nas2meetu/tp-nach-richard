@@ -21,13 +21,22 @@ import tp.pr5.Direction;
 import tp.pr5.NavigationObserver;
 import tp.pr5.PlaceInfo;
 
-
 /**
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
+ *          This class is in charge of the panel that displays the information
+ *          about the robot heading and the city that is traversing. It contains
+ *          the grid that represents the city in the Swing interface, a text
+ *          area to show the place descriptions, and a label with an icon which
+ *          represents the robot heading
+ * 
+ *          The 11x11 grid contains PlaceCell objects and the first place starts
+ *          at (5,5). This panel will update the visited places when the robot
+ *          moves from one place to another. Additionally it will show the place
+ *          description on a text area if the user clicks on a visited place.
  */
 
 public class NavigationPanel extends JPanel implements NavigationObserver {
@@ -58,13 +67,13 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 		this.setLayout(new BorderLayout());
 		pRobotImage = new JPanel();
 		pRobotImage.setLayout(new BoxLayout(pRobotImage, BoxLayout.Y_AXIS));
-	
+
 		urlImage = MainWindow.class.getResource("images/walleNorth.png");
 		robotImage = new ImageIcon(urlImage);
 		lbRobotIcon = new JLabel(robotImage);
-		
+
 		// Add panel robot image to panel
-		
+
 		pRobotImage.add(Box.createVerticalGlue());
 		pRobotImage.add(lbRobotIcon);
 		pRobotImage.add(Box.createVerticalGlue());
@@ -99,11 +108,103 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 	}
 
 	/**
+	 * Notifies that the robot heading has changed
+	 * 
+	 * @param newHeading
+	 *            New robot heading
+	 */
+
+	@Override
+	public void headingChanged(Direction newHeading) {
+		if (urlImage == null)
+			JOptionPane.showMessageDialog(this, IMAGES_DONT_LOAD);
+		else
+			updateIcon(newHeading);
+	}
+
+	/**
+	 * Notifies that the navigation module has been initialized
+	 * 
+	 * @param initialPlace
+	 *            The place where the robot starts the simulation
+	 * @param heading
+	 *            The initial robot heading
+	 */
+
+	@Override
+	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
+		setCurrentPlace(initialPlace);
+	}
+
+	/**
+	 * Notifies that the place where the robot stays has changed (because the
+	 * robot picked or dropped an item)
+	 */
+
+	@Override
+	public void placeHasChanged(PlaceInfo placeDescription) {
+		txtLog.setText(placeDescription.toString());
+	}
+
+	/**
+	 * Notifies that the user requested a RADAR instruction
+	 * 
+	 * @param placeDescription
+	 *            Information with the current place
+	 */
+
+	@Override
+	public void placeScanned(PlaceInfo placeDescription) {
+		// Not use
+	}
+
+	/**
+	 * Notifies that the robot has arrived at a place
+	 * 
+	 * @param heading
+	 *            The robot movement direction
+	 * @param place
+	 *            The place where the robot arrives
+	 * 
+	 */
+
+	@Override
+	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
+		updateCity(place, heading);
+	}
+
+	/**
+	 * 
+	 * Create initial place of robot at navigation panel at swing mode
+	 * 
+	 * @param actualPlace
+	 *            place where robot is
+	 */
+
+	public void setCurrentPlace(PlaceInfo actualPlace) {
+		this.placeCell[row][col].setPlace(actualPlace);
+		this.actualPlaceCell = this.placeCell[row][col];
+		this.actualPlaceCell.enterPlace();
+		updateLog();
+	}
+
+	/**
+	 * Update log panel with information about this place
+	 * 
+	 * @param actualPlace
+	 *            place where robot is
+	 */
+
+	public void showActualPlaceLog(PlaceInfo actualPlace) {
+		txtLog.setText(actualPlace.toString());
+	}
+
+	/**
 	 * 
 	 * Update Walle image depends of robot's direction
 	 * 
 	 * @param lookingDirection
-	 * 			is direction that robot is looking
+	 *            is direction that robot is looking
 	 */
 
 	public void updateIcon(Direction lookingDirection) {
@@ -142,34 +243,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 
 	/**
 	 * 
-	 * Create initial place of robot at navigation panel at swing mode
-	 * 
-	 * @param actualPlace
-	 * 			place where robot is
-	 */
-	
-	public void setCurrentPlace(PlaceInfo actualPlace) {
-		this.placeCell[row][col].setPlace(actualPlace);
-		this.actualPlaceCell = this.placeCell[row][col];
-		this.actualPlaceCell.enterPlace();
-		updateLog();
-	}
-
-	/**
-	 * Update log panel with information about this place
-	 * 
-	 * @param actualPlace
-	 * 			place where robot is
-	 */
-
-	public void showActualPlaceLog(PlaceInfo actualPlace) {
-		txtLog.setText(actualPlace.toString());
-	}
-
-
-	/**
-	 * 
-	 * Update log panel when you it have more information 
+	 * Update log panel when you it have more information
 	 * 
 	 */
 
@@ -188,7 +262,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 	 */
 
 	public void updateCity(PlaceInfo actualPlace, Direction lookingDirection) {
-		
+
 		actualPlaceCell.leavePlace();
 		if (lookingDirection.equals(Direction.NORTH))
 			row--;
@@ -200,59 +274,10 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 			col--;
 		if (this.placeCell[row][col] != null)
 			this.placeCell[row][col].setPlace(actualPlace);
-		
+
 		actualPlaceCell = this.placeCell[row][col];
 		actualPlaceCell.enterPlace();
 		updateLog();
-	}
-
-	/**
-	 * Notifies that the robot heading has changed
-	 */
-	
-	@Override
-	public void headingChanged(Direction newHeading) {
-		if (urlImage == null)
-			JOptionPane.showMessageDialog(this, IMAGES_DONT_LOAD);
-		else
-			updateIcon(newHeading);
-	}
-
-	/**
-	 * Notifies that the navigation module has been initialized 
-	 */
-	
-	@Override
-	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
-		setCurrentPlace(initialPlace);
-	}
-
-	/**
-	 * Notifies that the place where the robot stays has changed 
-	 * (because the robot picked or dropped an item)
-	 */
-	
-	@Override
-	public void placeHasChanged(PlaceInfo placeDescription) {
-		txtLog.setText(placeDescription.toString());
-	}
-	
-	/**
-	 * Notifies that the user requested a RADAR instruction
-	 */
-	
-	@Override
-	public void placeScanned(PlaceInfo placeDescription) {
-		// Not use
-		
-	}
-	/**
-	 * Notifies that the robot has arrived at a place
-	 */
-	
-	@Override
-	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
-		updateCity(place, heading);
 	}
 
 }

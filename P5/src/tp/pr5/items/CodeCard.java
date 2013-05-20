@@ -8,8 +8,11 @@ import tp.pr5.RobotEngine;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 3
+ * @version 5
  * 
+ *          A CodeCard can open or close the door placed in the streets. The
+ *          card contains a code that must match the street code in order to
+ *          perform the action.
  */
 
 public class CodeCard extends Item {
@@ -20,10 +23,13 @@ public class CodeCard extends Item {
 	 * 
 	 * Constructor of three parameters to define CodeCard.
 	 * 
-	 * @param id is a reference to identify an item.        
-	 * @param description is description of item.         
-	 * @param code is a password to open or close a street.
-	 *            
+	 * @param id
+	 *            Code card name
+	 * @param description
+	 *            Code card description
+	 * @param code
+	 *            Secret code stored in the code card
+	 * 
 	 */
 
 	public CodeCard(String id, String description, String code) {
@@ -32,9 +38,12 @@ public class CodeCard extends Item {
 	}
 
 	/**
-	 * This item always can be used, override method Item class
+	 * This item always can be used, override method Item class. A code card
+	 * always can be used. Since the robot has the code card it never loses it
+	 * 
+	 * return true because it always can be used
 	 */
-	
+
 	@Override
 	public boolean canBeUsed() {
 		return true;
@@ -42,7 +51,15 @@ public class CodeCard extends Item {
 
 	/**
 	 * 
-	 * Verify if codeCard can be use or not in a place.
+	 * The method to use a code card. If the robot is in a place which contains
+	 * a street in the direction he is looking at, then the street is opened or
+	 * closed if the street code and the card code match.
+	 * 
+	 * robot - the robot engine employed to use the card. navigation - the
+	 * navigation module to look for the street
+	 * 
+	 * return true If the code card can complete the action of opening or
+	 * closing a street. Otherwise it returns false.
 	 * 
 	 */
 
@@ -51,7 +68,8 @@ public class CodeCard extends Item {
 		if ((this.code == null) || (navigation.getCurrentPlace() == null)) {
 			return false;
 		}
-		if (navigation.getHeadingStreet() != null && this.code.equals(navigation.getHeadingStreet().getCode())) {
+		if (navigation.getHeadingStreet() != null
+				&& this.code.equals(navigation.getHeadingStreet().getCode())) {
 			if (navigation.getHeadingStreet().isOpen())
 				navigation.getHeadingStreet().close(this);
 			else
@@ -64,10 +82,11 @@ public class CodeCard extends Item {
 	}
 
 	/**
+	 * Gets the code stored in the code card
 	 * 
 	 * Return a public method (code) of a private attribute Code.
 	 * 
-	 * @return code is a password to open a street
+	 * @return code A String that represents the code
 	 */
 
 	public String getCode() {

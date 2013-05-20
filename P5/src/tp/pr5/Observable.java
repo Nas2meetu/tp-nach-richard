@@ -3,6 +3,14 @@ package tp.pr5;
 import java.util.List;
 import java.util.Vector;
 
+/**
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 5
+ * 
+ */
+
 public class Observable<T> {
 
 	protected List<T> observers;

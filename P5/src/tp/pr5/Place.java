@@ -8,8 +8,14 @@ import tp.pr5.items.ItemContainer;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
  * 
+ *          It represents a place in the city. Places are connected by streets
+ *          according to the 4 compass directions, North, East, South and West.
+ *          Every place has a name and a textual description about itself. This
+ *          description is displayed when the robot arrives at the place. A
+ *          place can represent the spaceship where the robot is safe. When the
+ *          robot arrives at this place, the application is over.
  */
 
 public class Place implements PlaceInfo {
@@ -18,16 +24,18 @@ public class Place implements PlaceInfo {
 	private boolean isSpaceship;
 	private String placeDescription;
 	private ItemContainer itemsInPlace;
-	
-	
+
 	/**
 	 * 
 	 * Constructor of three parameters with name and description place and if
 	 * this place has a Robot Space Ship
 	 * 
-	 * @param placeName is place name
-	 * @param isSpaceship is place where Spaceship is it
-	 * @param placeDescription is information about place
+	 * @param placeName
+	 *            is place name
+	 * @param isSpaceship
+	 *            is place where Spaceship is it
+	 * @param placeDescription
+	 *            is information about place
 	 * 
 	 */
 
@@ -40,57 +48,88 @@ public class Place implements PlaceInfo {
 	}
 
 	/**
+	 * Constructor without parameters
+	 * 
+	 */
+
+	public Place() {
+		itemsInPlace = new ItemContainer();
+
+	}
+
+	/**
+	 * 
+	 * Return a public method (addItem) of a private attribute (item).
+	 * 
+	 * @param item
+	 *            The item to be added
+	 * 
+	 * @return true if and only if the item can be added to the place, i.e., the
+	 *         place does not contain an item with the same name
+	 * 
+	 */
+
+	public boolean addItem(Item item) {
+		return itemsInPlace.addItem(item);
+	}
+
+	/**
+	 * 
+	 * Drop an item in this place. The operation can fail, returning false
+	 * 
+	 * @param it
+	 *            The name of the item to be dropped.
+	 * @return true if and only if the item is dropped in the place, i.e., an
+	 *         item with the same identifier does not exists in the place
+	 */
+
+	public boolean dropItem(Item it) {
+		return (it != null && itemsInPlace.addItem(it));
+
+	}
+
+	/**
+	 * 
+	 * Return a public method (getItem) of a private attribute (existItem).
+	 * 
+	 * @param id
+	 *            Identifier of an item
+	 * @return true if and only if the place contains the item identified by id
+	 */
+
+	public boolean existItem(String id) {
+		return itemsInPlace.getItem(id) != null;
+	}
+
+	/**
 	 * 
 	 * Return a public method (placeName) of a private attribute (PlaceName).
 	 * 
 	 * @return placeName is name of place
 	 */
-	
+
 	public String getName() {
 		return placeName;
 	}
 
 	/**
 	 * 
-	 * Return a public method (placeDescription) of a private attribute (Description).
+	 * Return a public method (placeDescription) of a private attribute
+	 * (Description).
 	 * 
-	 * @return placeDescription is description of place
+	 * @return placeDescription The place description
 	 */
-	
-	public String getDescription(){
+
+	public String getDescription() {
 		return placeDescription;
-	}
-	
-	
-
-	/**
-	 * Constructor without parameters
-	 * 
-	 */
-	
-	public Place() {
-		itemsInPlace = new ItemContainer();
-		
-	}
-	
-	/**
-	 * 
-	 * Return if you can drop an item in a place
-	 * 
-	 * @param it is an item
-	 * @return if you can drop an item in a place or not
-	 */
-
-	public boolean dropItem(Item it) {
-		return (it!=null && itemsInPlace.addItem(it));	       
-
 	}
 
 	/**
 	 * 
 	 * Return a public method (getItem) of a private attribute (id).
 	 * 
-	 * @param id is a reference to identify an item.
+	 * @param id
+	 *            is a reference to identify an item.
 	 * 
 	 * @return getItem(id) is the id of an item
 	 * 
@@ -102,9 +141,10 @@ public class Place implements PlaceInfo {
 
 	/**
 	 * 
-	 * Return a public method (isSpaceship) of a private attribute (isSpaceship).
+	 * Return a public method (isSpaceship) of a private attribute
+	 * (isSpaceship).
 	 * 
-	 * @return isSpaceship if robot is at spaceship in this place.
+	 * @return isSpaceship true if robot is at spaceship in this place.
 	 * 
 	 */
 
@@ -116,28 +156,16 @@ public class Place implements PlaceInfo {
 	 * 
 	 * Return a public method (pickItem) of a private attribute (id).
 	 * 
-	 * @param id is a reference to identify an item.
+	 * @param id
+	 *            is a reference to identify an item.
 	 * 
-	 * @return pickItem(id) is the id of an item
+	 * @return The item of identifier id if it exists in the place. Otherwise
+	 *         the method returns null
 	 * 
 	 */
 
 	public Item pickItem(String id) {
 		return itemsInPlace.pickItem(id);
-	}
-
-	/**
-	 * 
-	 * Return a public method (addItem) of a private attribute (item).
-	 * 
-	 * @param item is an item
-	 * 
-	 * @return addItem if you can add an item in a place
-	 * 
-	 */
-
-	public boolean addItem(Item item) {
-		return itemsInPlace.addItem(item);
 	}
 
 	/**
@@ -156,20 +184,5 @@ public class Place implements PlaceInfo {
 					+ LINE_SEPARATOR + SHOW_PLACE + LINE_SEPARATOR
 					+ itemsInPlace.toString();
 	}
-
-	/**
-	 * 
-	 * Return a public method (getItem) of a private attribute (existItem).
-	 * 
-	 * @param id
-	 * @return
-	 */
-	
-	public boolean existItem(String id) {
-		return itemsInPlace.getItem(id) != null;
-	}
-
-
-
 
 }

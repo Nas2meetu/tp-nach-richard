@@ -8,6 +8,17 @@ import tp.pr5.RobotEngine;
 import tp.pr5.instructions.Instruction;
 import tp.pr5.instructions.exceptions.WrongInstructionFormatException;
 
+/**
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 5
+ * 
+ *          The controller employed when the application is configured as a
+ *          console application. It contains the simulation loop that executes
+ *          the instructions written by the user on the console.
+ */
+
 public class ConsoleController extends Controller {
 
 	public ConsoleController(RobotEngine robot) {

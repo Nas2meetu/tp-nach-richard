@@ -9,6 +9,9 @@ import tp.pr5.RobotEngine;
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
+ *          The garbage is a type of item that generates recycled material after
+ *          using it. The garbage can be used only once. After using it, it must
+ *          be removed from the robot inventory
  */
 
 public class Garbage extends Item {
@@ -20,9 +23,12 @@ public class Garbage extends Item {
 	 * 
 	 * Constructor of three parameters to define garbage of robot.
 	 * 
-	 * @param id is a reference to identify an item.         
-	 * @param description is description of item.       
-	 * @param recycledMaterial count of recycle material.           
+	 * @param id
+	 *            is a reference to identify an item.
+	 * @param description
+	 *            is description of item.
+	 * @param recycledMaterial
+	 *            count of recycle material.
 	 * 
 	 */
 
@@ -34,11 +40,14 @@ public class Garbage extends Item {
 	}
 
 	/**
+	 * Garbage can be used only once
 	 * 
 	 * Return a public methods (garbage and canBeUse) of a private attribute
 	 * (canBeUse).
 	 * 
 	 * Verify if robot can be recycled garbage or not.
+	 * 
+	 * return true if the item has not been used yet.
 	 * 
 	 */
 
@@ -59,8 +68,13 @@ public class Garbage extends Item {
 	}
 
 	/**
+	 * The garbage generates recycled material for the robot that uses it
 	 * 
 	 * Verify if garbage can be recycle or not.
+	 * 
+	 * robot - the robot engine. navigation - the navigation module
+	 * 
+	 * return true if the garbage was transformed in recycled material.
 	 * 
 	 */
 
