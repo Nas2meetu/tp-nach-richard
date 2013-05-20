@@ -68,7 +68,9 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
+		
 		guiController.registerRobotObserver(infoPanel);
+		guiController.registerRobotObserver(this);
 		guiController.registerRobotObserver(robotPanel);
 		guiController.registerInventoryObserver(infoPanel);
 		guiController.registerInventoryObserver(robotPanel);
@@ -143,6 +145,7 @@ public class MainWindow extends JFrame implements RobotEngineObserver{
 			JOptionPane.showMessageDialog(rootPane, END_FUEL);
 			end = true;
 		}
+		this.instructionsPanel.setEnabled(false);
 	}
 
 	/**
