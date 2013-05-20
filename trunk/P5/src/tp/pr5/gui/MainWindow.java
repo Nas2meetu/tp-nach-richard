@@ -1,11 +1,23 @@
 package tp.pr5.gui;
 
-import java.awt.*;
+import static tp.pr5.Constants.END_FUEL;
+import static tp.pr5.Constants.END_SPACESHIP;
+import static tp.pr5.Constants.QUIT;
+import static tp.pr5.Constants.TITLE_GAME;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import tp.pr5.RobotEngineObserver;
-import static tp.pr5.Constants.*;
 
 public class MainWindow extends JFrame implements RobotEngineObserver{
 

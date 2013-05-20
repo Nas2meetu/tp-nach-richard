@@ -1,7 +1,6 @@
 package tp.pr5.gui;
 
 import static tp.pr5.Constants.*;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,15 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
 import tp.pr5.RobotEngineObserver;
 import tp.pr5.Rotation;
-import tp.pr5.instructions.DropInstruction;
-import tp.pr5.instructions.Instruction;
-import tp.pr5.instructions.MoveInstruction;
-import tp.pr5.instructions.OperateInstruction;
-import tp.pr5.instructions.PickInstruction;
-import tp.pr5.instructions.TurnInstruction;
-import tp.pr5.instructions.exceptions.InstructionExecutionException;
 
 /**
  * 
@@ -117,12 +110,10 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 				if (!mainWindow.isEnd()) {
 					String id = robotPanel.getSelectedItem();
 					if (id != null) {
-						Instruction dropInstruction = new DropInstruction(id);
-						guiController.executeDropInstruction(dropInstruction);
+						guiController.dropPressed(id);
 					} else
 						JOptionPane.showMessageDialog(mainWindow,
 								NO_ITEM_CHOOSE);
-
 				}
 			}
 
@@ -147,13 +138,7 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!mainWindow.isEnd()) {
-					Instruction moveInstruction = new MoveInstruction();
-					try {
-						guiController.executeMoveInstruction(moveInstruction);
-					} catch (InstructionExecutionException e1) {
-						JOptionPane.showMessageDialog(mainWindow,
-								e1.getMessage());
-					}
+					guiController.movePressed();
 				}
 
 			}
@@ -186,16 +171,10 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 					String id;
 					id = robotPanel.getSelectedItem();
 					if (id != null) {
-						Instruction operateInstruction = new OperateInstruction(
-								id);
-						try {
-							guiController
-									.executeOperateInstruction(operateInstruction);
-						} catch (InstructionExecutionException e1) {
-							JOptionPane.showMessageDialog(getRootPane(),
-									e1.getMessage());
-						}
-					}
+						guiController.operatePressed(id);
+					} else
+						JOptionPane.showMessageDialog(mainWindow,
+								NO_ITEM_CHOOSE);
 				}
 			}
 
@@ -228,14 +207,7 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 				if (!mainWindow.isEnd()) {
 					String id = txtBox.getText();
 					if (!id.equals("")) {
-						Instruction pickInstruction = new PickInstruction(id);
-						try {
-							guiController
-									.executePickInstruction(pickInstruction);
-						} catch (InstructionExecutionException e1) {
-							JOptionPane.showMessageDialog(getRootPane(),
-									e1.getMessage());
-						}
+						guiController.pickPressed(id);
 					} else
 						JOptionPane.showMessageDialog(getRootPane(),
 								NO_WRITTE_ITEM);
@@ -292,21 +264,14 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!mainWindow.isEnd()) {
-					Instruction turnInstruction = new TurnInstruction(
-							cbDirections.getItemAt(cbDirections
-									.getSelectedIndex()));
-					try {
-						guiController.executeTurnInstruction(turnInstruction);
-					} catch (InstructionExecutionException e1) {
-						JOptionPane.showConfirmDialog(getRootPane(),
-								e1.toString());
-					}
-
+					guiController.turnPressed(cbDirections
+							.getItemAt(cbDirections.getSelectedIndex()));
 				}
 			}
 		});
 
 	}
+
 	/**
 	 * The robot engine informs that the help has been requested
 	 */
@@ -315,23 +280,26 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 		// Not use
 
 	}
+
 	/**
-	 * The robot engine informs that the help has been requested 
+	 * The robot engine informs that the help has been requested
 	 */
 	@Override
 	public void communicationHelp(String help) {
-		//Not use
+		// Not use
 
 	}
+
 	/**
-	 * The robot engine informs that the robot has shut down
-	 * (because it has arrived at the spaceship or it has run out of fuel)
+	 * The robot engine informs that the robot has shut down (because it has
+	 * arrived at the spaceship or it has run out of fuel)
 	 */
 	@Override
 	public void engineOff(boolean atShip) {
 		mainWindow.engineOff(atShip);
 
 	}
+
 	/**
 	 * The robot engine informs that it has raised an error
 	 */
@@ -340,6 +308,7 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 		// TODO Auto-generated method stub
 
 	}
+
 	/**
 	 * The robot engine informs that the robot wants to say something
 	 */
@@ -348,8 +317,10 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 		// TODO Auto-generated method stub
 
 	}
+
 	/**
-	 * The robot engine informs that the fuel and/or the amount of recycled material has changed
+	 * The robot engine informs that the fuel and/or the amount of recycled
+	 * material has changed
 	 */
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {

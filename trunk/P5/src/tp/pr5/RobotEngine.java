@@ -115,14 +115,14 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	 */
 
 	public void communicateRobot(Instruction c)
-			throws InstructionExecutionException {
+	 {
 		c.configureContext(this, navigation, container);
 		try {
 			c.execute();
 			if (navigation.atSpaceship())
 				this.requestEnd();
 		} catch (InstructionExecutionException e) {
-			throw new InstructionExecutionException(e.getMessage());
+			this.requestError(e.getMessage());
 		}
 	}
 

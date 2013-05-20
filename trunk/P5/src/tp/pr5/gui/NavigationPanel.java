@@ -1,15 +1,26 @@
 package tp.pr5.gui;
 
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import tp.pr5.Direction;
-import tp.pr5.NavigationObserver;
-import tp.pr5.PlaceInfo;
-import static tp.pr5.Constants.*;
+import static tp.pr5.Constants.IMAGES_DONT_LOAD;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.net.URL;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.border.TitledBorder;
+
+import tp.pr5.Direction;
+import tp.pr5.NavigationObserver;
+import tp.pr5.PlaceInfo;
+
 
 /**
  * 
