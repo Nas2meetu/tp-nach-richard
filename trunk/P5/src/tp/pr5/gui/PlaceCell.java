@@ -12,14 +12,19 @@ import tp.pr5.PlaceInfo;
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
+ *          Represents a Place in the city on the Swing interface. It is a
+ *          button, which name is the place name.
+ * 
+ *          A PlaceCell needs to store a reference to the place that it
+ *          represents. However, this place should not be modified by the
+ *          PlaceCell
+ * 
+ *          When the user clicks on a PlaceCell the NavigationPanel will show
+ *          the place description if the Place was previously visited.
  */
 
 public class PlaceCell extends JButton {
 
-	/**
-	 * 
-	 */
-	
 	private static final long serialVersionUID = 1L;
 
 	private PlaceInfo place = null;

@@ -12,8 +12,11 @@ import tp.pr5.items.ItemContainer;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
  * 
+ *          This instruction drops an Item from the current place and puts it
+ *          the robot inventory. This instruction works if the user writes DROP
+ *          or SOLTAR
  */
 
 public class DropInstruction implements Instruction {
@@ -34,6 +37,12 @@ public class DropInstruction implements Instruction {
 	/**
 	 * Read a string with an action, compare if this action is correct and
 	 * generate DropInstruction, else throw an exception.
+	 * 
+	 * @param cad
+	 *            text String to parse
+	 * 
+	 * @throws WrongInstructionFormatException
+	 *             When the String is not DROP <id>
 	 */
 
 	@Override
@@ -57,6 +66,8 @@ public class DropInstruction implements Instruction {
 
 	/**
 	 * Show information about DROP instruction syntax.
+	 * 
+	 * return the instruction syntax DROP <id>
 	 */
 
 	@Override
@@ -70,8 +81,8 @@ public class DropInstruction implements Instruction {
 	 * navigation and the robot container) even though the actual implementation
 	 * of execute() may not require it.
 	 * 
-	 * engine The robot engine navigation The information about the game, i.e.,
-	 * the places, current direction and current heading to navigate
+	 * engine The robot engine. navigation The information about the game, i.e.,
+	 * the places, current direction and current heading to navigate.
 	 * robotContainer The inventory of the robot
 	 * 
 	 */
@@ -89,6 +100,15 @@ public class DropInstruction implements Instruction {
 	 * 
 	 * Execute DROP instruction Verify if item isn't null, Place hasn't got this
 	 * item and put into Place.
+	 * 
+	 * InstructionExecutionException - When the robot inventory does not contain
+	 * an item with this name or when there is another item with the same id in
+	 * the current place
+	 * 
+	 * @throws InstructionExecutionException
+	 *             When the robot inventory does not contain an item with this
+	 *             name or when there is another item with the same id in the
+	 *             current place
 	 */
 
 	@Override

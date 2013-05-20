@@ -14,8 +14,10 @@ import tp.pr5.items.ItemContainer;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
  * 
+ *          The Instruction for using an item. This Instruction works if the
+ *          user writes OPERATE id or OPERAR id
  */
 
 public class OperateInstruction implements Instruction {
@@ -34,8 +36,17 @@ public class OperateInstruction implements Instruction {
 	}
 
 	/**
+	 * Parses the String returning an instance of OperateInstruction or throwing
+	 * a WrongInstructionFormatException()
+	 * 
 	 * Read a string with an action, compare if this action is correct and
 	 * generate OperateInstruction, else throw an exception.
+	 * 
+	 * @param cad
+	 *            text String to parse
+	 * @throws WrongInstructionFormatException
+	 *             When the String is not OPERATE|OPERAR <ID>
+	 * 
 	 */
 
 	@Override
@@ -59,6 +70,12 @@ public class OperateInstruction implements Instruction {
 
 	/**
 	 * Show information about OPERATE instruction syntax.
+	 * 
+	 * Returns a description of the Instruction syntax. The string does not end
+	 * with the line separator. It is up to the caller adding it before
+	 * printing.
+	 * 
+	 * return the Instruction syntax OPERATE|OPERAR <ID>
 	 */
 
 	@Override
@@ -67,7 +84,6 @@ public class OperateInstruction implements Instruction {
 	}
 
 	/**
-	 * 
 	 * Set the execution context. The method receives the entire engine (engine,
 	 * navigation and the robot container) even though the actual implementation
 	 * of execute() may not require it.
@@ -76,6 +92,13 @@ public class OperateInstruction implements Instruction {
 	 * the places, current direction and current heading to navigate
 	 * robotContainer The inventory of the robot
 	 * 
+	 * @param engine
+	 *            The robot engine
+	 * @param navigation
+	 *            The information about the game, i.e., the places, current
+	 *            direction and current heading to navigate
+	 * @param robotContainer
+	 *            The inventory of the robot
 	 */
 
 	@Override
@@ -88,6 +111,10 @@ public class OperateInstruction implements Instruction {
 
 	/**
 	 * Execute OPERATE instruction Verify if item isn't null and can be used.
+	 * 
+	 * @throws InstructionExecutionException
+	 *             When the robot inventory does not contain an item with this
+	 *             name or when the item cannot be used
 	 */
 
 	@Override

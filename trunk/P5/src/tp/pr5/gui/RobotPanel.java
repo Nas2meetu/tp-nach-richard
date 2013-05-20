@@ -227,49 +227,49 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
-		// TODO Auto-generated method stub
+		// Not used
 
 	}
 
 	@Override
 	public void itemEmpty(String itemName) {
-		// TODO Auto-generated method stub
+		// Not used
 
 	}
 
 	@Override
 	public void itemScanned(String description) {
-		// TODO Auto-generated method stub
+		// Not used
 
 	}
 
 	@Override
 	public void communicationCompleted() {
-		// TODO Auto-generated method stub
+		// Not used
 
 	}
 
 	@Override
 	public void communicationHelp(String help) {
-		// TODO Auto-generated method stub
+		// Not used
 
 	}
 
 	@Override
 	public void engineOff(boolean atShip) {
-		// TODO Auto-generated method stub
+		// Not used
 
 	}
 
 	@Override
 	public void raiseError(String msg) {
-		// TODO Auto-generated method stub
+		// Not used
 
 	}
 
 	@Override
 	public void robotSays(String message) {
-		// TODO Auto-generated method stub
+		// Not used
 
 	}
 

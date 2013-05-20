@@ -1,14 +1,18 @@
 package tp.pr5;
 
 /**
-* 
-* @author Ignacio Cerda Sanchez
-* @author Ricardo Eugui Fernandez
-* @version 4
-* 
-*/
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 5
+ * 
+ *          An enumerated type that represents the compass directions (north,
+ *          east, south and west) plus a value that represents an unknown
+ *          direction.
+ */
 
-public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
+public enum Direction {
+	NORTH, EAST, SOUTH, WEST, UNKNOWN;
 
 	/**
 	 * 
@@ -17,10 +21,9 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 	 * @return oppositeDirection is opposite direction where robot is looking at
 	 * 
 	 */
-		
+
 	public Direction opposite() {
-    	
-		
+
 		Direction oppositeDirection = UNKNOWN;
 
 		if (this == NORTH) {
@@ -36,20 +39,18 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 		return oppositeDirection;
 	}
 
-
 	/**
 	 * 
-     * Define turnLeft direction for Wall·E
-     * 
-     * @return direction is direction that robot is looking at if it turn left
-     * 
-     */
-		
-	public Direction turnLeft(){
-		
+	 * Define turnLeft direction for Wall·E
+	 * 
+	 * @return direction is direction that robot is looking at if it turn left
+	 * 
+	 */
+
+	public Direction turnLeft() {
 
 		Direction direction = UNKNOWN;
-		
+
 		if (this == NORTH) {
 			direction = WEST;
 		} else if (this == SOUTH) {
@@ -62,19 +63,19 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 
 		return direction;
 	}
-	
-	 /**
+
+	/**
 	 * 
-     * Define turnRight direction for Wall·E
-     * 
-     * @return direction is direction that robot is looking at if it turn right
-     * 
-     */
-	
-	public Direction turnRight(){
-		
+	 * Define turnRight direction for Wall·E
+	 * 
+	 * @return direction is direction that robot is looking at if it turn right
+	 * 
+	 */
+
+	public Direction turnRight() {
+
 		Direction direction = UNKNOWN;
-		
+
 		if (this == NORTH) {
 			direction = EAST;
 		} else if (this == SOUTH) {
@@ -87,4 +88,3 @@ public enum Direction { NORTH, EAST, SOUTH, WEST, UNKNOWN;
 		return direction;
 	}
 }
-	

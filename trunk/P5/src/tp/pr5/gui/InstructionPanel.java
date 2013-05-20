@@ -305,7 +305,7 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 	 */
 	@Override
 	public void raiseError(String msg) {
-		// TODO Auto-generated method stub
+		// Not used
 
 	}
 
@@ -314,7 +314,7 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 	 */
 	@Override
 	public void robotSays(String message) {
-		// TODO Auto-generated method stub
+		// Not used
 
 	}
 
@@ -324,7 +324,7 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 	 */
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
-		// TODO Auto-generated method stub
+		// Not used
 
 	}
 

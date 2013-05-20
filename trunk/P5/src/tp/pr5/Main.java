@@ -16,14 +16,33 @@ import tp.pr5.gui.MainWindow;
  * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
- * @version 4
+ * @version 5
+ * 
+ *          Application entry-point. The application admits a parameter -m |
+ *          --map with the name of the map file to be used, a parameter -i |
+ *          --interface with the type of interface (console, swing or both) and
+ *          a parameter -h | --help to show a help message about how to use this
+ *          application.
+ * 
+ *          If no arg is specified (or more than one file is given), it prints
+ *          an error message (in System.err) and the application finishes with
+ *          an error code (-1).
+ * 
+ *          If the map file cannot be read (or it does not exist), the
+ *          application ends with a different error code (-2).
+ * 
+ *          If the interface arg is not correct (console, swing or both) the
+ *          application prints a message and the application finishes with an
+ *          error code (-3). Otherwise, the simulation starts and eventually the
+ *          application will end normally (return code 0).
  */
+
 public class Main {
 
 	/**
 	 * 
-	 * Commons-Cli Load file with places, streets and , create city and
-	 * start game's interface and console
+	 * Commons-Cli Load file with places, streets and , create city and start
+	 * game's interface, console or both.
 	 * 
 	 * @param args
 	 */
@@ -100,10 +119,15 @@ public class Main {
 				if (interfaces != null) {
 					RobotEngine robot = new RobotEngine(city,
 							fileLoader.getInitialPlace(), Direction.NORTH);
+
+					// Load only swing interface
+
 					if (interfaces.equalsIgnoreCase("swing")) {
 						GUIController gc = new GUIController(robot);
 						final MainWindow mainWindow = new MainWindow(gc);
 						gc.startGuiController();
+
+						// Load console only interface
 
 					} else if (interfaces.equalsIgnoreCase("console")) {
 						ConsoleController cc = new ConsoleController(robot);
@@ -112,7 +136,10 @@ public class Main {
 						robot.addNavigationObserver(c);
 						robot.addItemContainerObserver(c);
 						cc.startController();
-						
+
+						// Load swing and console interface (but interface only
+						// read mode)
+
 					} else if (interfaces.equalsIgnoreCase("both")) {
 						GUIController gc = new GUIController(robot);
 						Console c = new Console();
@@ -121,7 +148,7 @@ public class Main {
 						robot.addItemContainerObserver(c);
 						final MainWindow mainWindow = new MainWindow(gc);
 						gc.startGuiController();
-						
+
 					} else {
 						System.err.println(WRONG_INTERFACE);
 						System.exit(1);

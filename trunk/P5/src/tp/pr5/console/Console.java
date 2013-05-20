@@ -9,6 +9,18 @@ import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
 import static tp.pr5.Constants.*;
 
+/**
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 5
+ * 
+ *          The view that displays the application on the System.out. It
+ *          implements all the observer interfaces in order to be notified about
+ *          every event that occur when the robot is running.
+ * 
+ */
+
 public class Console extends Object implements NavigationObserver,
 		RobotEngineObserver, InventoryObserver {
 
@@ -25,7 +37,10 @@ public class Console extends Object implements NavigationObserver,
 	/**
 	 * The robot engine informs that the help has been requested
 	 * 
+	 * help - A string with information help
+	 * 
 	 */
+
 	@Override
 	public void communicationHelp(String help) {
 		System.out.println(help);
@@ -34,6 +49,10 @@ public class Console extends Object implements NavigationObserver,
 	/**
 	 * The robot engine informs that the robot has shut down (because it has
 	 * arrived at the spaceship or it has run out of fuel)
+	 * 
+	 * atShip - true if the robot shuts down because it has arrived at the
+	 * spaceship or false if it has run out of fuel
+	 * 
 	 */
 	@Override
 	public void engineOff(boolean atShip) {
@@ -47,7 +66,10 @@ public class Console extends Object implements NavigationObserver,
 	/**
 	 * Notifies that the robot heading has changed
 	 * 
+	 * newHeading - New robot heading
+	 * 
 	 */
+
 	@Override
 	public void headingChanged(Direction newHeading) {
 		System.out.println(LOOKING_DIRECTION + newHeading);
@@ -56,7 +78,11 @@ public class Console extends Object implements NavigationObserver,
 	/**
 	 * Notifies that the navigation module has been initialized
 	 * 
+	 * initialPlace - The place where the robot starts the simulation. heading -
+	 * The initial robot heading
+	 * 
 	 */
+
 	@Override
 	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
 		System.out.println(initialPlace.toString() + LINE_SEPARATOR
@@ -65,6 +91,8 @@ public class Console extends Object implements NavigationObserver,
 
 	/**
 	 * Notifies that the container has changed
+	 * 
+	 * inventory - New inventory
 	 * 
 	 */
 	@Override
@@ -75,6 +103,7 @@ public class Console extends Object implements NavigationObserver,
 	/**
 	 * Notifies that the user requests a SCAN instruction over the inventory.
 	 * 
+	 * inventoryDescription - Information about the inventory
 	 */
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
@@ -84,7 +113,10 @@ public class Console extends Object implements NavigationObserver,
 	/**
 	 * Notifies that an item is empty and it will be removed from the container.
 	 * 
+	 * itemName - Name of the empty item
+	 * 
 	 */
+
 	@Override
 	public void itemEmpty(String itemName) {
 		System.out.println(ITEM_NOT_EXIST + itemName + IN_MY_INVENTORY);
@@ -93,6 +125,8 @@ public class Console extends Object implements NavigationObserver,
 
 	/**
 	 * Notifies that the user wants to scan an item allocated in the inventory
+	 * 
+	 * description - Item description
 	 * 
 	 */
 	@Override
@@ -107,13 +141,16 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void placeHasChanged(PlaceInfo placeDescription) {
-		//Not use
+		// Not use
 	}
 
 	/**
 	 * Notifies that the user requested a RADAR instruction
 	 * 
+	 * placeDescription - Information with the current place
+	 * 
 	 */
+
 	@Override
 	public void placeScanned(PlaceInfo placeDescription) {
 		System.out.println(placeDescription.toString());
@@ -122,7 +159,9 @@ public class Console extends Object implements NavigationObserver,
 	/**
 	 * The robot engine informs that it has raised an error
 	 * 
+	 * msg - Error message
 	 */
+
 	@Override
 	public void raiseError(String msg) {
 		System.out.println(msg);
@@ -130,6 +169,9 @@ public class Console extends Object implements NavigationObserver,
 
 	/**
 	 * Notifies that the robot has arrived at a place
+	 * 
+	 * heading - The robot movement direction. place - The place where the robot
+	 * arrives
 	 * 
 	 */
 	@Override
@@ -140,7 +182,10 @@ public class Console extends Object implements NavigationObserver,
 	/**
 	 * The robot engine informs that the robot wants to say something
 	 * 
+	 * message - The robot message
+	 * 
 	 */
+
 	@Override
 	public void robotSays(String message) {
 		System.out.print(message);
@@ -149,6 +194,9 @@ public class Console extends Object implements NavigationObserver,
 	/**
 	 * The robot engine informs that the fuel and/or the amount of recycled
 	 * material has changed
+	 * 
+	 * fuel - Current amount of fuel recycled. Material - Current amount of
+	 * recycled material.
 	 * 
 	 */
 	@Override

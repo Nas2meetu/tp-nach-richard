@@ -10,6 +10,11 @@ import tp.pr5.items.Item;
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
+ *          This class is in charge of the robot navigation features. It
+ *          contains the city where the robot looks for garbage, the current
+ *          place where the robot is, and the current direction of the robot. It
+ *          contains methods to handle the different robot movements and to pick
+ *          and drop items at the current place.
  */
 
 public class NavigationModule extends Observable<NavigationObserver> {
@@ -48,18 +53,18 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	}
 
 	/**
-	 * Drop an item in the current place place.
+	 * Drop an item in the current place place. It does not check whether the
+	 * operation fails
 	 * 
-	 * @param it
+	 * @param item
 	 *            The name of the item to be dropped.
-	 * @throws InstructionExecutionException
 	 * 
 	 */
 
 	public void dropItemAtCurrentPlace(Item item) {
 		actualPlace.dropItem(item);
 		notifyPlaceHasChanged();
-		
+
 	}
 
 	private void notifyPlaceHasChanged() {
@@ -119,7 +124,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	 * Initializes the current heading according to the parameter
 	 * 
 	 * @param heading
-	 *            - New direction for the robot
+	 *            New direction for the robot
 	 * 
 	 */
 
@@ -164,11 +169,17 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	}
 
 	/**
+	 * Tries to pick an item characterized by a given identifier from the
+	 * current place. If the action was completed the item is removed from the
+	 * current place.
+	 * 
 	 * Show if you can pick and item from current place.
 	 * 
 	 * @param it
 	 *            is an item
 	 * 
+	 *            return The item of identifier id if it exists in the place.
+	 *            Otherwise the method returns null
 	 */
 
 	public void pickItemFromCurrentPlace(Item it) {
@@ -183,7 +194,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	 * Updates the current direction of the robot according to the rotation
 	 * 
 	 * @param rotation
-	 *            - left or right
+	 *            left or right
 	 * 
 	 */
 
@@ -201,7 +212,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 		for (NavigationObserver navObserver : observers) {
 			navObserver.headingChanged(lookingDirection);
 		}
-		
+
 	}
 
 	/**
@@ -209,6 +220,7 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	 * the current place
 	 * 
 	 */
+
 	public void scanCurrentPlace() {
 		notifyPlaceScanned();
 	}
@@ -229,7 +241,5 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	public City getCityMap() {
 		return cityMap;
 	}
-
-
 
 }

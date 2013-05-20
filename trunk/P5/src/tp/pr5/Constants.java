@@ -6,15 +6,11 @@ package tp.pr5;
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
+ * This class define messages for Wall·E , prompt, errors and line_separator
+ * 
  */
 
 public class Constants {
-
-	/**
-	 * 
-	 * Define messages for Wall·E , prompt, errors and line_separator
-	 * 
-	 */
 
 	public static final String LINE_SEPARATOR = System
 			.getProperty("line.separator");

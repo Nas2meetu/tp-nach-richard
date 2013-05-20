@@ -2,6 +2,14 @@ package tp.pr5;
 
 import tp.pr5.items.InventoryObserver;
 
+/**
+ * 
+ * @author Ignacio Cerda Sanchez
+ * @author Ricardo Eugui Fernandez
+ * @version 5
+ * 
+ */
+
 public class Controller {
 
 	protected RobotEngine robot;
