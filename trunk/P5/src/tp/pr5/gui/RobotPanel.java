@@ -73,7 +73,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 	 * Update count of Fuel in RobotPanel
 	 * 
 	 * @param fuel
-	 *            an item that represents fue
+	 *            an item that represents fuel
 	 */
 
 	public void setFuel(Integer fuel) {
@@ -205,7 +205,6 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 
 	public void updateTable(String[][] items) {
 		tbInventoryModel.updateData(items);
-
 	}
 
 	@Override

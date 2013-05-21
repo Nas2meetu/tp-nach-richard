@@ -136,6 +136,8 @@ public class Constants {
 			+ "I have not such object ";
 
 	public static final String TITLE_GAME = "WALL·E the garbage collector";
+	
+	public static final String TURN_UNKNOWN = "Error, this rotation is not posible";
 
 	public static final String TYPE_INTERFACE = "The type of interface: console, swing or both";
 

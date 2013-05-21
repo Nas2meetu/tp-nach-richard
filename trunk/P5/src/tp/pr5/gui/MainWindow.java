@@ -62,10 +62,7 @@ public class MainWindow extends JFrame implements RobotEngineObserver {
 	private JPanel mainPanel;
 	private boolean end = false;
 
-	public void setMainPanel(JPanel mainPanel) {
-		this.mainPanel = mainPanel;
-	}
-
+	
 	/**
 	 * Creates the window and the panels using Swing Components. It stores a
 	 * reference to the RobotEngine object and provides the panels to the robot
@@ -185,7 +182,7 @@ public class MainWindow extends JFrame implements RobotEngineObserver {
 			JOptionPane.showMessageDialog(rootPane, END_FUEL);
 			end = true;
 		}
-		this.instructionsPanel.setEnabled(false);
+		
 	}
 
 	/**

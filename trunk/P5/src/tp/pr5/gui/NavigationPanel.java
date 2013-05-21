@@ -236,7 +236,6 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 
 		default:
 			break;
-
 		}
 
 	}
