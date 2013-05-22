@@ -32,13 +32,11 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 	private MainWindow mainWindow;
 
 	/**
-	 * 
 	 * Panel with instruction buttons
 	 * 
 	 * @param guiController
 	 * @param robotPanel
 	 *            displays information about the robot and its inventory
-	 * 
 	 */
 
 	public InstructionPanel(GUIController guiController, RobotPanel robotPanel,
@@ -87,7 +85,6 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 	}
 
 	/**
-	 * 
 	 * Creates an actionListener, receive an actionEvent to drop instruction and
 	 * execute drop instruction
 	 * 
@@ -121,7 +118,6 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 	}
 
 	/**
-	 * 
 	 * Creates an actionListener, receive an actionEvent to move instruction and
 	 * execute move instruction
 	 * 
@@ -147,7 +143,6 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 	}
 
 	/**
-	 * 
 	 * Creates an actionListener, receive an actionEvent to operate instruction
 	 * and execute operate instruction
 	 * 
@@ -183,7 +178,6 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 	}
 
 	/**
-	 * 
 	 * Creates an actionListener, receive an actionEvent to pick instruction and
 	 * execute pick instruction
 	 * 
@@ -218,7 +212,6 @@ public class InstructionPanel extends JPanel implements RobotEngineObserver {
 	}
 
 	/**
-	 * 
 	 * Creates an actionListener, receive an actionEvent to quit instruction and
 	 * execute quit instruction
 	 * 

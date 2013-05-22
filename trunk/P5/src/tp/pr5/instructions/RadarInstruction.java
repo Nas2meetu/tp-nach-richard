@@ -16,6 +16,8 @@ import tp.pr5.items.ItemContainer;
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
+ *          This Instruction shows the description of the current place and the
+ *          items in it. This Instruction works if the user writes RADAR
  */
 
 public class RadarInstruction implements Instruction {
@@ -23,8 +25,14 @@ public class RadarInstruction implements Instruction {
 	private NavigationModule navigation;
 
 	/**
+	 * Parses the String returning an instance of RadarInstruction or throwing a
+	 * WrongInstructionFormatException()
+	 * 
 	 * Read a string with an action, compare if this action is correct and
 	 * generate RadarInstruction, else throw an exception.
+	 * 
+	 * @throws WrongInstructionFormatException
+	 *             When the String is not RADAR
 	 */
 
 	@Override
@@ -43,6 +51,12 @@ public class RadarInstruction implements Instruction {
 
 	/**
 	 * Show information about RADAR instruction syntax.
+	 * 
+	 * Returns a description of the Instruction syntax. The string does not end
+	 * with the line separator. It is up to the caller adding it before
+	 * printing.
+	 * 
+	 * Return the Instruction syntax RADAR
 	 */
 
 	@Override
@@ -67,7 +81,7 @@ public class RadarInstruction implements Instruction {
 	 * @param robotContainer
 	 *            The inventory of the robot
 	 */
-	
+
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
@@ -77,6 +91,9 @@ public class RadarInstruction implements Instruction {
 
 	/**
 	 * Execute RADAR instruction.
+	 * 
+	 * @throws InstructionExecutionException
+	 *             if there exist any execution error.
 	 */
 
 	@Override

@@ -15,6 +15,10 @@ import tp.pr5.items.ItemContainer;
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
+ *          The execution of this instruction shows the information of the
+ *          inventory of the robot or the complete description about the item
+ *          with identifier id contained in the inventory This Instruction works
+ *          if the player writes SCAN or ESCANEAR (id is not mandatory)
  */
 
 public class ScanInstruction implements Instruction {
@@ -34,6 +38,14 @@ public class ScanInstruction implements Instruction {
 	/**
 	 * Read a string with an action, compare if this action is correct and
 	 * generate ScanInstruction, else throw an exception.
+	 * 
+	 * @param cad
+	 *            text String to parse
+	 * 
+	 *            return Instruction Reference to an instance of ScanInstruction
+	 * 
+	 * @throws WrongInstructionFormatException
+	 *             When the String is not SCAN | ESCANEAR [id]
 	 */
 
 	@Override
@@ -57,6 +69,12 @@ public class ScanInstruction implements Instruction {
 
 	/**
 	 * Show information about SCAN instruction syntax.
+	 * 
+	 * Returns a description of the Instruction syntax. The string does not end
+	 * with the line separator. It is up to the caller adding it before
+	 * printing.
+	 * 
+	 * Return The Instruction's syntax.
 	 */
 
 	@Override
@@ -92,6 +110,12 @@ public class ScanInstruction implements Instruction {
 
 	/**
 	 * Execute SCAN instruction.
+	 * 
+	 * Executes the Instruction It must be implemented in every non abstract
+	 * subclass.
+	 * 
+	 * @throws InstructionExecutionException
+	 *             if there exist any execution error.
 	 */
 
 	@Override
@@ -101,7 +125,7 @@ public class ScanInstruction implements Instruction {
 				robot.saySomething(CONTAINER_EMPTY);
 			} else {
 				robot.saySomething(CONTAINER);
-				robot.saySomething(robotContainer.toString()+LINE_SEPARATOR);
+				robot.saySomething(robotContainer.toString() + LINE_SEPARATOR);
 			}
 		} else {
 			Item item = robotContainer.getItem(id);

@@ -15,13 +15,11 @@ public interface PlaceInfo {
 
 	/**
 	 * Return the place description
-	 * 
 	 */
 	public String getDescription();
 
 	/**
 	 * Return the place name
-	 * 
 	 */
 	public String getName();
 
@@ -29,7 +27,6 @@ public interface PlaceInfo {
 	 * Is this place the space ship?
 	 * 
 	 * true if the place represents a space ship
-	 * 
 	 */
 	public boolean isSpaceship();
 

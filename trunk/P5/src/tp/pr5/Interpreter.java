@@ -5,7 +5,6 @@ import tp.pr5.instructions.*;
 import tp.pr5.instructions.exceptions.*;
 
 /**
- * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
  * @version 5
@@ -21,9 +20,7 @@ import tp.pr5.instructions.exceptions.*;
 public class Interpreter {
 
 	/**
-	 * 
 	 * Define an array of valid instructions.
-	 * 
 	 */
 
 	private static Instruction[] allInstructions = new Instruction[] {
@@ -36,7 +33,6 @@ public class Interpreter {
 	};
 
 	/**
-	 * 
 	 * Generates a new instruction according to the user input
 	 * 
 	 * @param line
@@ -44,7 +40,6 @@ public class Interpreter {
 	 * @return line The instruction read from the given line. If the instruction
 	 *         is not correct, then it throws an exception
 	 * @throws WrongInstructionFormatException
-	 * 
 	 */
 
 	public static Instruction generateInstruction(String line)
@@ -61,7 +56,6 @@ public class Interpreter {
 	}
 
 	/**
-	 * 
 	 * It returns information about all the instructions that the robot
 	 * understands
 	 * 

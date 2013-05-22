@@ -26,7 +26,6 @@ public class Place implements PlaceInfo {
 	private ItemContainer itemsInPlace;
 
 	/**
-	 * 
 	 * Constructor of three parameters with name and description place and if
 	 * this place has a Robot Space Ship
 	 * 
@@ -36,7 +35,6 @@ public class Place implements PlaceInfo {
 	 *            is place where Spaceship is it
 	 * @param placeDescription
 	 *            is information about place
-	 * 
 	 */
 
 	public Place(String placeName, boolean isSpaceship, String placeDescription) {
@@ -49,7 +47,6 @@ public class Place implements PlaceInfo {
 
 	/**
 	 * Constructor without parameters
-	 * 
 	 */
 
 	public Place() {
@@ -57,8 +54,7 @@ public class Place implements PlaceInfo {
 
 	}
 
-	/**
-	 * 
+	/** 
 	 * Return a public method (addItem) of a private attribute (item).
 	 * 
 	 * @param item
@@ -66,15 +62,13 @@ public class Place implements PlaceInfo {
 	 * 
 	 * @return true if and only if the item can be added to the place, i.e., the
 	 *         place does not contain an item with the same name
-	 * 
 	 */
 
 	public boolean addItem(Item item) {
 		return itemsInPlace.addItem(item);
 	}
 
-	/**
-	 * 
+	/** 
 	 * Drop an item in this place. The operation can fail, returning false
 	 * 
 	 * @param it
@@ -89,7 +83,6 @@ public class Place implements PlaceInfo {
 	}
 
 	/**
-	 * 
 	 * Return a public method (getItem) of a private attribute (existItem).
 	 * 
 	 * @param id
@@ -102,7 +95,6 @@ public class Place implements PlaceInfo {
 	}
 
 	/**
-	 * 
 	 * Return a public method (placeName) of a private attribute (PlaceName).
 	 * 
 	 * @return placeName is name of place
@@ -113,7 +105,6 @@ public class Place implements PlaceInfo {
 	}
 
 	/**
-	 * 
 	 * Return a public method (placeDescription) of a private attribute
 	 * (Description).
 	 * 
@@ -125,14 +116,12 @@ public class Place implements PlaceInfo {
 	}
 
 	/**
-	 * 
 	 * Return a public method (getItem) of a private attribute (id).
 	 * 
 	 * @param id
 	 *            is a reference to identify an item.
 	 * 
 	 * @return getItem(id) is the id of an item
-	 * 
 	 */
 
 	public Item getItem(String id) {
@@ -140,12 +129,10 @@ public class Place implements PlaceInfo {
 	}
 
 	/**
-	 * 
 	 * Return a public method (isSpaceship) of a private attribute
 	 * (isSpaceship).
 	 * 
 	 * @return isSpaceship true if robot is at spaceship in this place.
-	 * 
 	 */
 
 	public boolean isSpaceship() {
@@ -153,7 +140,6 @@ public class Place implements PlaceInfo {
 	}
 
 	/**
-	 * 
 	 * Return a public method (pickItem) of a private attribute (id).
 	 * 
 	 * @param id
@@ -161,7 +147,6 @@ public class Place implements PlaceInfo {
 	 * 
 	 * @return The item of identifier id if it exists in the place. Otherwise
 	 *         the method returns null
-	 * 
 	 */
 
 	public Item pickItem(String id) {
@@ -169,9 +154,7 @@ public class Place implements PlaceInfo {
 	}
 
 	/**
-	 * 
 	 * Override toString to show place information.
-	 * 
 	 */
 
 	public String toString() {

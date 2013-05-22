@@ -15,11 +15,9 @@ public enum Direction {
 	NORTH, EAST, SOUTH, WEST, UNKNOWN;
 
 	/**
-	 * 
 	 * Define opposite directions for Wall·E
 	 * 
 	 * @return oppositeDirection is opposite direction where robot is looking at
-	 * 
 	 */
 
 	public Direction opposite() {
@@ -40,11 +38,9 @@ public enum Direction {
 	}
 
 	/**
-	 * 
 	 * Define turnLeft direction for Wall·E
 	 * 
 	 * @return direction is direction that robot is looking at if it turn left
-	 * 
 	 */
 
 	public Direction turnLeft() {
@@ -65,11 +61,9 @@ public enum Direction {
 	}
 
 	/**
-	 * 
 	 * Define turnRight direction for Wall·E
 	 * 
 	 * @return direction is direction that robot is looking at if it turn right
-	 * 
 	 */
 
 	public Direction turnRight() {

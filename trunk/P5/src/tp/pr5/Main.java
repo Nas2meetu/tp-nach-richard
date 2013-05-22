@@ -40,7 +40,6 @@ import tp.pr5.gui.MainWindow;
 public class Main {
 
 	/**
-	 * 
 	 * Commons-Cli Load file with places, streets and , create city and start
 	 * game's interface, console or both.
 	 * 

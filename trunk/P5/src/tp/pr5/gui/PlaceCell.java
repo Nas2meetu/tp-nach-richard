@@ -52,7 +52,6 @@ public class PlaceCell extends JButton {
 	 * 
 	 * @param room
 	 *            the room to set
-	 * 
 	 */
 	public void setPlace(PlaceInfo place) {
 		this.place = place;

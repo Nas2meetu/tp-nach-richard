@@ -15,12 +15,10 @@ public class City {
 	private Street[] cityMap;
 
 	/**
-	 * 
 	 * Constructor of cityMap. Creates a city using an array of streets.
 	 * 
 	 * @param cityMap
 	 *            map of city.
-	 * 
 	 */
 
 	public City(Street[] cityMap) {
@@ -28,9 +26,7 @@ public class City {
 	}
 
 	/**
-	 * 
 	 * Define size of array map.
-	 * 
 	 */
 
 	public City() {
@@ -39,7 +35,6 @@ public class City {
 	}
 
 	/**
-	 * 
 	 * Return a public method (cityMap) of a private attribute (CityMap).
 	 * 
 	 * @return cityMap is map of city.
@@ -50,11 +45,9 @@ public class City {
 	}
 
 	/**
-	 * 
 	 * Return size of a array map
 	 * 
 	 * @return i is a size of map.
-	 * 
 	 */
 
 	public int getCitySize() {

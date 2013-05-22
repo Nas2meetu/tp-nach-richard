@@ -62,7 +62,6 @@ public class HelpInstruction implements Instruction {
 	}
 
 	/**
-	 * 
 	 * Set the execution context. The method receives the entire engine (engine,
 	 * navigation and the robot container) even though the actual implementation
 	 * of execute() may not require it.

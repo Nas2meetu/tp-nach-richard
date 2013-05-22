@@ -6,6 +6,13 @@ package tp.pr5;
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
+ *          Interface of the observers that want to be notified about the events
+ *          ocurred in the robot engine. The robot engine will notify the
+ *          changes in the robot (fuel and recycled material), will inform about
+ *          communication problems, errors and when the robot wants to say
+ *          something. Finally, the engine will also notify when the user
+ *          requests help and when the robot shuts down (because the robot run
+ *          out of fuel or when it arrived at the spaceship)
  */
 
 public interface RobotEngineObserver {
@@ -20,6 +27,7 @@ public interface RobotEngineObserver {
 	 * The robot engine informs that the help has been requested
 	 * 
 	 * @param help
+	 *            A string with information help
 	 */
 	public void communicationHelp(String help);
 
@@ -28,6 +36,8 @@ public interface RobotEngineObserver {
 	 * arrived at the spaceship or it has run out of fuel)
 	 * 
 	 * @param atShip
+	 *            true if the robot shuts down because it has arrived at the
+	 *            spaceship or false if it has run out of fuel
 	 */
 	public void engineOff(boolean atShip);
 
@@ -35,6 +45,7 @@ public interface RobotEngineObserver {
 	 * The robot engine informs that it has raised an error
 	 * 
 	 * @param msg
+	 *            Error message
 	 */
 	public void raiseError(String msg);
 
@@ -42,6 +53,7 @@ public interface RobotEngineObserver {
 	 * The robot engine informs that the robot wants to say something
 	 * 
 	 * @param message
+	 *            The robot message
 	 */
 	public void robotSays(String message);
 
@@ -50,7 +62,9 @@ public interface RobotEngineObserver {
 	 * material has changed
 	 * 
 	 * @param fuel
+	 *            Current amount of fuel
 	 * @param recycledMaterial
+	 *            Current amount of recycled material
 	 */
 	public void robotUpdate(int fuel, int recycledMaterial);
 

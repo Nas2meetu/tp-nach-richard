@@ -20,6 +20,8 @@ import tp.pr5.items.Garbage;
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
  * @version 5
+ * 
+ *          City loader from a txt file
  */
 
 public class CityLoaderFromTxtFile {
@@ -29,9 +31,7 @@ public class CityLoaderFromTxtFile {
 	private ArrayList<Street> streets;
 
 	/**
-	 * 
 	 * Constructor of two arrays to create city with places, streets and items.
-	 * 
 	 */
 
 	public CityLoaderFromTxtFile() {
@@ -41,15 +41,14 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/**
-	 * 
 	 * Verify if file contains word "BeginCity" and "EndCity" if exists execute
 	 * loadPlaces, loadStreets and loadItems.
 	 * 
 	 * @param file
 	 *            is a file with information about city.
 	 * @return City map of city.
-	 * @throws java.io.IOException
 	 * 
+	 * @throws java.io.IOException
 	 */
 
 	public City loadCity(InputStream file) throws java.io.IOException {
@@ -82,12 +81,11 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/**
-	 * 
 	 * Verify if file has got places.
 	 * 
 	 * @throws IOException
-	 * @throws WrongCityFormatException
 	 * 
+	 * @throws WrongCityFormatException
 	 */
 
 	private void loadPlaces() throws IOException, WrongCityFormatException {
@@ -139,7 +137,6 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/**
-	 * 
 	 * Load places to city.
 	 * 
 	 * @param line
@@ -192,7 +189,6 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/**
-	 * 
 	 * Verify if file has got streets.
 	 * 
 	 * @throws IOException
@@ -225,8 +221,7 @@ public class CityLoaderFromTxtFile {
 		}
 	}
 
-	/**
-	 * 
+	/** 
 	 * Load streets to city.
 	 * 
 	 * @param line
@@ -295,10 +290,10 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/**
-	 * 
 	 * Verify if file has got items.
 	 * 
 	 * @throws IOException
+	 * 
 	 * @throws WrongCityFormatException
 	 */
 
@@ -350,8 +345,7 @@ public class CityLoaderFromTxtFile {
 		}
 	}
 
-	/**
-	 * 
+	/** 
 	 * Verify type of items has got line and process this item.
 	 * 
 	 * @param line
@@ -365,21 +359,16 @@ public class CityLoaderFromTxtFile {
 			throws WrongCityFormatException {
 		if (line[0].equals("fuel")) {
 			loadFuelItem(line, num++);
-		}
-		else if (line[0].equals("codecard")) {
+		} else if (line[0].equals("codecard")) {
 			loadCodeCardItem(line, num++);
-		}
-		else if (line[0].equals("garbage")) {
+		} else if (line[0].equals("garbage")) {
 			loadGarbageItem(line, num++);
-		}
-		else
+		} else
 			throw new WrongCityFormatException();
 
-		}
-
+	}
 
 	/**
-	 * 
 	 * Load fuel items to map
 	 * 
 	 * @param line
@@ -536,9 +525,9 @@ public class CityLoaderFromTxtFile {
 	}
 
 	/**
-	 * Return a initial place.
+	 * Returns the place where the robot will start the simulation
 	 * 
-	 * @return place.get(0)
+	 * @return The initial place
 	 */
 
 	public Place getInitialPlace() {
