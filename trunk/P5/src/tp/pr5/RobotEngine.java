@@ -197,16 +197,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 	public void requestEnd() {
 		notifyEngineOff();
-		if (navigation.atSpaceship())
-			this.engineOff(true);
-	}
-
-	public void engineOff(boolean ship) {
-		if (ship)
-			System.out.print(END_SPACESHIP + LINE_SEPARATOR);
-		else
-			System.out.println(END_FUEL);
-
 	}
 
 	private void notifyEngineOff() {
