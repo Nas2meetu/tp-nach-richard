@@ -22,6 +22,11 @@ import tp.pr5.items.Item;
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
+ *          RobotPanel displays information about the robot and its inventory.
+ *          More specifically, it contains labels to show the robot fuel and the
+ *          weight of recycled material and a table that represents the robot
+ *          inventory. Each row displays information about an item contained in
+ *          the inventory.
  */
 
 public class RobotPanel extends JPanel implements RobotEngineObserver,
@@ -69,7 +74,6 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 	}
 
 	/**
-	 * 
 	 * Update count of Fuel in RobotPanel
 	 * 
 	 * @param fuel
@@ -81,7 +85,6 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 	}
 
 	/**
-	 * 
 	 * Update count of Recycled Material in RobotPanel
 	 * 
 	 * @param garbage
@@ -94,7 +97,6 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 	}
 
 	/**
-	 * 
 	 * Is an abstract table to RobotPanel, that implements robot's inventory and
 	 * his methods.
 	 * 
@@ -163,7 +165,6 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 		}
 
 		/**
-		 * 
 		 * Update data table
 		 * 
 		 * @param items
@@ -180,7 +181,6 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 	}
 
 	/**
-	 * 
 	 * Return selected item of table of robotPanel
 	 * 
 	 * @return itemSelected an item of table
@@ -190,14 +190,13 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 
 		int row = tbInventory.getSelectedRow();
 		String itemSelected = null;
-		if(row!=-1)
+		if (row != -1)
 			itemSelected = tbInventory.getValueAt(row, 0).toString();
 		return itemSelected;
 
 	}
 
 	/**
-	 * 
 	 * Update table of robotPanel and insert new items picked
 	 * 
 	 * @param items
@@ -224,11 +223,26 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 
 	}
 
+	/**
+	 * Notifies that the user requests a SCAN instruction over the inventory.
+	 * 
+	 * @param inventoryDescription
+	 *            Information about the inventory
+	 */
+
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
 		// Not used
 
 	}
+
+	/**
+	 * Notifies that an item is empty and it will be removed from the container.
+	 * An invocation to the inventoryChange method will follow.
+	 * 
+	 * @param itemName
+	 *            Name of the empty item
+	 */
 
 	@Override
 	public void itemEmpty(String itemName) {
@@ -236,11 +250,22 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 
 	}
 
+	/**
+	 * Notifies that the user requests a SCAN instruction over the inventory.
+	 * 
+	 * @param inventoryDescription
+	 *            Information about the inventory
+	 */
+
 	@Override
 	public void itemScanned(String description) {
 		// Not used
 
 	}
+
+	/**
+	 * The robot engine informs that the communication is over.
+	 */
 
 	@Override
 	public void communicationCompleted() {
@@ -248,11 +273,27 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 
 	}
 
+	/**
+	 * The robot engine informs that the help has been requested
+	 * 
+	 * @param help
+	 *            A string with information help
+	 */
+
 	@Override
 	public void communicationHelp(String help) {
 		// Not used
 
 	}
+
+	/**
+	 * The robot engine informs that the robot has shut down (because it has
+	 * arrived at the spaceship or it has run out of fuel)
+	 * 
+	 * @param atShip
+	 *            true if the robot shuts down because it has arrived at the
+	 *            spaceship or false if it has run out of fuel
+	 */
 
 	@Override
 	public void engineOff(boolean atShip) {
@@ -260,11 +301,25 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 
 	}
 
+	/**
+	 * The robot engine informs that it has raised an error
+	 * 
+	 * @param msg
+	 *            Error message
+	 */
+
 	@Override
 	public void raiseError(String msg) {
 		// Not used
 
 	}
+
+	/**
+	 * The robot engine informs that the robot wants to say something
+	 * 
+	 * @param message
+	 *            The robot message
+	 */
 
 	@Override
 	public void robotSays(String message) {
@@ -273,6 +328,14 @@ public class RobotPanel extends JPanel implements RobotEngineObserver,
 	}
 
 	/**
+	 * The robot engine informs that the fuel and/or the amount of recycled
+	 * material has changed
+	 * 
+	 * @param fuel
+	 *            Current amount of fuel
+	 * 
+	 * @param recycledMaterial
+	 *            Current amount of recycled material
 	 * 
 	 */
 

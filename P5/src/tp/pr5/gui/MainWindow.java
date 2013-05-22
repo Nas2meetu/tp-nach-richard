@@ -20,7 +20,6 @@ import javax.swing.JSplitPane;
 import tp.pr5.RobotEngineObserver;
 
 /**
- * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
  * @version 5
@@ -151,7 +150,6 @@ public class MainWindow extends JFrame implements RobotEngineObserver {
 	}
 
 	/**
-	 * 
 	 * Return a public method (end) of a private attribute (isEnd).
 	 * 
 	 * @return isEnd if game finish or not.

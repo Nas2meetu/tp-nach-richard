@@ -6,7 +6,8 @@ package tp.pr5;
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
- * This class define messages for Wall·E , prompt, errors and line_separator
+ *          This class define messages for Wall·E , prompt, errors and
+ *          line_separator
  * 
  */
 
@@ -136,7 +137,7 @@ public class Constants {
 			+ "I have not such object ";
 
 	public static final String TITLE_GAME = "WALL·E the garbage collector";
-	
+
 	public static final String TURN_UNKNOWN = "Error, this rotation is not posible";
 
 	public static final String TYPE_INTERFACE = "The type of interface: console, swing or both";

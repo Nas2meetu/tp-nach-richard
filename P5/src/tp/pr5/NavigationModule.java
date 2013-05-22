@@ -24,7 +24,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	private City cityMap;
 
 	/**
-	 * 
 	 * Constructor of two parameter to create a NavigationModule
 	 * 
 	 * @param city
@@ -32,7 +31,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	 * 
 	 * @param currentPlace
 	 *            place where robot is
-	 * 
 	 */
 
 	public NavigationModule(City city, Place currentPlace) {
@@ -58,7 +56,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	 * 
 	 * @param item
 	 *            The name of the item to be dropped.
-	 * 
 	 */
 
 	public void dropItemAtCurrentPlace(Item item) {
@@ -74,7 +71,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	}
 
 	/**
-	 * 
 	 * Checks if there is an item with a given id in this place
 	 * 
 	 * @param id
@@ -98,7 +94,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	}
 
 	/**
-	 * 
 	 * Returns the current place where the robot is (for testing purposes)
 	 * 
 	 * @return actualPlace The current place
@@ -125,7 +120,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	 * 
 	 * @param heading
 	 *            New direction for the robot
-	 * 
 	 */
 
 	public void initHeading(Direction heading) {
@@ -195,7 +189,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	 * 
 	 * @param rotation
 	 *            left or right
-	 * 
 	 */
 
 	public void rotate(Rotation rotation) {
@@ -218,7 +211,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	/**
 	 * Provides the observers with the information (description + inventory) of
 	 * the current place
-	 * 
 	 */
 
 	public void scanCurrentPlace() {
@@ -232,7 +224,6 @@ public class NavigationModule extends Observable<NavigationObserver> {
 	}
 
 	/**
-	 * 
 	 * Return a public method (cityMap) of a private attribute CityMap.
 	 * 
 	 * @return cityMap is the map where the robot lives.

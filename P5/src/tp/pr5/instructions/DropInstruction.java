@@ -97,7 +97,6 @@ public class DropInstruction implements Instruction {
 	}
 
 	/**
-	 * 
 	 * Execute DROP instruction Verify if item isn't null, Place hasn't got this
 	 * item and put into Place.
 	 * 

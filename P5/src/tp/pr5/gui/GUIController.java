@@ -26,12 +26,10 @@ import tp.pr5.instructions.exceptions.InstructionExecutionException;
 public class GUIController extends Controller {
 
 	/**
-	 * 
 	 * Constructor that uses the model
 	 * 
 	 * @param robot
 	 *            The reference to the model
-	 * 
 	 */
 
 	public GUIController(RobotEngine robot) {

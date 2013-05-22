@@ -13,7 +13,6 @@ import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
 
 /**
- * 
  * @author Ignacio Cerda Sanchez
  * @author Ricardo Eugui Fernandez
  * @version 5

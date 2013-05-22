@@ -1,6 +1,5 @@
 package tp.pr5.instructions;
 
-
 import java.util.StringTokenizer;
 import tp.pr5.NavigationModule;
 import tp.pr5.RobotEngine;
@@ -63,6 +62,12 @@ public class TurnInstruction implements Instruction {
 
 	/**
 	 * Show information about TURN instruction syntax.
+	 * 
+	 * Returns a description of the Instruction syntax. The string does not end
+	 * with the line separator. It is up to the caller adding it before
+	 * printing.
+	 * 
+	 * Return the command syntax TURN | GIRAR < LEFT|RIGHT >
 	 */
 
 	@Override
@@ -98,12 +103,17 @@ public class TurnInstruction implements Instruction {
 
 	/**
 	 * Execute TURN instruction.
+	 * 
+	 * Turns the robot left or right
+	 * 
+	 * @throws InstructionExecutionException
+	 *             When the rotation is unknown
 	 */
 
 	@Override
 	public void execute() throws InstructionExecutionException {
 		navigation.rotate(rotation);
-		if(rotation!=Rotation.UNKNONW)
+		if (rotation != Rotation.UNKNONW)
 			robot.addFuel(-5);
 		else
 			throw new InstructionExecutionException(TURN_UNKNOWN);
