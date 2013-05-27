@@ -61,7 +61,6 @@ public class DropInstruction implements Instruction {
 				throw new WrongInstructionFormatException();
 		} else
 			throw new WrongInstructionFormatException();
-
 	}
 
 	/**
@@ -116,7 +115,6 @@ public class DropInstruction implements Instruction {
 			if (!navigation.findItemAtCurrentPlace(id)) {
 				navigation.dropItemAtCurrentPlace(robotContainer.pickItem(id));
 				robot.saySomething(WALLE_SAYS + DROP_ITEM + id + LINE_SEPARATOR);
-				robotContainer.updateInventory();
 			} else
 				throw new InstructionExecutionException(PLACE_REPEAT_ITEM + id);
 		else

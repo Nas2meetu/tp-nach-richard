@@ -26,7 +26,6 @@ public class ItemContainer extends Observable<InventoryObserver> {
 
 	private int numberOfItems;
 	private Item[] container;
-	private RobotPanel robotPanel;
 
 	/**
 	 * Constructor of two parameters to define robot´s Container
@@ -155,13 +154,19 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	 * @param id
 	 */
 	public void requestScanItem(String id) {
-		for (InventoryObserver inventoryObserver : observers) {
-			if (this.getItem(id) != null)
-				inventoryObserver
-						.itemScanned(this.getItem(id).getDescription());
-			else
-				inventoryObserver.itemEmpty(id);
-		}
+		Item item = this.getItem(id);
+		notifyItemScanned(item);
+
+	}
+
+	private void notifyItemScanned(Item item) {
+		for (InventoryObserver inventoryObserver : observers)
+			inventoryObserver.itemScanned(item.toString());
+	}
+
+	private void notifyItemEmpty(Item item) {
+		for (InventoryObserver inventoryObserver : observers)
+			inventoryObserver.itemEmpty(item.getId());
 	}
 
 	/**
@@ -277,23 +282,20 @@ public class ItemContainer extends Observable<InventoryObserver> {
 
 	public String toString() {
 
-		String showItems = "";
-		if (numberOfItems() != 0)
+		String showItems = CONTAINER;
+		if (numberOfItems() > 0){
 			for (int i = 0; i < numberOfItems(); i++) {
 				showItems += "   " + container[i].getId() + LINE_SEPARATOR;
 			}
-		return showItems;
+			return showItems;
+		}
+		else
+			return (CONTAINER_EMPTY);	
+		
 	}
 
-	public void setRobotPanel(RobotPanel robotPanel) {
-		this.robotPanel = robotPanel;
+	
 
-	}
-
-	public void updateInventory() {
-		if (robotPanel != null)
-			robotPanel.updateTable(inventoryToTable());
-	}
 
 	private String[][] inventoryToTable() {
 		String[][] data = new String[numberOfItems][2];
@@ -312,7 +314,10 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	 *            to be used
 	 */
 	public void useItem(Item item) {
-
+		if (!(item.canBeUsed())) {
+			pickItem(item.getId());
+			notifyItemEmpty(item);
+		}
 	}
 
 }

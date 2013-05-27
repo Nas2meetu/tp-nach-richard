@@ -131,7 +131,6 @@ public class PickInstruction implements Instruction {
 		else if (robotContainer.addItem(item)) {
 			navigation.pickItemFromCurrentPlace(item);
 			robot.saySomething(CONTAINER_ITEM + id + LINE_SEPARATOR);
-			robotContainer.updateInventory();
 		} else
 			throw new InstructionExecutionException(CONTAINER_REPEAT_ITEM + id);
 

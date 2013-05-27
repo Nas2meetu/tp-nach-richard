@@ -107,7 +107,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
-		System.out.println(CONTAINER + inventoryDescription + LINE_SEPARATOR);
+		System.out.println(inventoryDescription + LINE_SEPARATOR);
 	}
 
 	/**
