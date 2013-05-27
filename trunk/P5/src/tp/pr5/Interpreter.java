@@ -44,15 +44,15 @@ public class Interpreter {
 
 	public static Instruction generateInstruction(String line)
 			throws WrongInstructionFormatException {
-
-		for (Instruction aux : allInstructions) {
-			try {
-				return aux.parse(line);
-
-			} catch (WrongInstructionFormatException wife) {
-			}
-		}
-		throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+		if (!line.equals("")) {
+			for (Instruction aux : allInstructions) {
+				try {
+					return aux.parse(line);
+				} catch (WrongInstructionFormatException wife) {
+				}
+			}throw new WrongInstructionFormatException(BAD_INSTRUCTION);
+		} else
+			throw new WrongInstructionFormatException(BAD_INSTRUCTION);
 	}
 
 	/**

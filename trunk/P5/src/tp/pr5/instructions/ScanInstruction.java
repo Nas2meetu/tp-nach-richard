@@ -106,7 +106,7 @@ public class ScanInstruction implements Instruction {
 		this.robot = engine;
 		this.robotContainer = robotContainer;
 
-	}
+	} 
 
 	/**
 	 * Execute SCAN instruction.
@@ -120,19 +120,15 @@ public class ScanInstruction implements Instruction {
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		if (id == null) {
-			if (robotContainer.numberOfItems() == 0) {
-				robot.saySomething(CONTAINER_EMPTY);
-			} else {
-				robot.saySomething(CONTAINER);
-				robot.saySomething(robotContainer.toString() + LINE_SEPARATOR);
-			}
-		} else {
+		if (id != null) {
 			Item item = robotContainer.getItem(id);
 			if (item != null)
 				robotContainer.requestScanItem(id);
 			else
 				throw new InstructionExecutionException(SCAN_NO_ITEM + id);
+		}else{
+			robotContainer.requestScanCollection();
 		}
 	}
+
 }
