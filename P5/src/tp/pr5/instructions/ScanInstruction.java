@@ -130,7 +130,7 @@ public class ScanInstruction implements Instruction {
 		} else {
 			Item item = robotContainer.getItem(id);
 			if (item != null)
-				System.out.println(WALLE_SAYS + item.toString());
+				robotContainer.requestScanItem(id);
 			else
 				throw new InstructionExecutionException(SCAN_NO_ITEM + id);
 		}

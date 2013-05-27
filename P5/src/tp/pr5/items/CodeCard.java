@@ -76,7 +76,6 @@ public class CodeCard extends Item {
 				navigation.getHeadingStreet().open(this);
 			return true;
 		} else {
-			System.out.println(ITEM_PROBLEMS + getId().toLowerCase());
 			return false;
 		}
 	}
