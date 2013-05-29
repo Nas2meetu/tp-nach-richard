@@ -1,16 +1,15 @@
 package tp.pr5.items;
 
-import static tp.pr5.Constants.*;
+import static tp.pr5.Constants.LINE_SEPARATOR;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import tp.pr5.Observable;
-import tp.pr5.gui.RobotPanel;
 
 /**
  * 
- * @author Ignacio Cerda Sanchez
+ * @author Ignacio Cerda SanchezO
  * @author Ricardo Eugui Fernandez
  * @version 5
  * 
@@ -37,16 +36,6 @@ public class ItemContainer extends Observable<InventoryObserver> {
 
 	}
 
-	/**
-	 * Return a public method (container) of a private attribute (container).
-	 * 
-	 * @return all items in Robot´s container
-	 * 
-	 */
-
-	public Item[] getContainer() {
-		return container;
-	}
 
 	/**
 	 * Return a public method (numberOfItems) of a private attribute
@@ -282,28 +271,13 @@ public class ItemContainer extends Observable<InventoryObserver> {
 
 	public String toString() {
 
-		String showItems = CONTAINER;
-		if (numberOfItems() > 0){
+		String showItems = "";
+		if (numberOfItems() > 0) {
 			for (int i = 0; i < numberOfItems(); i++) {
 				showItems += "   " + container[i].getId() + LINE_SEPARATOR;
 			}
-			return showItems;
 		}
-		else
-			return (CONTAINER_EMPTY);	
-		
-	}
-
-	
-
-
-	private String[][] inventoryToTable() {
-		String[][] data = new String[numberOfItems][2];
-		for (int i = 0; i < numberOfItems; i++) {
-			data[i][0] = container[i].getId();
-			data[i][1] = container[i].getDescription();
-		}
-		return data;
+		return showItems;
 	}
 
 	/**
@@ -314,7 +288,7 @@ public class ItemContainer extends Observable<InventoryObserver> {
 	 *            to be used
 	 */
 	public void useItem(Item item) {
-		if (!(item.canBeUsed())) {
+		if (!item.canBeUsed()) {
 			pickItem(item.getId());
 			notifyItemEmpty(item);
 		}
