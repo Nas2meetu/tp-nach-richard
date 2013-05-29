@@ -1,7 +1,10 @@
 package tp.pr5.instructions;
 
-import static tp.pr5.Constants.*;
+import static tp.pr5.Constants.CONTAINER_EMPTY;
+import static tp.pr5.Constants.SCAN_NO_ITEM;
+
 import java.util.StringTokenizer;
+
 import tp.pr5.NavigationModule;
 import tp.pr5.RobotEngine;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
@@ -25,7 +28,6 @@ public class ScanInstruction implements Instruction {
 
 	private String id;
 	private ItemContainer robotContainer;
-	private RobotEngine robot;
 
 	public ScanInstruction(String token2) {
 		this.id = token2;
@@ -103,10 +105,9 @@ public class ScanInstruction implements Instruction {
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		this.robot = engine;
 		this.robotContainer = robotContainer;
 
-	} 
+	}
 
 	/**
 	 * Execute SCAN instruction.
@@ -120,15 +121,17 @@ public class ScanInstruction implements Instruction {
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		if (id != null) {
+		if (id == null) {
+			if (robotContainer.numberOfItems() == 0)
+				throw new InstructionExecutionException(CONTAINER_EMPTY);
+			else
+				robotContainer.requestScanCollection();
+		} else {
 			Item item = robotContainer.getItem(id);
 			if (item != null)
 				robotContainer.requestScanItem(id);
 			else
 				throw new InstructionExecutionException(SCAN_NO_ITEM + id);
-		}else{
-			robotContainer.requestScanCollection();
 		}
 	}
-
 }

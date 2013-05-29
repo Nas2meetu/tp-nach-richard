@@ -21,8 +21,8 @@ import static tp.pr5.Constants.*;
  * 
  */
 
-public class Console extends Object implements NavigationObserver,
-		RobotEngineObserver, InventoryObserver {
+public class Console implements NavigationObserver, RobotEngineObserver,
+		InventoryObserver {
 
 	/**
 	 * The robot engine informs that the communication is over.
@@ -107,7 +107,7 @@ public class Console extends Object implements NavigationObserver,
 	 */
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
-		System.out.println(inventoryDescription + LINE_SEPARATOR);
+		System.out.println(CONTAINER + inventoryDescription);
 	}
 
 	/**

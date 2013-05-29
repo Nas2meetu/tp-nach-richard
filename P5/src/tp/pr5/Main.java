@@ -122,31 +122,16 @@ public class Main {
 					// Load only swing interface
 
 					if (interfaces.equalsIgnoreCase("swing")) {
-						GUIController gc = new GUIController(robot);
-						final MainWindow mainWindow = new MainWindow(gc);
-						gc.startGuiController();
-
+						startGuiInterface(robot);
 						// Load console only interface
 
 					} else if (interfaces.equalsIgnoreCase("console")) {
-						ConsoleController cc = new ConsoleController(robot);
-						Console c = new Console();
-						robot.addEngineObserver(c);
-						robot.addNavigationObserver(c);
-						robot.addItemContainerObserver(c);
-						cc.startController();
-
+						startConsoleInterface(robot);
 						// Load swing and console interface (but interface only
 						// read mode)
 
 					} else if (interfaces.equalsIgnoreCase("both")) {
-						GUIController gc = new GUIController(robot);
-						Console c = new Console();
-						robot.addEngineObserver(c);
-						robot.addNavigationObserver(c);
-						robot.addItemContainerObserver(c);
-						final MainWindow mainWindow = new MainWindow(gc);
-						gc.startGuiController();
+						startBothInterfaces(robot);
 
 					} else {
 						System.err.println(WRONG_INTERFACE);
@@ -164,5 +149,30 @@ public class Main {
 		} catch (org.apache.commons.cli.ParseException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	private static void startGuiInterface(RobotEngine robot) {
+		GUIController gc = new GUIController(robot);
+		final MainWindow mainWindow = new MainWindow(gc);
+		gc.startGuiController();
+	}
+
+	private static void startConsoleInterface(RobotEngine robot) {
+		ConsoleController cc = new ConsoleController(robot);
+		Console c = new Console();
+		robot.addEngineObserver(c);
+		robot.addNavigationObserver(c);
+		robot.addItemContainerObserver(c);
+		cc.startController();
+	}
+
+	private static void startBothInterfaces(RobotEngine robot) {
+		GUIController gc = new GUIController(robot);
+		Console c = new Console();
+		robot.addEngineObserver(c);
+		robot.addNavigationObserver(c);
+		robot.addItemContainerObserver(c);
+		final MainWindow mainWindow = new MainWindow(gc);
+		gc.startGuiController();
 	}
 }
