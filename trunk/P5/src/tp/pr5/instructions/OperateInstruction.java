@@ -127,8 +127,7 @@ public class OperateInstruction implements Instruction {
 				throw new InstructionExecutionException(ITEM_PROBLEMS + id);
 		}
 		if (item != null && !item.canBeUsed()) {
-			robotContainer.pickItem(id);
-			robot.saySomething(ITEM_CANT_USED + id + IN_MY_INVENTORY);
+			robotContainer.useItem(item);
 		} else if (item == null)
 			throw new InstructionExecutionException(ITEM_PROBLEMS + id);
 

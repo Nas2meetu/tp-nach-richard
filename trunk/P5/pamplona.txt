@@ -1,0 +1,28 @@
+BeginCity
+BeginPlaces
+place 0 Pza.Castillo "Estas en el centro de Pamplona. ¿Aqui antes habia un castillo?" noSpaceShip
+place 1 PaseoSarasate "Bonito lugar para pasear y disfrutar de la gente de Pamplona. Bonita estatua a los fueros" noSpaceShip
+place 2 CarlosIII "Un lugar peatonal para pasear e ir de compras. El momumento a los caidos, esta muy alejado de todo, no?" noSpaceShip
+place 3 Antoniutti "Las murallas se han usado como casa para un monton de animales"... noSpaceShip
+place 4 Ciudadela "Antigua fortificacion defensiva reconvertida en lugar de relax, celebracion de bodas y exposiciones." noSpaceShip
+place 5 Navarreria "En esta fuente los guiris hacen el idiota en sanfermines, mira que tirarse de la fuente..." noSpaceShip
+place 6 PlazaToros "Aqui acaban todos los encierros de los sanfermines, o..., mira que sorpresa, esta aqui mi nave!!!" spaceShip
+EndPlaces
+BeginStreets
+street 0 place 0 south place 1 open
+street 1 place 1 east place 2 open
+street 2 place 2 north place 3 closed onetwothreefourfive
+street 3 place 3 east place 4 open
+street 4 place 2 south place 5 closed oneonetwo
+street 5 place 4 south place 6 open 
+EndStreets
+BeginItems
+fuel 0 Petrol from_olds_heatings 10 3 place 0
+fuel 1 Battery to_get_cracking -50 1 place 0
+codecard 2 llaveAzul The_key_is_too_easy onetwothreefourfive place 1
+garbage 3 Newspapers News_on_sport 30 place 2
+fuel 4 Plutonio Genial_para_recargar_mis_baterias 55 2 place 5
+codecard 5 llaveVerde Abrira_puertas? oneonetwo place 4
+garbage 6 Bici Se_usaba_para_transportar_personas 78 place 4
+EndItems
+EndCity
