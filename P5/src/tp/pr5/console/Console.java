@@ -119,7 +119,7 @@ public class Console implements NavigationObserver, RobotEngineObserver,
 
 	@Override
 	public void itemEmpty(String itemName) {
-		System.out.println(ITEM_NOT_EXIST + itemName + IN_MY_INVENTORY);
+		System.out.println(ITEM_CANT_USED + itemName + IN_MY_INVENTORY);
 
 	}
 
